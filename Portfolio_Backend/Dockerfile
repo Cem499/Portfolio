@@ -7,4 +7,4 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/contact-form-1.0.0.jar app.jar
-CMD ["sh", "-c", "java -jar app.jar --server.port=${PORT:-8080}"]
+CMD ["sh", "-c", "java -jar app.jar --server.port=${PORT:-8081}"]
