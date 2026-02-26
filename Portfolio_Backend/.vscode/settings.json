@@ -1,0 +1,6 @@
+{
+  "java.project.sourcePaths": [
+    "Portfolio-Backend/src/main/java",
+    "Portfolio-Backend/src/test/java"
+  ]
+}

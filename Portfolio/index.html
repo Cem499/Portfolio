@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="de" prefix="og: https://ogp.me/ns#">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Agentur Zürich | Webdesign, Branding & Entwicklung | Sin Digital</title>
+    <meta name="description"
+        content="Ihre kreative Digital Agentur in Zürich. Wir entwickeln aussergewöhnliche Webseiten, starke Markenidentitäten und digitale Strategien. ✓ Web Design ✓ Branding ✓ App Entwicklung. Jetzt Projekt starten!">
+    <meta name="keywords"
+        content="Digital Agentur Zürich, Webdesign Zürich, Branding Agentur, Web Entwicklung, UX Design, App Entwicklung, digitale Transformation, Kreativagentur">
+    <meta name="author" content="Sin Digital Agentur Zürich">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://www.ovicen.com/">
+    <meta name="theme-color" content="#010101">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sin Digital">
+    <link rel="icon" type="image/svg+xml"
+        href="/Portfolio/assets/ICON-Logo_OVICEN.png">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ── NAV ── */
+        #main-nav {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(1, 1, 1, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(193, 255, 114, 0.1);
+        }
+
+        .nav-logo img {
+            height: 52px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: #C1FF72; }
+
+        .nav-link-cta {
+            color: #C1FF72;
+            border: 1px solid #C1FF72;
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .nav-link-cta:hover {
+            background: #C1FF72;
+            color: #010101;
+        }
+
+        /* ── LANGUAGE SWITCHER ── */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: rgba(193, 255, 114, 0.05);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            border-radius: 50px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--color-gray);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--color-green);
+            color: #010101;
+        }
+
+        .lang-btn:hover:not(.active) { color: var(--color-green); }
+
+        /* ── HAMBURGER BUTTON ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 2.2rem;
+            height: 2.2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.2rem;
+            z-index: 1100;
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #C1FF72;
+            border-radius: 2px;
+            transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* X animation when open */
+        .hamburger.open .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.open .hamburger-line:nth-child(2) {
+            opacity: 0;
+            width: 0;
+        }
+        .hamburger.open .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ── MOBILE MENU OVERLAY ── */
+        .mobile-menu {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(1, 1, 1, 0.97);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-link {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            padding: 0.5rem 0;
+            transition: color 0.2s;
+            text-transform: uppercase;
+        }
+
+        .mobile-link:hover { color: #C1FF72; }
+
+        .mobile-link-cta {
+            color: #C1FF72;
+            margin-top: 1rem;
+            border-bottom: 2px solid #C1FF72;
+        }
+
+        .mobile-lang {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(193, 255, 114, 0.05);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            border-radius: 50px;
+            padding: 0.25rem;
+        }
+
+        /* ── RESPONSIVE NAV ── */
+        @media (max-width: 767px) {
+            #main-nav {
+                padding: 1rem 1.25rem;
+            }
+
+            .nav-logo img {
+                height: 38px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            /* Hide desktop lang switcher on mobile (shown inside mobile menu) */
+            .nav-right > .lang-switcher {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body itemscope itemtype="https://schema.org/WebPage">
+
+    <a href="#main-content" class="skip-link"
+        style="position:absolute;left:-9999px;top:0;z-index:9999;padding:8px 16px;background:#C1FF72;color:#010101;font-weight:700;border-radius:0 0 8px 0;"
+        data-de="Zum Inhalt springen" data-en="Skip to content">Zum Inhalt springen</a>
+
+    <!-- NAVIGATION -->
+    <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+        <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
+            <img src="/Portfolio/assets/Logo_OVICEN.png" alt="Sin Digital Agentur Zürich">
+        </a>
+
+        <div class="nav-right">
+            <!-- Desktop links -->
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#team" role="menuitem" class="nav-link" data-de="Team" data-en="Team">Team</a></li>
+                <li role="none"><a href="#projects" role="menuitem" class="nav-link" data-de="Leistungen" data-en="Services">Leistungen</a></li>
+                <li role="none"><a href="#faq" role="menuitem" class="nav-link" data-de="FAQ" data-en="FAQ">FAQ</a></li>
+                <li role="none"><a href="#contact" role="menuitem" class="nav-link nav-link-cta" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+            </ul>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
+            <!-- Hamburger button -->
+            <button class="hamburger" id="hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <ul class="mobile-menu-links">
+            <li><a href="#team" class="mobile-link" data-de="Team" data-en="Team">Team</a></li>
+            <li><a href="#projects" class="mobile-link" data-de="Leistungen" data-en="Services">Leistungen</a></li>
+            <li><a href="#faq" class="mobile-link" data-de="FAQ" data-en="FAQ">FAQ</a></li>
+            <li><a href="#contact" class="mobile-link mobile-link-cta" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+        </ul>
+    </div>
+
+    <main id="main-content" role="main">
+
+        <!-- HERO -->
+        <section id="hero" class="section hero" aria-labelledby="hero-heading">
+            <div class="blob blob-1" aria-hidden="true"></div>
+            <div class="blob blob-2" aria-hidden="true"></div>
+
+            <div class="container hero-content">
+                <span class="label hero-label" data-de="Digital Agentur Zürich" data-en="Digital Agency Zürich">Digital
+                    Agentur Zürich</span>
+
+                <div class="hero-grid">
+                    <div class="hero-left">
+                        <h1 id="hero-heading" class="hero-title">
+                            WE<br>
+                            <span class="text-green">CREATE</span><br>
+                            FUTURE
+                        </h1>
+                        <a href="#contact" class="btn-primary" role="button" data-de="Projekt starten"
+                            data-en="Start Your Project">Projekt starten</a>
+                    </div>
+
+                    <div class="hero-right">
+                        <p class="hero-text-1"
+                            data-de="Wir sind eine kreative Digital Agentur in Zürich, die aussergewöhnliche digitale Erlebnisse schafft – von der ersten Idee bis zum fertigen Produkt."
+                            data-en="We are a creative digital agency in Zürich, crafting extraordinary digital experiences – from the first idea to the finished product.">
+                            Wir sind eine kreative Digital Agentur in Zürich, die aussergewöhnliche digitale Erlebnisse
+                            schafft – von der ersten Idee bis zum fertigen Produkt.
+                        </p>
+                        <p class="hero-text-2"
+                            data-de="Von Branding bis zur digitalen Transformation – wir begleiten Sie auf jedem Schritt Ihrer Reise zu digitalem Erfolg."
+                            data-en="From branding to digital transformation – we guide you every step of the way to digital success.">
+                            Von Branding bis zur digitalen Transformation – wir begleiten Sie auf jedem Schritt Ihrer
+                            Reise zu digitalem Erfolg.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator" aria-label="Weiter scrollen" role="img">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        aria-hidden="true">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="line line-1" aria-hidden="true"></div>
+            <div class="line line-2" aria-hidden="true"></div>
+        </section>
+
+        <!-- TEAM -->
+        <section id="team" class="section team" aria-labelledby="team-heading">
+            <div class="bg-accent" aria-hidden="true"></div>
+
+            <div class="container">
+                <div class="team-header">
+                    <span class="label-vertical" aria-hidden="true">Team</span>
+                    <div>
+                        <h2 id="team-heading" class="section-title">
+                            <span data-de="DER KOPF" data-en="THE MIND">DER KOPF</span><br>
+                            <span class="text-green" data-de="DAHINTER" data-en="BEHIND IT">DAHINTER</span>
+                        </h2>
+                        <p class="section-desc"
+                            data-de="Geführt von einer Vision: digitale Erlebnisse zu schaffen, die Grenzen überschreiten und echten Mehrwert liefern."
+                            data-en="Led by one vision: crafting digital experiences that push boundaries and deliver real value.">
+                            Geführt von einer Vision: digitale Erlebnisse zu schaffen, die Grenzen überschreiten und
+                            echten Mehrwert liefern.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-grid" role="list" aria-label="Unser Team"
+                    style="grid-template-columns: repeat(auto-fit, minmax(300px, 400px)); justify-content: center;">
+                    <article class="team-member" data-delay="0" role="listitem" itemscope
+                        itemtype="https://schema.org/Person">
+                        <div class="team-image">
+                            <img src="/Portfolio/assets/PortraitCem.jpeg"
+                                alt="Cem Sin, CEO bei Sin Digital Agentur Zürich" loading="lazy" width="600"
+                                height="800" itemprop="image">
+                            <div class="team-overlay" aria-hidden="true"></div>
+                        </div>
+                        <div class="team-info">
+                            <h3 itemprop="name">Cem Sin</h3>
+                            <p class="text-green" itemprop="jobTitle">CEO</p>
+                            <div class="team-line" aria-hidden="true"></div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="big-number" aria-hidden="true">01</div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="projects" class="section projects" aria-labelledby="projects-heading">
+            <div class="circle-bg" aria-hidden="true"></div>
+
+            <style>
+                .services-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    margin-bottom: 5rem;
+                    flex-wrap: wrap;
+                    gap: 2rem;
+                }
+
+                /* ── PAKETE GRID ── */
+                .pakete-intro {
+                    max-width: 680px;
+                    color: #9ca3af;
+                    font-size: 0.95rem;
+                    line-height: 1.9;
+                    margin-bottom: 4rem;
+                }
+
+                .pakete-grid {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 1px;
+                    background: rgba(193, 255, 114, 0.08);
+                    border: 1px solid rgba(193, 255, 114, 0.08);
+                    border-radius: 2px;
+                    overflow: hidden;
+                    margin-bottom: 5rem;
+                }
+
+                @media (max-width: 1100px) {
+                    .pakete-grid { grid-template-columns: repeat(2, 1fr); }
+                }
+                @media (max-width: 700px) {
+                    .pakete-grid { grid-template-columns: 1fr; }
+                    .paket-card { padding: 2rem 1.5rem; }
+                    .paket-name { font-size: 1.4rem; }
+                }
+                @media (max-width: 480px) {
+                    .pakete-grid { margin-bottom: 3rem; }
+                    .paket-card { padding: 1.75rem 1.25rem; }
+                    .paket-price strong { font-size: 1.1rem; }
+                }
+
+                .paket-card {
+                    background: #010101;
+                    padding: 2.8rem 2.2rem;
+                    position: relative;
+                    overflow: hidden;
+                    transition: background 0.4s ease;
+                    cursor: default;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .paket-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0; left: 0; right: 0;
+                    height: 2px;
+                    background: linear-gradient(90deg, transparent, #C1FF72, transparent);
+                    transform: scaleX(0);
+                    transition: transform 0.5s ease;
+                }
+
+                .paket-card:hover::before { transform: scaleX(1); }
+                .paket-card:hover { background: rgba(193, 255, 114, 0.03); }
+
+                .paket-card.featured {
+                    background: rgba(193, 255, 114, 0.04);
+                    border-top: 2px solid #C1FF72;
+                }
+                .paket-card.featured::before { transform: scaleX(1); }
+
+                .paket-badge {
+                    display: inline-block;
+                    font-size: 0.65rem;
+                    letter-spacing: 0.2em;
+                    text-transform: uppercase;
+                    color: #010101;
+                    background: #C1FF72;
+                    padding: 0.25rem 0.65rem;
+                    border-radius: 2px;
+                    margin-bottom: 1.5rem;
+                    font-weight: 700;
+                }
+
+                .paket-label {
+                    font-size: 0.65rem;
+                    letter-spacing: 0.25em;
+                    text-transform: uppercase;
+                    color: rgba(193, 255, 114, 0.5);
+                    margin-bottom: 0.6rem;
+                    display: block;
+                }
+
+                .paket-name {
+                    font-size: 1.6rem;
+                    font-weight: 900;
+                    color: #fff;
+                    margin-bottom: 0.4rem;
+                    letter-spacing: -0.02em;
+                    line-height: 1.1;
+                }
+
+                .paket-positioning {
+                    color: #6b7280;
+                    font-size: 0.82rem;
+                    line-height: 1.7;
+                    margin-bottom: 2rem;
+                    flex-grow: 1;
+                }
+
+                .paket-features {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0 0 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.55rem;
+                }
+
+                .paket-features li {
+                    font-size: 0.8rem;
+                    color: #9ca3af;
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 0.6rem;
+                    line-height: 1.5;
+                }
+
+                .paket-features li::before {
+                    content: '';
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background: #C1FF72;
+                    flex-shrink: 0;
+                    margin-top: 0.45rem;
+                }
+
+                .paket-price {
+                    margin-top: auto;
+                    padding-top: 1.8rem;
+                    border-top: 1px solid rgba(193, 255, 114, 0.08);
+                    font-size: 0.8rem;
+                    color: #6b7280;
+                }
+
+                .paket-price strong {
+                    display: block;
+                    font-size: 1.3rem;
+                    font-weight: 900;
+                    color: #C1FF72;
+                    letter-spacing: -0.02em;
+                    margin-bottom: 0.2rem;
+                }
+
+                /* ── PROZESS ── */
+                .prozess-section {
+                    margin-bottom: 5rem;
+                }
+
+                .prozess-label {
+                    font-size: 0.7rem;
+                    letter-spacing: 0.25em;
+                    text-transform: uppercase;
+                    color: #C1FF72;
+                    display: block;
+                    margin-bottom: 1.5rem;
+                }
+
+                .prozess-title {
+                    font-size: clamp(1.6rem, 3vw, 2.2rem);
+                    font-weight: 900;
+                    color: #fff;
+                    letter-spacing: -0.03em;
+                    margin-bottom: 3.5rem;
+                    line-height: 1.1;
+                }
+
+                .prozess-grid {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 1px;
+                    background: rgba(193, 255, 114, 0.08);
+                    border: 1px solid rgba(193, 255, 114, 0.08);
+                    border-radius: 2px;
+                    overflow: hidden;
+                }
+
+                @media (max-width: 900px) {
+                    .prozess-grid { grid-template-columns: repeat(2, 1fr); }
+                    .prozess-section { margin-bottom: 3.5rem; }
+                    .prozess-title { margin-bottom: 2.5rem; }
+                }
+                @media (max-width: 500px) {
+                    .prozess-grid { grid-template-columns: 1fr; }
+                    .prozess-step { padding: 1.75rem 1.25rem; }
+                    .prozess-step-num { font-size: 3rem; margin-bottom: 1rem; }
+                }
+
+                .prozess-step {
+                    background: #010101;
+                    padding: 2.5rem 2rem;
+                    position: relative;
+                }
+
+                .prozess-step-num {
+                    font-size: 4rem;
+                    font-weight: 900;
+                    color: #fff;
+                    opacity: 0.04;
+                    line-height: 1;
+                    margin-bottom: 1.5rem;
+                    font-family: inherit;
+                }
+
+                .prozess-step-name {
+                    font-size: 1rem;
+                    font-weight: 800;
+                    color: #fff;
+                    margin-bottom: 0.8rem;
+                    letter-spacing: -0.01em;
+                }
+
+                .prozess-step-desc {
+                    font-size: 0.82rem;
+                    color: #6b7280;
+                    line-height: 1.8;
+                }
+
+                /* ── CTA ── */
+                .leistungen-cta {
+                    background: rgba(193, 255, 114, 0.04);
+                    border: 1px solid rgba(193, 255, 114, 0.15);
+                    border-radius: 2px;
+                    padding: 4rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 2rem;
+                    flex-wrap: wrap;
+                    margin-bottom: 2rem;
+                }
+
+                .leistungen-cta-text h3 {
+                    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+                    font-weight: 900;
+                    color: #fff;
+                    letter-spacing: -0.03em;
+                    margin-bottom: 0.75rem;
+                    line-height: 1.15;
+                }
+
+                .leistungen-cta-text p {
+                    color: #6b7280;
+                    font-size: 0.9rem;
+                    line-height: 1.8;
+                    max-width: 480px;
+                }
+
+                .leistungen-cta-btn {
+                    display: inline-block;
+                    background: #C1FF72;
+                    color: #010101;
+                    font-size: 0.8rem;
+                    font-weight: 800;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    padding: 1.1rem 2.4rem;
+                    border-radius: 2px;
+                    text-decoration: none;
+                    transition: background 0.3s, transform 0.2s;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+
+                .leistungen-cta-btn:hover {
+                    background: #d4ff99;
+                    transform: translateY(-2px);
+                }
+
+                @media (max-width: 700px) {
+                    .leistungen-cta {
+                        padding: 2.5rem 1.75rem;
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+                    .leistungen-cta-btn {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+                @media (max-width: 480px) {
+                    .leistungen-cta { padding: 2rem 1.25rem; }
+                    .leistungen-cta-text h3 { font-size: 1.3rem; }
+                }
+
+                /* ── SERVICES HEADER RESPONSIVE ── */
+                @media (max-width: 768px) {
+                    .services-header {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        margin-bottom: 3rem;
+                    }
+                    .pakete-intro {
+                        max-width: 100%;
+                        margin-bottom: 2.5rem;
+                        font-size: 0.9rem;
+                    }
+                }
+
+                /* Legacy stubs so existing CSS refs don't break */
+                .services-grid { display: none; }
+                .services-bottom-row { display: none; }
+
+                .service-card-wide {
+                    background: #010101;
+                    padding: 2.5rem;
+                    position: relative;
+                    overflow: hidden;
+                    transition: background 0.4s ease;
+                    display: flex;
+                    align-items: center;
+                    gap: 2.5rem;
+                }
+
+            </style>
+
+            <div class="container">
+
+                <!-- Header -->
+                <div class="services-header">
+                    <div>
+                        <span class="label" data-de="Was wir tun" data-en="What We Offer">Was wir tun</span>
+                        <h2 id="projects-heading" class="section-title">
+                            <span data-de="UNSERE" data-en="OUR">UNSERE</span><br>
+                            <span class="text-green" data-de="LEISTUNGEN" data-en="SERVICES">LEISTUNGEN</span>
+                        </h2>
+                    </div>
+                    <p class="section-desc-right pakete-intro"
+                        data-de="Wir spezialisieren uns auf professionelle Websites mit integrierter Online-Terminbuchung — entwickelt für Friseursalons in Zürich. Unsere Lösungen helfen Ihnen, mehr Termine online zu gewinnen, den administrativen Aufwand zu reduzieren und einen professionellen Auftritt zu schaffen, der Vertrauen erzeugt. Wählen Sie das Paket, das zu Ihrer aktuellen Situation passt."
+                        data-en="We specialise in professional websites with integrated online booking — built for hair salons in Zürich. Our solutions help you win more appointments online, reduce administrative workload, and create a professional presence that builds trust. Choose the package that fits where you are right now.">
+                        Wir spezialisieren uns auf professionelle Websites mit integrierter Online-Terminbuchung — entwickelt für Friseursalons in Zürich. Unsere Lösungen helfen Ihnen, mehr Termine online zu gewinnen, den administrativen Aufwand zu reduzieren und einen professionellen Auftritt zu schaffen, der Vertrauen erzeugt. Wählen Sie das Paket, das zu Ihrer aktuellen Situation passt.
+                    </p>
+                </div>
+
+                <!-- 4 Pakete -->
+                <div class="pakete-grid">
+
+                    <!-- BASIC -->
+                    <div class="paket-card">
+                        <span class="paket-label" data-de="Paket 01" data-en="Package 01">Paket 01</span>
+                        <h3 class="paket-name">Basic</h3>
+                        <p class="paket-positioning"
+                            data-de="Für Salons, die erstmals online sichtbar werden möchten. Ein sauberer, professioneller Auftritt — ohne Schnickschnack, dafür mit Substanz."
+                            data-en="For salons making their first step online. A clean, professional presence — no frills, but solid substance.">
+                            Für Salons, die erstmals online sichtbar werden möchten. Ein sauberer, professioneller Auftritt — ohne Schnickschnack, dafür mit Substanz.</p>
+                        <ul class="paket-features">
+                            <li data-de="Professionelle Website mit bis zu 5 Seiten" data-en="Professional website with up to 5 pages">Professionelle Website mit bis zu 5 Seiten</li>
+                            <li data-de="Mobile-optimiert für alle Geräte" data-en="Mobile-optimised for all devices">Mobile-optimiert für alle Geräte</li>
+                            <li data-de="Kontaktformular & Standortkarte" data-en="Contact form & location map">Kontaktformular &amp; Standortkarte</li>
+                            <li data-de="Grundlegende Suchmaschinenoptimierung" data-en="Basic search engine optimisation">Grundlegende Suchmaschinenoptimierung</li>
+                            <li data-de="Einbindung in Google Maps" data-en="Google Maps integration">Einbindung in Google Maps</li>
+                        </ul>
+                        <div class="paket-price">
+                            <strong>Ab 1'490 CHF</strong>
+                            <span data-de="Einmalig, inkl. Einrichtung" data-en="One-time, incl. setup">Einmalig, inkl. Einrichtung</span>
+                        </div>
+                    </div>
+
+                    <!-- GROWTH (featured) -->
+                    <div class="paket-card featured">
+                        <span class="paket-badge" data-de="Meistgewählt" data-en="Most Popular">Meistgewählt</span>
+                        <span class="paket-label" data-de="Paket 02" data-en="Package 02">Paket 02</span>
+                        <h3 class="paket-name">Growth</h3>
+                        <p class="paket-positioning"
+                            data-de="Für Salons, die mehr Termine wollen und weniger Zeit am Telefon verbringen möchten. Mit integriertem Online-Buchungssystem rund um die Uhr erreichbar."
+                            data-en="For salons that want more bookings and less time on the phone. With an integrated online booking system, you're reachable around the clock.">
+                            Für Salons, die mehr Termine wollen und weniger Zeit am Telefon verbringen möchten. Mit integriertem Online-Buchungssystem rund um die Uhr erreichbar.</p>
+                        <ul class="paket-features">
+                            <li data-de="Alles aus Basic" data-en="Everything from Basic">Alles aus Basic</li>
+                            <li data-de="Online-Terminbuchung mit eigenem Dashboard" data-en="Online booking with personal dashboard">Online-Terminbuchung mit eigenem Dashboard</li>
+                            <li data-de="Automatische Bestätigungen per E-Mail" data-en="Automatic email confirmations">Automatische Bestätigungen per E-Mail</li>
+                            <li data-de="Leistungs- & Preisübersicht für Ihre Kunden" data-en="Service & pricing overview for your clients">Leistungs- &amp; Preisübersicht für Ihre Kunden</li>
+                            <li data-de="Team- & Mitarbeiterseite" data-en="Team & staff page">Team- &amp; Mitarbeiterseite</li>
+                            <li data-de="Sicheres Buchungsformular mit Spam-Schutz" data-en="Secure booking form with spam protection">Sicheres Buchungsformular mit Spam-Schutz</li>
+                            <li data-de="3 Monate Support inklusive" data-en="3 months support included">3 Monate Support inklusive</li>
+                        </ul>
+                        <div class="paket-price">
+                            <strong>Ab 2'790 CHF</strong>
+                            <span data-de="Einmalig, inkl. Einrichtung" data-en="One-time, incl. setup">Einmalig, inkl. Einrichtung</span>
+                        </div>
+                    </div>
+
+                    <!-- PRO -->
+                    <div class="paket-card">
+                        <span class="paket-label" data-de="Paket 03" data-en="Package 03">Paket 03</span>
+                        <h3 class="paket-name">Pro</h3>
+                        <p class="paket-positioning"
+                            data-de="Für ambitionierte Salons, die ihren digitalen Auftritt als Wettbewerbsvorteil nutzen wollen. Alles, was Sie für einen überzeugenden ersten Eindruck brauchen."
+                            data-en="For ambitious salons that want their digital presence to be a competitive edge. Everything you need to make a lasting first impression.">
+                            Für ambitionierte Salons, die ihren digitalen Auftritt als Wettbewerbsvorteil nutzen wollen. Alles, was Sie für einen überzeugenden ersten Eindruck brauchen.</p>
+                        <ul class="paket-features">
+                            <li data-de="Alles aus Growth" data-en="Everything from Growth">Alles aus Growth</li>
+                            <li data-de="Individuelle Designentwicklung & Farbwelt" data-en="Custom design & brand colours">Individuelle Designentwicklung &amp; Farbwelt</li>
+                            <li data-de="Kundenbewertungen & Testimonials" data-en="Client reviews & testimonials">Kundenbewertungen &amp; Testimonials</li>
+                            <li data-de="Bildergalerie & Before/After-Bereich" data-en="Image gallery & before/after section">Bildergalerie &amp; Before/After-Bereich</li>
+                            <li data-de="Sicheres Buchungsformular mit Spam-Schutz" data-en="Secure booking form with spam protection">Sicheres Buchungsformular mit Spam-Schutz</li>
+                            <li data-de="6 Monate Support inklusive" data-en="6 months support included">6 Monate Support inklusive</li>
+                        </ul>
+                        <div class="paket-price">
+                            <strong>Ab 4'290 CHF</strong>
+                            <span data-de="Einmalig, inkl. Einrichtung" data-en="One-time, incl. setup">Einmalig, inkl. Einrichtung</span>
+                        </div>
+                    </div>
+
+                    <!-- PARTNER -->
+                    <div class="paket-card">
+                        <span class="paket-label" data-de="Paket 04" data-en="Package 04">Paket 04</span>
+                        <h3 class="paket-name">Partner</h3>
+                        <p class="paket-positioning"
+                            data-de="Für Salons, die langfristig betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen — Sie konzentrieren sich auf Ihre Kunden."
+                            data-en="For salons that want ongoing support. We handle hosting, updates and ongoing changes — you focus on your clients.">
+                            Für Salons, die langfristig betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen — Sie konzentrieren sich auf Ihre Kunden.</p>
+                        <ul class="paket-features">
+                            <li data-de="Monatliche Betreuung Ihrer Website" data-en="Monthly website management">Monatliche Betreuung Ihrer Website</li>
+                            <li data-de="Hosting & Sicherheitsupdates" data-en="Hosting & security updates">Hosting &amp; Sicherheitsupdates</li>
+                            <li data-de="Inhaltspflege auf Anfrage" data-en="Content updates on request">Inhaltspflege auf Anfrage</li>
+                            <li data-de="Priorisierter Support" data-en="Priority support">Priorisierter Support</li>
+                            <li data-de="Monatlich kündbar, keine Bindung" data-en="Cancel anytime, no long-term commitment">Monatlich kündbar, keine Bindung</li>
+                        </ul>
+                        <div class="paket-price">
+                            <strong>CHF 150 – 240 / <span data-de="Monat" data-en="month">Monat</span></strong>
+                            <span data-de="Laufende Betreuung" data-en="Ongoing care">Laufende Betreuung</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Prozess -->
+                <div class="prozess-section">
+                    <span class="prozess-label" data-de="Zusammenarbeit" data-en="How We Work">Zusammenarbeit</span>
+                    <h3 class="prozess-title">
+                        <span data-de="SO LÄUFT DIE" data-en="HOW THE">SO LÄUFT DIE</span><br>
+                        <span class="text-green" data-de="ZUSAMMENARBEIT AB" data-en="PROCESS WORKS">ZUSAMMENARBEIT AB</span>
+                    </h3>
+
+                    <div class="prozess-grid">
+                        <div class="prozess-step">
+                            <div class="prozess-step-num">01</div>
+                            <div class="prozess-step-name" data-de="Analyse" data-en="Discovery">Analyse</div>
+                            <p class="prozess-step-desc"
+                                data-de="Wir lernen Ihren Salon kennen — Ihre Zielgruppe, Ihre Dienstleistungen und was Ihnen wichtig ist. Kein Technikgespräch, sondern ein ehrliches Kennenlernen."
+                                data-en="We get to know your salon — your target clients, your services and what matters to you. No tech talk, just an honest conversation.">
+                                Wir lernen Ihren Salon kennen — Ihre Zielgruppe, Ihre Dienstleistungen und was Ihnen wichtig ist. Kein Technikgespräch, sondern ein ehrliches Kennenlernen.</p>
+                        </div>
+                        <div class="prozess-step">
+                            <div class="prozess-step-num">02</div>
+                            <div class="prozess-step-name" data-de="Konzeption" data-en="Concept">Konzeption</div>
+                            <p class="prozess-step-desc"
+                                data-de="Wir entwickeln Struktur, Design und Inhalte gemeinsam mit Ihnen. Sie sehen frühzeitig, wie Ihre Website aussehen wird — und geben Feedback, bevor die Umsetzung startet."
+                                data-en="We develop the structure, design and content together with you. You see how your website will look early on — and give feedback before development begins.">
+                                Wir entwickeln Struktur, Design und Inhalte gemeinsam mit Ihnen. Sie sehen frühzeitig, wie Ihre Website aussehen wird — und geben Feedback, bevor die Umsetzung startet.</p>
+                        </div>
+                        <div class="prozess-step">
+                            <div class="prozess-step-num">03</div>
+                            <div class="prozess-step-name" data-de="Umsetzung" data-en="Development">Umsetzung</div>
+                            <p class="prozess-step-desc"
+                                data-de="Wir bauen Ihre Website sauber und zuverlässig. Sie werden regelmässig informiert, ohne dass Sie sich um technische Details kümmern müssen."
+                                data-en="We build your website cleanly and reliably. You stay informed throughout — without having to worry about technical details.">
+                                Wir bauen Ihre Website sauber und zuverlässig. Sie werden regelmässig informiert, ohne dass Sie sich um technische Details kümmern müssen.</p>
+                        </div>
+                        <div class="prozess-step">
+                            <div class="prozess-step-num">04</div>
+                            <div class="prozess-step-name" data-de="Livegang & Betreuung" data-en="Launch & Support">Livegang &amp; Betreuung</div>
+                            <p class="prozess-step-desc"
+                                data-de="Nach dem Start sind wir nicht weg. Wir begleiten Sie beim Livegang, erklären alles Wichtige und stehen für Fragen zur Verfügung."
+                                data-en="After launch, we don't disappear. We guide you through going live, explain everything that matters and remain available for questions.">
+                                Nach dem Start sind wir nicht weg. Wir begleiten Sie beim Livegang, erklären alles Wichtige und stehen für Fragen zur Verfügung.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="leistungen-cta">
+                    <div class="leistungen-cta-text">
+                        <h3 data-de="Bereit für mehr Online-Termine?" data-en="Ready for more online bookings?">Bereit für mehr Online-Termine?</h3>
+                        <p data-de="In einem unverbindlichen Gespräch zeigen wir Ihnen konkret, was für Ihren Salon möglich ist. Kein Verkaufsgespräch — sondern ein ehrlicher Austausch darüber, ob und wie wir zusammenarbeiten können."
+                           data-en="In a no-obligation conversation, we'll show you exactly what's possible for your salon. No sales pitch — just an honest exchange about whether and how we could work together.">
+                            In einem unverbindlichen Gespräch zeigen wir Ihnen konkret, was für Ihren Salon möglich ist. Kein Verkaufsgespräch — sondern ein ehrlicher Austausch darüber, ob und wie wir zusammenarbeiten können.</p>
+                    </div>
+                    <a href="#contact" class="leistungen-cta-btn" data-de="Gespräch vereinbaren" data-en="Book a free call">Gespräch vereinbaren</a>
+                </div>
+
+                <div class="big-number-center" aria-hidden="true">02</div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="section faq" aria-labelledby="faq-heading">
+            <div class="bg-gradient" aria-hidden="true"></div>
+
+            <div class="container">
+                <header class="faq-header">
+                    <span class="label" data-de="FAQ" data-en="FAQ">FAQ</span>
+                    <h2 id="faq-heading" class="section-title">
+                        <span data-de="HÄUFIGE" data-en="COMMON">HÄUFIGE</span><br>
+                        <span class="text-green" data-de="FRAGEN" data-en="QUESTIONS">FRAGEN</span>
+                    </h2>
+                    <p style="color:#9ca3af;max-width:40rem;margin:1rem auto 0;"
+                        data-de="Alles, was Sie über unsere Arbeit als Digital Agentur in Zürich wissen möchten."
+                        data-en="Everything you want to know about our work as a digital agency in Zürich.">Alles, was
+                        Sie über unsere Arbeit als Digital Agentur in Zürich wissen möchten.</p>
+                </header>
+
+                <div class="faq-list" role="list">
+
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-btn-1">
+                            <h3 data-de="Welche Services bietet Sin Digital an?" data-en="What services does Sin Digital offer?">
+                                Welche Services bietet Sin Digital an?</h3>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-btn-1">
+                            <p data-de="Wir kümmern uns um alles vom ersten Design über die Entwicklung bis hin zur Veröffentlichung. Und wer möchte, kann seine Website auch direkt bei uns hosten. Kurz gesagt: Wir zeigen es Ihnen, wir bauen es, wir bringen es online."
+                                data-en="We take care of everything from the initial design through development all the way to launch. And if you'd like, we can host your website too. In short: we show you the vision, we build it, we bring it online.">
+                                Wir kümmern uns um alles vom ersten Design über die Entwicklung bis hin zur
+                                Veröffentlichung. Und wer möchte, kann seine Website auch direkt bei uns hosten. Kurz
+                                gesagt: Wir zeigen es Ihnen, wir bauen es, wir bringen es online.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-btn-2">
+                            <h3 data-de="Wie lange dauert ein Projekt?" data-en="How long does a project take?">
+                                Wie lange dauert ein Projekt?</h3>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-btn-2">
+                            <p data-de="Grundsätzlich starten wir innerhalb von 2 Wochen – je nach Umfang und Wunsch kann die Gesamtdauer natürlich individuell variieren. Wir nehmen uns die Zeit, die Ihr Projekt wirklich verdient."
+                                data-en="Generally, we get started within 2 weeks – depending on the scope, the total duration can of course vary. We take the time your project truly deserves.">
+                                Grundsätzlich starten wir innerhalb von 2 Wochen – je nach Umfang und Wunsch kann die
+                                Gesamtdauer natürlich individuell variieren. Wir nehmen uns die Zeit, die Ihr Projekt
+                                wirklich verdient.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-btn-3">
+                            <h3 data-de="Was macht Sin Digital besonders?" data-en="What makes Sin Digital special?">
+                                Was macht Sin Digital besonders?</h3>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-btn-3">
+                            <p data-de="Wir arbeiten mit vielen Kunden zusammen – und sie sind glücklich. Das ist uns wichtiger als alles andere. Wir glauben daran, dass gute Arbeit und ehrliche Kommunikation die Basis für eine langfristige Zusammenarbeit sind. Transparenz ist bei uns keine Floskel, sondern gelebter Alltag."
+                                data-en="We work with many clients and they are happy. That means more to us than anything else. We believe that great work and honest communication are the foundation of a lasting partnership. Transparency isn't just a buzzword for us, it's how we work every single day.">
+                                Wir arbeiten mit vielen Kunden zusammen – und sie sind glücklich. Das ist uns wichtiger
+                                als alles andere. Wir glauben daran, dass gute Arbeit und ehrliche Kommunikation die
+                                Basis für eine langfristige Zusammenarbeit sind. Transparenz ist bei uns keine Floskel,
+                                sondern gelebter Alltag.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-btn-4">
+                            <h3 data-de="Arbeitet Sin Digital auch international?" data-en="Does Sin Digital work internationally?">
+                                Arbeitet Sin Digital auch international?</h3>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-btn-4">
+                            <p data-de="Absolut. Wir arbeiten mit Kunden aus aller Welt zusammen und haben bereits Projekte in ganz Europa, den USA und Asien erfolgreich umgesetzt. Grenzen kennen wir nur auf der Landkarte."
+                                data-en="Absolutely. We work with clients from all over the world and have successfully delivered projects across Europe, the USA and Asia. Borders only exist on a map.">
+                                Absolut. Wir arbeiten mit Kunden aus aller Welt zusammen und haben bereits Projekte in
+                                ganz Europa, den USA und Asien erfolgreich umgesetzt. Grenzen kennen wir nur auf der
+                                Landkarte.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-btn-5">
+                            <h3 data-de="Was kostet ein Projekt?" data-en="What does a project cost?">
+                                Was kostet ein Projekt?</h3>
+                            <span class="faq-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-btn-5">
+                            <p data-de="Das hängt vom Umfang ab – und das ist völlig normal. Schreiben Sie uns einfach, erzählen Sie uns von Ihrem Projekt, und wir melden uns mit einem transparenten Preisvorschlag zurück."
+                                data-en="That depends on the scope – and that's completely normal. Just reach out, tell us about your project, and we'll get back to you with a transparent price estimate.">
+                                Das hängt vom Umfang ab – und das ist völlig normal. Schreiben Sie uns einfach, erzählen
+                                Sie uns von Ihrem Projekt, und wir melden uns mit einem transparenten Preisvorschlag
+                                zurück.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="decorative-box box-1" aria-hidden="true"></div>
+                <div class="decorative-box box-2" aria-hidden="true"></div>
+                <div class="big-number-right" aria-hidden="true">03</div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section contact" aria-labelledby="contact-heading">
+            <div class="rotating-circle" aria-hidden="true"></div>
+
+            <div class="container">
+                <header class="contact-header">
+                    <h2 id="contact-heading" class="contact-title">
+                        LET'S<br>
+                        <span class="text-green">TALK</span>
+                    </h2>
+                    <p class="contact-subtitle"
+                        data-de="Bereit für Ihr nächstes grosses Projekt? Lassen Sie uns gemeinsam etwas Aussergewöhnliches schaffen. Unsere Digital Agentur in Zürich freut sich auf Ihre Anfrage."
+                        data-en="Ready for your next big project? Let's create something extraordinary together. Our digital agency in Zürich looks forward to hearing from you.">
+                        Bereit für Ihr nächstes grosses Projekt? Lassen Sie uns gemeinsam etwas Aussergewöhnliches
+                        schaffen. Unsere Digital Agentur in Zürich freut sich auf Ihre Anfrage.
+                    </p>
+                </header>
+
+                <div class="contact-grid">
+                    <div class="contact-form-wrapper">
+                        <form class="contact-form" id="contactForm" action="/kontakt" method="POST" novalidate
+                            aria-label="Kontaktformular">
+                            <div class="form-group">
+                                <label for="contact-name" data-de="Name *" data-en="Name *">Name *</label>
+                                <input type="text" id="contact-name" name="name"
+                                    data-de-placeholder="Ihr vollständiger Name" data-en-placeholder="Your full name"
+                                    placeholder="Ihr vollständiger Name" required autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email" data-de="E-Mail *" data-en="Email *">E-Mail *</label>
+                                <input type="email" id="contact-email" name="email" placeholder="ihre@email.com"
+                                    required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject" data-de="Betreff" data-en="Subject">Betreff</label>
+                                <input type="text" id="contact-subject" name="subject"
+                                    data-de-placeholder="Worum geht es?" data-en-placeholder="What's it about?"
+                                    placeholder="Worum geht es?" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message" data-de="Nachricht *" data-en="Message *">Nachricht
+                                    *</label>
+                                <textarea id="contact-message" name="message" rows="6"
+                                    data-de-placeholder="Erzählen Sie uns von Ihrem Projekt..."
+                                    data-en-placeholder="Tell us about your project..."
+                                    placeholder="Erzählen Sie uns von Ihrem Projekt..." required></textarea>
+                            </div>
+                            <div id="form-status"
+                                style="display:none;padding:1rem 1.25rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;">
+                            </div>
+                            <button type="submit" class="btn-primary full" data-de="Nachricht senden"
+                                data-en="Send Message">Nachricht senden</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-info" itemscope itemtype="https://schema.org/Organization">
+                        <div class="contact-detail">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-10 6L2 7"></path>
+                            </svg>
+                            <div>
+                                <p class="detail-label" data-de="E-Mail" data-en="Email">E-Mail</p>
+                                <a href="/cdn-cgi/l/email-protection#09616c656566496667606a6c67276a6664"><span
+                                        class="__cf_email__"
+                                        data-cfemail="422a272e2e2d022d2c2b21272c6c212d2f">[email&#160;protected]</span></a>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                </path>
+                            </svg>
+                            <div>
+                                <p class="detail-label" data-de="Telefon" data-en="Phone">Telefon</p>
+                                <a href="tel:+41783187887">+41 78 318 78 87</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-detail">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <div>
+                                <p class="detail-label" data-de="Standort Zürich" data-en="Location Zürich">Standort
+                                    Zürich</p>
+                                <p>Langwattstrasse 51<br>8125 Zollikerberg, Zürich, Schweiz</p>
+                            </div>
+                        </div>
+
+                        <div class="social-section">
+                            <p class="detail-label" data-de="Folgen Sie uns" data-en="Follow us">Folgen Sie uns</p>
+                            <nav class="social-links" aria-label="Social Media Links">
+                                <a href="https://www.instagram.com/onicen" class="social-link"
+                                    title="Sin Digital auf Instagram" rel="noopener" target="_blank" aria-label="Instagram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/onicen" class="social-link"
+                                    title="Sin Digital auf LinkedIn" rel="noopener" target="_blank" aria-label="LinkedIn">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <path
+                                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                        </path>
+                                        <rect x="2" y="9" width="4" height="12"></rect>
+                                        <circle cx="4" cy="4" r="2"></circle>
+                                    </svg>
+                                </a>
+                            </nav>
+                        </div>
+
+                        <div class="contact-big-number" aria-hidden="true">04</div>
+                    </div>
+                </div>
+
+                <footer class="footer" role="contentinfo">
+                    <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten."
+                        data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital
+                        Agentur Zürich. Alle Rechte vorbehalten.</p>
+                    <nav class="footer-links" aria-label="Rechtliche Links">
+                        <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+                        <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+                        <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
+                    </nav>
+                </footer>
+            </div>
+
+            <div class="bottom-line" aria-hidden="true"></div>
+        </section>
+
+    </main>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Language Switcher -->
+    <script>
+        let currentLang = localStorage.getItem('onicen-lang') || 'de';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('onicen-lang', lang);
+            applyLang();
+        }
+
+        function applyLang() {
+            document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            document.querySelectorAll('[data-de][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            });
+            document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
+            });
+            document.documentElement.lang = currentLang;
+        }
+
+        window.addEventListener('load', applyLang);
+    </script>
+
+    <script>
+        // ── CONFIG ─────────────────────────────────────────────────────────
+        // Change this URL when deploying to production.
+        // e.g.: window.SinDigital_API_URL = 'https://api.ovicen.com/api/contact';
+        window.SinDigital_API_URL = 'http://localhost:8081/api/contact';
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('contactForm');
+            const statusDiv = document.getElementById('form-status');
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('contact-name').value.trim();
+                const email = document.getElementById('contact-email').value.trim();
+                const subject = document.getElementById('contact-subject').value.trim();
+                const message = document.getElementById('contact-message').value.trim();
+
+                // Einfache Validierung
+                if (!name || !email || !message) {
+                    showStatus('Bitte fülle alle Pflichtfelder aus (Name, E-Mail, Nachricht).', 'error');
+                    return;
+                }
+
+                if (message.length < 10) {
+                    showStatus('Die Nachricht muss mindestens 10 Zeichen lang sein.', 'error');
+                    return;
+                }
+
+                // Button deaktivieren während dem Senden
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Wird gesendet...';
+
+                try {
+                    const fullMessage = subject
+                        ? '[Betreff: ' + subject + '] ' + message
+                        : message;
+
+                    const response = await fetch(window.SinDigital_API_URL || 'http://localhost:8081/api/contact', {
+                        method: 'POST',
+                        mode: 'cors',
+                        credentials: 'omit',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({ name: name, email: email, message: fullMessage })
+                    });
+
+                    if (response.status === 201) {
+                        showStatus('Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.', 'success');
+                        form.reset();
+                    } else {
+                        const errorData = await response.json();
+                        const errorMsg = errorData.error || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
+                        showStatus(errorMsg, 'error');
+                    }
+                } catch (error) {
+                    console.error('Fehler beim Senden der Nachricht:', error);
+                    showStatus('Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung und versuchen Sie es erneut.', 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            });
+
+            function showStatus(msg, type) {
+                const s = statusDiv;
+                s.textContent = msg;
+                s.style.display = 'block';
+                if (type === 'success') {
+                    s.style.background = 'rgba(193, 255, 114, 0.15)';
+                    s.style.color = '#C1FF72';
+                    s.style.border = '1px solid rgba(193,255,114,0.5)';
+                } else {
+                    s.style.background = 'rgba(255, 100, 100, 0.15)';
+                    s.style.color = '#ff6464';
+                    s.style.border = '1px solid rgba(255,100,100,0.5)';
+                }
+                // Auto-hide success after 8s
+                if (type === 'success') {
+                    setTimeout(() => { s.style.display = 'none'; }, 8000);
+                }
+            }
+        });
+    </script>
+
+    <script>
+        (function () {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
+
+            function openMenu() {
+                hamburger.classList.add('open');
+                mobileMenu.classList.add('open');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.contains('open') ? closeMenu() : openMenu();
+            });
+
+            // Close on link click
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeMenu();
+            });
+        })();
+    </script>
+
+</body>
+
+</html>

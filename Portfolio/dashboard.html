@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt-Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #111 0%, #1a1a2e 100%);
+            border-bottom: 1px solid #222;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .header h1 span { color: #C1FF72; }
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .btn-refresh {
+            background: #C1FF72;
+            color: #0a0a0a;
+        }
+        .btn-refresh:hover { background: #a8e65c; transform: translateY(-1px); }
+        .btn-delete {
+            background: transparent;
+            color: #ff6464;
+            border: 1px solid #ff6464;
+        }
+        .btn-delete:hover { background: rgba(255, 100, 100, 0.1); }
+        .btn-back {
+            background: transparent;
+            color: #9ca3af;
+            border: 1px solid #333;
+            text-decoration: none;
+        }
+        .btn-back:hover { border-color: #C1FF72; color: #C1FF72; }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+        }
+        .stat-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: border-color 0.3s;
+        }
+        .stat-card:hover { border-color: #C1FF72; }
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #C1FF72;
+        }
+        .stat-sub {
+            font-size: 0.8rem;
+            color: #555;
+            margin-top: 0.25rem;
+        }
+        .table-container {
+            padding: 0 2rem 2rem;
+        }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .table-header h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .search-box {
+            background: #141414;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            width: 250px;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #C1FF72;
+        }
+        .table-wrap {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead th {
+            background: #1a1a1a;
+            padding: 0.85rem 1rem;
+            text-align: left;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+        thead th:hover { color: #C1FF72; }
+        thead th .sort-icon { margin-left: 0.3rem; font-size: 0.65rem; }
+        tbody tr {
+            border-bottom: 1px solid #1a1a1a;
+            transition: background 0.2s;
+        }
+        tbody tr:hover { background: rgba(193, 255, 114, 0.03); }
+        tbody tr:last-child { border-bottom: none; }
+        tbody td {
+            padding: 0.85rem 1rem;
+            font-size: 0.875rem;
+            vertical-align: top;
+        }
+        .col-id { width: 60px; color: #555; font-family: monospace; }
+        .col-name { width: 150px; font-weight: 600; color: #fff; }
+        .col-email { width: 200px; }
+        .col-email a { color: #C1FF72; text-decoration: none; }
+        .col-email a:hover { text-decoration: underline; }
+        .col-message { min-width: 300px; color: #aaa; line-height: 1.5; }
+        .col-date { width: 160px; color: #666; white-space: nowrap; font-size: 0.8rem; }
+        .message-preview {
+            max-height: 60px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+        }
+        .message-preview.expanded { max-height: none; }
+        .message-toggle {
+            color: #C1FF72;
+            font-size: 0.75rem;
+            cursor: pointer;
+            margin-top: 0.25rem;
+            display: inline-block;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #555;
+        }
+        .empty-state svg { margin-bottom: 1rem; opacity: 0.3; }
+        .empty-state h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #777; }
+        .empty-state p { font-size: 0.85rem; }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #555;
+        }
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid #222;
+            border-top: 3px solid #C1FF72;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .error-state {
+            text-align: center;
+            padding: 3rem;
+            color: #ff6464;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(193, 255, 114, 0.1);
+            color: #C1FF72;
+            border: 1px solid rgba(193, 255, 114, 0.2);
+        }
+        @media (max-width: 768px) {
+            .header { padding: 1rem; }
+            .stats { padding: 1rem; }
+            .table-container { padding: 0 1rem 1rem; }
+            .search-box { width: 100%; }
+            .table-wrap { overflow-x: auto; }
+            table { min-width: 700px; }
+        }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal h3 { margin-bottom: 1rem; font-size: 1.1rem; }
+        .modal-field {
+            margin-bottom: 1rem;
+        }
+        .modal-field label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+        .modal-field p {
+            color: #ddd;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+        .modal-close {
+            margin-top: 1.5rem;
+            background: #C1FF72;
+            color: #0a0a0a;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-delete-row {
+            background: transparent;
+            color: #ff6464;
+            border: 1px solid rgba(255,100,100,0.3);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .btn-delete-row:hover {
+            background: rgba(255,100,100,0.15);
+            border-color: #ff6464;
+        }
+        .col-actions { width: 80px; text-align: center; }
+        .modal-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .modal-close {
+            background: #C1FF72;
+            color: #0a0a0a;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: #a8e65c; }
+        .modal-delete {
+            background: transparent;
+            color: #ff6464;
+            border: 1px solid #ff6464;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal-delete:hover { background: rgba(255,100,100,0.1); }
+        /* Confirm dialog */
+        .confirm-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .confirm-overlay.active { display: flex; }
+        .confirm-box {
+            background: #1a1a1a;
+            border: 1px solid #ff6464;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 380px;
+            width: 90%;
+            text-align: center;
+        }
+        .confirm-box h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #ff6464;
+        }
+        .confirm-box p {
+            color: #888;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .confirm-actions {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+        }
+        .confirm-cancel {
+            background: transparent;
+            color: #9ca3af;
+            border: 1px solid #333;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .confirm-cancel:hover { border-color: #9ca3af; color: #fff; }
+        .confirm-confirm {
+            background: #ff6464;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .confirm-confirm:hover { background: #e04f4f; }
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 0.85rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            z-index: 3000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast.success {
+            background: rgba(193,255,114,0.15);
+            color: #C1FF72;
+            border: 1px solid rgba(193,255,114,0.4);
+        }
+        .toast.error {
+            background: rgba(255,100,100,0.15);
+            color: #ff6464;
+            border: 1px solid rgba(255,100,100,0.4);
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Confirm Delete Dialog -->
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-box">
+            <h4>🗑️ Nachricht löschen?</h4>
+            <p id="confirmText">Diese Aktion kann nicht rückgängig gemacht werden.</p>
+            <div class="confirm-actions">
+                <button class="confirm-cancel" onclick="closeConfirm()">Abbrechen</button>
+                <button class="confirm-confirm" id="confirmBtn">Löschen</button>
+            </div>
+        </div>
+    </div>
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <header class="header">
+        <h1>📬 Kontakt-<span>Dashboard</span></h1>
+        <div class="header-actions">
+            <a href="index.html" class="btn btn-back">← Zurück zur Website</a>
+            <button class="btn btn-refresh" onclick="loadMessages()">↻ Aktualisieren</button>
+        </div>
+    </header>
+    <div class="stats" id="stats">
+        <div class="stat-card">
+            <div class="stat-label">Nachrichten gesamt</div>
+            <div class="stat-value" id="stat-total">–</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Heute</div>
+            <div class="stat-value" id="stat-today">–</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Letzte Nachricht</div>
+            <div class="stat-value" id="stat-latest" style="font-size:1rem;">–</div>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="table-header">
+            <h2>Alle Nachrichten</h2>
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Suchen nach Name, E-Mail..." oninput="filterMessages()">
+        </div>
+        <div class="table-wrap">
+            <div id="tableContent">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Nachrichten werden geladen...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+        <div class="modal">
+            <h3>📩 Nachricht Details</h3>
+            <div class="modal-field">
+                <label>ID</label>
+                <p id="modal-id"></p>
+            </div>
+            <div class="modal-field">
+                <label>Name</label>
+                <p id="modal-name"></p>
+            </div>
+            <div class="modal-field">
+                <label>E-Mail</label>
+                <p id="modal-email"></p>
+            </div>
+            <div class="modal-field">
+                <label>Nachricht</label>
+                <p id="modal-message"></p>
+            </div>
+            <div class="modal-field">
+                <label>Datum</label>
+                <p id="modal-date"></p>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-close" onclick="closeModal()">Schliessen</button>
+                <button class="modal-delete" onclick="deleteFromModal()">🗑️ Löschen</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const API_URL = 'http://localhost:8081/api/contact';
+        let allMessages = [];
+        let currentModalId = null;
+
+        // ── LOAD ──────────────────────────────────────────────────────────────
+        async function loadMessages() {
+            const content = document.getElementById('tableContent');
+            content.innerHTML = '<div class="loading"><div class="spinner"></div><p>Nachrichten werden geladen...</p></div>';
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET', mode: 'cors', credentials: 'omit',
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (!response.ok) throw new Error('Server-Fehler: ' + response.status);
+                allMessages = await response.json();
+                updateStats(allMessages);
+                renderTable(allMessages);
+            } catch (err) {
+                content.innerHTML = `
+                    <div class="error-state">
+                        <p>⚠️ Fehler beim Laden der Daten</p>
+                        <p style="font-size:0.8rem;margin-top:0.5rem;color:#888;">${err.message}</p>
+                        <p style="font-size:0.8rem;margin-top:0.5rem;color:#555;">Ist das Backend auf Port 8081 gestartet?</p>
+                        <p style="font-size:0.8rem;margin-top:0.5rem;color:#ff6464;">Prüfe Browser-Konsole auf CORS-Fehler!</p>
+                    </div>`;
+                document.getElementById('stat-total').textContent = '⚠️';
+                document.getElementById('stat-today').textContent = '⚠️';
+                document.getElementById('stat-latest').textContent = 'Nicht erreichbar';
+            }
+        }
+
+        // ── STATS ─────────────────────────────────────────────────────────────
+        function updateStats(messages) {
+            document.getElementById('stat-total').textContent = messages.length;
+            const today = new Date().toISOString().split('T')[0];
+            const todayCount = messages.filter(m => m.createdAt && m.createdAt.startsWith(today)).length;
+            document.getElementById('stat-today').textContent = todayCount;
+            if (messages.length > 0) {
+                const sorted = [...messages].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                document.getElementById('stat-latest').textContent = formatDate(sorted[0].createdAt);
+            } else {
+                document.getElementById('stat-latest').textContent = 'Keine';
+            }
+        }
+
+        // ── TABLE ─────────────────────────────────────────────────────────────
+        function renderTable(messages) {
+            const content = document.getElementById('tableContent');
+            if (messages.length === 0) {
+                content.innerHTML = `
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-10 6L2 7"></path>
+                        </svg>
+                        <h3>Noch keine Nachrichten</h3>
+                        <p>Sobald jemand das Kontaktformular ausfüllt, erscheinen die Daten hier.</p>
+                    </div>`;
+                return;
+            }
+            const sorted = [...messages].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            let html = `
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="col-id">#</th>
+                            <th class="col-name">Name</th>
+                            <th class="col-email">E-Mail</th>
+                            <th class="col-message">Nachricht</th>
+                            <th class="col-date">Datum</th>
+                            <th class="col-actions">Aktion</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+            sorted.forEach(msg => {
+                const shortMessage = msg.message && msg.message.length > 120
+                    ? msg.message.substring(0, 120) + '...'
+                    : (msg.message || '');
+                html += `
+                    <tr onclick="openModal(${msg.id}, '${escapeJs(msg.name)}', '${escapeJs(msg.email)}', '${escapeJs(msg.message || '')}', '${msg.createdAt}')" style="cursor:pointer;">
+                        <td class="col-id">${msg.id}</td>
+                        <td class="col-name">${escapeHtml(msg.name)}</td>
+                        <td class="col-email"><a href="mailto:${escapeHtml(msg.email)}" onclick="event.stopPropagation()">${escapeHtml(msg.email)}</a></td>
+                        <td class="col-message">${escapeHtml(shortMessage)}</td>
+                        <td class="col-date"><span class="badge">${formatDate(msg.createdAt)}</span></td>
+                        <td class="col-actions">
+                            <button class="btn-delete-row"
+                                onclick="event.stopPropagation(); confirmDelete(${msg.id}, '${escapeJs(msg.name)}')"
+                                title="Nachricht löschen">🗑️</button>
+                        </td>
+                    </tr>`;
+            });
+            html += '</tbody></table>';
+            content.innerHTML = html;
+        }
+
+        // ── FILTER ────────────────────────────────────────────────────────────
+        function filterMessages() {
+            const query = document.getElementById('searchBox').value.toLowerCase();
+            if (!query) { renderTable(allMessages); return; }
+            const filtered = allMessages.filter(m =>
+                (m.name && m.name.toLowerCase().includes(query)) ||
+                (m.email && m.email.toLowerCase().includes(query)) ||
+                (m.message && m.message.toLowerCase().includes(query))
+            );
+            renderTable(filtered);
+        }
+
+        // ── MODAL ─────────────────────────────────────────────────────────────
+        function openModal(id, name, email, message, date) {
+            currentModalId = id;
+            document.getElementById('modal-id').textContent = '#' + id;
+            document.getElementById('modal-name').textContent = name;
+            document.getElementById('modal-email').textContent = email;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal-date').textContent = formatDate(date);
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            currentModalId = null;
+        }
+        function deleteFromModal() {
+            if (currentModalId === null) return;
+            const name = document.getElementById('modal-name').textContent;
+            closeModal();
+            confirmDelete(currentModalId, name);
+        }
+
+        // ── DELETE ────────────────────────────────────────────────────────────
+        function confirmDelete(id, name) {
+            document.getElementById('confirmText').textContent =
+                `Nachricht von "${name}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`;
+            document.getElementById('confirmBtn').onclick = () => executeDelete(id);
+            document.getElementById('confirmOverlay').classList.add('active');
+        }
+        function closeConfirm() {
+            document.getElementById('confirmOverlay').classList.remove('active');
+        }
+        async function executeDelete(id) {
+            closeConfirm();
+            try {
+                const response = await fetch(`${API_URL}/${id}`, {
+                    method: 'DELETE', mode: 'cors', credentials: 'omit'
+                });
+                if (response.status === 204) {
+                    // Remove from local array without reloading from server
+                    allMessages = allMessages.filter(m => m.id !== id);
+                    updateStats(allMessages);
+                    renderTable(allMessages);
+                    showToast('Nachricht erfolgreich gelöscht.', 'success');
+                } else if (response.status === 404) {
+                    showToast('Nachricht nicht gefunden.', 'error');
+                } else {
+                    showToast('Fehler beim Löschen. Bitte erneut versuchen.', 'error');
+                }
+            } catch (err) {
+                showToast('Server nicht erreichbar.', 'error');
+            }
+        }
+
+        // ── TOAST ─────────────────────────────────────────────────────────────
+        let toastTimer = null;
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => { toast.classList.remove('show'); }, 3500);
+        }
+
+        // ── KEYBOARD ──────────────────────────────────────────────────────────
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeConfirm();
+            }
+        });
+
+        // ── HELPERS ───────────────────────────────────────────────────────────
+        function formatDate(dateStr) {
+            if (!dateStr) return '–';
+            return new Date(dateStr).toLocaleDateString('de-DE', {
+                day: '2-digit', month: '2-digit', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+        }
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+        // For embedding in onclick attributes — escapes single quotes and backslashes
+        function escapeJs(str) {
+            if (!str) return '';
+            return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, ' ');
+        }
+
+        loadMessages();
+        setInterval(loadMessages, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung | ONICEN Digital Agentur Zürich</title>
+    <link rel="icon" type="image/svg+xml"
+        href="/Portfolio/assets/ICON-Logo_OVICEN.png">
+    <meta name="description"
+        content="Datenschutzerklärung der ONICEN Digital Agentur Zürich gemäß DSGVO. Transparente Informationen über die Verarbeitung Ihrer personenbezogenen Daten.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.onicen.com/datenschutz.html">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .legal-page {
+            padding-top: 10rem;
+            min-height: 100vh;
+        }
+
+        .legal-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--color-green);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 4rem;
+            transition: gap 0.3s ease;
+        }
+
+        .legal-back:hover {
+            gap: 1.25rem;
+        }
+
+        .legal-hero {
+            margin-bottom: 5rem;
+            position: relative;
+        }
+
+        .legal-tag {
+            color: var(--color-green);
+            font-size: 0.875rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .legal-title {
+            font-size: clamp(3rem, 9vw, 7rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .legal-subtitle {
+            color: var(--color-gray);
+            font-size: 1.125rem;
+            max-width: 40rem;
+        }
+
+        .legal-divider {
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-green), transparent);
+            margin: 4rem 0;
+            width: 100%;
+        }
+
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            .legal-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .legal-grid.wide {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .legal-block {
+            position: relative;
+        }
+
+        .legal-block-label {
+            color: var(--color-green);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .legal-block-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(193, 255, 114, 0.3);
+        }
+
+        .legal-block h2 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .legal-block h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-green);
+            margin-bottom: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .legal-block h3:first-child {
+            margin-top: 0;
+        }
+
+        .legal-block p {
+            color: var(--color-gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .legal-block a {
+            color: var(--color-green);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .legal-block a:hover {
+            opacity: 0.7;
+        }
+
+        .legal-block ul {
+            list-style: none;
+            padding: 0;
+            color: var(--color-gray);
+        }
+
+        .legal-block ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 1rem;
+            line-height: 1.6;
+        }
+
+        .legal-block ul li::before {
+            content: '→';
+            color: var(--color-green);
+            flex-shrink: 0;
+        }
+
+        .legal-highlight {
+            background: rgba(193, 255, 114, 0.05);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            border-left: 4px solid var(--color-green);
+            padding: 1.5rem 2rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .legal-highlight p {
+            color: var(--color-white) !important;
+            margin: 0 0 0.5rem;
+        }
+
+        .legal-highlight p:last-child {
+            margin: 0;
+        }
+
+        .legal-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--color-green);
+            opacity: 0.05;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .rights-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .rights-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .right-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(193, 255, 114, 0.1);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .right-card:hover {
+            border-color: rgba(193, 255, 114, 0.3);
+        }
+
+        .right-card h4 {
+            color: var(--color-green);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .right-card p {
+            color: var(--color-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .footer-legal {
+            padding-bottom: 8rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            border-top: 1px solid #333;
+            padding-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-legal {
+            padding-bottom: 8rem;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .footer-legal p {
+            color: var(--color-gray);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--color-gray);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-green);
+        }
+
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(1, 1, 1, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(193, 255, 114, 0.1);
+        }
+
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 4rem;
+        }
+
+        .toc-link {
+            color: var(--color-green);
+            border: 1px solid rgba(193, 255, 114, 0.3);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .toc-link:hover {
+            background: var(--color-green);
+            color: #010101;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: rgba(193, 255, 114, 0.05);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            border-radius: 50px;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #9ca3af;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            transition: all 0.3s;
+            letter-spacing: 0.1em;
+        }
+
+        .lang-btn.active {
+            background: #C1FF72;
+            color: #010101;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #C1FF72;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav-fixed" role="navigation" aria-label="Hauptnavigation">
+        <a href="index.html" title="Zurück zur Startseite"
+            style="color:#C1FF72;font-weight:900;font-size:1.25rem;text-decoration:none;letter-spacing:0.1em;">ONICEN</a>
+        <div style="display:flex;align-items:center;gap:1rem;"><a href="index.html"
+                style="color:#9ca3af;text-decoration:none;font-size:0.875rem;letter-spacing:0.1em;text-transform:uppercase;"
+                onmouseover="this.style.color='#C1FF72'" onmouseout="this.style.color='#9ca3af'">← Zurück</a>
+            <div class="lang-switcher"><button class="lang-btn active" id="btn-de"
+                    onclick="setLang('de')">DE</button><button class="lang-btn" id="btn-en"
+                    onclick="setLang('en')">EN</button></div>
+        </div>
+    </nav>
+
+    <main class="legal-page">
+        <div class="container">
+
+            <!-- Hero -->
+            <div class="legal-hero">
+                <span class="legal-tag">DSGVO-Konform</span>
+                <h1 class="legal-title">
+                    DATEN<span class="text-green">SCHUTZ</span>
+                </h1>
+                <p class="legal-subtitle">Transparente Information über die Verarbeitung Ihrer personenbezogenen Daten
+                    gemäss Art. 13, 14 DSGVO.</p>
+                <p style="color:var(--color-gray);margin-top:1rem;font-size:0.875rem;">Stand: Januar 2026</p>
+                <div class="legal-number" aria-hidden="true">🔒</div>
+            </div>
+
+            <!-- Inhaltsverzeichnis -->
+            <nav class="toc" aria-label="Inhaltsverzeichnis">
+                <a href="#verantwortlicher" class="toc-link">Verantwortlicher</a>
+                <a href="#erhebung" class="toc-link">Datenerhebung</a>
+                <a href="#zweck" class="toc-link">Verarbeitungszwecke</a>
+                <a href="#rechtsgrundlagen" class="toc-link">Rechtsgrundlagen</a>
+                <a href="#empfaenger" class="toc-link">Empfänger</a>
+                <a href="#speicherung" class="toc-link">Speicherdauer</a>
+                <a href="#rechte" class="toc-link">Ihre Rechte</a>
+                <a href="#cookies" class="toc-link">Cookies</a>
+                <a href="#tools" class="toc-link">Externe Dienste</a>
+            </nav>
+
+            <div class="legal-divider"></div>
+
+            <!-- Verantwortlicher -->
+            <div id="verantwortlicher" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Art. 13 DSGVO</span>
+                    <h2>Verantwort&shy;licher</h2>
+                </div>
+                <div class="legal-block">
+                    <h3>Datenschutzverantwortlicher</h3>
+                    <div class="legal-highlight">
+                        <p><strong>ONICEN GmbH</strong></p>
+                        <p>Bahnhofstrasse 10, 8001 Zürich</p>
+                        <p>E-Mail: <a
+                                href="/cdn-cgi/l/email-protection#9efaffeafbf0edfdf6ebeae4defdecfbffeafbf8ebeaebecfbb0fafb"><span
+                                    class="__cf_email__"
+                                    data-cfemail="ff9b9e8b9a918c9c978a8b85bf9c8d9a9e8b9a998a8b8a8d9ad19b9a">[email&#160;protected]</span></a>
+                        </p>
+                        <p>Telefon: <a href="tel:+41441234567">+41 44 123 45 67</a></p>
+                    </div>
+                    <h3>Datenschutzbeauftragte/r</h3>
+                    <p>Bei Fragen zum Datenschutz wenden Sie sich direkt an unsere/n Datenschutzbeauftragte/n:<br>
+                        Elena Kovač – <a
+                            href="/cdn-cgi/l/email-protection#0c687c634c6f7e696d78696a7978797e69226869"><span
+                                class="__cf_email__"
+                                data-cfemail="cca8bca38cafbea9adb8a9aab9b8b9bea9e2a8a9">[email&#160;protected]</span></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Datenerhebung -->
+            <div id="erhebung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Welche Daten</span>
+                    <h2>Erhobene Daten</h2>
+                </div>
+                <div class="legal-block">
+                    <h3>Automatisch erfasste Daten (Serverlog)</h3>
+                    <p>Beim Besuch unserer Website werden automatisch folgende technische Daten erfasst:</p>
+                    <ul>
+                        <li><span>IP-Adresse des anfragenden Gerätes (anonymisiert nach 24h)</span></li>
+                        <li><span>Datum und Uhrzeit des Zugriffs</span></li>
+                        <li><span>Aufgerufene URL und Referrer-URL</span></li>
+                        <li><span>Übertragene Datenmenge und HTTP-Statuscode</span></li>
+                        <li><span>Browser-Typ, -Version und Betriebssystem</span></li>
+                    </ul>
+
+                    <h3>Kontaktformular</h3>
+                    <p>Wenn Sie unser Kontaktformular nutzen, verarbeiten wir:</p>
+                    <ul>
+                        <li><span>Name und E-Mail-Adresse (Pflichtfelder)</span></li>
+                        <li><span>Betreff und Nachrichteninhalt</span></li>
+                        <li><span>Zeitpunkt der Kontaktaufnahme</span></li>
+                    </ul>
+
+                    <h3>Bewerbungsdaten</h3>
+                    <p>Im Rahmen von Bewerbungen verarbeiten wir die von Ihnen übermittelten Bewerbungsunterlagen (Name,
+                        Kontaktdaten, Lebenslauf, Qualifikationen).</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Zwecke -->
+            <div id="zweck" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Wozu</span>
+                    <h2>Verarbei&shy;tungs&shy;zwecke</h2>
+                </div>
+                <div class="legal-block">
+                    <h3>Websitebetrieb</h3>
+                    <p>Die Verarbeitung von Serverlogdaten ist technisch notwendig, um die Website stabil, sicher und
+                        korrekt auszuliefern und um Angriffe oder Fehler erkennen zu können.</p>
+
+                    <h3>Anfragenbearbeitung</h3>
+                    <p>Kontaktformulardaten verwenden wir ausschliesslich zur Bearbeitung Ihrer Anfrage und
+                        gegebenenfalls für eine Vertragsanbahnung. Eine Weitergabe an Dritte erfolgt nicht ohne Ihre
+                        Zustimmung.</p>
+
+                    <h3>Vertragserfüllung</h3>
+                    <p>Bei Vertragsschluss verarbeiten wir die erforderlichen Daten zur Erbringung unserer
+                        Dienstleistungen, Rechnungsstellung und Kommunikation im Rahmen des Projekts.</p>
+
+                    <h3>Sicherheit</h3>
+                    <p>Zur Erkennung und Abwehr von Angriffen, Spam und missbräuchlicher Nutzung unserer Services.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Rechtsgrundlagen -->
+            <div id="rechtsgrundlagen" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Rechtsbasis</span>
+                    <h2>Rechts&shy;grund&shy;lagen</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li><span><strong style="color:#fff;">Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung (z. B.
+                                Newsletter, optionale Cookies)</span></li>
+                        <li><span><strong style="color:#fff;">Art. 6 Abs. 1 lit. b DSGVO</strong> – Vertragserfüllung
+                                oder vorvertragliche Massnahmen</span></li>
+                        <li><span><strong style="color:#fff;">Art. 6 Abs. 1 lit. c DSGVO</strong> – Rechtliche
+                                Verpflichtung (z. B. Aufbewahrungspflichten)</span></li>
+                        <li><span><strong style="color:#fff;">Art. 6 Abs. 1 lit. f DSGVO</strong> – Berechtigtes
+                                Interesse (z. B. IT-Sicherheit, Serverlog)</span></li>
+                    </ul>
+                    <p style="margin-top:1.5rem;">Bei der Verarbeitung auf Basis berechtigter Interessen haben wir eine
+                        Interessenabwägung vorgenommen. Details teilen wir Ihnen auf Anfrage mit.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Empfänger -->
+            <div id="empfaenger" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Weitergabe</span>
+                    <h2>Empfänger</h2>
+                </div>
+                <div class="legal-block">
+                    <h3>Interne Verarbeitung</h3>
+                    <p>Ihre Daten werden grundsätzlich nur intern verarbeitet. Nur Mitarbeitende mit
+                        Zugriffsberechtigung erhalten Einsicht, und nur soweit es für die jeweilige Aufgabe erforderlich
+                        ist.</p>
+
+                    <h3>Auftragsverarbeiter</h3>
+                    <p>Wir setzen sorgfältig ausgewählte Dienstleister ein, die alle nach Art. 28 DSGVO vertraglich
+                        gebunden sind:</p>
+                    <ul>
+                        <li><span>Hosting: Hetzner Online GmbH (Schweiz)</span></li>
+                        <li><span>E-Mail: Postfix auf eigenen Servern (EU)</span></li>
+                        <li><span>Analyse: Plausible Analytics (EU, keine Cookies)</span></li>
+                    </ul>
+
+                    <h3>Drittländer</h3>
+                    <p>Eine Übermittlung von Daten in Länder ausserhalb der EU/EWR findet grundsätzlich nicht statt.
+                        Sollte dies ausnahmsweise erforderlich sein, erfolgt dies nur auf Basis von
+                        Standardvertragsklauseln (Art. 46 DSGVO) oder Ihrer ausdrücklichen Einwilligung.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Speicherdauer -->
+            <div id="speicherung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Retention</span>
+                    <h2>Speicher&shy;dauer</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li><span>Serverlogdaten: 7 Tage (dann automatisch gelöscht)</span></li>
+                        <li><span>Kontaktanfragen: 3 Monate nach abschliessender Bearbeitung</span></li>
+                        <li><span>Vertragsdaten: 10 Jahre (handels- und steuerrechtliche Aufbewahrungspflicht)</span>
+                        </li>
+                        <li><span>Rechnungen und buchhalterische Unterlagen: 10 Jahre (§ 147 AO)</span></li>
+                        <li><span>Bewerbungsunterlagen (abgelehnt): 6 Monate nach Absage</span></li>
+                        <li><span>Newsletter: bis zum Widerruf der Einwilligung</span></li>
+                    </ul>
+                    <div class="legal-highlight">
+                        <p>Nach Ablauf der jeweiligen Speicherfrist werden Ihre Daten vollständig und unwiderruflich
+                            gelöscht oder anonymisiert, sofern keine anderen gesetzlichen Pflichten dem entgegenstehen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Ihre Rechte -->
+            <div id="rechte">
+                <div style="margin-bottom:3rem;">
+                    <span class="legal-tag">Art. 15–22 DSGVO</span>
+                    <h2 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:1.1;">IHRE <span
+                            class="text-green">RECHTE</span></h2>
+                    <p style="color:var(--color-gray);max-width:40rem;margin-top:1rem;">Als betroffene Person stehen
+                        Ihnen umfangreiche Rechte zu. Wir nehmen diese ernst und bearbeiten entsprechende Anfragen
+                        unverzüglich.</p>
+                </div>
+                <div class="rights-grid">
+                    <div class="right-card">
+                        <h4>Auskunftsrecht (Art. 15)</h4>
+                        <p>Sie haben das Recht zu erfahren, welche personenbezogenen Daten wir über Sie verarbeiten, zu
+                            welchem Zweck und an wen sie ggf. weitergegeben werden.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Berichtigung (Art. 16)</h4>
+                        <p>Sie können die Korrektur unrichtiger oder Vervollständigung unvollständiger personenbezogener
+                            Daten verlangen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Löschung (Art. 17)</h4>
+                        <p>Sie haben das Recht auf Löschung Ihrer Daten, sofern keine gesetzlichen
+                            Aufbewahrungspflichten entgegenstehen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Einschränkung (Art. 18)</h4>
+                        <p>In bestimmten Fällen können Sie die Einschränkung der Verarbeitung Ihrer Daten verlangen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Datenportabilität (Art. 20)</h4>
+                        <p>Sie können Ihre Daten in einem maschinenlesbaren Format erhalten oder direkt an einen anderen
+                            Anbieter übermitteln lassen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Widerspruch (Art. 21)</h4>
+                        <p>Sie können der Verarbeitung Ihrer Daten auf Basis berechtigter Interessen jederzeit
+                            widersprechen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Widerruf der Einwilligung</h4>
+                        <p>Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, ohne
+                            dass dies die Rechtmässigkeit der bisherigen Verarbeitung berührt.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4>Beschwerderecht (Art. 77)</h4>
+                        <p>Sie haben das Recht, Beschwerde bei der zuständigen Aufsichtsbehörde einzulegen. Für Zürich
+                            ist dies der Züricher Beauftragte für Datenschutz und Informationsfreiheit.</p>
+                    </div>
+                </div>
+                <div class="legal-highlight" style="margin-top:2rem;">
+                    <p>Zur Ausübung Ihrer Rechte genügt eine formlose E-Mail an: <a
+                            href="/cdn-cgi/l/email-protection#13777267767d60707b666769537061767267767566676661763d7776"><span
+                                class="__cf_email__"
+                                data-cfemail="14707560717a67777c61606e547766717560717261606166713a7071">[email&#160;protected]</span></a>
+                    </p>
+                    <p style="margin-top:0.5rem;">Wir beantworten Ihre Anfrage kostenlos innerhalb von 30 Tagen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Cookies -->
+            <div id="cookies" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Tracking</span>
+                    <h2>Cookies &amp; Tracking</h2>
+                </div>
+                <div class="legal-block">
+                    <h3>Technisch notwendige Cookies</h3>
+                    <p>Wir setzen ausschliesslich technisch notwendige Cookies ein, die für den Betrieb der Website
+                        unerlässlich sind. Diese Cookies speichern keine personenbezogenen Daten und erfordern keine
+                        Einwilligung gemäss § 25 Abs. 2 TDDDG.</p>
+
+                    <h3>Keine Tracking- oder Marketing-Cookies</h3>
+                    <p>Wir verwenden weder Google Analytics noch andere kommerzielle Tracking-Tools. Unser Analyse-Tool
+                        (Plausible Analytics) arbeitet cookielos, sammelt keine personenbezogenen Daten und ist
+                        vollständig DSGVO-konform.</p>
+
+                    <h3>Cookie-Einstellungen</h3>
+                    <p>Da wir keine nicht-notwendigen Cookies setzen, ist kein Cookie-Banner erforderlich. Technisch
+                        notwendige Cookies können in Ihren Browser-Einstellungen verwaltet werden.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Externe Dienste -->
+            <div id="tools" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Drittanbieter</span>
+                    <h2>Externe Dienste</h2>
+                </div>
+                <div class="legal-block">
+                    <h3>Cloudflare CDN</h3>
+                    <p>Wir nutzen das Content Delivery Network von Cloudflare, Inc. (USA) zur schnellen Auslieferung von
+                        Inhalten. Cloudflare ist gemäss EU-US Data Privacy Framework zertifiziert. Datenschutzerklärung:
+                        <a href="https://www.cloudflare.com/privacypolicy/" target="_blank"
+                            rel="noopener">cloudflare.com/privacypolicy</a></p>
+
+                    <h3>Unsplash (Bilder)</h3>
+                    <p>Einige Bilder auf dieser Website stammen von Unsplash (Unsplash Inc., Kanada). Beim Laden der
+                        Bilder werden ggf. technische Daten an Unsplash-Server übertragen. Datenschutzerklärung: <a
+                            href="https://unsplash.com/privacy" target="_blank" rel="noopener">unsplash.com/privacy</a>
+                    </p>
+
+                    <h3>Google Fonts</h3>
+                    <p>Diese Website verwendet keine Google Fonts. Alle Schriftarten werden lokal oder über
+                        Systemschriften geladen, um eine Datenübertragung an Google-Server zu vermeiden.</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer-legal" role="contentinfo">
+                    <p data-de="© 2026 OVICEN Digital Agentur Zürich. Alle Rechte vorbehalten."
+                        data-en="© 2026 OVICEN Digital Agency Zürich. All rights reserved.">© 2026 OVICEN Digital
+                        Agentur Zürich. Alle Rechte vorbehalten.</p>
+                    <nav class="footer-links" aria-label="Rechtliche Links">
+                        <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+                        <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+                        <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
+                    </nav>
+            </footer>
