@@ -35,9 +35,3 @@ public class AdminController {
         return ResponseEntity.status(401).body(Map.of("error", "Ungültige Anmeldedaten"));
     }
 }
-```
-
-Dann auf **Render** zwei neue Umgebungsvariablen hinzufügen:
-```
-APP_ADMIN_USERNAME=admin
-APP_ADMIN_PASSWORD=deinSicheresPasswort2026!
