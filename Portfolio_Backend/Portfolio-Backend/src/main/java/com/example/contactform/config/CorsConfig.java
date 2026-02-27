@@ -20,7 +20,9 @@ public class CorsConfig {
             "http://localhost:8080",
             "https://www.ovicen.com",
             "https://ovicen.com",
-            "https://portfolio-frontend-8qbc.onrender.com"
+            "https://portfolio-frontend-8qbc.onrender.com,
+            "https://www.sin-digital.com", 
+            "https://sin-digital.com"
         ));
         
         config.setAllowedMethods(List.of("GET", "POST", "DELETE", "OPTIONS"));
