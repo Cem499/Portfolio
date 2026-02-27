@@ -1162,7 +1162,7 @@
         // ── CONFIG ─────────────────────────────────────────────────────────
         // Change this URL when deploying to production.
         // e.g.: window.SinDigital_API_URL = 'https://api.ovicen.com/api/contact';
-        window.SinDigital_API_URL = 'http://localhost:8081/api/contact';
+        window.SinDigital_API_URL = 'https://portfolio-zzc8.onrender.com/api/contact';
 
         document.addEventListener('DOMContentLoaded', function () {
             const form = document.getElementById('contactForm');
@@ -1198,7 +1198,7 @@
                         ? '[Betreff: ' + subject + '] ' + message
                         : message;
 
-                    const response = await fetch(window.SinDigital_API_URL || 'http://localhost:8081/api/contact', {
+                    const response = await fetch(window.SinDigital_API_URL || 'https://portfolio-zzc8.onrender.com/api/contact', {
                         method: 'POST',
                         mode: 'cors',
                         credentials: 'omit',
