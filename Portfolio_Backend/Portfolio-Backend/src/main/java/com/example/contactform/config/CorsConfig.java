@@ -19,11 +19,12 @@ public class CorsConfig {
             "http://localhost:5500",
             "http://localhost:8080",
             "https://www.ovicen.com",
-            "https://ovicen.com"
+            "https://ovicen.com",
+            "https://portfolio-frontend-8qbc.onrender.com"
         ));
         
         config.setAllowedMethods(List.of("GET", "POST", "DELETE", "OPTIONS"));
-        config.setAllowedHeaders(List.of("Content-Type", "Accept"));
+        config.setAllowedHeaders(List.of("Content-Type", "Accept", "Authorization"));
         config.setAllowCredentials(false);
         config.setMaxAge(3600L);
 
