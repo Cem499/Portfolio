@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin Digital — Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #C1FF72; --green-dim: rgba(193,255,114,0.12); --green-border: rgba(193,255,114,0.2);
+            --bg: #010101; --bg2: #0c0c0c; --bg3: #141414;
+            --text: #fff; --gray: #6b7280; --gray2: #9ca3af;
+            --red: #ff4f4f; --red-dim: rgba(255,79,79,0.12);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        #login-screen { position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 1000; transition: opacity 0.4s ease; }
+        #login-screen.hidden { opacity: 0; pointer-events: none; }
+        .login-box { width: 100%; max-width: 420px; padding: 2rem; }
+        .login-logo { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--green); margin-bottom: 3rem; display: flex; align-items: center; gap: 0.6rem; }
+        .login-logo::before { content: ''; width: 8px; height: 8px; background: var(--green); border-radius: 50%; }
+        .login-title { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 900; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.5rem; }
+        .login-sub { color: var(--gray); font-size: 0.78rem; margin-bottom: 2.5rem; }
+        .login-field { margin-bottom: 1rem; }
+        .login-field label { display: block; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray2); margin-bottom: 0.5rem; }
+        .login-field input { width: 100%; background: var(--bg3); border: 1px solid var(--green-border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.9rem; padding: 0.9rem 1rem; border-radius: 4px; outline: none; transition: border-color 0.3s; }
+        .login-field input:focus { border-color: var(--green); }
+        .login-btn { width: 100%; background: var(--green); color: #010101; font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; border: none; padding: 1rem; border-radius: 4px; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s, transform 0.1s; }
+        .login-btn:hover { background: #d4ff99; }
+        .login-btn:active { transform: scale(0.98); }
+        .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .login-error { color: var(--red); font-size: 0.78rem; margin-top: 0.75rem; display: none; }
+
+        #dashboard { display: none; min-height: 100vh; }
+        #dashboard.visible { display: block; }
+
+        .sidebar { position: fixed; top: 0; left: 0; width: 240px; height: 100vh; background: var(--bg2); border-right: 1px solid var(--green-border); display: flex; flex-direction: column; padding: 2rem 1.5rem; z-index: 100; }
+        .sidebar-logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 900; color: var(--green); margin-bottom: 3rem; display: flex; align-items: center; gap: 0.5rem; }
+        .sidebar-logo::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; }
+        .sidebar-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.75rem; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 0.25rem; flex: 1; }
+        .nav-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.85rem; border-radius: 4px; color: var(--gray2); font-size: 0.82rem; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
+        .nav-item:hover { color: var(--text); background: var(--bg3); }
+        .nav-item.active { color: var(--green); background: var(--green-dim); border-color: var(--green-border); }
+        .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .nav-badge { margin-left: auto; background: var(--green); color: #010101; font-size: 0.6rem; font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 50px; font-family: 'Syne', sans-serif; }
+        .sidebar-bottom { padding-top: 1.5rem; border-top: 1px solid var(--green-border); }
+        .logout-btn { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 0.85rem; color: var(--gray); font-size: 0.82rem; cursor: pointer; border-radius: 4px; transition: all 0.2s; background: none; border: none; width: 100%; font-family: 'DM Mono', monospace; }
+        .logout-btn:hover { color: var(--red); background: var(--red-dim); }
+        .logout-btn svg { width: 16px; height: 16px; }
+
+        .main { margin-left: 240px; padding: 2.5rem 3rem; min-height: 100vh; }
+        .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem; }
+        .topbar-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 900; letter-spacing: -0.04em; }
+        .topbar-title span { color: var(--green); }
+        .topbar-time { font-size: 0.72rem; color: var(--gray); }
+
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--green-border); border: 1px solid var(--green-border); border-radius: 4px; overflow: hidden; margin-bottom: 2.5rem; }
+        .stat-card { background: var(--bg2); padding: 1.5rem 1.75rem; }
+        .stat-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.6rem; }
+        .stat-value { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 900; color: var(--green); letter-spacing: -0.04em; line-height: 1; }
+        .stat-sub { font-size: 0.7rem; color: var(--gray); margin-top: 0.35rem; }
+
+        .filters { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .filter-btn { background: none; border: 1px solid var(--green-border); color: var(--gray2); font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.45rem 1rem; border-radius: 50px; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover { color: var(--text); border-color: rgba(193,255,114,0.5); }
+        .filter-btn.active { background: var(--green-dim); color: var(--green); border-color: var(--green); }
+        .search-box { margin-left: auto; position: relative; }
+        .search-box input { background: var(--bg3); border: 1px solid var(--green-border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.78rem; padding: 0.45rem 1rem 0.45rem 2.25rem; border-radius: 50px; outline: none; width: 220px; transition: border-color 0.3s; }
+        .search-box input:focus { border-color: var(--green); }
+        .search-box svg { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--gray); }
+
+        .messages-table { width: 100%; border-collapse: collapse; background: var(--bg2); border: 1px solid var(--green-border); border-radius: 4px; overflow: hidden; }
+        .messages-table th { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray); padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--green-border); background: var(--bg3); font-weight: 500; }
+        .messages-table td { padding: 1rem 1.25rem; border-bottom: 1px solid rgba(193,255,114,0.05); font-size: 0.82rem; vertical-align: top; }
+        .messages-table tr:last-child td { border-bottom: none; }
+        .messages-table tr { transition: background 0.15s; cursor: pointer; }
+        .messages-table tr:hover td { background: rgba(193,255,114,0.03); }
+        .msg-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+        .unread-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+        .msg-email { color: var(--gray2); font-size: 0.78rem; margin-top: 0.2rem; }
+        .msg-preview { color: var(--gray2); font-size: 0.78rem; max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .msg-date { color: var(--gray); font-size: 0.72rem; white-space: nowrap; }
+        .status-badge { display: inline-flex; align-items: center; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 50px; }
+        .status-unread { background: var(--green-dim); color: var(--green); border: 1px solid var(--green-border); }
+        .status-read { background: rgba(107,114,128,0.1); color: var(--gray2); border: 1px solid rgba(107,114,128,0.2); }
+        .action-btns { display: flex; gap: 0.4rem; }
+        .action-btn { background: none; border: 1px solid var(--green-border); color: var(--gray2); font-size: 0.7rem; padding: 0.3rem 0.6rem; border-radius: 3px; cursor: pointer; font-family: 'DM Mono', monospace; transition: all 0.2s; display: flex; align-items: center; gap: 0.3rem; }
+        .action-btn:hover { color: var(--green); border-color: var(--green); }
+        .action-btn.delete:hover { color: var(--red); border-color: var(--red); background: var(--red-dim); }
+        .action-btn svg { width: 12px; height: 12px; }
+
+        .empty-state { text-align: center; padding: 5rem 2rem; color: var(--gray); }
+        .empty-state svg { width: 48px; height: 48px; margin: 0 auto 1rem; opacity: 0.3; display: block; }
+        .empty-state p { font-size: 0.85rem; }
+        .loading { text-align: center; padding: 4rem; color: var(--gray); font-size: 0.82rem; }
+        .loading::after { content: ''; display: inline-block; width: 16px; height: 16px; border: 2px solid var(--green-border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin-left: 0.75rem; vertical-align: middle; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .modal-overlay { position: fixed; inset: 0; background: rgba(1,1,1,0.85); backdrop-filter: blur(6px); z-index: 500; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+        .modal-overlay.open { opacity: 1; pointer-events: all; }
+        .modal { background: var(--bg2); border: 1px solid var(--green-border); border-radius: 6px; padding: 2.5rem; width: 100%; max-width: 560px; max-height: 80vh; overflow-y: auto; transform: translateY(10px); transition: transform 0.25s; }
+        .modal-overlay.open .modal { transform: translateY(0); }
+        .modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.75rem; gap: 1rem; }
+        .modal-name { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.03em; }
+        .modal-email { color: var(--green); font-size: 0.78rem; margin-top: 0.25rem; }
+        .modal-close { background: none; border: 1px solid var(--green-border); color: var(--gray2); width: 32px; height: 32px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+        .modal-close:hover { color: var(--red); border-color: var(--red); }
+        .modal-close svg { width: 14px; height: 14px; }
+        .modal-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--green-border); flex-wrap: wrap; }
+        .modal-meta-item { font-size: 0.7rem; color: var(--gray); }
+        .modal-meta-item span { display: block; color: var(--gray2); margin-top: 0.2rem; font-size: 0.78rem; }
+        .modal-message { color: var(--gray2); font-size: 0.85rem; line-height: 1.9; white-space: pre-wrap; }
+        .modal-actions { display: flex; gap: 0.75rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--green-border); }
+        .modal-btn { flex: 1; padding: 0.75rem; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 0.5rem; border: 1px solid; }
+        .modal-btn svg { width: 14px; height: 14px; }
+        .modal-btn-read { background: var(--green-dim); color: var(--green); border-color: var(--green-border); }
+        .modal-btn-read:hover { background: rgba(193,255,114,0.2); }
+        .modal-btn-delete { background: var(--red-dim); color: var(--red); border-color: rgba(255,79,79,0.3); }
+        .modal-btn-delete:hover { background: rgba(255,79,79,0.2); }
+
+        .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--bg3); border: 1px solid var(--green-border); color: var(--green); font-size: 0.8rem; padding: 0.85rem 1.25rem; border-radius: 4px; z-index: 2000; transform: translateY(10px); opacity: 0; transition: all 0.3s; pointer-events: none; }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.error { border-color: rgba(255,79,79,0.3); color: var(--red); }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(193,255,114,0.2); border-radius: 3px; }
+
+        @media (max-width: 900px) { .sidebar { width: 200px; } .main { margin-left: 200px; padding: 2rem; } .stats-row { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 680px) { .sidebar { display: none; } .main { margin-left: 0; padding: 1.5rem; } }
+    </style>
+</head>
+<body>
+
+<div id="login-screen">
+    <div class="login-box">
+        <div class="login-logo">Sin Digital</div>
+        <h1 class="login-title">ADMIN<br><span style="color:var(--green)">LOGIN</span></h1>
+        <p class="login-sub">Sicherer Zugang — Passwort nur im Backend</p>
+        <div class="login-field">
+            <label>Benutzername</label>
+            <input type="text" id="login-user" placeholder="admin" autocomplete="username">
+        </div>
+        <div class="login-field">
+            <label>Passwort</label>
+            <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <p class="login-error" id="login-error"></p>
+        <button class="login-btn" id="login-btn" onclick="doLogin()">Einloggen</button>
+    </div>
+</div>
+
+<div id="dashboard">
+    <aside class="sidebar">
+        <div class="sidebar-logo">Sin Digital</div>
+        <div class="sidebar-label">Navigation</div>
+        <nav class="sidebar-nav">
+            <div class="nav-item active" onclick="setFilter('all')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v2.172a2 2 0 0 1-.586 1.414L14 13v7l-4-2v-5L4.586 7.586A2 2 0 0 1 4 6.172V4z"/></svg>
+                Alle Anfragen <span class="nav-badge" id="badge-all">0</span>
+            </div>
+            <div class="nav-item" onclick="setFilter('unread')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Ungelesen <span class="nav-badge" id="badge-unread">0</span>
+            </div>
+            <div class="nav-item" onclick="setFilter('read')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Gelesen
+            </div>
+        </nav>
+        <div class="sidebar-bottom">
+            <button class="logout-btn" onclick="doLogout()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Ausloggen
+            </button>
+        </div>
+    </aside>
+    <main class="main">
+        <div class="topbar">
+            <h1 class="topbar-title">ANFRAGEN <span>DASHBOARD</span></h1>
+            <div class="topbar-time" id="clock"></div>
+        </div>
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-label">Gesamt</div><div class="stat-value" id="stat-total">—</div><div class="stat-sub">Alle Anfragen</div></div>
+            <div class="stat-card"><div class="stat-label">Ungelesen</div><div class="stat-value" id="stat-unread">—</div><div class="stat-sub">Neu eingetroffen</div></div>
+            <div class="stat-card"><div class="stat-label">Gelesen</div><div class="stat-value" id="stat-read">—</div><div class="stat-sub">Bereits geprüft</div></div>
+            <div class="stat-card"><div class="stat-label">Heute</div><div class="stat-value" id="stat-today">—</div><div class="stat-sub">Neue heute</div></div>
+        </div>
+        <div class="filters">
+            <button class="filter-btn active" id="fb-all" onclick="setFilter('all')">Alle</button>
+            <button class="filter-btn" id="fb-unread" onclick="setFilter('unread')">Ungelesen</button>
+            <button class="filter-btn" id="fb-read" onclick="setFilter('read')">Gelesen</button>
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="search-input" placeholder="Suchen..." oninput="renderTable()">
+            </div>
+        </div>
+        <div id="table-container"><div class="loading">Lade Anfragen</div></div>
+    </main>
+</div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal">
+        <div class="modal-header">
+            <div><div class="modal-name" id="modal-name"></div><div class="modal-email" id="modal-email"></div></div>
+            <button class="modal-close" onclick="closeModalDirect()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="modal-meta">
+            <div class="modal-meta-item">Datum<span id="modal-date"></span></div>
+            <div class="modal-meta-item">Status<span id="modal-status"></span></div>
+            <div class="modal-meta-item">ID<span id="modal-id"></span></div>
+        </div>
+        <div class="modal-message" id="modal-message"></div>
+        <div class="modal-actions">
+            <button class="modal-btn modal-btn-read" id="modal-read-btn" onclick="toggleReadFromModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Als gelesen markieren
+            </button>
+            <button class="modal-btn modal-btn-delete" onclick="deleteFromModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+                Löschen
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'https://portfolio-zzc8.onrender.com/api';
+let messages = [], currentFilter = 'all', currentModalId = null;
+let readIds = JSON.parse(localStorage.getItem('sd_read') || '[]');
+
+const getToken = () => sessionStorage.getItem('sd_token');
+const setToken = t => sessionStorage.setItem('sd_token', t);
+const clearToken = () => sessionStorage.removeItem('sd_token');
+const authH = () => ({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() });
+
+async function doLogin() {
+    const username = document.getElementById('login-user').value.trim();
+    const password = document.getElementById('login-pass').value;
+    const btn = document.getElementById('login-btn');
+    const err = document.getElementById('login-error');
+    if (!username || !password) { err.textContent = 'Bitte alle Felder ausfüllen.'; err.style.display = 'block'; return; }
+    btn.disabled = true; btn.textContent = 'Wird geprüft...'; err.style.display = 'none';
+    try {
+        const res = await fetch(`${API}/admin/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username, password }) });
+        if (res.ok) { setToken((await res.json()).token); showDashboard(); }
+        else { err.textContent = 'Falsche Anmeldedaten.'; err.style.display = 'block'; document.getElementById('login-pass').value = ''; }
+    } catch { err.textContent = 'Verbindungsfehler.'; err.style.display = 'block'; }
+    finally { btn.disabled = false; btn.textContent = 'Einloggen'; }
+}
+
+['login-pass','login-user'].forEach(id => document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); }));
+
+function showDashboard() {
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('dashboard').classList.add('visible');
+    loadMessages(); startClock();
+}
+
+function doLogout() {
+    clearToken(); messages = [];
+    document.getElementById('login-screen').classList.remove('hidden');
+    document.getElementById('dashboard').classList.remove('visible');
+    document.getElementById('login-pass').value = '';
+}
+
+if (getToken()) showDashboard();
+
+function startClock() {
+    const tick = () => {
+        const n = new Date();
+        document.getElementById('clock').textContent =
+            n.toLocaleDateString('de-CH', { weekday:'long', year:'numeric', month:'long', day:'numeric' }) + '  ·  ' +
+            n.toLocaleTimeString('de-CH', { hour:'2-digit', minute:'2-digit' });
+    };
+    tick(); setInterval(tick, 10000);
+}
+
+async function loadMessages() {
+    document.getElementById('table-container').innerHTML = '<div class="loading">Lade Anfragen</div>';
+    try {
+        const res = await fetch(`${API}/admin/messages`, { headers: authH() });
+        if (res.status === 401 || res.status === 403) { doLogout(); return; }
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        messages = await res.json();
+        if (!Array.isArray(messages)) messages = messages.content || [];
+        updateStats(); renderTable();
+    } catch (e) {
+        document.getElementById('table-container').innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p>Fehler: ${e.message}</p></div>`;
+    }
+}
+
+function updateStats() {
+    const total = messages.length;
+    const unread = messages.filter(m => !readIds.includes(m.id)).length;
+    const today = messages.filter(m => new Date(m.createdAt||m.created_at).toDateString() === new Date().toDateString()).length;
+    document.getElementById('stat-total').textContent = total;
+    document.getElementById('stat-unread').textContent = unread;
+    document.getElementById('stat-read').textContent = total - unread;
+    document.getElementById('stat-today').textContent = today;
+    document.getElementById('badge-all').textContent = total;
+    document.getElementById('badge-unread').textContent = unread;
+}
+
+function setFilter(f) {
+    currentFilter = f;
+    ['all','unread','read'].forEach(x => { document.getElementById('fb-'+x)?.classList.toggle('active', x===f); });
+    document.querySelectorAll('.nav-item').forEach((el,i) => el.classList.toggle('active', i===['all','unread','read'].indexOf(f)));
+    renderTable();
+}
+
+function renderTable() {
+    const search = document.getElementById('search-input').value.toLowerCase();
+    let filtered = messages.filter(m => {
+        const isRead = readIds.includes(m.id);
+        if (currentFilter==='unread' && isRead) return false;
+        if (currentFilter==='read' && !isRead) return false;
+        if (search && !`${m.name} ${m.email} ${m.message}`.toLowerCase().includes(search)) return false;
+        return true;
+    }).sort((a,b) => new Date(b.createdAt||b.created_at||0)-new Date(a.createdAt||a.created_at||0));
+
+    if (!filtered.length) {
+        document.getElementById('table-container').innerHTML = `<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v2.172a2 2 0 0 1-.586 1.414L14 13v7l-4-2v-5L4.586 7.586A2 2 0 0 1 4 6.172V4z"/></svg><p>Keine Anfragen gefunden</p></div>`;
+        return;
+    }
+
+    const rows = filtered.map(m => {
+        const isRead = readIds.includes(m.id);
+        const preview = (m.message||'').replace(/\n/g,' ').substring(0,80);
+        return `<tr class="${isRead?'':'unread'}" onclick="openModal(${m.id})">
+            <td><div class="msg-name">${!isRead?'<span class="unread-dot"></span>':''}${esc(m.name)}</div><div class="msg-email">${esc(m.email)}</div></td>
+            <td><div class="msg-preview">${esc(preview)}${m.message?.length>80?'…':''}</div></td>
+            <td class="msg-date">${formatDate(m.createdAt||m.created_at)}</td>
+            <td><span class="status-badge ${isRead?'status-read':'status-unread'}">${isRead?'Gelesen':'Neu'}</span></td>
+            <td><div class="action-btns" onclick="event.stopPropagation()">
+                <button class="action-btn" onclick="toggleRead(${m.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px">${isRead?'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>':'<polyline points="20 6 9 17 4 12"/>'}</svg>
+                    ${isRead?'Ungelesen':'Gelesen'}
+                </button>
+                <button class="action-btn delete" onclick="deleteMsg(${m.id})">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                </button>
+            </div></td>
+        </tr>`;
+    }).join('');
+
+    document.getElementById('table-container').innerHTML = `
+        <table class="messages-table">
+            <thead><tr><th>Absender</th><th>Nachricht</th><th>Datum</th><th>Status</th><th>Aktionen</th></tr></thead>
+            <tbody>${rows}</tbody>
+        </table>`;
+}
+
+function toggleRead(id) {
+    readIds = readIds.includes(id) ? readIds.filter(x=>x!==id) : [...readIds, id];
+    localStorage.setItem('sd_read', JSON.stringify(readIds));
+    updateStats(); renderTable();
+    showToast(readIds.includes(id) ? 'Als gelesen markiert' : 'Als ungelesen markiert');
+}
+function toggleReadFromModal() { if (currentModalId) { toggleRead(currentModalId); closeModalDirect(); } }
+
+async function deleteMsg(id) {
+    if (!confirm('Nachricht wirklich löschen?')) return;
+    try {
+        const res = await fetch(`${API}/admin/messages/${id}`, { method: 'DELETE', headers: authH() });
+        if (res.ok || res.status===204) {
+            messages = messages.filter(m=>m.id!==id);
+            readIds = readIds.filter(x=>x!==id);
+            localStorage.setItem('sd_read', JSON.stringify(readIds));
+            updateStats(); renderTable(); showToast('Nachricht gelöscht');
+        } else if (res.status===401||res.status===403) { doLogout(); }
+        else showToast('Fehler beim Löschen', true);
+    } catch { showToast('Netzwerkfehler', true); }
+}
+function deleteFromModal() { if (currentModalId) { closeModalDirect(); deleteMsg(currentModalId); } }
+
+function openModal(id) {
+    const m = messages.find(x=>x.id===id); if (!m) return;
+    currentModalId = id;
+    const isRead = readIds.includes(id);
+    document.getElementById('modal-name').textContent = m.name;
+    document.getElementById('modal-email').textContent = m.email;
+    document.getElementById('modal-date').textContent = formatDate(m.createdAt||m.created_at);
+    document.getElementById('modal-status').textContent = isRead ? 'Gelesen' : 'Ungelesen';
+    document.getElementById('modal-id').textContent = '#' + m.id;
+    document.getElementById('modal-message').textContent = m.message;
+    const rb = document.getElementById('modal-read-btn');
+    rb.innerHTML = isRead
+        ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Als ungelesen`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><polyline points="20 6 9 17 4 12"/></svg> Als gelesen markieren`;
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (!isRead) setTimeout(() => { readIds.push(id); localStorage.setItem('sd_read', JSON.stringify(readIds)); updateStats(); renderTable(); }, 600);
+}
+function closeModal(e) { if (e.target===document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow=''; currentModalId=null; }
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModalDirect(); });
+
+function formatDate(raw) {
+    if (!raw) return '—';
+    const d = new Date(raw);
+    return d.toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+d.toLocaleTimeString('de-CH',{hour:'2-digit',minute:'2-digit'});
+}
+function esc(s) { return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function showToast(msg, isError=false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.className = 'toast show'+(isError?' error':'');
+    clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
