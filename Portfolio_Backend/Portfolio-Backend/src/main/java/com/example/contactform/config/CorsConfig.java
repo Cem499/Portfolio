@@ -1,5 +1,4 @@
 package com.example.contactform.config;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -9,7 +8,6 @@ import java.util.List;
 
 @Configuration
 public class CorsConfig {
-
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
@@ -20,8 +18,8 @@ public class CorsConfig {
             "http://localhost:8080",
             "https://www.ovicen.com",
             "https://ovicen.com",
-            "https://portfolio-frontend-8qbc.onrender.com,
-            "https://www.sin-digital.com", 
+            "https://portfolio-frontend-8qbc.onrender.com",
+            "https://www.sin-digital.com",
             "https://sin-digital.com"
         ));
         
@@ -29,7 +27,7 @@ public class CorsConfig {
         config.setAllowedHeaders(List.of("Content-Type", "Accept", "Authorization"));
         config.setAllowCredentials(false);
         config.setMaxAge(3600L);
-
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/api/**", config);
         
