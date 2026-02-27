@@ -47,32 +47,33 @@ document.addEventListener('DOMContentLoaded', function () {
         opacity: 0, duration: 1,
     });
 
-    // ─── PROJECTS SECTION ───────────────────────────────────────────────────
-    gsap.from('.projects-header', {
+    // ─── SERVICES / LEISTUNGEN SECTION ──────────────────────────────────────
+    // FIX: war '.projects-header' → korrigiert zu '.services-header'
+    gsap.from('.services-header', {
         scrollTrigger: { trigger: '.projects', start: 'top 80%' },
         opacity: 0, y: -50, duration: 0.8,
     });
 
-    document.querySelectorAll('.project-item').forEach((project) => {
-        const isReverse = project.classList.contains('reverse');
-        gsap.from(project, {
-            scrollTrigger: { trigger: project, start: 'top 85%' },
-            opacity: 0, x: isReverse ? 100 : -100, duration: 0.8,
+    // Pakete-Karten animieren
+    document.querySelectorAll('.paket-card').forEach((card, index) => {
+        gsap.from(card, {
+            scrollTrigger: { trigger: card, start: 'top 90%' },
+            opacity: 0, y: 40, duration: 0.6, delay: index * 0.1,
         });
-        const frame = project.querySelector('.project-frame');
-        if (frame) {
-            gsap.from(frame, {
-                scrollTrigger: { trigger: project, start: 'top 85%' },
-                opacity: 0, duration: 0.6, delay: 0.3,
-            });
-        }
-        const num = project.querySelector('.project-number');
-        if (num) {
-            gsap.from(num, {
-                scrollTrigger: { trigger: project, start: 'top 80%' },
-                opacity: 0, duration: 0.8, delay: 0.4,
-            });
-        }
+    });
+
+    // Prozess-Schritte animieren
+    document.querySelectorAll('.prozess-step').forEach((step, index) => {
+        gsap.from(step, {
+            scrollTrigger: { trigger: step, start: 'top 90%' },
+            opacity: 0, y: 30, duration: 0.5, delay: index * 0.1,
+        });
+    });
+
+    // CTA Block
+    gsap.from('.leistungen-cta', {
+        scrollTrigger: { trigger: '.leistungen-cta', start: 'top 85%' },
+        opacity: 0, y: 40, duration: 0.8,
     });
 
     gsap.from('.big-number-center', {
@@ -166,9 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gsap.to('.rotating-circle', { rotation: 360, duration: 20, repeat: -1, ease: 'none' });
     gsap.to('.rotating-circle', { scale: 1.2, duration: 10, repeat: -1, yoyo: true, ease: 'power1.inOut' });
 
-    // ─── FORM SUBMISSION ────────────────────────────────────────────────────
-    // Form submission is handled by the inline script in index.html (async fetch to backend).
-    // Here we only add a GSAP button press animation on submit click.
+    // ─── FORM BUTTON ANIMATION ──────────────────────────────────────────────
     const submitBtn = document.querySelector('.contact-form button[type="submit"]');
     if (submitBtn) {
         submitBtn.addEventListener('click', () => {
@@ -177,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ─── SMOOTH SCROLL ──────────────────────────────────────────────────────
-    // Native smooth scroll with nav offset — no extra plugin needed
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -185,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                const navHeight = 80; // fixed nav offset
+                const navHeight = 80;
                 const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
                 window.scrollTo({ top, behavior: 'smooth' });
             }
