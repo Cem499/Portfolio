@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin-dashboard.html
+
+Sitemap: https://www.sin-digital.com/sitemap.xml
