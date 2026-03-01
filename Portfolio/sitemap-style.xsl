@@ -10,6 +10,7 @@
     <html lang="de">
       <head>
         <title>XML Sitemap — Sin Digital</title>
+        <link rel="icon" type="image/png" href="/assets/ICON-Logo_Sin-Digital.png" />
         <meta name="robots" content="noindex, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <style>
