@@ -1,30 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap-style.xsl"?>
+<!--
+  ════════════════════════════════════════════════════════
+  Sin Digital — XML Sitemap
+  Website:  https://www.sin-digital.com
+  URLs:     4
+  Updated:  2026-03-01
+  Protocol: Sitemaps 0.9
+  ════════════════════════════════════════════════════════
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ══ Homepage (de-CH / en) ══ -->
   <url>
     <loc>https://www.sin-digital.com/</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.sin-digital.com/?lang=en"/>
-    <lastmod>2026-02-28</lastmod>
-    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/"/>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- ══ AGB ══ -->
   <url>
     <loc>https://www.sin-digital.com/agb.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+  <!-- ══ Datenschutz ══ -->
   <url>
     <loc>https://www.sin-digital.com/datenschutz.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
+  <!-- ══ Impressum ══ -->
   <url>
     <loc>https://www.sin-digital.com/impressum.html</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-03-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>
