@@ -147,8 +147,7 @@
         "availableLanguage": ["German", "English"]
       },
       "sameAs": [
-        "https://www.instagram.com/sindigitalarchitects/",
-        "https://www.linkedin.com/company/sindigital"
+        "https://www.instagram.com/sindigitalarchitects/"
       ],
       "logo": {
         "@type": "ImageObject",
@@ -163,8 +162,6 @@
         "@id": "https://www.sin-digital.com/#cem-sin"
       }
     }
-    </script>
-
     </script>
 
     <!-- ══ STRUCTURED DATA – WebSite (Sitelinks Searchbox) ══════════════════ -->
@@ -196,8 +193,7 @@
       },
       "url": "https://www.sin-digital.com/#team",
       "sameAs": [
-        "https://www.instagram.com/sindigitalarchitects/",
-        "https://www.linkedin.com/company/sindigital"
+        "https://www.instagram.com/sindigitalarchitects/"
       ]
     }
     </script>
@@ -382,8 +378,6 @@
     </script>
 
     <!-- ══ PRECONNECT & PERFORMANCE ─────────────────────────────────────── -->
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link rel="preload" href="/assets/Logo_OVICEN.png" as="image">
     <link rel="preload" href="styles.css" as="style">
     <link rel="stylesheet" href="styles.css">
@@ -428,12 +422,12 @@
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <ul class="mobile-menu-links">
-            <li><a href="#team" class="mobile-link" data-de="Team" data-en="Team">Team</a></li>
-            <li><a href="#projects" class="mobile-link" data-de="Leistungen" data-en="Services">Leistungen</a></li>
-            <li><a href="#faq" class="mobile-link" data-de="FAQ" data-en="FAQ">FAQ</a></li>
-            <li><a href="#contact" class="mobile-link mobile-link-cta" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+        <ul class="mobile-menu-links" role="menu">
+            <li role="none"><a href="#team" role="menuitem" class="mobile-link" data-de="Team" data-en="Team">Team</a></li>
+            <li role="none"><a href="#projects" role="menuitem" class="mobile-link" data-de="Leistungen" data-en="Services">Leistungen</a></li>
+            <li role="none"><a href="#faq" role="menuitem" class="mobile-link" data-de="FAQ" data-en="FAQ">FAQ</a></li>
+            <li role="none"><a href="#contact" role="menuitem" class="mobile-link mobile-link-cta" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
         </ul>
     </div>
 
@@ -524,7 +518,7 @@
                     </article>
                 </div>
 
-                <div class="big-number" aria-hidden="true">01</div>
+                <div class="big-number" aria-hidden="true" inert>01</div>
             </div>
         </section>
 
@@ -701,7 +695,7 @@
                     <a href="#contact" class="leistungen-cta-btn" data-de="Gespräch mit Sin Digital vereinbaren" data-en="Book a free call with Sin Digital">Gespräch vereinbaren</a>
                 </div>
 
-                <div class="big-number-center" aria-hidden="true">02</div>
+                <div class="big-number-center" aria-hidden="true" inert>02</div>
             </div>
         </section>
 
@@ -793,7 +787,7 @@
 
                 <div class="decorative-box box-1" aria-hidden="true"></div>
                 <div class="decorative-box box-2" aria-hidden="true"></div>
-                <div class="big-number-right" aria-hidden="true">03</div>
+                <div class="big-number-right" aria-hidden="true" inert>03</div>
             </div>
         </section>
 
@@ -843,7 +837,7 @@
                                     data-en-placeholder="Tell us about your project..."
                                     placeholder="Erzählen Sie uns von Ihrem Projekt..." required></textarea>
                             </div>
-                            <div id="form-status"
+                            <div id="form-status" role="alert" aria-live="polite"
                                 style="display:none;padding:1rem 1.25rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;">
                             </div>
                             <div style="display:flex;justify-content:flex-end;margin-top:0.5rem;">
@@ -909,12 +903,10 @@
                                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                                     </svg>
                                 </a>
-                                
-                                
                             </nav>
                         </div>
 
-                        <div class="contact-big-number" aria-hidden="true">04</div>
+                        <div class="contact-big-number" aria-hidden="true" inert>04</div>
                     </div>
                 </div>
 
@@ -1045,41 +1037,7 @@
         });
     </script>
 
-    <script>
-        (function () {
-            const hamburger = document.getElementById('hamburger');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileLinks = mobileMenu.querySelectorAll('.mobile-link');
-
-            function openMenu() {
-                hamburger.classList.add('open');
-                mobileMenu.classList.add('open');
-                mobileMenu.setAttribute('aria-hidden', 'false');
-                hamburger.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeMenu() {
-                hamburger.classList.remove('open');
-                mobileMenu.classList.remove('open');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-                hamburger.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.contains('open') ? closeMenu() : openMenu();
-            });
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeMenu();
-            });
-        })();
-    </script>
+    <!-- Mobile menu logic is in script.js -->
 
 </body>
 
