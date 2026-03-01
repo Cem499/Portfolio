@@ -7,6 +7,7 @@ import com.example.contactform.entity.ContactMessage;
 import com.example.contactform.repository.ContactMessageRepository;
 import com.example.contactform.service.ContactService;
 import com.example.contactform.service.RateLimiterService;
+import com.example.contactform.service.TurnstileService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class ContactController {
     private final ContactService contactService;
     private final RateLimiterService rateLimiterService;
     private final ContactMessageRepository contactMessageRepository;
+    private final TurnstileService turnstileService;
 
     // Only trust X-Forwarded-For when running behind a known reverse proxy.
     // Set app.proxy.trusted=true in application.properties if using nginx / Cloudflare / ALB.
@@ -35,10 +37,12 @@ public class ContactController {
 
     public ContactController(ContactService contactService,
                              RateLimiterService rateLimiterService,
-                             ContactMessageRepository contactMessageRepository) {
+                             ContactMessageRepository contactMessageRepository,
+                             TurnstileService turnstileService) {
         this.contactService = contactService;
         this.rateLimiterService = rateLimiterService;
         this.contactMessageRepository = contactMessageRepository;
+        this.turnstileService = turnstileService;
     }
 
     /**
@@ -57,6 +61,15 @@ public class ContactController {
 
         String clientIp = resolveClientIp(httpRequest);
         log.info("Kontaktanfrage von IP: {}", clientIp);
+
+        // Turnstile verification
+        if (!turnstileService.verify(request.getTurnstileToken(), clientIp)) {
+            log.warn("Turnstile-Verifizierung fehlgeschlagen für IP: {}", clientIp);
+            return ResponseEntity
+                    .status(HttpStatus.FORBIDDEN)
+                    .body(new ApiErrorResponse(403, "Forbidden",
+                            "Sicherheitsprüfung fehlgeschlagen. Bitte versuche es erneut."));
+        }
 
         if (!rateLimiterService.tryConsume(clientIp)) {
             log.warn("Rate Limit überschritten für IP: {}", clientIp);
