@@ -21,6 +21,8 @@ public class ContactRequest {
 
     private String turnstileToken;
 
+    private boolean privacyAccepted;
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
     public String getEmail() { return email; }
@@ -29,4 +31,6 @@ public class ContactRequest {
     public void setMessage(String message) { this.message = message; }
     public String getTurnstileToken() { return turnstileToken; }
     public void setTurnstileToken(String turnstileToken) { this.turnstileToken = turnstileToken; }
+    public boolean isPrivacyAccepted() { return privacyAccepted; }
+    public void setPrivacyAccepted(boolean privacyAccepted) { this.privacyAccepted = privacyAccepted; }
 }
