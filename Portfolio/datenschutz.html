@@ -373,7 +373,10 @@
             document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
             document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
             document.querySelectorAll('[data-de][data-en]').forEach(el => {
-                el.textContent = el.getAttribute('data-' + currentLang);
+                const hasElementChildren = Array.from(el.childNodes).some(n => n.nodeType === 1);
+                if (!hasElementChildren) {
+                    el.textContent = el.getAttribute('data-' + currentLang);
+                }
             });
             document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
                 el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
