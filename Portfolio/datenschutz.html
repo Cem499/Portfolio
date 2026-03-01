@@ -17,28 +17,6 @@
             min-height: 100vh;
         }
 
-        .legal-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--color-green);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 4rem;
-            transition: gap 0.3s ease;
-        }
-
-        .legal-back:hover {
-            gap: 1.25rem;
-        }
-
-        .legal-hero {
-            margin-bottom: 5rem;
-            position: relative;
-        }
-
         .legal-tag {
             color: var(--color-green);
             font-size: 0.875rem;
@@ -246,7 +224,7 @@
 
         @media (min-width: 768px) {
             .footer-legal {
-            padding-bottom: 8rem;
+                padding-bottom: 8rem;
                 flex-direction: row;
                 justify-content: space-between;
             }
@@ -274,21 +252,6 @@
             color: var(--color-green);
         }
 
-        .nav-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(1, 1, 1, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(193, 255, 114, 0.1);
-        }
-
         .toc {
             display: flex;
             flex-wrap: wrap;
@@ -311,39 +274,7 @@
             color: #010101;
         }
 
-        .lang-switcher {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            background: rgba(193, 255, 114, 0.05);
-            border: 1px solid rgba(193, 255, 114, 0.2);
-            border-radius: 50px;
-            padding: 0.25rem;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: #9ca3af;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 0.35rem 0.75rem;
-            border-radius: 50px;
-            transition: all 0.3s;
-            letter-spacing: 0.1em;
-        }
-
-        .lang-btn.active {
-            background: #C1FF72;
-            color: #010101;
-        }
-
-        .lang-btn:hover:not(.active) {
-            color: #C1FF72;
-        }
-
-         /* ── NAV ── */
+        /* ── NAV (identisch zu index.html) ── */
         #main-nav {
             position: fixed;
             top: 0; left: 0;
@@ -370,15 +301,7 @@
             gap: 1.5rem;
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-link {
+        .nav-back {
             color: #9ca3af;
             text-decoration: none;
             font-size: 0.8rem;
@@ -387,22 +310,11 @@
             transition: color 0.3s;
         }
 
-        .nav-link:hover { color: #C1FF72; }
-
-        .nav-link-cta {
+        .nav-back:hover {
             color: #C1FF72;
-            border: 1px solid #C1FF72;
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
-            transition: all 0.3s;
         }
 
-        .nav-link-cta:hover {
-            background: #C1FF72;
-            color: #010101;
-        }
-
-        /* ── LANGUAGE SWITCHER ── */
+        /* ── LANGUAGE SWITCHER (identisch zu index.html) ── */
         .lang-switcher {
             display: flex;
             align-items: center;
@@ -416,7 +328,7 @@
         .lang-btn {
             background: none;
             border: none;
-            color: var(--color-gray);
+            color: #9ca3af;
             font-size: 0.75rem;
             letter-spacing: 0.1em;
             font-weight: 700;
@@ -427,63 +339,28 @@
         }
 
         .lang-btn.active {
-            background: var(--color-green);
+            background: #C1FF72;
             color: #010101;
         }
 
-        .lang-btn:hover:not(.active) { color: var(--color-green); }
-
-        /* ── HAMBURGER BUTTON ── */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 2.2rem;
-            height: 2.2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.2rem;
-            z-index: 1100;
-        }
-
-        .hamburger-line {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: #C1FF72;
-            border-radius: 2px;
-            transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
-            transform-origin: center;
-        }
-
-        /* X animation when open */
-        .hamburger.open .hamburger-line:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .hamburger.open .hamburger-line:nth-child(2) {
-            opacity: 0;
-            width: 0;
-        }
-        .hamburger.open .hamburger-line:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+        .lang-btn:hover:not(.active) {
+            color: #C1FF72;
         }
     </style>
 </head>
 
 <body>
-    <nav class="nav-fixed" role="navigation" aria-label="Hauptnavigation">
-        <a href="index.html" title="Zurück zur Startseite"
-            <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
+    <!-- NAV – gleiche Struktur wie index.html -->
+    <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+        <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
             <img src="/assets/Logo_Sin-Digital.png" alt="Sin Digital Agentur Zürich">
         </a>
-        <div style="display:flex;align-items:center;gap:1rem;"><a href="index.html"
-                style="color:#9ca3af;text-decoration:none;font-size:0.875rem;letter-spacing:0.1em;text-transform:uppercase;"
-                onmouseover="this.style.color='#C1FF72'" onmouseout="this.style.color='#9ca3af'">← Zurück</a>
-            <div class="lang-switcher"><button class="lang-btn active" id="btn-de"
-                    onclick="setLang('de')">DE</button><button class="lang-btn" id="btn-en"
-                    onclick="setLang('en')">EN</button></div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-back">← Zurück</a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
         </div>
     </nav>
 
@@ -491,7 +368,7 @@
         <div class="container">
 
             <!-- Hero -->
-            <div class="legal-hero">
+            <div class="legal-hero" style="margin-bottom:5rem;position:relative;">
                 <span class="legal-tag">DSG-Konform</span>
                 <h1 class="legal-title">
                     DATEN<span class="text-green">SCHUTZ</span>
@@ -557,7 +434,6 @@
                         <li><span>Übertragene Datenmenge und HTTP-Statuscode</span></li>
                         <li><span>Browser-Typ, -Version und Betriebssystem</span></li>
                     </ul>
-
                     <h3>Kontaktformular</h3>
                     <p>Wenn Sie unser Kontaktformular nutzen, verarbeiten wir:</p>
                     <ul>
@@ -565,7 +441,6 @@
                         <li><span>Betreff und Nachrichteninhalt</span></li>
                         <li><span>Zeitpunkt der Kontaktaufnahme</span></li>
                     </ul>
-
                     <h3>Bewerbungsdaten</h3>
                     <p>Im Rahmen von Bewerbungen verarbeiten wir die von Ihnen übermittelten Bewerbungsunterlagen (Name,
                         Kontaktdaten, Lebenslauf, Qualifikationen).</p>
@@ -584,16 +459,13 @@
                     <h3>Websitebetrieb</h3>
                     <p>Die Verarbeitung von Serverlogdaten ist technisch notwendig, um die Website stabil, sicher und
                         korrekt auszuliefern und um Angriffe oder Fehler erkennen zu können.</p>
-
                     <h3>Anfragenbearbeitung</h3>
                     <p>Kontaktformulardaten verwenden wir ausschliesslich zur Bearbeitung Ihrer Anfrage und
                         gegebenenfalls für eine Vertragsanbahnung. Eine Weitergabe an Dritte erfolgt nicht ohne Ihre
                         Zustimmung.</p>
-
                     <h3>Vertragserfüllung</h3>
                     <p>Bei Vertragsschluss verarbeiten wir die erforderlichen Daten zur Erbringung unserer
                         Dienstleistungen, Rechnungsstellung und Kommunikation im Rahmen des Projekts.</p>
-
                     <h3>Sicherheit</h3>
                     <p>Zur Erkennung und Abwehr von Angriffen, Spam und missbräuchlicher Nutzung unserer Services.</p>
                 </div>
@@ -632,7 +504,6 @@
                     <p>Ihre Daten werden grundsätzlich nur intern verarbeitet. Nur Mitarbeitende mit
                         Zugriffsberechtigung erhalten Einsicht, und nur soweit es für die jeweilige Aufgabe erforderlich
                         ist.</p>
-
                     <h3>Auftragsverarbeiter</h3>
                     <p>Wir setzen sorgfältig ausgewählte Dienstleister ein, die alle vertraglich als Auftragsverarbeiter gemäss Schweizer DSG gebunden sind:</p>
                     <ul>
@@ -640,7 +511,6 @@
                         <li><span>E-Mail: Postfix auf eigenen Servern (EU)</span></li>
                         <li><span>Analyse: Plausible Analytics (EU, keine Cookies)</span></li>
                     </ul>
-
                     <h3>Drittländer</h3>
                     <p>Eine Übermittlung von Daten ins Ausland findet grundsätzlich nicht statt. Sollte dies ausnahmsweise erforderlich sein, erfolgt dies nur auf Basis geeigneter Garantien gemäss Schweizer DSG oder Ihrer ausdrücklichen Einwilligung.</p>
                 </div>
@@ -658,16 +528,14 @@
                     <ul>
                         <li><span>Serverlogdaten: 7 Tage (dann automatisch gelöscht)</span></li>
                         <li><span>Kontaktanfragen: 3 Monate nach abschliessender Bearbeitung</span></li>
-                        <li><span>Vertragsdaten: 10 Jahre (handels- und steuerrechtliche Aufbewahrungspflicht)</span>
-                        </li>
+                        <li><span>Vertragsdaten: 10 Jahre (handels- und steuerrechtliche Aufbewahrungspflicht)</span></li>
                         <li><span>Rechnungen und buchhalterische Unterlagen: 10 Jahre (gemäss Schweizer Obligationenrecht Art. 958f OR)</span></li>
                         <li><span>Bewerbungsunterlagen (abgelehnt): 6 Monate nach Absage</span></li>
                         <li><span>Newsletter: bis zum Widerruf der Einwilligung</span></li>
                     </ul>
                     <div class="legal-highlight">
                         <p>Nach Ablauf der jeweiligen Speicherfrist werden Ihre Daten vollständig und unwiderruflich
-                            gelöscht oder anonymisiert, sofern keine anderen gesetzlichen Pflichten dem entgegenstehen.
-                        </p>
+                            gelöscht oder anonymisiert, sofern keine anderen gesetzlichen Pflichten dem entgegenstehen.</p>
                     </div>
                 </div>
             </div>
@@ -741,10 +609,8 @@
                 <div class="legal-block">
                     <h3>Technisch notwendige Cookies</h3>
                     <p>Wir setzen ausschliesslich technisch notwendige Cookies ein, die für den Betrieb der Website unerlässlich sind. Diese Cookies speichern keine personenbezogenen Daten und erfordern keine Einwilligung gemäss Schweizer DSG.</p>
-
                     <h3>Keine Tracking- oder Marketing-Cookies</h3>
                     <p>Wir verwenden weder Google Analytics noch andere kommerzielle Tracking-Tools. Unser Analyse-Tool (Plausible Analytics) arbeitet cookielos, sammelt keine personenbezogenen Daten und ist vollständig DSG-konform.</p>
-
                     <h3>Cookie-Einstellungen</h3>
                     <p>Da wir keine nicht-notwendigen Cookies setzen, ist kein Cookie-Banner erforderlich. Technisch notwendige Cookies können in Ihren Browser-Einstellungen verwaltet werden.</p>
                 </div>
@@ -764,13 +630,10 @@
                         Inhalten. Cloudflare ist gemäss EU-US Data Privacy Framework zertifiziert. Datenschutzerklärung:
                         <a href="https://www.cloudflare.com/privacypolicy/" target="_blank"
                             rel="noopener">cloudflare.com/privacypolicy</a></p>
-
                     <h3>Unsplash (Bilder)</h3>
                     <p>Einige Bilder auf dieser Website stammen von Unsplash (Unsplash Inc., Kanada). Beim Laden der
                         Bilder werden ggf. technische Daten an Unsplash-Server übertragen. Datenschutzerklärung: <a
-                            href="https://unsplash.com/privacy" target="_blank" rel="noopener">unsplash.com/privacy</a>
-                    </p>
-
+                            href="https://unsplash.com/privacy" target="_blank" rel="noopener">unsplash.com/privacy</a></p>
                     <h3>Google Fonts</h3>
                     <p>Diese Website verwendet keine Google Fonts. Alle Schriftarten werden lokal oder über
                         Systemschriften geladen, um eine Datenübertragung an Google-Server zu vermeiden.</p>
@@ -797,12 +660,46 @@
 
             <!-- Footer -->
             <footer class="footer-legal" role="contentinfo">
-                    <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten."
-                        data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital
-                        Agentur Zürich. Alle Rechte vorbehalten.</p>
-                    <nav class="footer-links" aria-label="Rechtliche Links">
-                        <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
-                        <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
-                        <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
-                    </nav>
+                <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten."
+                    data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital
+                    Agentur Zürich. Alle Rechte vorbehalten.</p>
+                <nav class="footer-links" aria-label="Rechtliche Links">
+                    <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+                    <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+                    <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
+                </nav>
             </footer>
+        </div>
+    </main>
+
+    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.03;filter:blur(80px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.03;filter:blur(80px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+
+    <!-- Language Switcher – gleich wie index.html -->
+    <script>
+        let currentLang = localStorage.getItem('sindigital-lang') || 'de';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('sindigital-lang', lang);
+            applyLang();
+        }
+
+        function applyLang() {
+            document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            document.querySelectorAll('[data-de][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            });
+            document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
+            });
+            document.documentElement.lang = currentLang;
+        }
+
+        window.addEventListener('load', applyLang);
+    </script>
+
+</body>
+
+</html>
