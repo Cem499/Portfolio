@@ -54,7 +54,9 @@ public class EmailService {
                 recipient,
                 "Neue Kontaktanfrage von " + msg.getName(),
                 "Name: " + msg.getName() + "\nE-Mail: " + msg.getEmail()
-                    + "\nDatum: " + msg.getCreatedAt() + "\n\nNachricht:\n" + msg.getMessage()
+                    + "\nDatum: " + msg.getCreatedAt()
+                    + "\nDatenschutzerklärung: ✓ Akzeptiert (per Häkchen zugestimmt)"
+                    + "\n\nNachricht:\n" + msg.getMessage()
             );
             log.info("Benachrichtigung gesendet für ID {}", msg.getId());
         } catch (Exception e) {
