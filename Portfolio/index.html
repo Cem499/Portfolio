@@ -52,6 +52,9 @@
     <link rel="apple-touch-icon" href="/assets/ICON-Logo_Sin-Digital.png">
 
     <!-- ══ STRUCTURED DATA – LocalBusiness ══════════════════════════════════ -->
+    <!-- Cloudflare Turnstile -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -474,6 +477,9 @@
         <nav class="breadcrumb" aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" style="position:absolute;top:calc(var(--nav-h, 70px) + 0.5rem);left:1.5rem;z-index:3;">
             <ol style="list-style:none;display:flex;gap:0.4rem;font-size:0.7rem;color:#6b7280;margin:0;padding:0;">
                 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="https://www.sin-digital.com/" style="color:#000000;text-decoration:none;">
+                        <span itemprop="name">Home</span>
+                    </a>
                     <meta itemprop="position" content="1">
                 </li>
             </ol>
@@ -934,6 +940,7 @@
                                     data-en-placeholder="Tell us about your project..."
                                     placeholder="Erzählen Sie uns von Ihrem Projekt..." required></textarea>
                             </div>
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAACkZoLXteSgJ1jzs" data-theme="dark" data-language="de" style="margin-top:0.5rem;"></div>
                             <div id="form-status" role="alert" aria-live="polite"
                                 style="display:none;padding:1rem 1.25rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;">
                             </div>
@@ -1076,6 +1083,13 @@
                     return;
                 }
 
+                const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]');
+                const cfToken = turnstileResponse ? turnstileResponse.value : '';
+                if (!cfToken) {
+                    showStatus('Bitte bestätige, dass du kein Bot bist.', 'error');
+                    return;
+                }
+
                 const submitBtn = form.querySelector('button[type="submit"]');
                 const originalText = submitBtn.textContent;
                 submitBtn.disabled = true;
@@ -1094,12 +1108,13 @@
                             'Content-Type': 'application/json',
                             'Accept': 'application/json'
                         },
-                        body: JSON.stringify({ name: name, email: email, message: fullMessage })
+                        body: JSON.stringify({ name: name, email: email, message: fullMessage, turnstileToken: cfToken })
                     });
 
                     if (response.status === 201) {
                         showStatus('Vielen Dank! Ihre Nachricht wurde erfolgreich an Sin Digital gesendet.', 'success');
                         form.reset();
+                        if (typeof turnstile !== 'undefined') turnstile.reset();
                     } else {
                         const errorData = await response.json();
                         const errorMsg = errorData.error || 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.';
