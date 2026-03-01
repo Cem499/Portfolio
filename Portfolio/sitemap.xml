@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="sitemap-style.xsl"?>
-<!--
-  ════════════════════════════════════════════════════════
-  Sin Digital — XML Sitemap
-  Website:  https://www.sin-digital.com
-  URLs:     4
-  Updated:  2026-03-01
-  Protocol: Sitemaps 0.9
-  ════════════════════════════════════════════════════════
--->
+
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
@@ -16,7 +8,6 @@
   <url>
     <loc>https://www.sin-digital.com/</loc>
     <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sin-digital.com/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/"/>
     <lastmod>2026-03-01</lastmod>
     <changefreq>weekly</changefreq>
