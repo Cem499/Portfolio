@@ -21,7 +21,6 @@
     <link rel="canonical" href="https://www.sin-digital.com/">
     <link rel="sitemap" type="application/xml" href="/Sitemap.xml">
     <link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/">
-    <link rel="alternate" hreflang="en" href="https://www.sin-digital.com/?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/">
 
     <!-- ══ OPEN GRAPH (Facebook, LinkedIn, WhatsApp) ════════════════════════ -->
@@ -72,6 +71,7 @@
       "priceRange": "CHF 1490 – 4290",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Langwattstrasse 51",
         "addressLocality": "Zollikerberg",
         "postalCode": "8125",
         "addressRegion": "ZH",
@@ -144,7 +144,6 @@
         "@type": "ContactPoint",
         "telephone": "+41783187887",
         "contactType": "customer service",
-        "contactOption": "TollFree",
         "availableLanguage": ["German", "English"]
       },
       "potentialAction": {
@@ -409,8 +408,8 @@
 
     <!-- ══ PRECONNECT & PERFORMANCE ─────────────────────────────────────── -->
     <link rel="preload" href="/assets/Logo_Sin-Digital.png" as="image">
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="styles.min.css" as="style">
+    <link rel="stylesheet" href="styles.min.css">
 
     <style>
         /* Critical: prevents layout shift before CSS loads */
@@ -571,6 +570,11 @@
                         <div class="team-info">
                             <h3 itemprop="name">Cem Sin</h3>
                             <p class="text-green" itemprop="jobTitle">CEO & Gründer, Sin Digital Zürich</p>
+                            <p class="team-bio" style="color:#9ca3af;font-size:0.9rem;line-height:1.7;margin-top:0.75rem;"
+                                data-de="Als Gründer von Sin Digital verbinde ich strategisches Denken mit technischer Präzision. Mein Ziel: Friseursalons in Zürich mit professionellen Websites und Online-Terminbuchung digital sichtbar zu machen — ehrlich, effizient und persönlich."
+                                data-en="As the founder of Sin Digital, I combine strategic thinking with technical precision. My mission: making hair salons in Zürich digitally visible with professional websites and online booking — honest, efficient and personal.">
+                                Als Gründer von Sin Digital verbinde ich strategisches Denken mit technischer Präzision. Mein Ziel: Friseursalons in Zürich mit professionellen Websites und Online-Terminbuchung digital sichtbar zu machen — ehrlich, effizient und persönlich.
+                            </p>
                             <div class="team-line" aria-hidden="true"></div>
                         </div>
                     </article>
@@ -607,7 +611,9 @@
                     <meta itemprop="name" content="Sin Digital Webdesign-Pakete für Friseursalons Zürich">
 
                     <!-- BASIC -->
-                    <div class="paket-card" itemscope itemtype="https://schema.org/Offer">
+                    <div class="paket-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <meta itemprop="position" content="1">
+                      <div itemprop="item" itemscope itemtype="https://schema.org/Offer">
                         <span class="paket-label" data-de="Paket 01" data-en="Package 01">Paket 01</span>
                         <h3 class="paket-name" itemprop="name">Basic</h3>
                         <p class="paket-positioning"
@@ -625,10 +631,13 @@
                             <strong itemprop="price" content="1490"><span itemprop="priceCurrency" content="CHF">Ab 1'490 CHF</span></strong>
                             <span data-de="Einmalig, inkl. Einrichtung" data-en="One-time, incl. setup">Einmalig, inkl. Einrichtung</span>
                         </div>
+                      </div>
                     </div>
 
                     <!-- GROWTH (featured) -->
-                    <div class="paket-card featured" itemscope itemtype="https://schema.org/Offer">
+                    <div class="paket-card featured" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <meta itemprop="position" content="2">
+                      <div itemprop="item" itemscope itemtype="https://schema.org/Offer">
                         <span class="paket-badge" data-de="Meistgewählt" data-en="Most Popular">Meistgewählt</span>
                         <span class="paket-label" data-de="Paket 02" data-en="Package 02">Paket 02</span>
                         <h3 class="paket-name" itemprop="name">Growth</h3>
@@ -649,10 +658,13 @@
                             <strong itemprop="price" content="2790"><span itemprop="priceCurrency" content="CHF">Ab 2'790 CHF</span></strong>
                             <span data-de="Einmalig, inkl. Einrichtung" data-en="One-time, incl. setup">Einmalig, inkl. Einrichtung</span>
                         </div>
+                      </div>
                     </div>
 
                     <!-- PRO -->
-                    <div class="paket-card" itemscope itemtype="https://schema.org/Offer">
+                    <div class="paket-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <meta itemprop="position" content="3">
+                      <div itemprop="item" itemscope itemtype="https://schema.org/Offer">
                         <span class="paket-label" data-de="Paket 03" data-en="Package 03">Paket 03</span>
                         <h3 class="paket-name" itemprop="name">Pro</h3>
                         <p class="paket-positioning"
@@ -671,10 +683,13 @@
                             <strong itemprop="price" content="4290"><span itemprop="priceCurrency" content="CHF">Ab 4'290 CHF</span></strong>
                             <span data-de="Einmalig, inkl. Einrichtung" data-en="One-time, incl. setup">Einmalig, inkl. Einrichtung</span>
                         </div>
+                      </div>
                     </div>
 
                     <!-- PARTNER -->
-                    <div class="paket-card" itemscope itemtype="https://schema.org/Offer">
+                    <div class="paket-card" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <meta itemprop="position" content="4">
+                      <div itemprop="item" itemscope itemtype="https://schema.org/Offer">
                         <span class="paket-label" data-de="Paket 04" data-en="Package 04">Paket 04</span>
                         <h3 class="paket-name" itemprop="name">Partner</h3>
                         <p class="paket-positioning"
@@ -692,6 +707,7 @@
                             <strong>CHF 150 – 240 / <span data-de="Monat" data-en="month">Monat</span></strong>
                             <span data-de="Laufende Betreuung durch Sin Digital" data-en="Ongoing care by Sin Digital">Laufende Betreuung durch Sin Digital</span>
                         </div>
+                      </div>
                     </div>
 
                 </div>
@@ -901,6 +917,11 @@
                         data-en="Ready for your next big project? Let's create something extraordinary together. Sin Digital – your digital agency in Zürich – looks forward to hearing from you.">
                         Bereit für Ihr nächstes Projekt? Lassen Sie uns gemeinsam etwas Aussergewöhnliches schaffen. Sin Digital – Ihre Digitalagentur in Zürich – freut sich auf Ihre Anfrage.
                     </p>
+                    <p class="contact-details-text" style="color:#9ca3af;font-size:0.9rem;line-height:1.7;max-width:40rem;margin:1rem auto 0;"
+                        data-de="Ob Sie eine neue Website für Ihren Friseursalon in Zürich benötigen, ein bestehendes Design modernisieren möchten oder eine Online-Terminbuchung integrieren wollen — schreiben Sie uns. Wir antworten in der Regel innerhalb von 24 Stunden und erstellen Ihnen ein unverbindliches Angebot."
+                        data-en="Whether you need a new website for your hair salon in Zürich, want to modernise an existing design, or integrate online booking — get in touch. We typically reply within 24 hours and provide a no-obligation quote.">
+                        Ob Sie eine neue Website für Ihren Friseursalon in Zürich benötigen, ein bestehendes Design modernisieren möchten oder eine Online-Terminbuchung integrieren wollen — schreiben Sie uns. Wir antworten in der Regel innerhalb von 24 Stunden und erstellen Ihnen ein unverbindliches Angebot.
+                    </p>
                 </header>
 
                 <div class="contact-grid">
@@ -1042,7 +1063,7 @@
     </main>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.min.js" defer></script>
 
     <!-- Language Switcher -->
     <script>
