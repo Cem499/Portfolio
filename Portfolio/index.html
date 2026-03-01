@@ -941,6 +941,15 @@
                                     placeholder="Erzählen Sie uns von Ihrem Projekt..." required></textarea>
                             </div>
                             <div class="cf-turnstile" data-sitekey="0x4AAAAAACkZoLXteSgJ1jzs" data-theme="dark" data-language="de" style="margin-top:0.5rem;"></div>
+                            <div style="display:flex;align-items:flex-start;gap:0.6rem;margin-top:0.75rem;">
+                                <input type="checkbox" id="privacy-consent" name="privacyConsent" required
+                                    style="accent-color:#C1FF72;margin-top:0.25rem;width:16px;height:16px;flex-shrink:0;cursor:pointer;">
+                                <label for="privacy-consent" style="color:#9ca3af;font-size:0.82rem;line-height:1.6;cursor:pointer;"
+                                    data-de='Ich habe die <a href="/datenschutz.html" target="_blank" style="color:#C1FF72;text-decoration:underline;">Datenschutzerklärung</a> gelesen und bin damit einverstanden. *'
+                                    data-en='I have read and agree to the <a href="/datenschutz.html" target="_blank" style="color:#C1FF72;text-decoration:underline;">Privacy Policy</a>. *'>
+                                    Ich habe die <a href="/datenschutz.html" target="_blank" style="color:#C1FF72;text-decoration:underline;">Datenschutzerklärung</a> gelesen und bin damit einverstanden. *
+                                </label>
+                            </div>
                             <div id="form-status" role="alert" aria-live="polite"
                                 style="display:none;padding:1rem 1.25rem;border-radius:8px;margin-bottom:1rem;font-size:0.9rem;">
                             </div>
@@ -1047,7 +1056,11 @@
             document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
             document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
             document.querySelectorAll('[data-de][data-en]').forEach(el => {
-                el.textContent = el.getAttribute('data-' + currentLang);
+                if (el.querySelector('a') || el.innerHTML.includes('<a ')) {
+                    el.innerHTML = el.getAttribute('data-' + currentLang);
+                } else {
+                    el.textContent = el.getAttribute('data-' + currentLang);
+                }
             });
             document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
                 el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
@@ -1075,6 +1088,16 @@
 
                 if (!name || !email || !message) {
                     showStatus('Bitte fülle alle Pflichtfelder aus (Name, E-Mail, Nachricht).', 'error');
+                    return;
+                }
+
+                const privacyCheckbox = document.getElementById('privacy-consent');
+                if (!privacyCheckbox.checked) {
+                    const lang = document.documentElement.lang || 'de';
+                    const privacyMsg = lang === 'en'
+                        ? 'Please agree to the Privacy Policy before sending.'
+                        : 'Bitte stimme der Datenschutzerklärung zu, bevor du die Nachricht sendest.';
+                    showStatus(privacyMsg, 'error');
                     return;
                 }
 
@@ -1108,7 +1131,7 @@
                             'Content-Type': 'application/json',
                             'Accept': 'application/json'
                         },
-                        body: JSON.stringify({ name: name, email: email, message: fullMessage, turnstileToken: cfToken })
+                        body: JSON.stringify({ name: name, email: email, message: fullMessage, turnstileToken: cfToken, privacyAccepted: true })
                     });
 
                     if (response.status === 201) {
