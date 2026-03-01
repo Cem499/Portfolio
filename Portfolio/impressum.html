@@ -11,411 +11,59 @@
     <link rel="canonical" href="https://www.sin-digital.com/impressum.html">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .legal-page {
-            padding-top: 10rem;
-            min-height: 100vh;
-        }
+        .legal-page { padding-top: 10rem; min-height: 100vh; }
+        .legal-tag { color: var(--color-green); font-size: 0.875rem; letter-spacing: 0.3em; text-transform: uppercase; display: block; margin-bottom: 1rem; }
+        .legal-title { font-size: clamp(4rem, 10vw, 8rem); font-weight: 900; line-height: 0.9; margin-bottom: 2rem; }
+        .legal-subtitle { color: var(--color-gray); font-size: 1.125rem; max-width: 40rem; }
+        .legal-divider { height: 2px; background: linear-gradient(90deg, var(--color-green), transparent); margin: 4rem 0; width: 100%; }
+        .legal-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 5rem; }
+        @media (min-width: 768px) { .legal-grid { grid-template-columns: 1fr 1fr; } .legal-grid.wide { grid-template-columns: 1fr 2fr; } }
+        .legal-block { position: relative; }
+        .legal-block-label { color: var(--color-green); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+        .legal-block-label::after { content: ''; flex: 1; height: 1px; background: rgba(193, 255, 114, 0.3); }
+        .legal-block h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 900; margin-bottom: 1.5rem; line-height: 1.1; }
+        .legal-block h3 { font-size: 1.125rem; font-weight: 700; color: var(--color-green); margin-bottom: 0.75rem; margin-top: 2rem; }
+        .legal-block h3:first-child { margin-top: 0; }
+        .legal-block p { color: var(--color-gray); line-height: 1.8; margin-bottom: 1rem; }
+        .legal-block a { color: var(--color-green); text-decoration: none; transition: opacity 0.3s; }
+        .legal-block a:hover { opacity: 0.7; }
+        .legal-block ul { list-style: none; padding: 0; color: var(--color-gray); }
+        .legal-block ul li { padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 1rem; line-height: 1.6; }
+        .legal-block ul li::before { content: '→'; color: var(--color-green); flex-shrink: 0; }
+        .legal-highlight { background: rgba(193,255,114,0.05); border: 1px solid rgba(193,255,114,0.2); border-left: 4px solid var(--color-green); padding: 1.5rem 2rem; border-radius: 0 8px 8px 0; margin: 2rem 0; }
+        .legal-highlight p { color: var(--color-white) !important; margin: 0; }
+        .legal-number { position: absolute; top: 0; right: 0; font-size: 8rem; font-weight: 900; color: var(--color-green); opacity: 0.05; line-height: 1; pointer-events: none; }
+        .footer-legal { border-top: 1px solid #333; padding-top: 3rem; padding-bottom: 8rem; display: flex; flex-direction: column; gap: 1.5rem; align-items: center; text-align: center; margin-top: 5rem; }
+        @media (min-width: 768px) { .footer-legal { flex-direction: row; justify-content: space-between; } }
+        .footer-legal p { color: var(--color-gray); }
+        .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: var(--color-gray); text-decoration: none; font-size: 0.875rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--color-green); }
 
-        .legal-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--color-green);
-            text-decoration: none;
-            font-size: 0.875rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 4rem;
-            transition: gap 0.3s ease;
-        }
-
-        .legal-back:hover {
-            gap: 1.25rem;
-        }
-
-        .legal-hero {
-            margin-bottom: 5rem;
-            position: relative;
-        }
-
-        .legal-tag {
-            color: var(--color-green);
-            font-size: 0.875rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .legal-title {
-            font-size: clamp(4rem, 10vw, 8rem);
-            font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .legal-subtitle {
-            color: var(--color-gray);
-            font-size: 1.125rem;
-            max-width: 40rem;
-        }
-
-        .legal-divider {
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-green), transparent);
-            margin: 4rem 0;
-            width: 100%;
-        }
-
-        .legal-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            margin-bottom: 5rem;
-        }
-
-        @media (min-width: 768px) {
-            .legal-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .legal-grid.wide {
-                grid-template-columns: 1fr 2fr;
-            }
-        }
-
-        .legal-block {
-            position: relative;
-        }
-
-        .legal-block-label {
-            color: var(--color-green);
-            font-size: 0.75rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .legal-block-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(193, 255, 114, 0.3);
-        }
-
-        .legal-block h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .legal-block h3 {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--color-green);
-            margin-bottom: 0.75rem;
-            margin-top: 2rem;
-        }
-
-        .legal-block h3:first-child {
-            margin-top: 0;
-        }
-
-        .legal-block p {
-            color: var(--color-gray);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .legal-block a {
-            color: var(--color-green);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .legal-block a:hover {
-            opacity: 0.7;
-        }
-
-        .legal-block ul {
-            list-style: none;
-            padding: 0;
-            color: var(--color-gray);
-        }
-
-        .legal-block ul li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            gap: 1rem;
-            line-height: 1.6;
-        }
-
-        .legal-block ul li::before {
-            content: '→';
-            color: var(--color-green);
-            flex-shrink: 0;
-        }
-
-        .legal-highlight {
-            background: rgba(193, 255, 114, 0.05);
-            border: 1px solid rgba(193, 255, 114, 0.2);
-            border-left: 4px solid var(--color-green);
-            padding: 1.5rem 2rem;
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-        }
-
-        .legal-highlight p {
-            color: var(--color-white) !important;
-            margin: 0;
-        }
-
-        .legal-number {
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 8rem;
-            font-weight: 900;
-            color: var(--color-green);
-            opacity: 0.05;
-            line-height: 1;
-            pointer-events: none;
-        }
-
-        .footer-legal {
-            border-top: 1px solid #333;
-            padding-top: 3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            align-items: center;
-            text-align: center;
-            margin-top: 5rem;
-        }
-
-        @media (min-width: 768px) {
-            .footer-legal {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-        }
-
-        .footer-legal p {
-            color: var(--color-gray);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-links a {
-            color: var(--color-gray);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-green);
-        }
-
-        .nav-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(1, 1, 1, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(193, 255, 114, 0.1);
-        }
-
-        .lang-switcher {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            background: rgba(193, 255, 114, 0.05);
-            border: 1px solid rgba(193, 255, 114, 0.2);
-            border-radius: 50px;
-            padding: 0.25rem;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: #9ca3af;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 0.35rem 0.75rem;
-            border-radius: 50px;
-            transition: all 0.3s;
-            letter-spacing: 0.1em;
-        }
-
-        .lang-btn.active {
-            background: #C1FF72;
-            color: #010101;
-        }
-
-        .lang-btn:hover:not(.active) {
-            color: #C1FF72;
-        }
-
-
-         /* ── NAV ── */
-        #main-nav {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(1, 1, 1, 0.85);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(193, 255, 114, 0.1);
-        }
-
-        .nav-logo img {
-            height: 52px;
-            width: auto;
-            display: block;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-link {
-            color: #9ca3af;
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover { color: #C1FF72; }
-
-        .nav-link-cta {
-            color: #C1FF72;
-            border: 1px solid #C1FF72;
-            padding: 0.45rem 1rem;
-            border-radius: 50px;
-            transition: all 0.3s;
-        }
-
-        .nav-link-cta:hover {
-            background: #C1FF72;
-            color: #010101;
-        }
-
-        /* ── LANGUAGE SWITCHER ── */
-        .lang-switcher {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            background: rgba(193, 255, 114, 0.05);
-            border: 1px solid rgba(193, 255, 114, 0.2);
-            border-radius: 50px;
-            padding: 0.25rem;
-        }
-
-        .lang-btn {
-            background: none;
-            border: none;
-            color: var(--color-gray);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            font-weight: 700;
-            cursor: pointer;
-            padding: 0.35rem 0.75rem;
-            border-radius: 50px;
-            transition: all 0.3s;
-        }
-
-        .lang-btn.active {
-            background: var(--color-green);
-            color: #010101;
-        }
-
-        .lang-btn:hover:not(.active) { color: var(--color-green); }
-
-        /* ── HAMBURGER BUTTON ── */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 2.2rem;
-            height: 2.2rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.2rem;
-            z-index: 1100;
-        }
-
-        .hamburger-line {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: #C1FF72;
-            border-radius: 2px;
-            transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
-            transform-origin: center;
-        }
-
-        /* X animation when open */
-        .hamburger.open .hamburger-line:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
-        }
-        .hamburger.open .hamburger-line:nth-child(2) {
-            opacity: 0;
-            width: 0;
-        }
-        .hamburger.open .hamburger-line:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
-        }
+        /* ── NAV (identisch zu index.html) ── */
+        #main-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(1,1,1,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(193,255,114,0.1); }
+        .nav-logo img { height: 52px; width: auto; display: block; }
+        .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-back { color: #9ca3af; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
+        .nav-back:hover { color: #C1FF72; }
+        .lang-switcher { display: flex; align-items: center; gap: 0.25rem; background: rgba(193,255,114,0.05); border: 1px solid rgba(193,255,114,0.2); border-radius: 50px; padding: 0.25rem; }
+        .lang-btn { background: none; border: none; color: #9ca3af; font-size: 0.75rem; letter-spacing: 0.1em; font-weight: 700; cursor: pointer; padding: 0.35rem 0.75rem; border-radius: 50px; transition: all 0.3s; }
+        .lang-btn.active { background: #C1FF72; color: #010101; }
+        .lang-btn:hover:not(.active) { color: #C1FF72; }
     </style>
 </head>
 
 <body>
-    <nav class="nav-fixed" role="navigation" aria-label="Hauptnavigation">
-        <a href="index.html" title="Zurück zur Startseite"
-            <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
+    <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+        <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
             <img src="/assets/Logo_Sin-Digital.png" alt="Sin Digital Agentur Zürich">
         </a>
-        <div style="display:flex;align-items:center;gap:1rem;"><a href="index.html"
-                style="color:#9ca3af;text-decoration:none;font-size:0.875rem;letter-spacing:0.1em;text-transform:uppercase;"
-                onmouseover="this.style.color='#C1FF72'" onmouseout="this.style.color='#9ca3af'">← Zurück</a>
-            <div class="lang-switcher"><button class="lang-btn active" id="btn-de"
-                    onclick="setLang('de')">DE</button><button class="lang-btn" id="btn-en"
-                    onclick="setLang('en')">EN</button></div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-back">← <span data-de="Zurück" data-en="Back">Zurück</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
         </div>
     </nav>
 
@@ -423,12 +71,12 @@
         <div class="container">
 
             <!-- Hero -->
-            <div class="legal-hero">
-                <span class="legal-tag">Rechtliches</span>
+            <div class="legal-hero" style="margin-bottom:5rem;position:relative;">
+                <span class="legal-tag" data-de="Rechtliches" data-en="Legal Notice">Rechtliches</span>
                 <h1 class="legal-title">
-                    IMPRES<span class="text-green">SUM</span>
+                    <span data-de="IMPRES" data-en="LEGAL">IMPRES</span><span class="text-green" data-de="SUM" data-en="NOTICE">SUM</span>
                 </h1>
-                <p class="legal-subtitle">Angaben gemäss Art. 3 lit. s UWG (Schweizer Lauterkeitsrecht)</p>
+                <p class="legal-subtitle" data-de="Angaben gemäss Art. 3 lit. s UWG (Schweizer Lauterkeitsrecht)" data-en="Information pursuant to Art. 3 lit. s UCA (Swiss Unfair Competition Act)">Angaben gemäss Art. 3 lit. s UWG (Schweizer Lauterkeitsrecht)</p>
                 <div class="legal-number" aria-hidden="true">§</div>
             </div>
 
@@ -437,20 +85,20 @@
             <!-- Unternehmensangaben -->
             <div class="legal-grid wide">
                 <div class="legal-block">
-                    <span class="legal-block-label">Anbieter</span>
-                    <h2>Unternehmens&shy;angaben</h2>
+                    <span class="legal-block-label" data-de="Anbieter" data-en="Provider">Anbieter</span>
+                    <h2 data-de="Unternehmensangaben" data-en="Company Details">Unternehmens&shy;angaben</h2>
                 </div>
                 <div class="legal-block">
-                    <h3>Verantwortlicher Betreiber</h3>
+                    <h3 data-de="Verantwortlicher Betreiber" data-en="Responsible Operator">Verantwortlicher Betreiber</h3>
                     <p>
                         <strong style="color:#fff;">Sin Digital</strong><br>
-                        Inhaber: Cem Sin<br>
+                        <span data-de="Inhaber: Cem Sin" data-en="Owner: Cem Sin">Inhaber: Cem Sin</span><br>
                         Langwattstrasse 51<br>
                         8125 Zollikerberg<br>
-                        Schweiz
+                        <span data-de="Schweiz" data-en="Switzerland">Schweiz</span>
                     </p>
                     <div class="legal-highlight">
-                        <p><strong>Rechtsform:</strong> Einzelunternehmen</p>
+                        <p><strong data-de="Rechtsform: Einzelunternehmen" data-en="Legal form: Sole proprietorship">Rechtsform: Einzelunternehmen</strong></p>
                     </div>
                 </div>
             </div>
@@ -460,13 +108,13 @@
             <!-- Kontakt -->
             <div class="legal-grid wide">
                 <div class="legal-block">
-                    <span class="legal-block-label">Kontakt</span>
-                    <h2>Erreich&shy;barkeit</h2>
+                    <span class="legal-block-label" data-de="Kontakt" data-en="Contact">Kontakt</span>
+                    <h2 data-de="Erreichbarkeit" data-en="Contact Details">Erreich&shy;barkeit</h2>
                 </div>
                 <div class="legal-block">
-                    <h3>Kontaktdaten</h3>
+                    <h3 data-de="Kontaktdaten" data-en="Contact Information">Kontaktdaten</h3>
                     <ul>
-                        <li><span><strong style="color:#fff;">Telefon:</strong> <a href="tel:+41783187887">+41 78 318 78 87</a></span></li>
+                        <li><span><strong style="color:#fff;" data-de="Telefon:" data-en="Phone:">Telefon:</strong> <a href="tel:+41783187887">+41 78 318 78 87</a></span></li>
                         <li><span><strong style="color:#fff;">E-Mail:</strong> <a href="mailto:info@sin-digital.com">info@sin-digital.com</a></span></li>
                         <li><span><strong style="color:#fff;">Website:</strong> <a href="https://www.sin-digital.com/" target="_blank" rel="noopener">www.sin-digital.com</a></span></li>
                     </ul>
@@ -478,15 +126,17 @@
             <!-- Verantwortlich für Inhalt -->
             <div class="legal-grid wide">
                 <div class="legal-block">
-                    <span class="legal-block-label">Verantwortung</span>
-                    <h2>Inhalt&shy;lich Verant&shy;wortliche</h2>
+                    <span class="legal-block-label" data-de="Verantwortung" data-en="Responsibility">Verantwortung</span>
+                    <h2 data-de="Inhaltlich Verantwortliche" data-en="Editorial Responsibility">Inhalt&shy;lich Verant&shy;wortliche</h2>
                 </div>
                 <div class="legal-block">
-                    <h3>Verantwortlich für redaktionellen Inhalt</h3>
-                    <p>Cem Sin<br>
+                    <h3 data-de="Verantwortlich für redaktionellen Inhalt" data-en="Responsible for editorial content">Verantwortlich für redaktionellen Inhalt</h3>
+                    <p>
+                        Cem Sin<br>
                         Langwattstrasse 51<br>
-                        8125 Zollikerberg</p>
-                    <p>Verantwortlich für den Inhalt dieser Website gemäss Schweizer Recht: Cem Sin, Sin Digital, an obiger Adresse.</p>
+                        8125 Zollikerberg
+                    </p>
+                    <p data-de="Verantwortlich für den Inhalt dieser Website gemäss Schweizer Recht: Cem Sin, Sin Digital, an obiger Adresse." data-en="Responsible for the content of this website under Swiss law: Cem Sin, Sin Digital, at the above address.">Verantwortlich für den Inhalt dieser Website gemäss Schweizer Recht: Cem Sin, Sin Digital, an obiger Adresse.</p>
                 </div>
             </div>
 
@@ -495,20 +145,20 @@
             <!-- Haftungsausschluss -->
             <div class="legal-grid wide">
                 <div class="legal-block">
-                    <span class="legal-block-label">Haftung</span>
-                    <h2>Haftungs&shy;ausschluss</h2>
+                    <span class="legal-block-label" data-de="Haftung" data-en="Liability">Haftung</span>
+                    <h2 data-de="Haftungsausschluss" data-en="Liability Disclaimer">Haftungs&shy;ausschluss</h2>
                 </div>
                 <div class="legal-block">
-                    <h3>Haftung für Inhalte</h3>
-                    <p>Als Anbieter dieser Website sind wir für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
-                    <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich.</p>
+                    <h3 data-de="Haftung für Inhalte" data-en="Liability for Content">Haftung für Inhalte</h3>
+                    <p data-de="Als Anbieter dieser Website sind wir für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen." data-en="As the provider of this website, we are responsible for our own content in accordance with general laws. However, we are not obliged to monitor transmitted or stored third-party information.">Als Anbieter dieser Website sind wir für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+                    <p data-de="Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich." data-en="Obligations to remove or block the use of information under general laws remain unaffected. Liability in this regard is only possible from the point in time at which a specific legal infringement becomes known.">Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich.</p>
 
-                    <h3>Haftung für Links</h3>
-                    <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
-                    <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstösse überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+                    <h3 data-de="Haftung für Links" data-en="Liability for Links">Haftung für Links</h3>
+                    <p data-de="Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich." data-en="Our website contains links to external third-party websites over whose content we have no influence. We therefore cannot accept any liability for this third-party content. The respective provider or operator of the linked pages is always responsible for their content.">Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+                    <p data-de="Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstösse überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen." data-en="The linked pages were checked for possible legal violations at the time of linking. No illegal content was apparent at the time of linking. Upon becoming aware of legal infringements, we will remove such links immediately.">Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstösse überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
 
-                    <h3>Urheberrecht</h3>
-                    <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem Schweizer Urheberrecht (URG). Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+                    <h3 data-de="Urheberrecht" data-en="Copyright">Urheberrecht</h3>
+                    <p data-de="Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem Schweizer Urheberrecht (URG). Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers." data-en="The content and works created by the site operator on this website are subject to Swiss copyright law (URG). Reproduction, editing, distribution and any form of exploitation beyond the limits of copyright law require the written consent of the respective author or creator.">Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem Schweizer Urheberrecht (URG). Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
                 </div>
             </div>
 
@@ -517,35 +167,56 @@
             <!-- Streitschlichtung -->
             <div class="legal-grid wide">
                 <div class="legal-block">
-                    <span class="legal-block-label">Streitbeilegung</span>
-                    <h2>Streit&shy;schlich&shy;tung</h2>
+                    <span class="legal-block-label" data-de="Streitbeilegung" data-en="Dispute Resolution">Streitbeilegung</span>
+                    <h2 data-de="Streitschlichtung" data-en="Dispute Settlement">Streit&shy;schlich&shy;tung</h2>
                 </div>
                 <div class="legal-block">
-                    <h3>Aussergerichtliche Streitbeilegung</h3>
-                    <p>Sin Digital ist nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Bei Streitigkeiten gilt Schweizer Recht mit Gerichtsstand Zürich.</p>
+                    <h3 data-de="Aussergerichtliche Streitbeilegung" data-en="Out-of-Court Dispute Resolution">Aussergerichtliche Streitbeilegung</h3>
+                    <p data-de="Sin Digital ist nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Bei Streitigkeiten gilt Schweizer Recht mit Gerichtsstand Zürich." data-en="Sin Digital is not obliged and not willing to participate in dispute resolution proceedings before a consumer arbitration board. In the event of disputes, Swiss law applies with the place of jurisdiction being Zurich.">Sin Digital ist nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen. Bei Streitigkeiten gilt Schweizer Recht mit Gerichtsstand Zürich.</p>
                 </div>
             </div>
 
             <!-- Footer -->
-
             <footer class="footer-legal" role="contentinfo">
-                <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten."
-                    data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital
-                    Agentur Zürich. Alle Rechte vorbehalten.</p>
+                <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten." data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten.</p>
                 <nav class="footer-links" aria-label="Rechtliche Links">
                     <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
                     <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
                     <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
                 </nav>
             </footer>
-
-            <div class="bottom-line" aria-hidden="true"></div>
-
         </div>
     </main>
 
-    <!-- Subtle decorative blobs -->
-    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.03;filter:blur(80px);pointer-events:none;z-index:0;"
-        aria-hidden="true"></div>
-    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(60px);pointer-events:none;z-index:0;"
-        aria-hidden="true"></div>
+    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.03;filter:blur(80px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(60px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+
+    <script>
+        let currentLang = localStorage.getItem('sindigital-lang') || 'de';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('sindigital-lang', lang);
+            applyLang();
+        }
+
+        function applyLang() {
+            document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            document.querySelectorAll('[data-de][data-en]').forEach(el => {
+                const hasElementChildren = Array.from(el.childNodes).some(n => n.nodeType === 1);
+                if (!hasElementChildren) {
+                    el.textContent = el.getAttribute('data-' + currentLang);
+                }
+            });
+            document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
+            });
+            document.documentElement.lang = currentLang;
+        }
+
+        window.addEventListener('load', applyLang);
+    </script>
+
+</body>
+</html>
