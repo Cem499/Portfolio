@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hamburger.classList.add('open');
             mobileMenu.classList.add('open');
             mobileMenu.setAttribute('aria-hidden', 'false');
+            mobileMenu.removeAttribute('inert');
             hamburger.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
         }
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             hamburger.classList.remove('open');
             mobileMenu.classList.remove('open');
             mobileMenu.setAttribute('aria-hidden', 'true');
+            mobileMenu.setAttribute('inert', '');
             hamburger.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = '';
         }
