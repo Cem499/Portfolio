@@ -12,54 +12,127 @@
     <link rel="canonical" href="https://www.sin-digital.com/agb.html">
     <link rel="stylesheet" href="styles.min.css">
     <style>
+        /* ── RESET & BASE ── */
         .legal-page {
-            padding-top: 10rem;
+            padding-top: 7rem;
             min-height: 100vh;
-        }
-
-        .legal-tag {
-            color: var(--color-green);
-            font-size: 0.875rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .legal-title {
-            font-size: clamp(3.5rem, 9vw, 7rem);
-            font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .legal-subtitle {
-            color: var(--color-gray);
-            font-size: 1.125rem;
-            max-width: 40rem;
-        }
-
-        .legal-divider {
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-green), transparent);
-            margin: 4rem 0;
             width: 100%;
         }
 
+        .legal-page > .container {
+            max-width: 100%;
+            padding: 0 clamp(1.5rem, 5vw, 6rem);
+        }
+
+        /* ── HERO HEADER ── */
+        .legal-hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .legal-tag {
+            color: #C1FF72;
+            font-size: 0.8rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.1s;
+        }
+
+        .legal-tag::after {
+            content: '';
+            width: 3rem;
+            height: 1px;
+            background: #C1FF72;
+        }
+
+        .legal-title {
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.25s;
+        }
+
+        .legal-subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
+            max-width: 30rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.4s;
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── TABLE OF CONTENTS ── */
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.55s;
+        }
+
+        .toc-link {
+            color: #9ca3af;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            background: rgba(255, 255, 255, 0.02);
+            letter-spacing: 0.02em;
+        }
+
+        .toc-link:hover {
+            background: #C1FF72;
+            color: #010101;
+            border-color: #C1FF72;
+            transform: translateY(-1px);
+        }
+
+        /* ── DIVIDER ── */
+        .legal-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin: 0;
+            width: 100%;
+        }
+
+        /* ── SECTIONS (cards) ── */
         .legal-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 3rem;
-            margin-bottom: 5rem;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            align-items: start;
+            transition: opacity 0.4s ease;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 900px) {
             .legal-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 280px 1fr;
+                gap: 3rem;
+                padding: 3rem 0;
             }
 
             .legal-grid.wide {
-                grid-template-columns: 1fr 2fr;
+                grid-template-columns: 280px 1fr;
             }
         }
 
@@ -67,37 +140,43 @@
             position: relative;
         }
 
+        /* Section number badge */
         .legal-block-label {
-            color: var(--color-green);
-            font-size: 0.75rem;
+            color: #C1FF72;
+            font-size: 0.65rem;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            margin-bottom: 1.25rem;
-            display: flex;
+            margin-bottom: 0.75rem;
+            display: inline-flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            font-weight: 600;
         }
 
         .legal-block-label::after {
             content: '';
-            flex: 1;
+            width: 2rem;
             height: 1px;
-            background: rgba(193, 255, 114, 0.3);
+            background: rgba(193, 255, 114, 0.25);
         }
 
         .legal-block h2 {
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: 0;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            position: sticky;
+            top: 5.5rem;
         }
 
         .legal-block h3 {
-            font-size: 1.125rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            color: var(--color-green);
-            margin-bottom: 0.75rem;
-            margin-top: 2rem;
+            color: #C1FF72;
+            margin-bottom: 0.5rem;
+            margin-top: 1.75rem;
+            letter-spacing: 0.01em;
         }
 
         .legal-block h3:first-child {
@@ -105,13 +184,14 @@
         }
 
         .legal-block p {
-            color: var(--color-gray);
-            line-height: 1.8;
-            margin-bottom: 1rem;
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 0.75rem;
+            font-size: 0.925rem;
         }
 
         .legal-block a {
-            color: var(--color-green);
+            color: #C1FF72;
             text-decoration: none;
             transition: opacity 0.3s;
         }
@@ -123,123 +203,144 @@
         .legal-block ul {
             list-style: none;
             padding: 0;
-            color: var(--color-gray);
+            color: #9ca3af;
         }
 
         .legal-block ul li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             display: flex;
-            gap: 1rem;
-            line-height: 1.6;
+            gap: 0.75rem;
+            line-height: 1.65;
+            font-size: 0.925rem;
+        }
+
+        .legal-block ul li:last-child {
+            border-bottom: none;
         }
 
         .legal-block ul li::before {
             content: '→';
-            color: var(--color-green);
+            color: #C1FF72;
             flex-shrink: 0;
+            font-size: 0.85rem;
+            margin-top: 0.1rem;
         }
 
+        /* ── HIGHLIGHT BOX ── */
         .legal-highlight {
-            background: rgba(193, 255, 114, 0.05);
-            border: 1px solid rgba(193, 255, 114, 0.2);
-            border-left: 4px solid var(--color-green);
-            padding: 1.5rem 2rem;
+            background: rgba(193, 255, 114, 0.04);
+            border: 1px solid rgba(193, 255, 114, 0.12);
+            border-left: 3px solid #C1FF72;
+            padding: 1.25rem 1.5rem;
             border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
 
         .legal-highlight p {
-            color: var(--color-white) !important;
-            margin: 0 0 0.5rem;
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 0 0.35rem;
+            font-size: 0.9rem;
         }
 
         .legal-highlight p:last-child {
             margin: 0;
         }
 
+        /* ── FOOTER ── */
         .footer-legal {
-            padding-bottom: 8rem;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-            border-top: 1px solid #333;
-            padding-top: 3rem;
+            padding: 2.5rem 0 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.25rem;
             align-items: center;
             text-align: center;
-            margin-top: 5rem;
+            margin-top: 2rem;
         }
 
         @media (min-width: 768px) {
             .footer-legal {
                 flex-direction: row;
                 justify-content: space-between;
+                text-align: left;
             }
         }
 
         .footer-legal p {
-            color: var(--color-gray);
+            color: #6b7280;
+            font-size: 0.85rem;
         }
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .footer-links a {
-            color: var(--color-gray);
+            color: #6b7280;
             text-decoration: none;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: var(--color-green);
+            color: #C1FF72;
         }
 
-        .toc {
+        /* ── SCROLL-TO-TOP ── */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(193, 255, 114, 0.1);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            color: #C1FF72;
+            font-size: 1.2rem;
+            cursor: pointer;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 4rem;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            backdrop-filter: blur(10px);
         }
 
-        .toc-link {
-            color: var(--color-green);
-            border: 1px solid rgba(193, 255, 114, 0.3);
-            padding: 0.4rem 0.9rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            text-decoration: none;
-            transition: all 0.3s;
+        .scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .toc-link:hover {
-            background: var(--color-green);
+        .scroll-top-btn:hover {
+            background: #C1FF72;
             color: #010101;
         }
 
-        /* ── NAV (identisch zu index.html) ── */
+        /* ── NAV ── */
         #main-nav {
             position: fixed;
             top: 0; left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 1.25rem 2rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(1, 1, 1, 0.85);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(193, 255, 114, 0.1);
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .nav-logo img {
-            height: 52px;
+            height: 48px;
             width: auto;
             display: block;
         }
@@ -247,14 +348,14 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
         }
 
         .nav-back {
             color: #9ca3af;
             text-decoration: none;
             font-size: 0.8rem;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: color 0.3s;
         }
@@ -263,28 +364,28 @@
             color: #C1FF72;
         }
 
-        /* ── LANGUAGE SWITCHER (identisch zu index.html) ── */
+        /* ── LANGUAGE SWITCHER ── */
         .lang-switcher {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
-            background: rgba(193, 255, 114, 0.05);
-            border: 1px solid rgba(193, 255, 114, 0.2);
+            gap: 0.2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50px;
-            padding: 0.25rem;
+            padding: 0.2rem;
         }
 
         .lang-btn {
             background: none;
             border: none;
-            color: #9ca3af;
-            font-size: 0.75rem;
+            color: #6b7280;
+            font-size: 0.7rem;
             letter-spacing: 0.1em;
             font-weight: 700;
             cursor: pointer;
-            padding: 0.35rem 0.75rem;
+            padding: 0.3rem 0.65rem;
             border-radius: 50px;
-            transition: all 0.3s;
+            transition: all 0.25s ease;
         }
 
         .lang-btn.active {
@@ -294,6 +395,292 @@
 
         .lang-btn:hover:not(.active) {
             color: #C1FF72;
+        }
+
+        /* ── SECTION REVEAL ANIMATION ── */
+        .legal-grid {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        .legal-grid.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* ── RESPONSIVE ── */
+
+        /* Tablet landscape */
+        @media (max-width: 1024px) {
+            .legal-page > .container {
+                padding: 0 clamp(1.25rem, 4vw, 4rem);
+            }
+        }
+
+        /* Tablet portrait */
+        @media (max-width: 768px) {
+            .legal-page {
+                padding-top: 5.5rem;
+            }
+
+            .legal-page > .container {
+                padding: 0 1.25rem;
+            }
+
+            .legal-hero {
+                min-height: 35vh;
+                margin-bottom: 1.5rem;
+            }
+
+            .legal-title {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                word-break: break-word;
+                hyphens: auto;
+            }
+
+            .legal-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .toc {
+                gap: 0.4rem;
+                margin-bottom: 2rem;
+            }
+
+            .toc-link {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.7rem;
+            }
+
+            .legal-grid {
+                padding: 1.75rem 0;
+                gap: 1rem;
+            }
+
+            .legal-block h2 {
+                position: static;
+                font-size: clamp(1.15rem, 4vw, 1.5rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .legal-block h3 {
+                font-size: 0.9rem;
+                margin-top: 1.25rem;
+            }
+
+            .legal-block p {
+                font-size: 0.875rem;
+                line-height: 1.7;
+            }
+
+            .legal-block ul li {
+                font-size: 0.875rem;
+                line-height: 1.6;
+                gap: 0.5rem;
+            }
+
+            .legal-highlight {
+                padding: 1rem 1.15rem;
+                margin: 1rem 0;
+            }
+
+            .legal-highlight p {
+                font-size: 0.85rem;
+            }
+
+            #main-nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-logo img {
+                height: 36px;
+            }
+
+            .nav-right {
+                gap: 0.75rem;
+            }
+
+            .nav-back {
+                font-size: 0.7rem;
+            }
+
+            .footer-legal {
+                padding: 2rem 0 4rem;
+                gap: 1rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 1.25rem;
+                right: 1.25rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile small */
+        @media (max-width: 480px) {
+            .legal-page {
+                padding-top: 5rem;
+            }
+
+            .legal-page > .container {
+                padding: 0 1rem;
+            }
+
+            .legal-hero {
+                min-height: 30vh;
+                margin-bottom: 1rem;
+            }
+
+            .legal-title {
+                font-size: clamp(1.75rem, 9vw, 2.5rem);
+            }
+
+            .legal-tag {
+                font-size: 0.7rem;
+                letter-spacing: 0.25em;
+                margin-bottom: 1rem;
+            }
+
+            .legal-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .toc {
+                gap: 0.35rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .toc-link {
+                padding: 0.3rem 0.55rem;
+                font-size: 0.65rem;
+            }
+
+            .legal-divider {
+                margin: 0;
+            }
+
+            .legal-grid {
+                padding: 1.5rem 0;
+                gap: 0.75rem;
+            }
+
+            .legal-block-label {
+                font-size: 0.6rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .legal-block h2 {
+                font-size: clamp(1.05rem, 5vw, 1.3rem);
+            }
+
+            .legal-block h3 {
+                font-size: 0.85rem;
+                margin-top: 1rem;
+            }
+
+            .legal-block p {
+                font-size: 0.825rem;
+                line-height: 1.65;
+            }
+
+            .legal-block ul li {
+                font-size: 0.825rem;
+                padding: 0.45rem 0;
+            }
+
+            .legal-highlight {
+                padding: 0.85rem 1rem;
+                border-radius: 0 6px 6px 0;
+            }
+
+            .legal-highlight p {
+                font-size: 0.8rem;
+            }
+
+            #main-nav {
+                padding: 0.6rem 0.85rem;
+            }
+
+            .nav-logo img {
+                height: 32px;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+            }
+
+            .nav-back {
+                font-size: 0.65rem;
+                letter-spacing: 0.05em;
+            }
+
+            .lang-switcher {
+                padding: 0.15rem;
+            }
+
+            .lang-btn {
+                font-size: 0.6rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .footer-legal {
+                padding: 1.5rem 0 3.5rem;
+            }
+
+            .footer-legal p {
+                font-size: 0.78rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+
+            .footer-links a {
+                font-size: 0.75rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra small (very narrow phones) */
+        @media (max-width: 360px) {
+            .legal-page > .container {
+                padding: 0 0.75rem;
+            }
+
+            .legal-title {
+                font-size: clamp(1.5rem, 10vw, 2rem);
+            }
+
+            .toc-link {
+                padding: 0.25rem 0.45rem;
+                font-size: 0.6rem;
+            }
+
+            .legal-block h2 {
+                font-size: 1rem;
+            }
+
+            .nav-back span {
+                display: none;
+            }
+        }
+
+        /* Ensure text doesn't overflow on any size */
+        .legal-block p,
+        .legal-block li,
+        .legal-highlight p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -315,7 +702,7 @@
 
     <main class="legal-page">
         <div class="container">
-            <div style="margin-bottom:5rem;position:relative;">
+            <div class="legal-hero">
                 <span class="legal-tag" data-de="AGB" data-en="T&C">AGB</span>
                 <h1 class="legal-title" data-de="Allgemeine Geschäftsbedingungen" data-en="General Terms & Conditions">
                     Allgemeine Geschäftsbedingungen</h1>
@@ -369,9 +756,9 @@
                         <li data-de="Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Basic, Growth, Pro oder Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind."
                             data-en="The exact scope of services depends on the selected package (Basic, Growth, Pro or Partner) as well as individual agreements set out in writing in the respective offer.">
                             Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Basic, Growth, Pro oder Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind.</li>
-                        <li data-de="Mögliche Leistungen umfassen u.a.: Websiteerstellung, Online-Terminbuchungssysteme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot."
-                            data-en="Possible services include, among others: website creation, online booking systems, dashboards and backend development. The signed offer is the sole binding document.">
-                            Mögliche Leistungen umfassen u.a.: Websiteerstellung, Online-Terminbuchungssysteme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot.</li>
+                        <li data-de="Mögliche Leistungen umfassen u.a.: Websiteerstellung, Content-Management-Systeme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot."
+                            data-en="Possible services include, among others: website creation, content management systems, dashboards and backend development. The signed offer is the sole binding document.">
+                            Mögliche Leistungen umfassen u.a.: Websiteerstellung, Content-Management-Systeme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot.</li>
                         <li data-de="Nicht ausdrücklich im Angebot aufgeführte Leistungen sind nicht Bestandteil des Vertrags und werden separat verrechnet."
                             data-en="Services not expressly listed in the offer are not part of the contract and will be billed separately.">
                             Nicht ausdrücklich im Angebot aufgeführte Leistungen sind nicht Bestandteil des Vertrags und werden separat verrechnet.</li>
@@ -926,9 +1313,9 @@
                     <h2 data-de="Browser- & Geräte-Kompatibilität" data-en="Browser & Device Compatibility">Browser- &amp; Geräte-Kompatibilität</h2>
                 </div>
                 <div class="legal-block">
-                    <p data-de="Der Auftragnehmer gewährleistet die korrekte Darstellung und Funktion des Terminbuchungssystems auf aktuellen Versionen der Browser Chrome, Safari und Firefox sowie auf gängigen mobilen Endgeräten (iOS und Android). Ältere Browserversionen sind von dieser Gewährleistung ausgenommen."
-                        data-en="The contractor guarantees the correct display and functionality of the booking system on current versions of Chrome, Safari and Firefox, as well as on common mobile devices (iOS and Android). Older browser versions are excluded from this warranty.">
-                        Der Auftragnehmer gewährleistet die korrekte Darstellung und Funktion des Terminbuchungssystems
+                    <p data-de="Der Auftragnehmer gewährleistet die korrekte Darstellung und Funktion der Website auf aktuellen Versionen der Browser Chrome, Safari und Firefox sowie auf gängigen mobilen Endgeräten (iOS und Android). Ältere Browserversionen sind von dieser Gewährleistung ausgenommen."
+                        data-en="The contractor guarantees the correct display and functionality of the website on current versions of Chrome, Safari and Firefox, as well as on common mobile devices (iOS and Android). Older browser versions are excluded from this warranty.">
+                        Der Auftragnehmer gewährleistet die korrekte Darstellung und Funktion der Website
                         auf aktuellen Versionen der Browser Chrome, Safari und Firefox sowie auf gängigen mobilen
                         Endgeräten (iOS und Android). Ältere Browserversionen sind von dieser Gewährleistung
                         ausgenommen.</p>
@@ -943,9 +1330,9 @@
                     <h2 data-de="Backup-Regelung" data-en="Backup Policy">Backup-Regelung</h2>
                 </div>
                 <div class="legal-block">
-                    <p data-de="Der Auftragnehmer erstellt wöchentliche Backups der Termindaten im Rahmen der Hosting-Vereinbarung. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt der Auftragnehmer keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt. Dem Auftraggeber wird empfohlen, zusätzlich eigene Datensicherungen vorzunehmen."
-                        data-en="The contractor creates weekly backups of appointment data as part of the hosting agreement. Backups are retained for a maximum of 6 months and then automatically deleted. Recovery is based exclusively on the most recent available backup. The contractor accepts no liability for data loss resulting from third-party outages, force majeure or cyberattacks, unless intentional or grossly negligent conduct is present. The client is advised to maintain their own additional backups.">
-                        Der Auftragnehmer erstellt wöchentliche Backups der Termindaten im Rahmen der
+                    <p data-de="Der Auftragnehmer erstellt wöchentliche Backups der Website-Daten im Rahmen der Hosting-Vereinbarung. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt der Auftragnehmer keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt. Dem Auftraggeber wird empfohlen, zusätzlich eigene Datensicherungen vorzunehmen."
+                        data-en="The contractor creates weekly backups of website data as part of the hosting agreement. Backups are retained for a maximum of 6 months and then automatically deleted. Recovery is based exclusively on the most recent available backup. The contractor accepts no liability for data loss resulting from third-party outages, force majeure or cyberattacks, unless intentional or grossly negligent conduct is present. The client is advised to maintain their own additional backups.">
+                        Der Auftragnehmer erstellt wöchentliche Backups der Website-Daten im Rahmen der
                         Hosting-Vereinbarung. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht.
                         Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei
                         Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt
@@ -1006,10 +1393,12 @@
         </div>
     </main>
 
-    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.03;filter:blur(80px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
-    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.03;filter:blur(80px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Nach oben scrollen" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-    <!-- Language Switcher – gleich wie index.html -->
+    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(100px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(100px);pointer-events:none;z-index:0;" aria-hidden="true"></div>
+
+    <!-- Language Switcher + Animations -->
     <script>
         let currentLang = localStorage.getItem('sindigital-lang') || 'de';
 
@@ -1030,6 +1419,24 @@
             });
             document.documentElement.lang = currentLang;
         }
+
+        // Scroll-to-top button
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // Section reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.legal-grid').forEach(el => observer.observe(el));
 
         window.addEventListener('load', applyLang);
     </script>
