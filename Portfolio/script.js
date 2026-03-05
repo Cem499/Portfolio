@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // ── Reveal on scroll (replaces heavy GSAP ScrollTrigger) ──────────────
+    const isMobile = window.innerWidth <= 768;
+    const revealObserverOptions = isMobile
+        ? { threshold: 0.01, rootMargin: '0px 0px 50px 0px' }
+        : { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -8,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, revealObserverOptions);
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
