@@ -143,11 +143,11 @@
           {
             "@type": "Offer",
             "name": "Partner Monatsbetreuung",
-            "description": "Monatliche Betreuung, Hosting und Updates",
-                        "price": "290",
+                        "description": "Monatliche Betreuung in drei Care-Stufen: Basic (CHF 49), Business (CHF 89), Pro (CHF 149)",
+                                                "price": "49",
             "priceCurrency": "CHF",
             "availability": "https://schema.org/InStock",
-                        "priceSpecification": {"@type": "UnitPriceSpecification", "price": "290", "priceCurrency": "CHF", "unitText": "monatlich"}
+                                                "priceSpecification": {"@type": "UnitPriceSpecification", "price": "49", "priceCurrency": "CHF", "unitText": "monatlich"}
           }
         ]
       },
@@ -293,7 +293,7 @@
           "name": "Was kostet eine Website bei Sin Digital?",
           "acceptedAnswer": {
             "@type": "Answer",
-                        "text": "Unsere Pakete starten ab CHF 1'490 (Basic), CHF 2'270 (Growth mit erweiterten Funktionen), CHF 3'100 (Pro) und ab CHF 290/Monat (Partner-Betreuung). Die Website-Pakete sind Einmalpreise inklusive Einrichtung."
+                        "text": "Unsere Pakete starten ab CHF 1'490 (Basic), CHF 2'270 (Growth mit erweiterten Funktionen), CHF 3'100 (Pro) und ab CHF 49/Monat (Partner-Betreuung). Die Website-Pakete sind Einmalpreise inklusive Einrichtung."
           }
         },
         {
@@ -450,6 +450,35 @@
         /* Critical: prevents layout shift before CSS loads */
         body { background: #050505; color: #fff; }
         #main-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; height: 70px; background: rgba(5,5,5,0.92); }
+
+        /* Partner card: 3-tier care layout with compact titles and visual separators */
+        .partner-care-list { gap: 0; }
+        .partner-care-list .care-tier {
+            display: block;
+            padding: 0.6rem 0 0.85rem;
+            border-bottom: 1px solid rgba(193,255,114,0.14);
+        }
+        .partner-care-list .care-tier::before { display: none; content: none; }
+        .partner-care-list .care-tier-title {
+            display: block;
+            margin-bottom: 0.28rem;
+            font-size: 0.69rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+        .partner-care-list .care-tier-text {
+            display: block;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            color: var(--gray);
+        }
+        .partner-care-list .care-note {
+            margin-top: 0.65rem;
+            font-size: 0.76rem;
+            color: var(--gray-dim);
+        }
     </style>
     <script>
         /* Set lang immediately to avoid FOUC on bilingual content */
@@ -687,7 +716,6 @@
                             <li data-de="Suchmaschinenoptimierung (SEO)" data-en="Search engine optimisation (SEO)">Suchmaschinenoptimierung (SEO)</li>
                             <li data-de="Terminbuchung möglich inkl. Dashboard" data-en="Appointment booking available incl. dashboard">Terminbuchung möglich inkl. Dashboard</li>
                             <li data-de="Automatische Kundendaten-Backups" data-en="Automatic customer data backups">Automatische Kundendaten-Backups</li>
-                            <li data-de="3 Monate Hosting inklusive, danach Partner Paket ab CHF 290/Monat" data-en="3 months hosting included, then Partner package from CHF 290/month">3 Monate Hosting inklusive, danach Partner Paket ab CHF 290/Monat</li>
                         </ul>
                         <div class="paket-price">
                             <strong itemprop="price" content="2270"><span itemprop="priceCurrency" content="CHF">Ab 2'270 CHF</span></strong>
@@ -713,7 +741,6 @@
                             <li data-de="Mehrsprachige Website" data-en="Multilingual website">Mehrsprachige Website</li>
                             <li data-de="Terminbuchung möglich inkl. Dashboard" data-en="Appointment booking available incl. dashboard">Terminbuchung möglich inkl. Dashboard</li>
                             <li data-de="Automatische Kundendaten-Backups" data-en="Automatic customer data backups">Automatische Kundendaten-Backups</li>
-                            <li data-de="6 Monate Hosting inklusive, danach Partner Paket ab CHF 290/Monat" data-en="6 months hosting included, then Partner package from CHF 290/month">6 Monate Hosting inklusive, danach Partner Paket ab CHF 290/Monat</li>
                         </ul>
                         <div class="paket-price">
                             <strong itemprop="price" content="3100"><span itemprop="priceCurrency" content="CHF">Ab 3'100 CHF</span></strong>
@@ -732,16 +759,22 @@
                             data-de="Für Unternehmen, die langfristig von Sin Digital betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen — Sie konzentrieren sich auf Ihr Geschäft."
                             data-en="For businesses that want long-term support from Sin Digital. We handle hosting, updates and ongoing changes — you focus on your business.">
                             Für Unternehmen, die langfristig von Sin Digital betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen — Sie konzentrieren sich auf Ihr Geschäft.</p>
-                        <ul class="paket-features">
-                            <li data-de="Monatliche Betreuung Ihrer Website" data-en="Monthly website management">Monatliche Betreuung Ihrer Website</li>
-                            <li data-de="Hosting & Sicherheitsupdates" data-en="Hosting & security updates">Hosting &amp; Sicherheitsupdates</li>
-                            <li data-de="Automatische Kundendaten-Backups" data-en="Automatic customer data backups">Automatische Kundendaten-Backups</li>
-                            <li data-de="Kleinere Inhaltspflege (Texte, Bilder, Preise)" data-en="Minor content updates (texts, images, prices)">Kleinere Inhaltspflege (Texte, Bilder, Preise)</li>
-                            <li data-de="Priorisierter Support (Reaktionszeit maximal 2 Arbeitstage)" data-en="Priority support (response time max. 2 working days)">Priorisierter Support (Reaktionszeit maximal 2 Arbeitstage)</li>
-                            <li data-de="12 Monate Laufzeit, danach monatlich kündbar" data-en="12-month term, then cancellable monthly">12 Monate Laufzeit, danach monatlich kündbar</li>
+                        <ul class="paket-features partner-care-list">
+                            <li class="care-tier">
+                                <span class="care-tier-title" data-de="Basic Care - CHF 49/Monat" data-en="Basic Care - CHF 49/month">Basic Care - CHF 49/Monat</span>
+                                <span class="care-tier-text" data-de="Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 2 Arbeitstagen." data-en="Hosting, security updates, weekly backups, minor changes up to 15 min/month, support within max. 2 working days.">Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 2 Arbeitstagen.</span>
+                            </li>
+                            <li class="care-tier">
+                                <span class="care-tier-title" data-de="Business Care - CHF 89/Monat" data-en="Business Care - CHF 89/month">Business Care - CHF 89/Monat</span>
+                                <span class="care-tier-text" data-de="Alles aus Basic plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und priorisierter Support in 1 Arbeitstag." data-en="Everything from Basic plus daily backups, performance monitoring, minor changes up to 30 min/month and priority support within 1 working day.">Alles aus Basic plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und priorisierter Support in 1 Arbeitstag.</span>
+                            </li>
+                            <li class="care-tier">
+                                <span class="care-tier-title" data-de="Pro Care - CHF 149/Monat" data-en="Pro Care - CHF 149/month">Pro Care - CHF 149/Monat</span>
+                                <span class="care-tier-text" data-de="Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und schnellstmögliche priorisierte Reaktion." data-en="Everything from Business plus up to 1 hour of changes/month, advanced monitoring and fastest priority response.">Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und schnellstmögliche priorisierte Reaktion.</span>
+                            </li>
                         </ul>
                         <div class="paket-price">
-                            <strong>Ab CHF 290 / <span data-de="Monat" data-en="month">Monat</span></strong>
+                            <strong>Ab CHF 49 / <span data-de="Monat" data-en="month">Monat</span></strong>
                             <span data-de="Laufende Betreuung durch Sin Digital" data-en="Ongoing care by Sin Digital">Laufende Betreuung durch Sin Digital</span>
                         </div>
                       </div>
