@@ -1,0 +1,18 @@
+{
+  "name": "Sin Digital",
+  "short_name": "Sin Digital",
+  "description": "Digitalagentur & Webagentur Zürich – Webdesign, Webentwicklung & SEO für Unternehmen",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "lang": "de-CH",
+  "icons": [
+    {
+      "src": "/assets/ICON-Logo_Sin-Digital.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

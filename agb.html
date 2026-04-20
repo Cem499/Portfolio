@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGB | Allgemeine Geschäftsbedingungen | Sin Digital Agentur Zürich</title>
+    <meta name="description"
+        content="Allgemeine Geschäftsbedingungen der Sin Digital Agentur Zürich für Webdesign, Branding und Entwicklungsdienstleistungen.">
+    <link rel="icon" type="image/png" href="/assets/ICON-Logo_Sin-Digital.png">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.sin-digital.com/agb.html">
+    <link rel="stylesheet" href="styles.min.css">
+    <style>
+        /* ── RESET & BASE ── */
+        .legal-page {
+            padding-top: 7rem;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .legal-page>.container {
+            max-width: 100%;
+            padding: 0 clamp(1.5rem, 5vw, 6rem);
+        }
+
+        /* ── HERO HEADER ── */
+        .legal-hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .legal-tag {
+            color: #C1FF72;
+            font-size: 0.8rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.1s;
+        }
+
+        .legal-tag::after {
+            content: '';
+            width: 3rem;
+            height: 1px;
+            background: #C1FF72;
+        }
+
+        .legal-title {
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.25s;
+        }
+
+        .legal-subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
+            max-width: 30rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.4s;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── TABLE OF CONTENTS ── */
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.55s;
+        }
+
+        .toc-link {
+            color: #9ca3af;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            background: rgba(255, 255, 255, 0.02);
+            letter-spacing: 0.02em;
+        }
+
+        .toc-link:hover {
+            background: #C1FF72;
+            color: #010101;
+            border-color: #C1FF72;
+            transform: translateY(-1px);
+        }
+
+        /* ── DIVIDER ── */
+        .legal-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin: 0;
+            width: 100%;
+        }
+
+        /* ── SECTIONS (cards) ── */
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            align-items: start;
+            transition: opacity 0.4s ease;
+        }
+
+        @media (min-width: 900px) {
+            .legal-grid {
+                grid-template-columns: 300px 1fr;
+                gap: 5rem;
+                padding: 3rem 0;
+            }
+
+            .legal-grid.wide {
+                grid-template-columns: 300px 1fr;
+            }
+        }
+
+        .legal-block {
+            position: relative;
+        }
+
+        /* Section number badge */
+        .legal-block-label {
+            color: #C1FF72;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .legal-block-label::after {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: rgba(193, 255, 114, 0.25);
+        }
+
+        .legal-block h2 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            position: sticky;
+            top: 5.5rem;
+        }
+
+        .legal-block h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #C1FF72;
+            margin-bottom: 0.5rem;
+            margin-top: 1.75rem;
+            letter-spacing: 0.01em;
+        }
+
+        .legal-block h3:first-child {
+            margin-top: 0;
+        }
+
+        .legal-block p {
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 0.75rem;
+            font-size: 0.925rem;
+        }
+
+        .legal-block a {
+            color: #C1FF72;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .legal-block a:hover {
+            opacity: 0.7;
+        }
+
+        .legal-block ul {
+            list-style: none;
+            padding: 0;
+            color: #9ca3af;
+        }
+
+        .legal-block ul li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            gap: 0.75rem;
+            line-height: 1.65;
+            font-size: 0.925rem;
+        }
+
+        .legal-block ul li:last-child {
+            border-bottom: none;
+        }
+
+        .legal-block ul li::before {
+            content: '→';
+            color: #C1FF72;
+            flex-shrink: 0;
+            font-size: 0.85rem;
+            margin-top: 0.1rem;
+        }
+
+        /* ── HIGHLIGHT BOX ── */
+        .legal-highlight {
+            background: rgba(193, 255, 114, 0.04);
+            border: 1px solid rgba(193, 255, 114, 0.12);
+            border-left: 3px solid #C1FF72;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .legal-highlight p {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 0 0.35rem;
+            font-size: 0.9rem;
+        }
+
+        .legal-highlight p:last-child {
+            margin: 0;
+        }
+
+        /* ── FOOTER ── */
+        .footer-legal {
+            padding: 2.5rem 0 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            align-items: center;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-legal {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .footer-legal p {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #C1FF72;
+        }
+
+        /* ── SCROLL-TO-TOP ── */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(193, 255, 114, 0.1);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            color: #C1FF72;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn:hover {
+            background: #C1FF72;
+            color: #010101;
+        }
+
+        /* ── NAV ── */
+        #main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-back {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover {
+            color: #C1FF72;
+        }
+
+        /* ── LANGUAGE SWITCHER ── */
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 0.2rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.3rem 0.65rem;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn.active {
+            background: #C1FF72;
+            color: #010101;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #C1FF72;
+        }
+
+        /* ── SECTION REVEAL ANIMATION ── */
+        .legal-grid {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        .legal-grid.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* ── RESPONSIVE ── */
+
+        /* Tablet landscape */
+        @media (max-width: 1024px) {
+            .legal-page>.container {
+                padding: 0 clamp(1.25rem, 4vw, 4rem);
+            }
+        }
+
+        /* Tablet portrait */
+        @media (max-width: 768px) {
+            .legal-page {
+                padding-top: 5.5rem;
+            }
+
+            .legal-page>.container {
+                padding: 0 1.25rem;
+            }
+
+            .legal-hero {
+                min-height: 35vh;
+                margin-bottom: 1.5rem;
+            }
+
+            .legal-title {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                word-break: break-word;
+                hyphens: auto;
+            }
+
+            .legal-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .toc {
+                gap: 0.4rem;
+                margin-bottom: 2rem;
+            }
+
+            .toc-link {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.7rem;
+            }
+
+            .legal-grid {
+                padding: 1.75rem 0;
+                gap: 1rem;
+            }
+
+            .legal-block h2 {
+                position: static;
+                font-size: clamp(1.15rem, 4vw, 1.5rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .legal-block h3 {
+                font-size: 0.9rem;
+                margin-top: 1.25rem;
+            }
+
+            .legal-block p {
+                font-size: 0.875rem;
+                line-height: 1.7;
+            }
+
+            .legal-block ul li {
+                font-size: 0.875rem;
+                line-height: 1.6;
+                gap: 0.5rem;
+            }
+
+            .legal-highlight {
+                padding: 1rem 1.15rem;
+                margin: 1rem 0;
+            }
+
+            .legal-highlight p {
+                font-size: 0.85rem;
+            }
+
+            #main-nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-logo img {
+                height: 36px;
+            }
+
+            .nav-right {
+                gap: 0.75rem;
+            }
+
+            .nav-back {
+                font-size: 0.7rem;
+            }
+
+            .footer-legal {
+                padding: 2rem 0 4rem;
+                gap: 1rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 1.25rem;
+                right: 1.25rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile small */
+        @media (max-width: 480px) {
+            .legal-page {
+                padding-top: 5rem;
+            }
+
+            .legal-page>.container {
+                padding: 0 1rem;
+            }
+
+            .legal-hero {
+                min-height: 30vh;
+                margin-bottom: 1rem;
+            }
+
+            .legal-title {
+                font-size: clamp(1.75rem, 9vw, 2.5rem);
+            }
+
+            .legal-tag {
+                font-size: 0.7rem;
+                letter-spacing: 0.25em;
+                margin-bottom: 1rem;
+            }
+
+            .legal-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .toc {
+                gap: 0.35rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .toc-link {
+                padding: 0.3rem 0.55rem;
+                font-size: 0.65rem;
+            }
+
+            .legal-divider {
+                margin: 0;
+            }
+
+            .legal-grid {
+                padding: 1.5rem 0;
+                gap: 0.75rem;
+            }
+
+            .legal-block-label {
+                font-size: 0.6rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .legal-block h2 {
+                font-size: clamp(1.05rem, 5vw, 1.3rem);
+            }
+
+            .legal-block h3 {
+                font-size: 0.85rem;
+                margin-top: 1rem;
+            }
+
+            .legal-block p {
+                font-size: 0.825rem;
+                line-height: 1.65;
+            }
+
+            .legal-block ul li {
+                font-size: 0.825rem;
+                padding: 0.45rem 0;
+            }
+
+            .legal-highlight {
+                padding: 0.85rem 1rem;
+                border-radius: 0 6px 6px 0;
+            }
+
+            .legal-highlight p {
+                font-size: 0.8rem;
+            }
+
+            #main-nav {
+                padding: 0.6rem 0.85rem;
+            }
+
+            .nav-logo img {
+                height: 32px;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+            }
+
+            .nav-back {
+                font-size: 0.65rem;
+                letter-spacing: 0.05em;
+            }
+
+            .lang-switcher {
+                padding: 0.15rem;
+            }
+
+            .lang-btn {
+                font-size: 0.6rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .footer-legal {
+                padding: 1.5rem 0 3.5rem;
+            }
+
+            .footer-legal p {
+                font-size: 0.78rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+
+            .footer-links a {
+                font-size: 0.75rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra small (very narrow phones) */
+        @media (max-width: 360px) {
+            .legal-page>.container {
+                padding: 0 0.75rem;
+            }
+
+            .legal-title {
+                font-size: clamp(1.5rem, 10vw, 2rem);
+            }
+
+            .toc-link {
+                padding: 0.25rem 0.45rem;
+                font-size: 0.6rem;
+            }
+
+            .legal-block h2 {
+                font-size: 1rem;
+            }
+
+            .nav-back span {
+                display: none;
+            }
+        }
+
+        /* Ensure text doesn't overflow on any size */
+        .legal-block p,
+        .legal-block li,
+        .legal-highlight p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV – gleiche Struktur wie index.html -->
+    <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+        <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
+            <img src="/assets/Logo_Sin-Digital.png" alt="Sin Digital Agentur Zürich" width="160" height="44"
+                fetchpriority="high">
+        </a>
+        <div class="nav-right">
+            <a href="/" class="nav-back">← <span data-de="Zurück" data-en="Back">Zurück</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="legal-page">
+        <div class="container">
+            <div class="legal-hero">
+                <span class="legal-tag" data-de="AGB" data-en="T&C">AGB</span>
+                <h1 class="legal-title" data-de="Allgemeine Geschäftsbedingungen" data-en="General Terms & Conditions">
+                    Allgemeine Geschäftsbedingungen</h1>
+                <p class="legal-subtitle" data-de="Stand: Februar 2026" data-en="As of: February 2026">Stand: Februar
+                    2026</p>
+            </div>
+            <nav class="toc" aria-label="Inhaltsverzeichnis">
+                <a href="#leistungsumfang" class="toc-link" data-de="1. Leistungsumfang"
+                    data-en="1. Scope of Services">1. Leistungsumfang</a>
+                <a href="#entwicklungszeit" class="toc-link" data-de="2. Entwicklungszeit & Lieferung"
+                    data-en="2. Development & Delivery">2. Entwicklungszeit & Lieferung</a>
+                <a href="#zahlung" class="toc-link" data-de="3. Preis & Zahlungsbedingungen"
+                    data-en="3. Price & Payment">3. Preis & Zahlungsbedingungen</a>
+                <a href="#projektpreis" class="toc-link" data-de="4. Projektpreis & Drittanbieter"
+                    data-en="4. Project Price & Third Parties">4. Projektpreis & Drittanbieter</a>
+                <a href="#zahlungsverzug" class="toc-link" data-de="5. Zahlungsverzug & Mahnung"
+                    data-en="5. Default & Reminder">5. Zahlungsverzug & Mahnung</a>
+                <a href="#mitwirkung" class="toc-link" data-de="6. Mitwirkungspflicht"
+                    data-en="6. Client Obligations">6. Mitwirkungspflicht</a>
+                <a href="#datenschutz" class="toc-link" data-de="7. Datenschutz" data-en="7. Data Protection">7.
+                    Datenschutz</a>
+                <a href="#hoeheregewalt" class="toc-link" data-de="8. Höhere Gewalt" data-en="8. Force Majeure">8.
+                    Höhere Gewalt</a>
+                <a href="#aenderungen" class="toc-link" data-de="9. Änderungen nach Lieferung"
+                    data-en="9. Post-Delivery Changes">9. Änderungen nach Lieferung</a>
+                <a href="#eigentum" class="toc-link" data-de="10. Eigentumsrechte & Nutzung"
+                    data-en="10. Ownership & Use">10. Eigentumsrechte & Nutzung</a>
+                <a href="#haftung" class="toc-link" data-de="11. Haftungsausschluss"
+                    data-en="11. Liability Disclaimer">11. Haftungsausschluss</a>
+                <a href="#gewaehrleistung" class="toc-link" data-de="12. Gewährleistung" data-en="12. Warranty">12.
+                    Gewährleistung</a>
+                <a href="#hosting" class="toc-link" data-de="13. Hosting" data-en="13. Hosting">13. Hosting</a>
+                <a href="#abnahme" class="toc-link" data-de="14. Abnahme" data-en="14. Acceptance">14. Abnahme</a>
+                <a href="#kuendigung" class="toc-link" data-de="15. Kündigung" data-en="15. Termination">15.
+                    Kündigung</a>
+                <a href="#recht" class="toc-link" data-de="16. Recht & Gerichtsstand"
+                    data-en="16. Law & Jurisdiction">16. Recht & Gerichtsstand</a>
+                <a href="#salvatorisch" class="toc-link" data-de="17. Salvatorische Klausel"
+                    data-en="17. Severability">17. Salvatorische Klausel</a>
+                <a href="#schriftform" class="toc-link" data-de="18. Schriftform" data-en="18. Written Form">18.
+                    Schriftform</a>
+                <a href="#projektkommunikation" class="toc-link" data-de="19. Projektkommunikation"
+                    data-en="19. Communication">19. Projektkommunikation</a>
+                <a href="#projektpause" class="toc-link" data-de="20. Projektpause" data-en="20. Project Pause">20.
+                    Projektpause</a>
+                <a href="#referenznutzung" class="toc-link" data-de="21. Referenznutzung" data-en="21. References">21.
+                    Referenznutzung</a>
+                <a href="#unangemessenes-verhalten" class="toc-link" data-de="22. Verhaltensklausel"
+                    data-en="22. Conduct Clause">22. Verhaltensklausel</a>
+                <a href="#eigentumsvorbehalt" class="toc-link" data-de="23. Eigentumsvorbehalt"
+                    data-en="23. Retention of Title">23. Eigentumsvorbehalt</a>
+                <a href="#scope-creep" class="toc-link" data-de="24. Leistungsabgrenzung"
+                    data-en="24. Scope Definition">24. Leistungsabgrenzung</a>
+                <a href="#online-stellung" class="toc-link" data-de="25. Online-Stellung" data-en="25. Go-Live">25.
+                    Online-Stellung</a>
+                <a href="#datenschutzerklaerung-impressum" class="toc-link" data-de="26. Datenschutz & Impressum"
+                    data-en="26. Privacy & Legal Notice">26. Datenschutz & Impressum</a>
+            </nav>
+            <div class="legal-divider"></div>
+            <div id="leistungsumfang" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">1</span>
+                    <h2 data-de="Leistungsumfang" data-en="Scope of Services">Leistungsumfang</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li data-de="Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Basic, Growth, Pro oder Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind."
+                            data-en="The exact scope of services depends on the selected package (Basic, Growth, Pro or Partner) as well as individual agreements set out in writing in the respective offer.">
+                            Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Basic, Growth, Pro oder
+                            Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich
+                            festgehalten sind.</li>
+                        <li data-de="Mögliche Leistungen umfassen u.a.: Websiteerstellung, Content-Management-Systeme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot."
+                            data-en="Possible services include, among others: website creation, content management systems, dashboards and backend development. The signed offer is the sole binding document.">
+                            Mögliche Leistungen umfassen u.a.: Websiteerstellung, Content-Management-Systeme, Dashboards
+                            sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot.</li>
+                        <li data-de="Nicht ausdrücklich im Angebot aufgeführte Leistungen sind nicht Bestandteil des Vertrags und werden separat verrechnet."
+                            data-en="Services not expressly listed in the offer are not part of the contract and will be billed separately.">
+                            Nicht ausdrücklich im Angebot aufgeführte Leistungen sind nicht Bestandteil des Vertrags und
+                            werden separat verrechnet.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="entwicklungszeit" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">2</span>
+                    <h2 data-de="Entwicklungszeit & Lieferung" data-en="Development Time & Delivery">Entwicklungszeit &
+                        Lieferung</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Die Entwicklung beginnt nach Eingang der vereinbarten Anzahlung und dauert maximal die im Angebot genannte Frist. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin."
+                        data-en="Development begins upon receipt of the agreed deposit and takes a maximum of the timeframe stated in the offer. The contractor will notify the client of the completion date in good time.">
+                        Die Entwicklung beginnt nach Eingang der vereinbarten Anzahlung und dauert maximal die im
+                        Angebot genannte Frist. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin.
+                    </p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="zahlung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">3</span>
+                    <h2 data-de="Preis & Zahlungsbedingungen" data-en="Price & Payment Terms">Preis &
+                        Zahlungsbedingungen</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li data-de="Die Preise und Zahlungsmodalitäten richten sich nach dem jeweiligen Angebot."
+                            data-en="Prices and payment terms are governed by the respective offer.">Die Preise und
+                            Zahlungsmodalitäten richten sich nach dem jeweiligen Angebot.</li>
+                        <li data-de="Der Zahlungsplan ist im Angebot geregelt."
+                            data-en="The payment plan is specified in the offer.">Der Zahlungsplan ist im Angebot
+                            geregelt.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="projektpreis" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">4</span>
+                    <h2 data-de="Projektpreis & Drittanbieter" data-en="Project Price & Third-Party Providers">
+                        Projektpreis & Drittanbieter</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Im Projektpreis sind alle für die Umsetzung notwendigen Drittanbieter-Leistungen (z.B. Domain, Hosting, Plugins, APIs) enthalten, sofern nicht anders vereinbart. Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden."
+                        data-en="The project price includes all necessary third-party services (e.g. domain, hosting, plugins, APIs) unless otherwise agreed. Changes in third-party prices after contract conclusion may be passed on to the client.">
+                        Im Projektpreis sind alle für die Umsetzung notwendigen Drittanbieter-Leistungen (z.B. Domain,
+                        Hosting, Plugins, APIs) enthalten, sofern nicht anders vereinbart. Änderungen der Preise von
+                        Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="zahlungsverzug" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">5</span>
+                    <h2 data-de="Zahlungsverzug & Mahnung" data-en="Payment Default & Reminder">Zahlungsverzug & Mahnung
+                    </h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Rechnungen sind innert 14 Tagen zahlbar. Bei Zahlungsverzug wird pro Mahnung eine Gebühr von CHF 20.00 erhoben. Bei Zahlungsverzug von mehr als 10 Tagen ist der Auftragnehmer berechtigt, die Website oder Hosting-Leistungen bis zur vollständigen Begleichung vorübergehend zu deaktivieren."
+                        data-en="Invoices are due within 14 days. In case of late payment, a reminder fee of CHF 20.00 will be charged per reminder. If payment is overdue by more than 10 days, the contractor is entitled to temporarily deactivate the website or hosting services until full payment is received.">
+                        Rechnungen sind innert 14 Tagen zahlbar. Bei Zahlungsverzug wird pro Mahnung eine Gebühr von
+                        CHF 20.00 erhoben. Bei Zahlungsverzug von mehr als 10 Tagen ist der Auftragnehmer berechtigt,
+                        die Website oder Hosting-Leistungen bis zur vollständigen Begleichung vorübergehend zu
+                        deaktivieren.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="mitwirkung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">6</span>
+                    <h2 data-de="Mitwirkungspflicht" data-en="Client Cooperation Obligation">Mitwirkungspflicht</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Kunde ist verpflichtet, alle notwendigen Inhalte (Texte, Bilder, Logos, Farbwelt) rechtzeitig bereitzustellen. Verzögerungen durch den Kunden verlängern die Entwicklungszeit entsprechend."
+                        data-en="The client is obliged to provide all necessary content (texts, images, logos, color scheme) in a timely manner. Delays caused by the client will extend the development timeline accordingly.">
+                        Der Kunde ist verpflichtet, alle notwendigen Inhalte (Texte, Bilder, Logos, Farbwelt)
+                        rechtzeitig bereitzustellen. Verzögerungen durch den Kunden verlängern die Entwicklungszeit
+                        entsprechend.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="datenschutz" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">7</span>
+                    <h2 data-de="Datenschutz" data-en="Data Protection">Datenschutz</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Kunde bleibt Verantwortlicher im Sinne des Schweizer Datenschutzgesetzes (DSG) für sämtliche über die Website erhobenen personenbezogenen Daten. Der Auftragnehmer verarbeitet Daten ausschliesslich im Rahmen der Vertragserfüllung. Soweit der Auftragnehmer personenbezogene Daten im Auftrag verarbeitet, gilt er als Auftragsbearbeiter im Sinne des DSG."
+                        data-en="The client remains the data controller under Swiss data protection law (DSG) for all personal data collected via the website. The contractor processes data exclusively within the scope of contract performance. Where the contractor processes personal data on behalf of the client, it acts as a data processor within the meaning of the Swiss DSG.">
+                        Der Kunde bleibt Verantwortlicher im Sinne des Schweizer Datenschutzgesetzes (DSG) für sämtliche
+                        über die Website erhobenen personenbezogenen Daten. Der Auftragnehmer verarbeitet Daten
+                        ausschliesslich im Rahmen der Vertragserfüllung. Soweit der Auftragnehmer personenbezogene Daten
+                        im Auftrag verarbeitet, gilt er als Auftragsbearbeiter im Sinne des DSG.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="hoeheregewalt" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">8</span>
+                    <h2 data-de="Höhere Gewalt" data-en="Force Majeure">Höhere Gewalt</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer haftet nicht für Verzögerungen oder Leistungsausfälle, die auf höhere Gewalt, unvorhersehbare Ereignisse oder Störungen bei Drittanbietern zurückzuführen sind."
+                        data-en="The contractor is not liable for delays or service failures due to force majeure, unforeseeable events, or disruptions at third-party providers.">
+                        Der Auftragnehmer haftet nicht für Verzögerungen oder Leistungsausfälle, die auf höhere Gewalt,
+                        unvorhersehbare Ereignisse oder Störungen bei Drittanbietern zurückzuführen sind.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="aenderungen" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">9</span>
+                    <h2 data-de="Änderungen nach Lieferung" data-en="Changes After Delivery">Änderungen nach Lieferung
+                    </h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Im Vertrag inbegriffen ist bis zu 1 Änderungswunsch nach Lieferung. Weitere Änderungen werden mit CHF 120.00 pro Stunde verrechnet. Als Änderung gilt die Anpassung eines bestehenden Elements wie Text, Bild oder Farbe. Neue Funktionen oder strukturelle Umbauten gelten nicht als Änderung und werden separat verrechnet."
+                        data-en="Up to 1 change request after delivery is included in the contract. Additional changes are billed at CHF 120.00 per hour. A change is defined as an adjustment to an existing element such as text, image or colour. New features or structural changes do not qualify as changes and will be billed separately.">
+                        Im Vertrag inbegriffen ist bis zu 1 Änderungswunsch nach Lieferung. Weitere Änderungen werden
+                        mit CHF 120.00 pro Stunde verrechnet. Als Änderung gilt die Anpassung eines bestehenden Elements
+                        wie Text, Bild oder Farbe. Neue Funktionen oder strukturelle Umbauten gelten nicht als Änderung
+                        und werden separat verrechnet.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="eigentum" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">10</span>
+                    <h2 data-de="Eigentumsrechte & Nutzung" data-en="Ownership & Usage Rights">Eigentumsrechte & Nutzung
+                    </h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li data-de="Der Quellcode verbleibt dauerhaft Eigentum des Auftragnehmers."
+                            data-en="The source code remains the permanent property of the contractor.">Der Quellcode
+                            verbleibt dauerhaft Eigentum des Auftragnehmers.</li>
+                        <li data-de="Der Kunde erhält ein nicht übertragbares Nutzungsrecht für die Dauer der Hosting-Vereinbarung."
+                            data-en="The client receives a non-transferable right of use for the duration of the hosting agreement.">
+                            Der Kunde erhält ein nicht übertragbares Nutzungsrecht für die Dauer der
+                            Hosting-Vereinbarung.</li>
+                        <li data-de="Keine Weitergabe oder Lizenzierung an Dritte ohne schriftliche Zustimmung."
+                            data-en="No transfer or licensing to third parties without written consent.">Keine
+                            Weitergabe oder Lizenzierung an Dritte ohne schriftliche Zustimmung.</li>
+                        <li data-de="Der Auftragnehmer darf die Website im Portfolio erwähnen und einen diskreten Hinweis im Footer platzieren."
+                            data-en="The contractor may mention the website in their portfolio and place a discreet note in the footer.">
+                            Der Auftragnehmer darf die Website im Portfolio erwähnen und einen diskreten Hinweis im
+                            Footer platzieren.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="haftung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">11</span>
+                    <h2 data-de="Haftungsausschluss" data-en="Liability Disclaimer">Haftungsausschluss</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer haftet nur bei vorsätzlichem oder grob fahrlässigem Verhalten. Die Haftung ist der Höhe nach auf den vereinbarten Projektpreis beschränkt. Eine Haftung für indirekte Schäden, Folgeschäden, entgangenen Gewinn, Datenverlust oder Ansprüche Dritter ist ausgeschlossen."
+                        data-en="The contractor is only liable in cases of intentional or grossly negligent conduct. Liability is limited to the agreed project price. Liability for indirect damages, consequential damages, loss of profit, data loss, or third-party claims is excluded.">
+                        Der Auftragnehmer haftet nur bei vorsätzlichem oder grob fahrlässigem Verhalten. Die Haftung ist
+                        der Höhe nach auf den vereinbarten Projektpreis beschränkt. Eine Haftung für indirekte Schäden,
+                        Folgeschäden, entgangenen Gewinn, Datenverlust oder Ansprüche Dritter ist ausgeschlossen.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="gewaehrleistung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">12</span>
+                    <h2 data-de="Gewährleistung" data-en="Warranty">Gewährleistung</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer gewährleistet die einwandfreie Funktion der Website für 30 Tage nach Abnahme. Technische Mängel sind schriftlich zu melden und werden innerhalb dieser Frist kostenlos behoben. Änderungswünsche und neue Funktionen sind davon ausgenommen."
+                        data-en="The contractor warrants the proper functioning of the website for 30 days after acceptance. Technical defects must be reported in writing and will be rectified free of charge within this period. Change requests and new features are excluded from this warranty.">
+                        Der Auftragnehmer gewährleistet die einwandfreie Funktion der Website für 30 Tage nach Abnahme.
+                        Technische Mängel sind schriftlich zu melden und werden innerhalb dieser Frist kostenlos
+                        behoben. Änderungswünsche und neue Funktionen sind davon ausgenommen.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="hosting" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">13</span>
+                    <h2 data-de="Hosting" data-en="Hosting">Hosting</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Die monatliche Hosting-Gebühr richtet sich nach dem gewählten Paket und umfasst Serverbereitstellung, Sicherheitsupdates, kleinere Inhaltspflege (Texte, Bilder, Preise) sowie E-Mail-Support (Reaktionszeit bis zu 48 Stunden an Werktagen). Neue Seiten, Funktionen oder strukturelle Änderungen sind nicht enthalten und werden separat zu CHF 120.00 pro Stunde verrechnet."
+                        data-en="The monthly hosting fee depends on the selected package and includes server provision, security updates, minor content maintenance (texts, images, prices) and email support (response time up to 48 hours on working days). New pages, features or structural changes are not included and will be billed separately at CHF 120.00 per hour.">
+                        Die monatliche Hosting-Gebühr richtet sich nach dem gewählten Paket und umfasst
+                        Serverbereitstellung,
+                        Sicherheitsupdates, kleinere Inhaltspflege (Texte, Bilder, Preise) sowie E-Mail-Support
+                        (Reaktionszeit
+                        bis zu 48 Stunden an Werktagen). Neue Seiten, Funktionen oder strukturelle Änderungen sind nicht
+                        enthalten und werden separat zu CHF 120.00 pro Stunde verrechnet.</p>
+                    <p data-de="Die Hosting-Vereinbarung läuft mindestens 6 Monate ab Abnahme der Website. Nach Ablauf der Mindestlaufzeit kann sie von beiden Parteien mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Die Gebühr beginnt ab Abnahme der Website. Eine permanente oder unterbrechungsfreie Verfügbarkeit wird nicht geschuldet."
+                        data-en="The hosting agreement runs for a minimum of 6 months from acceptance of the website. After the minimum term, it may be terminated by either party with 30 days' notice at the end of the month. The fee commences upon acceptance of the website. Permanent or uninterrupted availability is not guaranteed.">
+                        Die Hosting-Vereinbarung läuft mindestens 6 Monate ab Abnahme der Website. Nach Ablauf der
+                        Mindestlaufzeit kann sie von beiden Parteien mit 30 Tagen Frist auf Monatsende schriftlich
+                        gekündigt
+                        werden. Die Gebühr beginnt ab Abnahme der Website. Eine permanente oder unterbrechungsfreie
+                        Verfügbarkeit wird nicht geschuldet.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="abnahme" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">14</span>
+                    <h2 data-de="Abnahme" data-en="Acceptance">Abnahme</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Nach Fertigstellung informiert der Auftragnehmer den Kunden über die Bereitstellung der Website. Der Kunde ist verpflichtet, die Website innerhalb von 7 Kalendertagen zu prüfen. Erfolgt keine schriftliche Mängelanzeige innerhalb dieser Frist, gilt die Website als abgenommen."
+                        data-en="Upon completion, the contractor will notify the client of the website's availability. The client must review the website within 7 calendar days. If no written notice of defects is received within this period, the website shall be deemed accepted.">
+                        Nach Fertigstellung informiert der Auftragnehmer den Kunden über die Bereitstellung der Website.
+                        Der Kunde ist verpflichtet, die Website innerhalb von 7 Kalendertagen zu prüfen. Erfolgt keine
+                        schriftliche Mängelanzeige innerhalb dieser Frist, gilt die Website als abgenommen.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="kuendigung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">15</span>
+                    <h2 data-de="Kündigung" data-en="Termination">Kündigung</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li data-de="Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet."
+                            data-en="If termination occurs after development has begun, the work completed up to that point will be invoiced proportionally. The deposit is non-refundable.">
+                            Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in
+                            Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet.</li>
+                        <li data-de="Eine Kündigung der Hosting-Vereinbarung ist frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten möglich. Nach Ablauf kann sie von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet."
+                            data-en="The hosting agreement may only be terminated after the minimum term of 6 months. After expiry, it may be terminated by either party with 30 days' notice at the end of the month. In the event of early termination, the remaining months until the end of the minimum term are fully owed.">
+                            Eine Kündigung der Hosting-Vereinbarung ist frühestens nach Ablauf der Mindestlaufzeit von
+                            6 Monaten möglich. Nach Ablauf kann sie von beiden Seiten mit 30 Tagen Frist auf Monatsende
+                            schriftlich gekündigt werden. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis
+                            zum
+                            Ende der Mindestlaufzeit vollständig geschuldet.</li>
+                        <li data-de="Die Domain ist auf den Auftraggeber registriert und wird bei Kündigung innerhalb von 7 Tagen übertragen. Die Website wird nach Ablauf der Frist vollständig entfernt. Ein Datenexport ist gegen CHF 50.00 möglich."
+                            data-en="The domain is registered in the client's name and will be transferred within 7 days upon termination. The website will be completely removed after the notice period. A data export is available for CHF 50.00.">
+                            Die Domain ist auf den Auftraggeber registriert und wird bei Kündigung innerhalb von 7 Tagen
+                            übertragen. Die Website wird nach Ablauf der Frist vollständig entfernt. Ein Datenexport ist
+                            gegen CHF 50.00 möglich.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="recht" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">16</span>
+                    <h2 data-de="Recht & Gerichtsstand" data-en="Governing Law & Jurisdiction">Recht & Gerichtsstand
+                    </h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Es gilt Schweizer Recht. Gerichtsstand ist Zürich, Schweiz."
+                        data-en="Swiss law applies. The place of jurisdiction is Zurich, Switzerland.">Es gilt Schweizer
+                        Recht. Gerichtsstand ist Zürich, Schweiz.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="salvatorisch" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">17</span>
+                    <h2 data-de="Salvatorische Klausel" data-en="Severability Clause">Salvatorische Klausel</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Anstelle der unwirksamen Bestimmung gilt eine zulässige Regelung, die dem wirtschaftlichen Zweck am nächsten kommt."
+                        data-en="Should any provision of these T&C be invalid, the validity of the remaining provisions shall not be affected. The invalid provision shall be replaced by a permissible rule that most closely achieves the economic purpose.">
+                        Sollte eine Bestimmung dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen
+                        Bestimmungen unberührt. Anstelle der unwirksamen Bestimmung gilt eine zulässige Regelung, die
+                        dem wirtschaftlichen Zweck am nächsten kommt.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+            <div id="schriftform" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">18</span>
+                    <h2 data-de="Schriftform" data-en="Written Form Requirement">Schriftform</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Alle Änderungen oder Ergänzungen dieser AGB bedürfen der Schriftform."
+                        data-en="All amendments or additions to these T&C must be made in writing.">Alle Änderungen oder
+                        Ergänzungen dieser AGB bedürfen der Schriftform.</p>
+                </div>
+            </div>
+            <div class="legal-divider"></div>
+
+            <div id="leistungen" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 3</span>
+                    <h2 data-de="Leistungen" data-en="Services">Leistungen</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Leistungsumfang" data-en="Scope of Services">Leistungsumfang</h3>
+                    <p data-de="Der Leistungsumfang ergibt sich aus dem gewählten Paket (Basic, Growth, Pro oder Partner) und wird im individuellen Angebot verbindlich festgehalten. Angaben auf der Website oder in Marketingunterlagen sind unverbindlich. Massgebend ist ausschliesslich das unterzeichnete Angebot."
+                        data-en="The scope of services is determined by the selected package (Basic, Growth, Pro or Partner) and is binding as set out in the individual offer. Information on the website or in marketing materials is non-binding. Only the signed offer is authoritative.">
+                        Der Leistungsumfang ergibt sich aus dem gewählten Paket (Basic, Growth, Pro oder Partner) und
+                        wird im individuellen Angebot verbindlich festgehalten. Angaben auf der Website oder in
+                        Marketingunterlagen sind unverbindlich. Massgebend ist ausschliesslich das unterzeichnete
+                        Angebot.</p>
+                    <h3 data-de="Entwicklungszeit & Lieferung" data-en="Development Time & Delivery">Entwicklungszeit &
+                        Lieferung</h3>
+                    <p data-de="Die Entwicklung beginnt nach Eingang der Anzahlung und dauert bis zu 15 Arbeitstage. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin."
+                        data-en="Development begins upon receipt of the deposit and takes up to 15 working days. The contractor will notify the client of the completion date in good time.">
+                        Die Entwicklung beginnt nach Eingang der Anzahlung und dauert bis zu 15 Arbeitstage. Der
+                        Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin.</p>
+                    <h3 data-de="Änderungswünsche" data-en="Change Requests">Änderungswünsche</h3>
+                    <ul>
+                        <li data-de="Bis zu 1 Änderungswunsch nach Lieferung ist inklusive."
+                            data-en="Up to 1 change request after delivery is included.">Bis zu 1 Änderungswunsch
+                            nach Lieferung ist inklusive.</li>
+                        <li data-de="Weitere Änderungen werden mit CHF 120.00 pro Stunde berechnet."
+                            data-en="Additional changes will be charged at CHF 120.00 per hour.">Weitere Änderungen
+                            werden mit CHF 120.00 pro Stunde berechnet.</li>
+                    </ul>
+                    <h3 data-de="Unterauftragsvergabe" data-en="Subcontracting">Unterauftragsvergabe</h3>
+                    <p data-de="Der Auftragnehmer kann zur Vertragserfüllung qualifizierte Dritte einsetzen."
+                        data-en="The contractor may engage qualified third parties to fulfil the contract.">Der
+                        Auftragnehmer kann zur Vertragserfüllung qualifizierte Dritte einsetzen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="mitwirkungspflichten" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 4</span>
+                    <h2 data-de="Mitwirkungspflichten" data-en="Client Obligations">Mitwirkungspflichten</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Pflichten des Kunden" data-en="Client's Duties">Pflichten des Kunden</h3>
+                    <p data-de="Der Kunde verpflichtet sich zur aktiven Mitwirkung bei der Projektdurchführung. Insbesondere ist er verpflichtet:"
+                        data-en="The client commits to actively cooperating in the project. In particular, the client is obliged to:">
+                        Der Kunde verpflichtet sich zur aktiven Mitwirkung bei der Projektdurchführung. Insbesondere ist
+                        er verpflichtet:</p>
+                    <ul>
+                        <li data-de="Alle notwendigen Materialien, Texte, Bilder und Informationen rechtzeitig bereitzustellen"
+                            data-en="Provide all necessary materials, texts, images and information in a timely manner">
+                            Alle notwendigen Materialien, Texte, Bilder und Informationen rechtzeitig bereitzustellen
+                        </li>
+                        <li data-de="Freigaben und Entscheidungen innerhalb vereinbarter Fristen zu erteilen"
+                            data-en="Grant approvals and make decisions within agreed deadlines">Freigaben und
+                            Entscheidungen innerhalb vereinbarter Fristen zu erteilen</li>
+                        <li data-de="Einen festen Ansprechpartner mit Entscheidungsbefugnis zu benennen"
+                            data-en="Designate a fixed contact person with decision-making authority">Einen festen
+                            Ansprechpartner mit Entscheidungsbefugnis zu benennen</li>
+                        <li data-de="Zugangsdaten (Server, CMS, Tools) zeitnah zu übermitteln"
+                            data-en="Provide access credentials (server, CMS, tools) promptly">Zugangsdaten (Server,
+                            CMS, Tools) zeitnah zu übermitteln</li>
+                    </ul>
+                    <h3 data-de="Verzögerung durch den Kunden" data-en="Delays Caused by the Client">Verzögerung durch
+                        den Kunden</h3>
+                    <p data-de="Verzögerungen, die durch mangelnde Mitwirkung des Kunden entstehen, berechtigen die Agentur zur entsprechenden Verlängerung der Fristen sowie zur Geltendmachung entstandener Mehrkosten. Die Agentur ist berechtigt, das Projekt nach schriftlicher Mahnung und Fristsetzung ruhend zu stellen."
+                        data-en="Delays resulting from insufficient client cooperation entitle the agency to extend deadlines accordingly and to claim any additional costs incurred. The agency is entitled to suspend the project after written notice and a set deadline.">
+                        Verzögerungen, die durch mangelnde Mitwirkung des Kunden entstehen, berechtigen die Agentur zur
+                        entsprechenden Verlängerung der Fristen sowie zur Geltendmachung entstandener Mehrkosten. Die
+                        Agentur ist berechtigt, das Projekt nach schriftlicher Mahnung und Fristsetzung ruhend zu
+                        stellen.</p>
+                    <h3 data-de="Richtigkeit von Inhalten" data-en="Accuracy of Content">Richtigkeit von Inhalten</h3>
+                    <p data-de="Für die rechtliche Zulässigkeit und inhaltliche Richtigkeit der vom Kunden bereitgestellten Materialien ist ausschliesslich der Kunde verantwortlich."
+                        data-en="The client is solely responsible for the legal permissibility and factual accuracy of materials provided by the client.">
+                        Für die rechtliche Zulässigkeit und inhaltliche Richtigkeit der vom Kunden bereitgestellten
+                        Materialien ist ausschliesslich der Kunde verantwortlich.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="verguetung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 5</span>
+                    <h2 data-de="Vergütung & Zahlung" data-en="Remuneration & Payment">Vergütung &amp; Zahlung</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Preis & Zahlungsbedingungen" data-en="Price & Payment Terms">Preis &
+                        Zahlungsbedingungen</h3>
+                    <ul>
+                        <li data-de="Einmalige Entwicklungsgebühr: gemäss Angebot"
+                            data-en="One-time development fee: as per offer">Einmalige Entwicklungsgebühr: gemäss
+                            Angebot</li>
+                        <li data-de="Monatliche Hosting & Wartungsgebühr: gemäss Angebot"
+                            data-en="Monthly hosting & maintenance fee: as per offer">Monatliche Hosting &
+                            Wartungsgebühr: gemäss Angebot</li>
+                    </ul>
+                    <h3 data-de="Zahlungsplan" data-en="Payment Plan">Zahlungsplan</h3>
+                    <div class="legal-highlight">
+                        <p><strong data-de="Zahlungsplan:" data-en="Payment Plan:">Zahlungsplan:</strong></p>
+                        <p data-de="• 50 % Anzahlung bei Vertragsabschluss (vor Entwicklungsbeginn)"
+                            data-en="• 50% deposit upon signing (before development begins)">• 50 % Anzahlung bei
+                            Vertragsabschluss (vor Entwicklungsbeginn)</p>
+                        <p data-de="• 50 % Restbetrag bei Lieferung der fertigen Website"
+                            data-en="• 50% balance upon delivery of the finished website">• 50 % Restbetrag bei
+                            Lieferung der fertigen Website</p>
+                        <p data-de="Bankverbindung Sin Digital: IBAN CH08 0070 0114 9050 6319 6 | Bank: Zürcher Kantonalbank"
+                            data-en="Bank details Sin Digital: IBAN CH08 0070 0114 9050 6319 6 | Bank: Zürcher Kantonalbank">
+                            Bankverbindung Sin Digital:
+                            IBAN CH08 0070 0114 9050 6319 6 | Bank: Zürcher Kantonalbank</p>
+                    </div>
+                    <h3 data-de="Zahlungsverzug & Mahngebühr" data-en="Late Payment & Reminder Fee">Zahlungsverzug &
+                        Mahngebühr</h3>
+                    <p data-de="Rechnungen sind innert 14 Tagen zahlbar. Bei Zahlungsverzug wird pro Mahnung eine Gebühr von CHF 20.00 erhoben. Bei Zahlungsverzug von mehr als 10 Tagen ist der Auftragnehmer berechtigt, die Website oder Hosting-Leistungen bis zur vollständigen Begleichung vorübergehend zu deaktivieren."
+                        data-en="Invoices are due within 14 days. In case of late payment, a reminder fee of CHF 20.00 will be charged per reminder. If payment is overdue by more than 10 days, the contractor is entitled to temporarily deactivate the website or hosting services until full payment is received.">
+                        Rechnungen sind innert 14 Tagen zahlbar. Bei Zahlungsverzug wird pro Mahnung eine Gebühr von
+                        CHF 20.00 erhoben. Bei Zahlungsverzug von mehr als 10 Tagen ist der Auftragnehmer berechtigt,
+                        die Website oder Hosting-Leistungen bis zur vollständigen Begleichung vorübergehend zu
+                        deaktivieren.</p>
+                    <h3 data-de="Zurückbehaltungsrecht" data-en="Right of Retention">Zurückbehaltungsrecht</h3>
+                    <p data-de="Der Auftragnehmer behält sich das Recht vor, die Website bis zur vollständigen Bezahlung zu deaktivieren oder nicht zu übertragen."
+                        data-en="The contractor reserves the right to deactivate or withhold the website until full payment has been received.">
+                        Der Auftragnehmer behält sich das Recht vor, die Website bis zur vollständigen Bezahlung zu
+                        deaktivieren oder nicht zu übertragen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="nutzungsrechte" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 6</span>
+                    <h2 data-de="Nutzungsrechte & Urheberrecht" data-en="Usage Rights & Copyright">Nutzungsrechte &amp;
+                        Urheberrecht</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Eigentumsrechte & Nutzung" data-en="Ownership & Usage">Eigentumsrechte & Nutzung</h3>
+                    <ul>
+                        <li data-de="Der Quellcode bleibt dauerhaft Eigentum des Auftragnehmers."
+                            data-en="The source code remains the permanent property of the contractor.">Der Quellcode
+                            bleibt dauerhaft Eigentum des Auftragnehmers.</li>
+                        <li data-de="Der Auftraggeber erhält ein nicht übertragbares Nutzungsrecht für die Dauer der Hosting-Vereinbarung."
+                            data-en="The client receives a non-transferable right of use for the duration of the hosting agreement.">
+                            Der Auftraggeber erhält ein nicht übertragbares Nutzungsrecht für die Dauer der
+                            Hosting-Vereinbarung.</li>
+                        <li data-de="Keine Weitergabe oder Lizenzierung an Dritte ohne schriftliche Zustimmung."
+                            data-en="No transfer or licensing to third parties without written consent.">Keine
+                            Weitergabe oder Lizenzierung an Dritte ohne schriftliche Zustimmung.</li>
+                        <li data-de="Der Auftragnehmer darf die Website im Portfolio erwähnen und einen diskreten Hinweis im Footer platzieren."
+                            data-en="The contractor may mention the website in their portfolio and place a discreet note in the footer ('Website created by Sin Digital').">
+                            Der Auftragnehmer darf die Website im Portfolio erwähnen und einen diskreten Hinweis im
+                            Footer platzieren („Website erstellt von Sin Digital").</li>
+                    </ul>
+                    <h3 data-de="Drittanbieter & Open-Source" data-en="Third-Party & Open-Source">Drittanbieter &
+                        Open-Source</h3>
+                    <p data-de="Notwendige Drittanbieter-Leistungen (z.B. Domain, Hosting, Plugins, APIs) werden separat ausgewiesen. Lizenzbedingungen von Drittanbietern sind einzuhalten."
+                        data-en="Necessary third-party services (e.g. domain, hosting, plugins, APIs) are listed separately. Third-party license terms must be complied with.">
+                        Notwendige Drittanbieter-Leistungen (z.B. Domain, Hosting, Plugins, APIs) werden separat
+                        ausgewiesen. Lizenzbedingungen von Drittanbietern sind einzuhalten.</p>
+                    <h3 data-de="Kundenmaterialien" data-en="Client Materials">Kundenmaterialien</h3>
+                    <p data-de="Der Auftraggeber versichert, dass er über alle Rechte an bereitgestellten Materialien verfügt und stellt den Auftragnehmer von Ansprüchen Dritter frei."
+                        data-en="The client warrants that they hold all rights to the materials provided and indemnifies the contractor against third-party claims.">
+                        Der Auftraggeber versichert, dass er über alle Rechte an bereitgestellten Materialien verfügt
+                        und stellt den Auftragnehmer von Ansprüchen Dritter frei.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="geheimhaltung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 7</span>
+                    <h2 data-de="Vertraulichkeit" data-en="Confidentiality">Vertraulichkeit</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Geheimhaltungspflicht" data-en="Confidentiality Obligation">Geheimhaltungspflicht</h3>
+                    <p data-de="Beide Vertragsparteien verpflichten sich, alle im Rahmen der Zusammenarbeit erlangten vertraulichen Informationen der anderen Partei vertraulich zu behandeln und nicht an Dritte weiterzugeben."
+                        data-en="Both parties agree to treat all confidential information obtained in the course of cooperation as confidential and not to disclose it to third parties.">
+                        Beide Vertragsparteien verpflichten sich, alle im Rahmen der Zusammenarbeit erlangten
+                        vertraulichen Informationen der anderen Partei vertraulich zu behandeln und nicht an Dritte
+                        weiterzugeben.</p>
+                    <h3 data-de="Dauer" data-en="Duration">Dauer</h3>
+                    <p data-de="Die Geheimhaltungspflicht besteht während der Laufzeit des Vertrages und für einen Zeitraum von 3 Jahren nach dessen Beendigung."
+                        data-en="The confidentiality obligation applies during the term of the contract and for a period of 3 years after its termination.">
+                        Die Geheimhaltungspflicht besteht während der Laufzeit des Vertrages und für einen Zeitraum von
+                        3 Jahren nach dessen Beendigung.</p>
+                    <h3 data-de="Ausnahmen" data-en="Exceptions">Ausnahmen</h3>
+                    <p data-de="Informationen sind nicht vertraulich, wenn sie öffentlich bekannt sind, der empfangenden Partei bereits bekannt waren oder von Dritten ohne Verletzung einer Geheimhaltungspflicht offenbart wurden."
+                        data-en="Information is not confidential if it is publicly known, was already known to the receiving party, or was disclosed by third parties without breaching any confidentiality obligation.">
+                        Informationen sind nicht vertraulich, wenn sie öffentlich bekannt sind, der empfangenden Partei
+                        bereits bekannt waren oder von Dritten ohne Verletzung einer Geheimhaltungspflicht offenbart
+                        wurden.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="haftung2" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 8</span>
+                    <h2 data-de="Haftung" data-en="Liability">Haftung</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Haftungsausschluss" data-en="Liability Disclaimer">Haftungsausschluss</h3>
+                    <p data-de="Der Auftragnehmer haftet ausschliesslich bei vorsätzlichem oder grob fahrlässigem Verhalten. Die Haftung ist der Höhe nach auf den vereinbarten Projektpreis beschränkt. Eine Haftung für indirekte Schäden, Folgeschäden, entgangenen Gewinn, Datenverlust oder Ansprüche Dritter ist ausgeschlossen."
+                        data-en="The contractor is only liable in cases of intentional or grossly negligent conduct. Liability is limited to the agreed project price. Liability for indirect damages, consequential damages, loss of profit, data loss, or third-party claims is excluded.">
+                        Der Auftragnehmer haftet ausschliesslich bei vorsätzlichem oder grob fahrlässigem Verhalten. Die
+                        Haftung ist der Höhe nach auf den vereinbarten Projektpreis beschränkt. Eine Haftung für
+                        indirekte Schäden, Folgeschäden, entgangenen Gewinn, Datenverlust oder Ansprüche Dritter ist
+                        ausgeschlossen.</p>
+                    <h3 data-de="Freistellung" data-en="Indemnification">Freistellung</h3>
+                    <p data-de="Der Auftraggeber stellt den Auftragnehmer von allen Ansprüchen Dritter frei, die aus der rechtswidrigen Verwendung der Website oder aus rechtswidrigen Inhalten entstehen."
+                        data-en="The client indemnifies the contractor against all third-party claims arising from unlawful use of the website or unlawful content.">
+                        Der Auftraggeber stellt den Auftragnehmer von allen Ansprüchen Dritter frei, die aus der
+                        rechtswidrigen Verwendung der Website oder aus rechtswidrigen Inhalten entstehen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="kuendigung2" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 9</span>
+                    <h2 data-de="Laufzeit & Kündigung" data-en="Term & Termination">Laufzeit &amp; Kündigung</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Kündigung" data-en="Termination">Kündigung</h3>
+                    <ul>
+                        <li data-de="Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet."
+                            data-en="If termination occurs after development has begun, work completed to date will be invoiced proportionally. The deposit is non-refundable.">
+                            Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in
+                            Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet.</li>
+                        <li data-de="Eine Kündigung der Hosting-Vereinbarung ist frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten möglich. Danach kann sie von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet."
+                            data-en="The hosting agreement may only be terminated after the minimum term of 6 months. Thereafter, it may be terminated by either party with 30 days' notice at the end of the month. In the event of early termination, the remaining months until the end of the minimum term are fully owed.">
+                            Eine Kündigung der Hosting-Vereinbarung ist frühestens nach Ablauf der Mindestlaufzeit von
+                            6 Monaten möglich. Danach kann sie von beiden Seiten mit 30 Tagen Frist auf Monatsende
+                            schriftlich gekündigt werden. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis
+                            zum
+                            Ende der Mindestlaufzeit vollständig geschuldet.</li>
+                        <li data-de="Die Domain ist auf den Namen des Auftraggebers registriert und wird bei Kündigung innerhalb von 7 Tagen auf ihn übertragen."
+                            data-en="The domain is registered in the client's name and will be transferred to them within 7 days upon termination.">
+                            Die Domain ist auf den Namen des Auftraggebers registriert und wird bei Kündigung innerhalb
+                            von 7 Tagen auf ihn übertragen.</li>
+                        <li data-de="Die Website wird nach Ablauf der Kündigungsfrist vollständig vom Server entfernt. Ein Datenexport kann gegen eine Pauschale von CHF 50.00 angefordert werden."
+                            data-en="The website will be completely removed from the server after the notice period. A data export can be requested for a flat fee of CHF 50.00.">
+                            Die Website wird nach Ablauf der Kündigungsfrist vollständig vom Server entfernt. Ein
+                            Datenexport kann gegen eine Pauschale von CHF 50.00 angefordert werden.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="schlussbestimmungen" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 10</span>
+                    <h2 data-de="Schlussbestimmungen" data-en="Final Provisions">Schlussbestimmungen</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Anwendbares Recht & Gerichtsstand" data-en="Governing Law & Jurisdiction">Anwendbares
+                        Recht & Gerichtsstand</h3>
+                    <p data-de="Dieser Vertrag unterliegt Schweizer Recht. Gerichtsstand ist Zürich, Schweiz."
+                        data-en="This agreement is governed by Swiss law. The place of jurisdiction is Zurich, Switzerland.">
+                        Dieser Vertrag unterliegt Schweizer Recht. Gerichtsstand ist Zürich, Schweiz.</p>
+                    <h3 data-de="Salvatorische Klausel" data-en="Severability Clause">Salvatorische Klausel</h3>
+                    <p data-de="Sollte eine Bestimmung dieses Vertrags ganz oder teilweise unwirksam oder undurchführbar sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Anstelle der unwirksamen Bestimmung gilt eine rechtlich zulässige Regelung als vereinbart, die dem wirtschaftlichen Zweck der ursprünglichen Bestimmung am nächsten kommt."
+                        data-en="Should any provision of this contract be wholly or partially invalid or unenforceable, the validity of the remaining provisions shall remain unaffected. The invalid provision shall be replaced by a legally permissible rule that most closely serves the economic purpose of the original.">
+                        Sollte eine Bestimmung dieses Vertrags ganz oder teilweise unwirksam oder undurchführbar sein,
+                        bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. Anstelle der unwirksamen Bestimmung
+                        gilt eine rechtlich zulässige Regelung als vereinbart, die dem wirtschaftlichen Zweck der
+                        ursprünglichen Bestimmung am nächsten kommt.</p>
+                    <h3 data-de="Schriftformklausel" data-en="Written Form Clause">Schriftformklausel</h3>
+                    <p data-de="Alle Änderungen oder Ergänzungen müssen schriftlich erfolgen, mündliche Nebenabreden gelten nicht."
+                        data-en="All amendments or additions must be made in writing; verbal side agreements are not valid.">
+                        Alle Änderungen oder Ergänzungen müssen schriftlich erfolgen, mündliche Nebenabreden gelten
+                        nicht.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="browser-kompatibilitaet" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 11</span>
+                    <h2 data-de="Browser- & Geräte-Kompatibilität" data-en="Browser & Device Compatibility">Browser-
+                        &amp; Geräte-Kompatibilität</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer gewährleistet die korrekte Darstellung und Funktion der Website auf aktuellen Versionen der Browser Chrome, Safari und Firefox sowie auf gängigen mobilen Endgeräten (iOS und Android). Ältere Browserversionen sind von dieser Gewährleistung ausgenommen."
+                        data-en="The contractor guarantees the correct display and functionality of the website on current versions of Chrome, Safari and Firefox, as well as on common mobile devices (iOS and Android). Older browser versions are excluded from this warranty.">
+                        Der Auftragnehmer gewährleistet die korrekte Darstellung und Funktion der Website
+                        auf aktuellen Versionen der Browser Chrome, Safari und Firefox sowie auf gängigen mobilen
+                        Endgeräten (iOS und Android). Ältere Browserversionen sind von dieser Gewährleistung
+                        ausgenommen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="backup-regelung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 12</span>
+                    <h2 data-de="Backup-Regelung" data-en="Backup Policy">Backup-Regelung</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer erstellt wöchentliche Backups der Website-Daten im Rahmen der Hosting-Vereinbarung. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt der Auftragnehmer keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt. Dem Auftraggeber wird empfohlen, zusätzlich eigene Datensicherungen vorzunehmen."
+                        data-en="The contractor creates weekly backups of website data as part of the hosting agreement. Backups are retained for a maximum of 6 months and then automatically deleted. Recovery is based exclusively on the most recent available backup. The contractor accepts no liability for data loss resulting from third-party outages, force majeure or cyberattacks, unless intentional or grossly negligent conduct is present. The client is advised to maintain their own additional backups.">
+                        Der Auftragnehmer erstellt wöchentliche Backups der Website-Daten im Rahmen der
+                        Hosting-Vereinbarung. Backups werden maximal 6 Monate aufbewahrt und danach automatisch
+                        gelöscht.
+                        Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei
+                        Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt
+                        der Auftragnehmer keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten
+                        vorliegt. Dem Auftraggeber wird empfohlen, zusätzlich eigene Datensicherungen vorzunehmen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="it-sicherheit" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 13</span>
+                    <h2 data-de="IT-Sicherheit" data-en="IT Security">IT-Sicherheit</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer setzt branchenübliche technische und organisatorische Sicherheitsmassnahmen ein. Eine absolute Sicherheit gegen Hackerangriffe oder unbefugte Zugriffe kann jedoch nicht garantiert werden. Eine Haftung für Cyberangriffe oder Sicherheitsverletzungen durch Dritte ist ausgeschlossen, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt."
+                        data-en="The contractor employs industry-standard technical and organisational security measures. However, absolute protection against cyberattacks or unauthorised access cannot be guaranteed. Liability for cyberattacks or security breaches by third parties is excluded unless intentional or grossly negligent conduct is present.">
+                        Der Auftragnehmer setzt branchenübliche technische und organisatorische Sicherheitsmassnahmen
+                        ein. Eine absolute Sicherheit gegen Hackerangriffe oder unbefugte Zugriffe kann jedoch nicht
+                        garantiert werden. Eine Haftung für Cyberangriffe oder Sicherheitsverletzungen durch Dritte ist
+                        ausgeschlossen, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="zugangsdaten" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 14</span>
+                    <h2 data-de="Login & Zugangsdaten" data-en="Login & Access Data">Login & Zugangsdaten</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer stellt dem Auftraggeber nach Abnahme einen persönlichen Login-Zugang für das Dashboard bereit. Der Auftraggeber ist verpflichtet, seine Zugangsdaten vertraulich zu behandeln und nicht an Dritte weiterzugeben. Bei Verdacht auf Missbrauch oder Verlust ist der Auftraggeber verpflichtet, den Auftragnehmer unverzüglich schriftlich zu informieren. Der Auftragnehmer übernimmt keine Haftung für Schäden durch unsachgemässe Handhabung oder Weitergabe der Zugangsdaten. Bei Kündigung der Hosting-Vereinbarung werden alle Zugangsdaten innerhalb von 7 Tagen vollständig deaktiviert."
+                        data-en="After acceptance, the contractor provides the client with a personal login for the dashboard. The client is obliged to keep access credentials confidential and not share them with third parties. In case of suspected misuse or loss, the client must immediately notify the contractor in writing. The contractor accepts no liability for damages arising from improper handling or disclosure of access credentials. Upon termination of the hosting agreement, all client access credentials will be fully deactivated within 7 days.">
+                        Der Auftragnehmer stellt dem Auftraggeber nach Abnahme einen persönlichen Login-Zugang für das
+                        Dashboard bereit. Der Auftraggeber ist verpflichtet, seine Zugangsdaten vertraulich zu behandeln
+                        und nicht an Dritte weiterzugeben. Bei Verdacht auf Missbrauch oder Verlust ist der Auftraggeber
+                        verpflichtet, den Auftragnehmer unverzüglich schriftlich zu informieren. Der Auftragnehmer
+                        übernimmt keine Haftung für Schäden durch unsachgemässe Handhabung oder Weitergabe der
+                        Zugangsdaten. Bei Kündigung der Hosting-Vereinbarung werden alle Zugangsdaten innerhalb von 7
+                        Tagen vollständig deaktiviert.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="projektkommunikation" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 15</span>
+                    <h2 data-de="Projektkommunikation" data-en="Project Communication">Projektkommunikation</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Projektbezogene Kommunikation sowie Änderungswünsche sind ausschliesslich per E-Mail an die im Vertrag angegebene Adresse einzureichen. Anfragen, Änderungswünsche oder Anweisungen, die über andere Kommunikationskanäle (z. B. WhatsApp, Telefon, SMS oder Social Media) übermittelt werden, gelten erst nach schriftlicher Bestätigung per E-Mail als verbindlich. Der Auftragnehmer ist berechtigt, ausschliesslich auf Grundlage schriftlich bestätigter Anweisungen zu arbeiten."
+                        data-en="Project-related communication and change requests must be submitted exclusively by email to the address specified in the contract. Requests, change requests or instructions submitted via other channels (e.g. WhatsApp, phone, SMS or social media) are only binding after written confirmation by email. The contractor is entitled to work exclusively on the basis of written confirmed instructions.">
+                        Projektbezogene Kommunikation sowie Änderungswünsche sind ausschliesslich per E-Mail an die im
+                        Vertrag angegebene Adresse einzureichen. Anfragen, Änderungswünsche oder Anweisungen, die über
+                        andere Kommunikationskanäle (z. B. WhatsApp, Telefon, SMS oder Social Media) übermittelt werden,
+                        gelten erst nach schriftlicher Bestätigung per E-Mail als verbindlich. Der Auftragnehmer ist
+                        berechtigt, ausschliesslich auf Grundlage schriftlich bestätigter Anweisungen zu arbeiten.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="projektpause" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 16</span>
+                    <h2 data-de="Projektpause bei fehlender Mitwirkung"
+                        data-en="Project Pause Due to Lack of Cooperation">Projektpause bei fehlender Mitwirkung</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Erfolgt über einen Zeitraum von 30 Kalendertagen keine Rückmeldung des Auftraggebers oder werden erforderliche Inhalte (z. B. Texte, Bilder, Logos oder Zugangsdaten) nicht bereitgestellt, gilt das Projekt automatisch als pausiert. Der Auftragnehmer ist berechtigt, das Projekt erst nach erneuter Terminvereinbarung fortzuführen. Eine sofortige Weiterbearbeitung kann in diesem Fall nicht garantiert werden. Eine Verzögerung durch fehlende Mitwirkung des Auftraggebers verlängert sämtliche vereinbarten Lieferfristen entsprechend."
+                        data-en="If the client does not respond within 30 calendar days or fails to provide required content (e.g. texts, images, logos or access data), the project is automatically considered paused. The contractor is entitled to resume the project only after a new appointment has been arranged. Immediate continuation cannot be guaranteed in this case. Delays caused by lack of client cooperation extend all agreed delivery deadlines accordingly.">
+                        Erfolgt über einen Zeitraum von 30 Kalendertagen keine Rückmeldung des Auftraggebers oder werden
+                        erforderliche Inhalte (z. B. Texte, Bilder, Logos oder Zugangsdaten) nicht bereitgestellt, gilt
+                        das
+                        Projekt automatisch als pausiert. Der Auftragnehmer ist berechtigt, das Projekt erst nach
+                        erneuter
+                        Terminvereinbarung fortzuführen. Eine sofortige Weiterbearbeitung kann in diesem Fall nicht
+                        garantiert
+                        werden. Eine Verzögerung durch fehlende Mitwirkung des Auftraggebers verlängert sämtliche
+                        vereinbarten
+                        Lieferfristen entsprechend.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="referenznutzung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 17</span>
+                    <h2 data-de="Referenznutzung & Marketing" data-en="Reference Use & Marketing">Referenznutzung &amp;
+                        Marketing</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer ist berechtigt, das erstellte Projekt nach Veröffentlichung zu Referenzzwecken zu nutzen. Dies umfasst insbesondere die Darstellung der Website, Screenshots, die Nennung des Firmennamens sowie die Verwendung des Logos des Auftraggebers auf der Website, in Präsentationen, Social Media, Referenzlisten und sonstigen Marketingunterlagen des Auftragnehmers."
+                        data-en="The contractor is entitled to use the completed project for reference purposes after publication. This includes, in particular, the display of the website, screenshots, the mention of the company name and the use of the client's logo on the website, in presentations, social media, reference lists and other marketing materials of the contractor.">
+                        Der Auftragnehmer ist berechtigt, das erstellte Projekt nach Veröffentlichung zu Referenzzwecken
+                        zu
+                        nutzen. Dies umfasst insbesondere die Darstellung der Website, Screenshots, die Nennung des
+                        Firmennamens sowie die Verwendung des Logos des Auftraggebers auf der Website, in
+                        Präsentationen,
+                        Social Media, Referenzlisten und sonstigen Marketingunterlagen des Auftragnehmers.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="unangemessenes-verhalten" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 18</span>
+                    <h2 data-de="Beendigung bei unangemessenem Verhalten"
+                        data-en="Termination Due to Inappropriate Behaviour">Beendigung bei unangemessenem Verhalten
+                    </h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer behält sich das Recht vor, die Zusammenarbeit ausserordentlich zu beenden, sofern der Auftraggeber wiederholt unangemessenes Verhalten zeigt. Dazu zählen insbesondere Beleidigungen, Drohungen, unzumutbare Anforderungen oder ein Verhalten, das eine professionelle Zusammenarbeit erheblich beeinträchtigt. In diesem Fall werden bereits erbrachte Leistungen anteilsmässig verrechnet. Bereits geleistete Zahlungen werden nicht zurückerstattet."
+                        data-en="The contractor reserves the right to terminate the collaboration with immediate effect if the client repeatedly displays inappropriate behaviour. This includes, in particular, insults, threats, unreasonable demands or conduct that significantly impairs professional cooperation. In such cases, services already rendered will be invoiced proportionally. Payments already made will not be refunded.">
+                        Der Auftragnehmer behält sich das Recht vor, die Zusammenarbeit ausserordentlich zu beenden,
+                        sofern
+                        der Auftraggeber wiederholt unangemessenes Verhalten zeigt. Dazu zählen insbesondere
+                        Beleidigungen,
+                        Drohungen, unzumutbare Anforderungen oder ein Verhalten, das eine professionelle Zusammenarbeit
+                        erheblich beeinträchtigt. In diesem Fall werden bereits erbrachte Leistungen anteilsmässig
+                        verrechnet.
+                        Bereits geleistete Zahlungen werden nicht zurückerstattet.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="eigentumsvorbehalt" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 19</span>
+                    <h2 data-de="Eigentumsvorbehalt" data-en="Retention of Title">Eigentumsvorbehalt</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Bis zur vollständigen Begleichung aller aus diesem Vertrag resultierenden Forderungen bleibt die erstellte Website, einschliesslich Design, Struktur, Quellcode und sämtlicher damit verbundenen Dateien, Eigentum des Auftragnehmers. Der Auftraggeber erhält erst nach vollständiger Bezahlung sämtlicher Rechnungen das vertraglich vereinbarte Nutzungsrecht. Der Auftragnehmer ist berechtigt, die Website oder einzelne Funktionen vorübergehend zu deaktivieren, sofern offene Forderungen bestehen oder vereinbarte Zahlungen nicht fristgerecht erfolgen. Eine dauerhafte Nutzung der Website ohne vollständige Zahlung der vereinbarten Vergütung ist ausgeschlossen."
+                        data-en="Until full payment of all claims arising from this contract, the created website, including design, structure, source code and all associated files, remains the property of the contractor. The client only receives the contractually agreed right of use after full payment of all invoices. The contractor is entitled to temporarily deactivate the website or individual functions if outstanding claims exist or agreed payments are not made on time. Permanent use of the website without full payment of the agreed remuneration is excluded.">
+                        Bis zur vollständigen Begleichung aller aus diesem Vertrag resultierenden Forderungen bleibt die
+                        erstellte Website, einschliesslich Design, Struktur, Quellcode und sämtlicher damit verbundenen
+                        Dateien, Eigentum des Auftragnehmers. Der Auftraggeber erhält erst nach vollständiger Bezahlung
+                        sämtlicher Rechnungen das vertraglich vereinbarte Nutzungsrecht. Der Auftragnehmer ist
+                        berechtigt,
+                        die Website oder einzelne Funktionen vorübergehend zu deaktivieren, sofern offene Forderungen
+                        bestehen oder vereinbarte Zahlungen nicht fristgerecht erfolgen. Eine dauerhafte Nutzung der
+                        Website
+                        ohne vollständige Zahlung der vereinbarten Vergütung ist ausgeschlossen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="scope-creep" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 20</span>
+                    <h2 data-de="Leistungsabgrenzung" data-en="Scope Definition">Leistungsabgrenzung</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Leistungsumfang ergibt sich ausschliesslich aus dem vom Auftraggeber gewählten Paket sowie dem unterzeichneten Angebot. Leistungen, Funktionen, Seiten, Integrationen oder Anpassungen, die nicht ausdrücklich im Angebot aufgeführt sind, gelten als zusätzliche Leistungen. Solche zusätzlichen Leistungen werden ausschliesslich nach vorheriger Abstimmung erbracht und separat zu CHF 120.00 pro Stunde verrechnet oder in einem separaten Angebot festgehalten. Der Auftragnehmer ist nicht verpflichtet, Leistungen zu erbringen, die über den vereinbarten Leistungsumfang hinausgehen. Zusätzliche Anforderungen können die vereinbarte Lieferfrist entsprechend verlängern."
+                        data-en="The scope of services is determined exclusively by the client's selected package and the signed offer. Services, features, pages, integrations or adjustments not expressly listed in the offer are considered additional services. Such additional services will only be provided after prior agreement and will be billed separately at CHF 120.00 per hour or recorded in a separate offer. The contractor is not obliged to provide services that exceed the agreed scope. Additional requirements may extend the agreed delivery deadline accordingly.">
+                        Der Leistungsumfang ergibt sich ausschliesslich aus dem vom Auftraggeber gewählten Paket sowie
+                        dem
+                        unterzeichneten Angebot. Leistungen, Funktionen, Seiten, Integrationen oder Anpassungen, die
+                        nicht
+                        ausdrücklich im Angebot aufgeführt sind, gelten als zusätzliche Leistungen. Solche zusätzlichen
+                        Leistungen werden ausschliesslich nach vorheriger Abstimmung erbracht und separat zu CHF 120.00
+                        pro
+                        Stunde verrechnet oder in einem separaten Angebot festgehalten. Der Auftragnehmer ist nicht
+                        verpflichtet,
+                        Leistungen zu erbringen, die über den vereinbarten Leistungsumfang hinausgehen. Zusätzliche
+                        Anforderungen
+                        können die vereinbarte Lieferfrist entsprechend verlängern.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="online-stellung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 21</span>
+                    <h2 data-de="Online-Stellung & Domainzugang" data-en="Go-Live & Domain Access">Online-Stellung &amp;
+                        Domainzugang</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Mit Unterzeichnung dieses Vertrags erteilt der Auftraggeber dem Auftragnehmer die uneingeschränkte Erlaubnis, die Website online zu stellen. Der Auftraggeber verpflichtet sich, dem Auftragnehmer sämtliche notwendigen Zugangsdaten zu Domain, Hosting, Server, CMS und weiteren relevanten Systemen vollständig und korrekt zur Verfügung zu stellen. Die Online-Stellung der Website erfolgt erst nach Bereitstellung dieser Zugänge. Sollte der Auftraggeber diese Zugänge nicht bereitstellen, wird der Auftragnehmer von jeglicher Verantwortung für Verzögerungen oder fehlende Online-Stellung freigestellt."
+                        data-en="By signing this contract, the client grants the contractor unrestricted permission to publish the website. The client undertakes to provide the contractor with all necessary access credentials for domain, hosting, server, CMS and other relevant systems completely and correctly. The website will only go live after these credentials have been provided. If the client fails to provide these credentials, the contractor is released from any responsibility for delays or failure to go live.">
+                        Mit Unterzeichnung dieses Vertrags erteilt der Auftraggeber dem Auftragnehmer die
+                        uneingeschränkte
+                        Erlaubnis, die Website online zu stellen. Der Auftraggeber verpflichtet sich, dem Auftragnehmer
+                        sämtliche notwendigen Zugangsdaten zu Domain, Hosting, Server, CMS und weiteren relevanten
+                        Systemen
+                        vollständig und korrekt zur Verfügung zu stellen. Die Online-Stellung der Website erfolgt erst
+                        nach
+                        Bereitstellung dieser Zugänge. Sollte der Auftraggeber diese Zugänge nicht bereitstellen, wird
+                        der
+                        Auftragnehmer von jeglicher Verantwortung für Verzögerungen oder fehlende Online-Stellung
+                        freigestellt.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <div id="datenschutzerklaerung-impressum" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">§ 22</span>
+                    <h2 data-de="Datenschutzerklärung & Impressum" data-en="Privacy Policy & Legal Notice">
+                        Datenschutzerklärung &amp; Impressum</h2>
+                </div>
+                <div class="legal-block">
+                    <p data-de="Der Auftragnehmer erstellt im Rahmen des Projekts eine Datenschutzerklärung sowie ein Impressum gemäss den Anforderungen des Schweizer Datenschutzgesetzes (DSG). Der Auftraggeber ist verantwortlich, den Auftragnehmer über alle datenschutzrelevanten Informationen rechtzeitig zu informieren. Änderungen an gesetzlichen Anforderungen nach Abnahme der Website obliegen dem Auftraggeber und werden separat verrechnet."
+                        data-en="As part of the project, the contractor creates a privacy policy and legal notice in accordance with the requirements of the Swiss Data Protection Act (DSG). The client is responsible for informing the contractor of all data protection-relevant information in a timely manner. Changes to legal requirements after acceptance of the website are the responsibility of the client and will be billed separately.">
+                        Der Auftragnehmer erstellt im Rahmen des Projekts eine Datenschutzerklärung sowie ein Impressum
+                        gemäss den Anforderungen des Schweizer Datenschutzgesetzes (DSG). Der Auftraggeber ist
+                        verantwortlich,
+                        den Auftragnehmer über alle datenschutzrelevanten Informationen rechtzeitig zu informieren.
+                        Änderungen
+                        an gesetzlichen Anforderungen nach Abnahme der Website obliegen dem Auftraggeber und werden
+                        separat
+                        verrechnet.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <footer class="footer-legal" role="contentinfo">
+                <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten."
+                    data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital Agentur Zürich.
+                    Alle Rechte vorbehalten.</p>
+                <nav class="footer-links" aria-label="Rechtliche Links">
+                    <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+                    <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+                    <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
+                </nav>
+            </footer>
+        </div>
+    </main>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Nach oben scrollen"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(100px);pointer-events:none;z-index:0;"
+        aria-hidden="true"></div>
+    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(100px);pointer-events:none;z-index:0;"
+        aria-hidden="true"></div>
+
+    <!-- Language Switcher + Animations -->
+    <script>
+        let currentLang = localStorage.getItem('sindigital-lang') || 'de';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('sindigital-lang', lang);
+            applyLang();
+        }
+
+        function applyLang() {
+            document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            document.querySelectorAll('[data-de][data-en]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            });
+            document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
+            });
+            document.documentElement.lang = currentLang;
+        }
+
+        // Scroll-to-top button
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // Section reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.legal-grid').forEach(el => observer.observe(el));
+
+        window.addEventListener('load', applyLang);
+    </script>
+
+</body>
+
+</html>

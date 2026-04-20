@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung | Sin Digital Agentur Zürich</title>
+    <link rel="icon" type="image/png" href="/assets/ICON-Logo_Sin-Digital.png">
+    <meta name="description" content="Datenschutzerklärung der Sin Digital Agentur Zürich gemäss Schweizer DSG.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.sin-digital.com/datenschutz.html">
+    <link rel="stylesheet" href="styles.min.css">
+    <style>
+        /* ── RESET & BASE ── */
+        .legal-page {
+            padding-top: 7rem;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        .legal-page>.container {
+            max-width: 100%;
+            padding: 0 clamp(1.5rem, 5vw, 6rem);
+        }
+
+        /* ── HERO ── */
+        .legal-hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .legal-tag {
+            color: #C1FF72;
+            font-size: 0.8rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.1s;
+        }
+
+        .legal-tag::after {
+            content: '';
+            width: 3rem;
+            height: 1px;
+            background: #C1FF72;
+        }
+
+        .legal-title {
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.25s;
+        }
+
+        .legal-subtitle {
+            color: #9ca3af;
+            font-size: 1rem;
+            max-width: 30rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.4s;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── TOC ── */
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.6s ease forwards 0.55s;
+        }
+
+        .toc-link {
+            color: #9ca3af;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.4rem 0.85rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            background: rgba(255, 255, 255, 0.02);
+            letter-spacing: 0.02em;
+        }
+
+        .toc-link:hover {
+            background: #C1FF72;
+            color: #010101;
+            border-color: #C1FF72;
+            transform: translateY(-1px);
+        }
+
+        /* ── DIVIDER ── */
+        .legal-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.06);
+            margin: 0;
+            width: 100%;
+        }
+
+        /* ── SECTIONS ── */
+        .legal-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 2.5rem 0;
+            align-items: start;
+            opacity: 0;
+            transform: translateY(16px);
+        }
+
+        .legal-grid.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        @media (min-width: 900px) {
+            .legal-grid {
+                grid-template-columns: 300px 1fr;
+                gap: 5rem;
+                padding: 3rem 0;
+            }
+
+            .legal-grid.wide {
+                grid-template-columns: 300px 1fr;
+            }
+        }
+
+        .legal-block {
+            position: relative;
+        }
+
+        .legal-block-label {
+            color: #C1FF72;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+        }
+
+        .legal-block-label::after {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: rgba(193, 255, 114, 0.25);
+        }
+
+        .legal-block h2 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            position: sticky;
+            top: 5.5rem;
+        }
+
+        .legal-block h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #C1FF72;
+            margin-bottom: 0.5rem;
+            margin-top: 1.75rem;
+            letter-spacing: 0.01em;
+        }
+
+        .legal-block h3:first-child {
+            margin-top: 0;
+        }
+
+        .legal-block p {
+            color: #9ca3af;
+            line-height: 1.75;
+            margin-bottom: 0.75rem;
+            font-size: 0.925rem;
+        }
+
+        .legal-block a {
+            color: #C1FF72;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .legal-block a:hover {
+            opacity: 0.7;
+        }
+
+        .legal-block ul {
+            list-style: none;
+            padding: 0;
+            color: #9ca3af;
+        }
+
+        .legal-block ul li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            gap: 0.75rem;
+            line-height: 1.65;
+            font-size: 0.925rem;
+        }
+
+        .legal-block ul li:last-child {
+            border-bottom: none;
+        }
+
+        .legal-block ul li::before {
+            content: '→';
+            color: #C1FF72;
+            flex-shrink: 0;
+            font-size: 0.85rem;
+            margin-top: 0.1rem;
+        }
+
+        /* ── HIGHLIGHT ── */
+        .legal-highlight {
+            background: rgba(193, 255, 114, 0.04);
+            border: 1px solid rgba(193, 255, 114, 0.12);
+            border-left: 3px solid #C1FF72;
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .legal-highlight p {
+            color: rgba(255, 255, 255, 0.9) !important;
+            margin: 0 0 0.35rem;
+            font-size: 0.9rem;
+        }
+
+        .legal-highlight p:last-child {
+            margin: 0;
+        }
+
+        .legal-highlight a {
+            color: #C1FF72;
+            text-decoration: none;
+        }
+
+        .legal-number {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 5rem;
+            font-weight: 900;
+            opacity: 0.04;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* ── RIGHTS GRID ── */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .rights-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .right-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.25rem;
+            border-radius: 6px;
+            transition: all 0.25s ease;
+        }
+
+        .right-card:hover {
+            border-color: rgba(193, 255, 114, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .right-card h4 {
+            color: #C1FF72;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .right-card p {
+            color: #9ca3af;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ── FOOTER ── */
+        .footer-legal {
+            padding: 2.5rem 0 6rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            align-items: center;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-legal {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .footer-legal p {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #C1FF72;
+        }
+
+        /* ── SCROLL-TO-TOP ── */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(193, 255, 114, 0.1);
+            border: 1px solid rgba(193, 255, 114, 0.2);
+            color: #C1FF72;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top-btn:hover {
+            background: #C1FF72;
+            color: #010101;
+        }
+
+        /* ── NAV ── */
+        #main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-back {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover {
+            color: #C1FF72;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 0.2rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #6b7280;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.3rem 0.65rem;
+            border-radius: 50px;
+            transition: all 0.25s ease;
+        }
+
+        .lang-btn.active {
+            background: #C1FF72;
+            color: #010101;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: #C1FF72;
+        }
+
+        /* ── RESPONSIVE ── */
+
+        /* Tablet landscape */
+        @media (max-width: 1024px) {
+            .legal-page>.container {
+                padding: 0 clamp(1.25rem, 4vw, 4rem);
+            }
+        }
+
+        /* Tablet portrait */
+        @media (max-width: 768px) {
+            .legal-page {
+                padding-top: 5.5rem;
+            }
+
+            .legal-page>.container {
+                padding: 0 1.25rem;
+            }
+
+            .legal-hero {
+                min-height: 35vh;
+                margin-bottom: 1.5rem;
+            }
+
+            .legal-title {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+                word-break: break-word;
+                hyphens: auto;
+            }
+
+            .legal-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .toc {
+                gap: 0.4rem;
+                margin-bottom: 2rem;
+            }
+
+            .toc-link {
+                padding: 0.35rem 0.7rem;
+                font-size: 0.7rem;
+            }
+
+            .legal-grid {
+                padding: 1.75rem 0;
+                gap: 1rem;
+            }
+
+            .legal-block h2 {
+                position: static;
+                font-size: clamp(1.15rem, 4vw, 1.5rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .legal-block h3 {
+                font-size: 0.9rem;
+                margin-top: 1.25rem;
+            }
+
+            .legal-block p {
+                font-size: 0.875rem;
+                line-height: 1.7;
+            }
+
+            .legal-block ul li {
+                font-size: 0.875rem;
+                line-height: 1.6;
+                gap: 0.5rem;
+            }
+
+            .legal-highlight {
+                padding: 1rem 1.15rem;
+                margin: 1rem 0;
+            }
+
+            .legal-highlight p {
+                font-size: 0.85rem;
+            }
+
+            #main-nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav-logo img {
+                height: 36px;
+            }
+
+            .nav-right {
+                gap: 0.75rem;
+            }
+
+            .nav-back {
+                font-size: 0.7rem;
+            }
+
+            .rights-grid {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .right-card {
+                padding: 1rem;
+            }
+
+            .right-card h4 {
+                font-size: 0.85rem;
+            }
+
+            .right-card p {
+                font-size: 0.8rem;
+            }
+
+            .footer-legal {
+                padding: 2rem 0 4rem;
+                gap: 1rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 1.25rem;
+                right: 1.25rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile small */
+        @media (max-width: 480px) {
+            .legal-page {
+                padding-top: 5rem;
+            }
+
+            .legal-page>.container {
+                padding: 0 1rem;
+            }
+
+            .legal-hero {
+                min-height: 30vh;
+                margin-bottom: 1rem;
+            }
+
+            .legal-title {
+                font-size: clamp(1.75rem, 9vw, 2.5rem);
+            }
+
+            .legal-tag {
+                font-size: 0.7rem;
+                letter-spacing: 0.25em;
+                margin-bottom: 1rem;
+            }
+
+            .legal-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .toc {
+                gap: 0.35rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .toc-link {
+                padding: 0.3rem 0.55rem;
+                font-size: 0.65rem;
+            }
+
+            .legal-grid {
+                padding: 1.5rem 0;
+                gap: 0.75rem;
+            }
+
+            .legal-block-label {
+                font-size: 0.6rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .legal-block h2 {
+                font-size: clamp(1.05rem, 5vw, 1.3rem);
+            }
+
+            .legal-block h3 {
+                font-size: 0.85rem;
+                margin-top: 1rem;
+            }
+
+            .legal-block p {
+                font-size: 0.825rem;
+                line-height: 1.65;
+            }
+
+            .legal-block ul li {
+                font-size: 0.825rem;
+                padding: 0.45rem 0;
+            }
+
+            .legal-highlight {
+                padding: 0.85rem 1rem;
+                border-radius: 0 6px 6px 0;
+            }
+
+            .legal-highlight p {
+                font-size: 0.8rem;
+            }
+
+            .right-card {
+                padding: 0.85rem;
+            }
+
+            .right-card h4 {
+                font-size: 0.8rem;
+                margin-bottom: 0.35rem;
+            }
+
+            .right-card p {
+                font-size: 0.75rem;
+            }
+
+            #main-nav {
+                padding: 0.6rem 0.85rem;
+            }
+
+            .nav-logo img {
+                height: 32px;
+            }
+
+            .nav-right {
+                gap: 0.5rem;
+            }
+
+            .nav-back {
+                font-size: 0.65rem;
+                letter-spacing: 0.05em;
+            }
+
+            .lang-switcher {
+                padding: 0.15rem;
+            }
+
+            .lang-btn {
+                font-size: 0.6rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .footer-legal {
+                padding: 1.5rem 0 3.5rem;
+            }
+
+            .footer-legal p {
+                font-size: 0.78rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+
+            .footer-links a {
+                font-size: 0.75rem;
+            }
+
+            .scroll-top-btn {
+                bottom: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra small */
+        @media (max-width: 360px) {
+            .legal-page>.container {
+                padding: 0 0.75rem;
+            }
+
+            .legal-title {
+                font-size: clamp(1.5rem, 10vw, 2rem);
+            }
+
+            .toc-link {
+                padding: 0.25rem 0.45rem;
+                font-size: 0.6rem;
+            }
+
+            .legal-block h2 {
+                font-size: 1rem;
+            }
+
+            .nav-back span {
+                display: none;
+            }
+        }
+
+        /* Overflow safety */
+        .legal-block p,
+        .legal-block li,
+        .legal-highlight p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="main-nav" role="navigation" aria-label="Hauptnavigation">
+        <a href="/" class="nav-logo" title="Sin Digital Agentur Zürich">
+            <img src="/assets/Logo_Sin-Digital.png" alt="Sin Digital Agentur Zürich" width="160" height="44"
+                fetchpriority="high">
+        </a>
+        <div class="nav-right">
+            <a href="/" class="nav-back">← <span data-de="Zurück" data-en="Back">Zurück</span></a>
+            <div class="lang-switcher">
+                <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="legal-page">
+        <div class="container">
+
+            <!-- Hero -->
+            <div class="legal-hero">
+                <span class="legal-tag" data-de="DSG-Konform" data-en="FADP-Compliant">DSG-Konform</span>
+                <h1 class="legal-title">
+                    <span data-de="DATEN" data-en="DATA">DATEN</span><span class="text-green" data-de="SCHUTZ"
+                        data-en="PRIVACY">SCHUTZ</span>
+                </h1>
+                <p class="legal-subtitle"
+                    data-de="Transparente Information über die Verarbeitung Ihrer personenbezogenen Daten gemäss Schweizer Datenschutzgesetz (DSG)."
+                    data-en="Transparent information about the processing of your personal data in accordance with the Swiss Federal Act on Data Protection (FADP).">
+                    Transparente Information über die Verarbeitung Ihrer personenbezogenen Daten gemäss Schweizer
+                    Datenschutzgesetz (DSG).</p>
+                <p style="color:#6b7280;margin-top:1rem;font-size:0.85rem;opacity:0;animation:fadeSlideUp 0.6s ease forwards 0.5s;"
+                    data-de="Stand: Februar 2026" data-en="As of: February 2026">Stand: Februar 2026</p>
+            </div>
+
+            <!-- TOC -->
+            <nav class="toc" aria-label="Inhaltsverzeichnis">
+                <a href="#verantwortlicher" class="toc-link" data-de="Verantwortlicher"
+                    data-en="Controller">Verantwortlicher</a>
+                <a href="#erhebung" class="toc-link" data-de="Datenerhebung" data-en="Data Collection">Datenerhebung</a>
+                <a href="#zweck" class="toc-link" data-de="Verarbeitungszwecke"
+                    data-en="Purposes">Verarbeitungszwecke</a>
+                <a href="#rechtsgrundlagen" class="toc-link" data-de="Rechtsgrundlagen"
+                    data-en="Legal Basis">Rechtsgrundlagen</a>
+                <a href="#empfaenger" class="toc-link" data-de="Empfänger" data-en="Recipients">Empfänger</a>
+                <a href="#speicherung" class="toc-link" data-de="Speicherdauer" data-en="Retention">Speicherdauer</a>
+                <a href="#rechte" class="toc-link" data-de="Ihre Rechte" data-en="Your Rights">Ihre Rechte</a>
+                <a href="#cookies" class="toc-link" data-de="Cookies" data-en="Cookies">Cookies</a>
+                <a href="#tools" class="toc-link" data-de="Externe Dienste" data-en="External Services">Externe
+                    Dienste</a>
+            </nav>
+
+            <div class="legal-divider"></div>
+
+            <!-- Verantwortlicher -->
+            <div id="verantwortlicher" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label">Art. 19 DSG</span>
+                    <h2 data-de="Verantwortlicher" data-en="Controller">Verantwort&shy;licher</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Datenschutzverantwortlicher" data-en="Data Protection Officer">
+                        Datenschutzverantwortlicher</h3>
+                    <div class="legal-highlight">
+                        <p><strong>Sin Digital</strong></p>
+                        <p>Langwattstrasse 51</p>
+                        <p>E-Mail: <a href="mailto:info@sin-digital.com">info@sin-digital.com</a></p>
+                        <p><span data-de="Telefon" data-en="Phone">Telefon</span>: <a href="tel:+41783187887">+41 78 318
+                                78 87</a></p>
+                        <p>Website: <a href="https://www.sin-digital.com/" target="_blank"
+                                rel="noopener">www.sin-digital.com</a></p>
+                    </div>
+                    <h3 data-de="Kontakt Datenschutz" data-en="Data Protection Contact">Kontakt Datenschutz</h3>
+                    <p data-de="Bei Fragen zum Datenschutz wenden Sie sich direkt an: Cem Sin – info@sin-digital.com"
+                        data-en="For questions about data protection, contact: Cem Sin – info@sin-digital.com">Bei
+                        Fragen zum Datenschutz wenden Sie sich direkt an: Cem Sin – <a
+                            href="mailto:info@sin-digital.com">info@sin-digital.com</a></p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Datenerhebung -->
+            <div id="erhebung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Welche Daten" data-en="What Data">Welche Daten</span>
+                    <h2 data-de="Erhobene Daten" data-en="Data Collected">Erhobene Daten</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Automatisch erfasste Daten (Serverlog)"
+                        data-en="Automatically Collected Data (Server Log)">Automatisch erfasste Daten (Serverlog)</h3>
+                    <p data-de="Beim Besuch unserer Website werden automatisch folgende technische Daten erfasst:"
+                        data-en="When you visit our website, the following technical data is automatically collected:">
+                        Beim Besuch unserer Website werden automatisch folgende technische Daten erfasst:</p>
+                    <ul>
+                        <li data-de="IP-Adresse des anfragenden Gerätes (anonymisiert nach 24h)"
+                            data-en="IP address of the requesting device (anonymised after 24h)">IP-Adresse des
+                            anfragenden Gerätes (anonymisiert nach 24h)</li>
+                        <li data-de="Datum und Uhrzeit des Zugriffs" data-en="Date and time of access">Datum und Uhrzeit
+                            des Zugriffs</li>
+                        <li data-de="Aufgerufene URL und Referrer-URL" data-en="Requested URL and referrer URL">
+                            Aufgerufene URL und Referrer-URL</li>
+                        <li data-de="Übertragene Datenmenge und HTTP-Statuscode"
+                            data-en="Data volume transferred and HTTP status code">Übertragene Datenmenge und
+                            HTTP-Statuscode</li>
+                        <li data-de="Browser-Typ, -Version und Betriebssystem"
+                            data-en="Browser type, version and operating system">Browser-Typ, -Version und
+                            Betriebssystem</li>
+                    </ul>
+                    <h3 data-de="Kontaktformular" data-en="Contact Form">Kontaktformular</h3>
+                    <p data-de="Wenn Sie unser Kontaktformular nutzen, verarbeiten wir:"
+                        data-en="When you use our contact form, we process:">Wenn Sie unser Kontaktformular nutzen,
+                        verarbeiten wir:</p>
+                    <ul>
+                        <li data-de="Name und E-Mail-Adresse (Pflichtfelder)"
+                            data-en="Name and email address (required fields)">Name und E-Mail-Adresse (Pflichtfelder)
+                        </li>
+                        <li data-de="Betreff und Nachrichteninhalt" data-en="Subject and message content">Betreff und
+                            Nachrichteninhalt</li>
+                        <li data-de="Zeitpunkt der Kontaktaufnahme" data-en="Time of contact">Zeitpunkt der
+                            Kontaktaufnahme</li>
+                    </ul>
+                    <h3 data-de="Bewerbungsdaten" data-en="Application Data">Bewerbungsdaten</h3>
+                    <p data-de="Im Rahmen von Bewerbungen verarbeiten wir die von Ihnen übermittelten Bewerbungsunterlagen (Name, Kontaktdaten, Lebenslauf, Qualifikationen)."
+                        data-en="In the context of applications, we process the documents you submit (name, contact details, CV, qualifications).">
+                        Im Rahmen von Bewerbungen verarbeiten wir die von Ihnen übermittelten Bewerbungsunterlagen
+                        (Name, Kontaktdaten, Lebenslauf, Qualifikationen).</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Zwecke -->
+            <div id="zweck" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Wozu" data-en="Why">Wozu</span>
+                    <h2 data-de="Verarbeitungszwecke" data-en="Purposes of Processing">Verarbei&shy;tungs&shy;zwecke
+                    </h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Websitebetrieb" data-en="Website Operation">Websitebetrieb</h3>
+                    <p data-de="Die Verarbeitung von Serverlogdaten ist technisch notwendig, um die Website stabil, sicher und korrekt auszuliefern und um Angriffe oder Fehler erkennen zu können."
+                        data-en="Processing server log data is technically necessary to deliver the website stably, securely and correctly, and to detect attacks or errors.">
+                        Die Verarbeitung von Serverlogdaten ist technisch notwendig, um die Website stabil, sicher und
+                        korrekt auszuliefern und um Angriffe oder Fehler erkennen zu können.</p>
+                    <h3 data-de="Anfragenbearbeitung" data-en="Handling Enquiries">Anfragenbearbeitung</h3>
+                    <p data-de="Kontaktformulardaten verwenden wir ausschliesslich zur Bearbeitung Ihrer Anfrage und gegebenenfalls für eine Vertragsanbahnung. Eine Weitergabe an Dritte erfolgt nicht ohne Ihre Zustimmung."
+                        data-en="We use contact form data solely to process your enquiry and, where applicable, to initiate a contract. Data is not shared with third parties without your consent.">
+                        Kontaktformulardaten verwenden wir ausschliesslich zur Bearbeitung Ihrer Anfrage und
+                        gegebenenfalls für eine Vertragsanbahnung. Eine Weitergabe an Dritte erfolgt nicht ohne Ihre
+                        Zustimmung.</p>
+                    <h3 data-de="Vertragserfüllung" data-en="Contract Performance">Vertragserfüllung</h3>
+                    <p data-de="Bei Vertragsschluss verarbeiten wir die erforderlichen Daten zur Erbringung unserer Dienstleistungen, Rechnungsstellung und Kommunikation im Rahmen des Projekts."
+                        data-en="Upon conclusion of a contract, we process the necessary data to provide our services, issue invoices and communicate within the scope of the project.">
+                        Bei Vertragsschluss verarbeiten wir die erforderlichen Daten zur Erbringung unserer
+                        Dienstleistungen, Rechnungsstellung und Kommunikation im Rahmen des Projekts.</p>
+                    <h3 data-de="Sicherheit" data-en="Security">Sicherheit</h3>
+                    <p data-de="Zur Erkennung und Abwehr von Angriffen, Spam und missbräuchlicher Nutzung unserer Services."
+                        data-en="To detect and defend against attacks, spam and misuse of our services.">Zur Erkennung
+                        und Abwehr von Angriffen, Spam und missbräuchlicher Nutzung unserer Services.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Rechtsgrundlagen -->
+            <div id="rechtsgrundlagen" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Rechtsbasis" data-en="Legal Basis">Rechtsbasis</span>
+                    <h2 data-de="Rechtsgrundlagen" data-en="Legal Bases">Rechts&shy;grund&shy;lagen</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li data-de="Art. 31 DSG – Einwilligung (z. B. Newsletter, optionale Cookies)"
+                            data-en="Art. 31 FADP – Consent (e.g. newsletter, optional cookies)">Art. 31 DSG –
+                            Einwilligung (z. B. Newsletter, optionale Cookies)</li>
+                        <li data-de="Art. 31 DSG – Vertragserfüllung oder vorvertragliche Massnahmen"
+                            data-en="Art. 31 FADP – Contract performance or pre-contractual measures">Art. 31 DSG –
+                            Vertragserfüllung oder vorvertragliche Massnahmen</li>
+                        <li data-de="Art. 31 DSG – Rechtliche Verpflichtung (z. B. Aufbewahrungspflichten)"
+                            data-en="Art. 31 FADP – Legal obligation (e.g. retention requirements)">Art. 31 DSG –
+                            Rechtliche Verpflichtung (z. B. Aufbewahrungspflichten)</li>
+                        <li data-de="Art. 31 DSG – Überwiegendes berechtigtes Interesse (z. B. IT-Sicherheit, Serverlog)"
+                            data-en="Art. 31 FADP – Overriding legitimate interest (e.g. IT security, server log)">Art.
+                            31 DSG – Überwiegendes berechtigtes Interesse (z. B. IT-Sicherheit, Serverlog)</li>
+                    </ul>
+                    <p style="margin-top:1.5rem;"
+                        data-de="Bei der Verarbeitung auf Basis berechtigter Interessen wurde eine Interessenabwägung vorgenommen. Details teilen wir Ihnen auf Anfrage mit."
+                        data-en="Where processing is based on legitimate interests, a balancing of interests has been carried out. Details are available upon request.">
+                        Bei der Verarbeitung auf Basis berechtigter Interessen wurde eine Interessenabwägung
+                        vorgenommen. Details teilen wir Ihnen auf Anfrage mit.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Empfänger -->
+            <div id="empfaenger" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Weitergabe" data-en="Disclosure">Weitergabe</span>
+                    <h2 data-de="Empfänger" data-en="Recipients">Empfänger</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Interne Verarbeitung" data-en="Internal Processing">Interne Verarbeitung</h3>
+                    <p data-de="Ihre Daten werden grundsätzlich nur intern verarbeitet. Nur Mitarbeitende mit Zugriffsberechtigung erhalten Einsicht, und nur soweit es für die jeweilige Aufgabe erforderlich ist."
+                        data-en="Your data is generally processed internally only. Only employees with access authorisation may view it, and only to the extent required for the relevant task.">
+                        Ihre Daten werden grundsätzlich nur intern verarbeitet. Nur Mitarbeitende mit
+                        Zugriffsberechtigung erhalten Einsicht, und nur soweit es für die jeweilige Aufgabe erforderlich
+                        ist.</p>
+                    <h3 data-de="Auftragsverarbeiter" data-en="Data Processors">Auftragsverarbeiter</h3>
+                    <p data-de="Wir setzen sorgfältig ausgewählte Dienstleister ein, die alle vertraglich als Auftragsverarbeiter gemäss Schweizer DSG gebunden sind:"
+                        data-en="We use carefully selected service providers, all contractually bound as data processors under Swiss FADP:">
+                        Wir setzen sorgfältig ausgewählte Dienstleister ein, die alle vertraglich als
+                        Auftragsverarbeiter gemäss Schweizer DSG gebunden sind:</p>
+                    <ul>
+                        <li data-de="Hosting: Hetzner Online GmbH (Schweiz)"
+                            data-en="Hosting: Hetzner Online GmbH (Switzerland)">Hosting: Hetzner Online GmbH (Schweiz)
+                        </li>
+                        <li data-de="Kontaktformular: EmailJS Inc. (USA)" data-en="Contact form: EmailJS Inc. (USA)">
+                            Kontaktformular: EmailJS Inc. (USA)</li>
+                        <li data-de="Analyse: Plausible Analytics (EU, keine Cookies)"
+                            data-en="Analytics: Plausible Analytics (EU, no cookies)">Analyse: Plausible Analytics (EU,
+                            keine Cookies)</li>
+                    </ul>
+                    <h3 data-de="Drittländer" data-en="Third Countries">Drittländer</h3>
+                    <p data-de="Kontaktformulardaten werden über EmailJS (USA) weitergeleitet, Spamschutz erfolgt über Cloudflare Turnstile (USA). Beide Anbieter sind gemäss EU-US Data Privacy Framework zertifiziert. Die Übermittlung erfolgt auf Basis geeigneter Garantien gemäss Schweizer DSG."
+                        data-en="Contact form data is forwarded via EmailJS (USA), spam protection via Cloudflare Turnstile (USA). Both providers are certified under the EU-US Data Privacy Framework. Transfer is based on appropriate guarantees under Swiss FADP.">
+                        Kontaktformulardaten werden über EmailJS (USA) weitergeleitet, Spamschutz erfolgt über
+                        Cloudflare Turnstile (USA). Beide Anbieter sind gemäss EU-US Data Privacy Framework
+                        zertifiziert. Die Übermittlung erfolgt auf Basis geeigneter Garantien gemäss Schweizer DSG.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Speicherdauer -->
+            <div id="speicherung" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Retention" data-en="Retention">Retention</span>
+                    <h2 data-de="Speicherdauer" data-en="Retention Periods">Speicher&shy;dauer</h2>
+                </div>
+                <div class="legal-block">
+                    <ul>
+                        <li data-de="Serverlogdaten: 7 Tage (dann automatisch gelöscht)"
+                            data-en="Server log data: 7 days (then automatically deleted)">Serverlogdaten: 7 Tage (dann
+                            automatisch gelöscht)</li>
+                        <li data-de="Kontaktanfragen: 3 Monate nach abschliessender Bearbeitung"
+                            data-en="Contact enquiries: 3 months after final processing">Kontaktanfragen: 3 Monate nach
+                            abschliessender Bearbeitung</li>
+                        <li data-de="Vertragsdaten: 10 Jahre (handels- und steuerrechtliche Aufbewahrungspflicht)"
+                            data-en="Contract data: 10 years (statutory commercial and tax retention requirement)">
+                            Vertragsdaten: 10 Jahre (handels- und steuerrechtliche Aufbewahrungspflicht)</li>
+                        <li data-de="Rechnungen und buchhalterische Unterlagen: 10 Jahre (gemäss Art. 958f OR)"
+                            data-en="Invoices and accounting documents: 10 years (pursuant to Art. 958f Swiss CO)">
+                            Rechnungen und buchhalterische Unterlagen: 10 Jahre (gemäss Art. 958f OR)</li>
+                        <li data-de="Bewerbungsunterlagen (abgelehnt): 6 Monate nach Absage"
+                            data-en="Application documents (rejected): 6 months after rejection">Bewerbungsunterlagen
+                            (abgelehnt): 6 Monate nach Absage</li>
+                        <li data-de="Newsletter: bis zum Widerruf der Einwilligung"
+                            data-en="Newsletter: until withdrawal of consent">Newsletter: bis zum Widerruf der
+                            Einwilligung</li>
+                    </ul>
+                    <div class="legal-highlight">
+                        <p data-de="Nach Ablauf der jeweiligen Speicherfrist werden Ihre Daten vollständig und unwiderruflich gelöscht oder anonymisiert, sofern keine anderen gesetzlichen Pflichten dem entgegenstehen."
+                            data-en="After the respective retention period expires, your data will be completely and irreversibly deleted or anonymised, unless other legal obligations prevent this.">
+                            Nach Ablauf der jeweiligen Speicherfrist werden Ihre Daten vollständig und unwiderruflich
+                            gelöscht oder anonymisiert, sofern keine anderen gesetzlichen Pflichten dem entgegenstehen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Ihre Rechte -->
+            <div id="rechte">
+                <div style="margin-bottom:3rem;">
+                    <span class="legal-tag" data-de="Art. 25–27 DSG" data-en="Art. 25–27 FADP">Art. 25–27 DSG</span>
+                    <h2 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;line-height:1.1;">
+                        <span data-de="IHRE " data-en="YOUR ">IHRE </span><span class="text-green" data-de="RECHTE"
+                            data-en="RIGHTS">RECHTE</span>
+                    </h2>
+                    <p style="color:var(--color-gray);max-width:40rem;margin-top:1rem;"
+                        data-de="Als betroffene Person stehen Ihnen umfangreiche Rechte gemäss Schweizer DSG zu. Wir nehmen diese ernst und bearbeiten entsprechende Anfragen unverzüglich."
+                        data-en="As a data subject, you have extensive rights under Swiss FADP. We take these seriously and process requests without delay.">
+                        Als betroffene Person stehen Ihnen umfangreiche Rechte gemäss Schweizer DSG zu. Wir nehmen diese
+                        ernst und bearbeiten entsprechende Anfragen unverzüglich.</p>
+                </div>
+                <div class="rights-grid">
+                    <div class="right-card">
+                        <h4 data-de="Auskunftsrecht (Art. 25 DSG)" data-en="Right of Access (Art. 25 FADP)">
+                            Auskunftsrecht (Art. 25 DSG)</h4>
+                        <p data-de="Sie haben das Recht zu erfahren, welche personenbezogenen Daten wir über Sie verarbeiten, zu welchem Zweck und an wen sie ggf. weitergegeben werden."
+                            data-en="You have the right to know what personal data we process about you, for what purpose and to whom it may be disclosed.">
+                            Sie haben das Recht zu erfahren, welche personenbezogenen Daten wir über Sie verarbeiten, zu
+                            welchem Zweck und an wen sie ggf. weitergegeben werden.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Berichtigung" data-en="Rectification">Berichtigung</h4>
+                        <p data-de="Sie können die Korrektur unrichtiger oder Vervollständigung unvollständiger personenbezogener Daten verlangen."
+                            data-en="You may request the correction of inaccurate or the completion of incomplete personal data.">
+                            Sie können die Korrektur unrichtiger oder Vervollständigung unvollständiger
+                            personenbezogener Daten verlangen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Löschung" data-en="Erasure">Löschung</h4>
+                        <p data-de="Sie haben das Recht auf Löschung Ihrer Daten, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen."
+                            data-en="You have the right to have your data deleted, provided no statutory retention obligations apply.">
+                            Sie haben das Recht auf Löschung Ihrer Daten, sofern keine gesetzlichen
+                            Aufbewahrungspflichten entgegenstehen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Einschränkung" data-en="Restriction">Einschränkung</h4>
+                        <p data-de="In bestimmten Fällen können Sie die Einschränkung der Verarbeitung Ihrer Daten verlangen."
+                            data-en="In certain cases you may request the restriction of processing of your data.">In
+                            bestimmten Fällen können Sie die Einschränkung der Verarbeitung Ihrer Daten verlangen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Datenherausgabe" data-en="Data Portability">Datenherausgabe</h4>
+                        <p data-de="Sie können Ihre Daten in einem gängigen Format erhalten oder an einen anderen Anbieter übertragen lassen."
+                            data-en="You may receive your data in a common format or have it transferred to another provider.">
+                            Sie können Ihre Daten in einem gängigen Format erhalten oder an einen anderen Anbieter
+                            übertragen lassen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Widerspruch" data-en="Objection">Widerspruch</h4>
+                        <p data-de="Sie können der Verarbeitung Ihrer Daten auf Basis überwiegender berechtigter Interessen jederzeit widersprechen."
+                            data-en="You may object at any time to processing based on overriding legitimate interests.">
+                            Sie können der Verarbeitung Ihrer Daten auf Basis überwiegender berechtigter Interessen
+                            jederzeit widersprechen.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Widerruf der Einwilligung" data-en="Withdrawal of Consent">Widerruf der
+                            Einwilligung</h4>
+                        <p data-de="Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, ohne dass dies die Rechtmässigkeit der bisherigen Verarbeitung berührt."
+                            data-en="You may withdraw any consent at any time with effect for the future, without affecting the lawfulness of prior processing.">
+                            Eine erteilte Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, ohne
+                            dass dies die Rechtmässigkeit der bisherigen Verarbeitung berührt.</p>
+                    </div>
+                    <div class="right-card">
+                        <h4 data-de="Beschwerderecht" data-en="Right to Lodge a Complaint">Beschwerderecht</h4>
+                        <p data-de="Sie haben das Recht, Beschwerde beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB) einzulegen."
+                            data-en="You have the right to lodge a complaint with the Federal Data Protection and Information Commissioner (FDPIC).">
+                            Sie haben das Recht, Beschwerde beim Eidgenössischen Datenschutz- und
+                            Öffentlichkeitsbeauftragten (EDÖB) einzulegen.</p>
+                    </div>
+                </div>
+                <div class="legal-highlight" style="margin-top:2rem;">
+                    <p data-de="Zur Ausübung Ihrer Rechte genügt eine formlose E-Mail an: info@sin-digital.com"
+                        data-en="To exercise your rights, a simple email to info@sin-digital.com is sufficient.">Zur
+                        Ausübung Ihrer Rechte genügt eine formlose E-Mail an: <a
+                            href="mailto:info@sin-digital.com">info@sin-digital.com</a></p>
+                    <p style="margin-top:0.5rem;"
+                        data-de="Wir beantworten Ihre Anfrage kostenlos innerhalb von 30 Tagen."
+                        data-en="We will respond to your request free of charge within 30 days.">Wir beantworten Ihre
+                        Anfrage kostenlos innerhalb von 30 Tagen.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Cookies -->
+            <div id="cookies" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Tracking" data-en="Tracking">Tracking</span>
+                    <h2 data-de="Cookies & Tracking" data-en="Cookies & Tracking">Cookies &amp; Tracking</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Technisch notwendige Cookies" data-en="Technically Necessary Cookies">Technisch
+                        notwendige Cookies</h3>
+                    <p data-de="Wir setzen ausschliesslich technisch notwendige Cookies ein, die für den Betrieb der Website unerlässlich sind. Diese Cookies speichern keine personenbezogenen Daten und erfordern keine Einwilligung gemäss Schweizer DSG."
+                        data-en="We use only technically necessary cookies that are essential for the operation of the website. These cookies do not store personal data and do not require consent under Swiss FADP.">
+                        Wir setzen ausschliesslich technisch notwendige Cookies ein, die für den Betrieb der Website
+                        unerlässlich sind. Diese Cookies speichern keine personenbezogenen Daten und erfordern keine
+                        Einwilligung gemäss Schweizer DSG.</p>
+                    <h3 data-de="Keine Tracking- oder Marketing-Cookies" data-en="No Tracking or Marketing Cookies">
+                        Keine Tracking- oder Marketing-Cookies</h3>
+                    <p data-de="Wir verwenden weder Google Analytics noch andere kommerzielle Tracking-Tools. Unser Analyse-Tool (Plausible Analytics) arbeitet cookielos, sammelt keine personenbezogenen Daten und ist vollständig DSG-konform."
+                        data-en="We use neither Google Analytics nor any other commercial tracking tools. Our analytics tool (Plausible Analytics) works without cookies, collects no personal data and is fully FADP-compliant.">
+                        Wir verwenden weder Google Analytics noch andere kommerzielle Tracking-Tools. Unser Analyse-Tool
+                        (Plausible Analytics) arbeitet cookielos, sammelt keine personenbezogenen Daten und ist
+                        vollständig DSG-konform.</p>
+                    <h3 data-de="Cookie-Einstellungen" data-en="Cookie Settings">Cookie-Einstellungen</h3>
+                    <p data-de="Da wir keine nicht-notwendigen Cookies setzen, ist kein Cookie-Banner erforderlich. Technisch notwendige Cookies können in Ihren Browser-Einstellungen verwaltet werden."
+                        data-en="Since we do not set any non-necessary cookies, no cookie banner is required. Technically necessary cookies can be managed in your browser settings.">
+                        Da wir keine nicht-notwendigen Cookies setzen, ist kein Cookie-Banner erforderlich. Technisch
+                        notwendige Cookies können in Ihren Browser-Einstellungen verwaltet werden.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Externe Dienste -->
+            <div id="tools" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Drittanbieter" data-en="Third Parties">Drittanbieter</span>
+                    <h2 data-de="Externe Dienste" data-en="External Services">Externe Dienste</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Cloudflare CDN" data-en="Cloudflare CDN">Cloudflare CDN</h3>
+                    <p data-de="Wir nutzen das Content Delivery Network von Cloudflare, Inc. (USA) zur schnellen Auslieferung von Inhalten. Cloudflare ist gemäss EU-US Data Privacy Framework zertifiziert. Datenschutzerklärung: cloudflare.com/privacypolicy"
+                        data-en="We use the Content Delivery Network of Cloudflare, Inc. (USA) for fast content delivery. Cloudflare is certified under the EU-US Data Privacy Framework. Privacy policy: cloudflare.com/privacypolicy">
+                        Wir nutzen das Content Delivery Network von Cloudflare, Inc. (USA) zur schnellen Auslieferung
+                        von Inhalten. Cloudflare ist gemäss EU-US Data Privacy Framework zertifiziert.
+                        Datenschutzerklärung: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank"
+                            rel="noopener">cloudflare.com/privacypolicy</a></p>
+                    <h3 data-de="Unsplash (Bilder)" data-en="Unsplash (Images)">Unsplash (Bilder)</h3>
+                    <p data-de="Einige Bilder auf dieser Website stammen von Unsplash (Unsplash Inc., Kanada). Beim Laden der Bilder werden ggf. technische Daten an Unsplash-Server übertragen. Datenschutzerklärung: unsplash.com/privacy"
+                        data-en="Some images on this website are sourced from Unsplash (Unsplash Inc., Canada). When images are loaded, technical data may be transmitted to Unsplash servers. Privacy policy: unsplash.com/privacy">
+                        Einige Bilder auf dieser Website stammen von Unsplash (Unsplash Inc., Kanada). Beim Laden der
+                        Bilder werden ggf. technische Daten an Unsplash-Server übertragen. Datenschutzerklärung: <a
+                            href="https://unsplash.com/privacy" target="_blank" rel="noopener">unsplash.com/privacy</a>
+                    </p>
+                    <h3 data-de="EmailJS (Kontaktformular)" data-en="EmailJS (Contact Form)">EmailJS (Kontaktformular)
+                    </h3>
+                    <p data-de="Für die Verarbeitung von Kontaktanfragen nutzen wir EmailJS (EmailJS Inc., USA). Beim Absenden des Formulars werden Name, E-Mail und Nachricht über deren Server weitergeleitet. Kein dauerhafter Speicher. Grundlage: Art. 6 Abs. 1 lit. b DSG. Datenschutz: emailjs.com/legal/privacy-policy"
+                        data-en="For processing contact enquiries we use EmailJS (EmailJS Inc., USA). When the form is submitted, name, email and message are forwarded via their servers. No permanent storage. Legal basis: Art. 6(1)(b) FADP. Privacy policy: emailjs.com/legal/privacy-policy">
+                        Für die Verarbeitung von Kontaktanfragen nutzen wir EmailJS (EmailJS Inc., USA). Beim Absenden
+                        des Formulars werden Name, E-Mail und Nachricht über deren Server weitergeleitet. Kein
+                        dauerhafter Speicher. Grundlage: Art. 6 Abs. 1 lit. b DSG. Datenschutz: <a
+                            href="https://www.emailjs.com/legal/privacy-policy/" target="_blank"
+                            rel="noopener">emailjs.com/legal/privacy-policy</a></p>
+                    <h3 data-de="Cloudflare Turnstile (Spamschutz)" data-en="Cloudflare Turnstile (Spam Protection)">
+                        Cloudflare Turnstile (Spamschutz)</h3>
+                    <p data-de="Zum Schutz vor Spam nutzen wir Cloudflare Turnstile (Cloudflare Inc., USA). Datenschutz: cloudflare.com/privacypolicy"
+                        data-en="To protect against spam we use Cloudflare Turnstile (Cloudflare Inc., USA). Privacy policy: cloudflare.com/privacypolicy">
+                        Zum Schutz vor Spam nutzen wir Cloudflare Turnstile (Cloudflare Inc., USA). Datenschutz: <a
+                            href="https://www.cloudflare.com/privacypolicy/" target="_blank"
+                            rel="noopener">cloudflare.com/privacypolicy</a></p>
+                    <h3 data-de="Google Fonts" data-en="Google Fonts">Google Fonts</h3>
+                    <p data-de="Diese Website verwendet keine Google Fonts. Alle Schriftarten werden lokal oder über Systemschriften geladen, um eine Datenübertragung an Google-Server zu vermeiden."
+                        data-en="This website does not use Google Fonts. All fonts are loaded locally or via system fonts to avoid data transmission to Google servers.">
+                        Diese Website verwendet keine Google Fonts. Alle Schriftarten werden lokal oder über
+                        Systemschriften geladen, um eine Datenübertragung an Google-Server zu vermeiden.</p>
+                </div>
+            </div>
+
+            <div class="legal-divider"></div>
+
+            <!-- Datensicherheit -->
+            <div id="datensicherheit" class="legal-grid wide">
+                <div class="legal-block">
+                    <span class="legal-block-label" data-de="Sicherheit" data-en="Security">Sicherheit</span>
+                    <h2 data-de="Datensicherheit & Backup" data-en="Data Security & Backup">Daten&shy;sicherheit &
+                        Backup</h2>
+                </div>
+                <div class="legal-block">
+                    <h3 data-de="Technische Massnahmen" data-en="Technical Measures">Technische Massnahmen</h3>
+                    <p data-de="Sin Digital setzt branchenübliche technische und organisatorische Massnahmen ein, um Ihre Daten vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen. Eine absolute Sicherheit kann jedoch nicht garantiert werden."
+                        data-en="Sin Digital employs industry-standard technical and organisational measures to protect your data from unauthorised access, loss or misuse. However, absolute security cannot be guaranteed.">
+                        Sin Digital setzt branchenübliche technische und organisatorische Massnahmen ein, um Ihre Daten
+                        vor unbefugtem Zugriff, Verlust oder Missbrauch zu schützen. Eine absolute Sicherheit kann
+                        jedoch nicht garantiert werden.</p>
+                    <h3 data-de="Backup-Regelung" data-en="Backup Policy">Backup-Regelung</h3>
+                    <p data-de="Im Rahmen der Hosting-Vereinbarung werden wöchentliche Backups der Website-Daten erstellt. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Bei Datenverlust infolge höherer Gewalt, Cyberangriffen oder Ausfällen von Drittanbietern übernimmt Sin Digital keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt."
+                        data-en="Weekly backups of website data are created as part of the hosting agreement. Backups are retained for a maximum of 6 months and then automatically deleted. Sin Digital accepts no liability for data loss resulting from force majeure, cyberattacks or third-party outages, unless intentional or grossly negligent conduct is present.">
+                        Im Rahmen der Hosting-Vereinbarung werden wöchentliche Backups der Website-Daten erstellt.
+                        Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Bei Datenverlust
+                        infolge höherer Gewalt, Cyberangriffen oder Ausfällen von Drittanbietern übernimmt Sin Digital
+                        keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt.</p>
+                    <h3 data-de="Zugangsdaten" data-en="Access Credentials">Zugangsdaten</h3>
+                    <p data-de="Login-Zugangsdaten für das Dashboard sind vertraulich zu behandeln. Sin Digital übernimmt keine Haftung für Schäden durch unsachgemässe Handhabung der Zugangsdaten."
+                        data-en="Login credentials for the dashboard must be kept confidential. Sin Digital accepts no liability for damages resulting from improper handling of access credentials.">
+                        Login-Zugangsdaten für das Dashboard sind vertraulich zu behandeln. Sin Digital übernimmt keine
+                        Haftung für Schäden durch unsachgemässe Handhabung der Zugangsdaten.</p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer-legal" role="contentinfo">
+                <p data-de="© 2026 Sin Digital Agentur Zürich. Alle Rechte vorbehalten."
+                    data-en="© 2026 Sin Digital Agency Zürich. All rights reserved.">© 2026 Sin Digital Agentur Zürich.
+                    Alle Rechte vorbehalten.</p>
+                <nav class="footer-links" aria-label="Rechtliche Links">
+                    <a href="impressum.html" data-de="Impressum" data-en="Imprint">Impressum</a>
+                    <a href="datenschutz.html" data-de="Datenschutz" data-en="Privacy Policy">Datenschutz</a>
+                    <a href="agb.html" data-de="AGB" data-en="T&C">AGB</a>
+                </nav>
+            </footer>
+        </div>
+    </main>
+
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Nach oben scrollen"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <div style="position:fixed;top:20%;right:-5%;width:30rem;height:30rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(100px);pointer-events:none;z-index:0;"
+        aria-hidden="true"></div>
+    <div style="position:fixed;bottom:10%;left:-5%;width:20rem;height:20rem;border-radius:50%;background:#C1FF72;opacity:0.02;filter:blur(100px);pointer-events:none;z-index:0;"
+        aria-hidden="true"></div>
+
+    <script>
+        let currentLang = localStorage.getItem('sindigital-lang') || 'de';
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('sindigital-lang', lang);
+            applyLang();
+        }
+
+        function applyLang() {
+            document.getElementById('btn-de').classList.toggle('active', currentLang === 'de');
+            document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+            document.querySelectorAll('[data-de][data-en]').forEach(el => {
+                const hasElementChildren = Array.from(el.childNodes).some(n => n.nodeType === 1);
+                if (!hasElementChildren) {
+                    el.textContent = el.getAttribute('data-' + currentLang);
+                }
+            });
+            document.querySelectorAll('[data-de-placeholder][data-en-placeholder]').forEach(el => {
+                el.placeholder = el.getAttribute('data-' + currentLang + '-placeholder');
+            });
+            document.documentElement.lang = currentLang;
+        }
+
+        // Scroll-to-top button
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            scrollBtn.classList.toggle('visible', window.scrollY > 400);
+        });
+
+        // Section reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.legal-grid').forEach(el => observer.observe(el));
+
+        window.addEventListener('load', applyLang);
+    </script>
+
+</body>
+
+</html>

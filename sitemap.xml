@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap-style.xsl"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ══ Homepage (de-CH / en) ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sin-digital.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/"/>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- ══ SEO Landing: Webdesign Zürich ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/webdesign-zuerich.html</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/webdesign-zuerich.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/webdesign-zuerich.html"/>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ══ SEO Landing: Website Zürich ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/website-zuerich.html</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/website-zuerich.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/website-zuerich.html"/>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ══ SEO Landing: Günstige Website Zürich ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/guenstige-website-zuerich.html</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/guenstige-website-zuerich.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/guenstige-website-zuerich.html"/>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ══ SEO Landing: SEO Agentur Zürich ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/seo-agentur-zuerich.html</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/seo-agentur-zuerich.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/seo-agentur-zuerich.html"/>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ══ SEO Landing: Webentwicklung Zürich ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/webentwicklung-zuerich.html</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://www.sin-digital.com/webentwicklung-zuerich.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sin-digital.com/webentwicklung-zuerich.html"/>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ══ AGB ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/agb.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ══ Datenschutz ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/datenschutz.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ══ Impressum ══ -->
+  <url>
+    <loc>https://www.sin-digital.com/impressum.html</loc>
+    <lastmod>2026-03-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
