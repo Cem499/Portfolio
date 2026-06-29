@@ -782,6 +782,11 @@ textarea:focus-visible {
   filter: grayscale(0%);
 }
 
+.client-logo-link img.logo-contain {
+  object-fit: contain;
+  padding: 12px;
+}
+
 /* ══════════════════════════
    SERVICES
 ══════════════════════════ */
