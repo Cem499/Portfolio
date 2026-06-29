@@ -772,22 +772,30 @@ textarea:focus-visible {
   transform: scale(1.08);
 }
 
-.client-logo-link {
-  background: #fff;
-}
-
 .client-logo-link img {
   width: 120px;
   height: 120px;
-  object-fit: contain;
-  padding: 14px;
-  box-sizing: border-box;
+  object-fit: cover;
   filter: grayscale(100%);
   transition: filter 0.3s ease;
 }
 
 .client-logo-link:hover img {
   filter: grayscale(0%);
+}
+
+.client-logo-link.logo-dark-bg {
+  background: #000;
+}
+
+.client-logo-link.logo-white-bg {
+  background: #fff;
+}
+
+.client-logo-link.logo-white-bg img {
+  object-fit: contain;
+  padding: 14px;
+  box-sizing: border-box;
 }
 
 /* ══════════════════════════
