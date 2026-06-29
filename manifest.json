@@ -9,10 +9,22 @@
   "lang": "de-CH",
   "icons": [
     {
-      "src": "/assets/ICON-Logo_Sin-Digital.png",
+      "src": "/assets/ICON-Logo_Sin-Digital.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/ICON-Logo_Sin-Digital.webp",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/ICON-Logo_Sin-Digital.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "maskable"
     }
   ]
 }

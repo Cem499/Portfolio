@@ -542,8 +542,8 @@ textarea:focus-visible {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: calc(var(--nav-h) + 4rem);
-  padding-bottom: 5rem;
+  padding-top: var(--nav-h);
+  padding-bottom: 0;
 }
 
 .hero-grid {
@@ -1077,6 +1077,8 @@ textarea:focus-visible {
   cursor: pointer;
   text-align: left;
   color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 600;
   transition: color 0.2s;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -1086,8 +1088,8 @@ textarea:focus-visible {
   color: var(--green);
 }
 .faq-question h3 {
-  font-size: clamp(1rem, 2.5vw, 1.45rem);
-  font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 600;
   flex: 1;
   letter-spacing: -0.01em;
   line-height: 1.35;
@@ -1116,7 +1118,7 @@ textarea:focus-visible {
 }
 .faq-answer p {
   color: var(--gray);
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding-bottom: 1.75rem;
   padding-right: 2.5rem;
   line-height: 1.8;
@@ -1408,8 +1410,8 @@ textarea:focus-visible {
     padding: 5rem 1.25rem 4rem;
   }
   .hero {
-    padding-top: calc(var(--nav-h) + 2rem);
-    padding-bottom: 4rem;
+    padding-top: var(--nav-h);
+    padding-bottom: 2rem;
     min-height: auto;
   }
 
@@ -1498,15 +1500,13 @@ textarea:focus-visible {
   .faq-question {
     padding: 1.5rem 0;
     min-height: 56px;
-  }
-  .faq-question h3 {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
   .faq-icon {
     font-size: 1.35rem;
   }
   .faq-answer p {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     padding-right: 0;
   }
   .box-1,
@@ -1565,10 +1565,4 @@ textarea:focus-visible {
   .form-group textarea {
     font-size: 16px;
   }
-}
-
-/* Hide old service card types */
-.services-grid,
-.services-bottom-row {
-  display: none;
 }

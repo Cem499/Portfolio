@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // ── Reveal on scroll (replaces heavy GSAP ScrollTrigger) ──────────────
+    // ── Reveal on scroll ──────────────────────────────────────────────────────
     const isMobile = window.innerWidth <= 768;
     const revealObserverOptions = isMobile
         ? { threshold: 0.01, rootMargin: '0px 0px 50px 0px' }
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── FAQ Accordion ──────────────────────────────────────────────────────
+    // ── FAQ Accordion ──────────────────────────────────────────────────────────
     document.querySelectorAll('.faq-question').forEach(button => {
         button.addEventListener('click', () => {
             const item = button.closest('.faq-item');
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ── Smooth Scroll ──────────────────────────────────────────────────────
+    // ── Smooth Scroll ──────────────────────────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ── Mobile Menu ──────────────────────────────────────────────────────
+    // ── Mobile Menu ──────────────────────────────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
 
