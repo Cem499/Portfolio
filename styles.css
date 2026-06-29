@@ -756,8 +756,8 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   box-sizing: border-box;
   opacity: 0.55;
   transition:
@@ -772,27 +772,22 @@ textarea:focus-visible {
   transform: scale(1.08);
 }
 
+.client-logo-link {
+  background: #fff;
+}
+
 .client-logo-link img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  padding: 14px;
+  box-sizing: border-box;
   filter: grayscale(100%);
   transition: filter 0.3s ease;
 }
 
 .client-logo-link:hover img {
   filter: grayscale(0%);
-}
-
-.client-logo-link img.logo-contain {
-  object-fit: contain;
-  padding: 12px;
-  box-sizing: border-box;
-}
-
-.client-logo-link.logo-white-bg {
-  background: #fff;
 }
 
 /* ══════════════════════════
