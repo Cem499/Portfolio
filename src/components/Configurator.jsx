@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DEFAULTS, chf, estimate, features as featureList, siteTypes, tiersFor, timings } from '../data/pricing.js'
+import { DEFAULTS, chf, effectiveFeatures, estimate, features as featureList, isIncluded, siteTypes, tiersFor, timings } from '../data/pricing.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import AnimatedNumber from './AnimatedNumber.jsx'
 import ContactForm from './ContactForm.jsx'
@@ -8,19 +8,40 @@ const STEPS = ['type', 'scope', 'features', 'timing', 'request']
 const LAST_CHOICE = 4
 const REQUEST = 5
 
-const range = (item) => `CHF ${chf(item.price.min)} – ${chf(item.price.max)}`
+const unit = (t, n) => (n === 1 ? t.summary.week : t.summary.weeks)
 
+// "ca. 3 bis 5 Wochen"
 function weeksText(t, min, max) {
-  const n = min === max ? String(min) : `${min} – ${max}`
-  return `${n} ${max === 1 ? t.summary.week : t.summary.weeks}`
+  const n = min === max ? String(min) : `${min} ${t.summary.to} ${max}`
+  return `${t.summary.approx} ${n} ${unit(t, max)}`
 }
 
-// "+ CHF 600 – 1'500 · +1 Woche"
-function addOnText(t, feature) {
-  const price = `+ ${range(feature)}`
-  if (!feature.weeks.max) return price
-  const n = feature.weeks.min === feature.weeks.max ? String(feature.weeks.min) : `${feature.weeks.min}–${feature.weeks.max}`
-  return `${price} · +${n} ${feature.weeks.max === 1 ? t.summary.week : t.summary.weeks}`
+function typePrice(t, type) {
+  return type.onRequest ? t.summary.onRequest : `${t.summary.from} CHF ${chf(type.priceFrom)}`
+}
+
+function tierPrice(t, tier) {
+  if (tier.onRequest) return t.summary.onRequest
+  if (!tier.priceFrom) return ''
+  const weeks = tier.weeks ? ` · +${tier.weeks} ${unit(t, tier.weeks)}` : ''
+  return `${t.summary.approx} + CHF ${chf(tier.priceFrom)}${weeks}`
+}
+
+function featurePrice(t, feature, included) {
+  if (included) return t.summary.included
+  if (feature.onRequest) return t.summary.onRequest
+  const price = `${t.summary.from} + CHF ${chf(feature.priceFrom)}`
+  if (feature.perLanguage) return `${price} ${t.summary.perLanguage}`
+  if (feature.oneOff) return `${price}, ${t.summary.oneOff}`
+  return price
+}
+
+function featureNames(t, state) {
+  const ids = effectiveFeatures(state)
+  if (!ids.length) return t.configuration.none
+  return ids
+    .map((id) => (isIncluded(state.siteType, id) ? `${t.features[id].name} (${t.summary.included})` : t.features[id].name))
+    .join(', ')
 }
 
 // Plain-text summary that travels with the enquiry (EmailJS field "configuration").
@@ -28,20 +49,23 @@ function configurationText(t, state, est) {
   const lines = [
     [t.configuration.type, t.siteTypes[state.siteType].name],
     [t.configuration.scope, t.pageTiers[state.pages].name],
-    [t.configuration.features, state.features.map((id) => t.features[id].name).join(', ') || t.configuration.none],
+    [t.configuration.features, featureNames(t, state)],
     [t.configuration.timing, t.timings[state.timing].name],
-    [t.configuration.price, est.onRequest ? `${t.summary.from} CHF ${chf(est.priceFrom)}, ${t.summary.onRequest}` : `${range(est)}${est.express ? ` (${t.summary.express})` : ''}`],
+    [t.configuration.price, est.onRequest ? t.summary.onRequest : `${t.summary.from} CHF ${chf(est.priceFrom)}${est.express ? ` (${t.summary.express})` : ''}`],
     [t.configuration.weeks, est.onRequest ? t.summary.weeksOnRequest : weeksText(t, est.weeks.min, est.weeks.max)],
   ]
   return lines.map(([label, value]) => `${label}: ${value}`).join('\n')
 }
 
-function Tile({ type, name, value, checked, onChange, title, desc, price, note }) {
+function Tile({ type, name, value, checked, disabled, onChange, title, desc, price, note, badge, extra }) {
+  const cls = ['konfig-tile', checked && 'is-selected', disabled && 'is-included'].filter(Boolean).join(' ')
   return (
-    <label className={checked ? 'konfig-tile is-selected' : 'konfig-tile'}>
-      <input type={type} name={name} value={value} checked={checked} onChange={onChange} />
+    <label className={cls}>
+      <input type={type} name={name} value={value} checked={checked} disabled={disabled} onChange={onChange} />
+      {badge && <span className="konfig-badge">{badge}</span>}
       <span className="konfig-tile-name">{title}</span>
       {desc && <span className="konfig-tile-desc">{desc}</span>}
+      {extra && <span className="konfig-tile-extra">{extra}</span>}
       {(price || note) && (
         <span className="konfig-tile-price">
           {price}
@@ -53,7 +77,7 @@ function Tile({ type, name, value, checked, onChange, title, desc, price, note }
   )
 }
 
-// Four choices (site type, scope, features, start date) with a live price range, then the
+// Four choices (site type, scope, features, start date) with a live starting price, then the
 // contact form with the configuration attached. Step 1 is prerendered; choices made before
 // React is ready stay (valuesFromDom) and a "Weiter" pressed early is picked up (usePendingSubmit).
 export default function Configurator({ t, formTexts }) {
@@ -151,7 +175,9 @@ export default function Configurator({ t, formTexts }) {
                 onChange={() => selectType(type.id)}
                 title={t.siteTypes[type.id].name}
                 desc={t.siteTypes[type.id].desc}
-                price={type.onRequest ? `${t.summary.from} CHF ${chf(type.priceFrom)}` : range(type)}
+                price={typePrice(t, type)}
+                badge={type.badge && t.badges[type.badge]}
+                extra={type.includes?.includes('cms') ? t.badges.cmsIncluded : ''}
               />
             ))}
           </div>
@@ -169,7 +195,7 @@ export default function Configurator({ t, formTexts }) {
                 checked={state.pages === tier.id}
                 onChange={() => setState((s) => ({ ...s, pages: tier.id }))}
                 title={t.pageTiers[tier.id].name}
-                price={tier.onRequest || !tier.price.max ? '' : `+ ${range(tier)}${tier.weeks ? ` · +${tier.weeks} ${tier.weeks === 1 ? t.summary.week : t.summary.weeks}` : ''}`}
+                price={tierPrice(t, tier)}
                 note={t.pageTiers[tier.id].note}
               />
             ))}
@@ -181,19 +207,25 @@ export default function Configurator({ t, formTexts }) {
           {legend(2, 'features')}
           <p className="konfig-hint">{t.steps.features.hint}</p>
           <div className="konfig-tiles">
-            {featureList.map((feature) => (
-              <Tile
-                key={feature.id}
-                type="checkbox"
-                name="features"
-                value={feature.id}
-                checked={state.features.includes(feature.id)}
-                onChange={() => toggleFeature(feature.id)}
-                title={t.features[feature.id].name}
-                desc={t.features[feature.id].desc}
-                price={addOnText(t, feature)}
-              />
-            ))}
+            {featureList.map((feature) => {
+              const included = isIncluded(state.siteType, feature.id)
+              // An included feature has no name, so a reading of the form (valuesFromDom)
+              // never adds it to the chosen ones and it does not stick after a type change.
+              return (
+                <Tile
+                  key={feature.id}
+                  type="checkbox"
+                  name={included ? undefined : 'features'}
+                  value={feature.id}
+                  checked={included || state.features.includes(feature.id)}
+                  disabled={included}
+                  onChange={() => toggleFeature(feature.id)}
+                  title={t.features[feature.id].name}
+                  desc={t.features[feature.id].desc}
+                  price={featurePrice(t, feature, included)}
+                />
+              )
+            })}
           </div>
         </fieldset>
 
@@ -210,6 +242,7 @@ export default function Configurator({ t, formTexts }) {
                 onChange={() => setState((s) => ({ ...s, timing: timing.id }))}
                 title={t.timings[timing.id].name}
                 desc={t.timings[timing.id].desc}
+                badge={timing.badge && t.badges[timing.badge]}
               />
             ))}
           </div>
@@ -250,25 +283,21 @@ export default function Configurator({ t, formTexts }) {
 
       <aside className="konfig-summary" aria-label={t.summary.title}>
         <div className="konfig-summary-main" aria-live="polite" aria-atomic="true">
-          <span className="konfig-summary-title">{t.summary.title}</span>
-          <div className="konfig-price">
+          <span className="konfig-summary-title">{est.onRequest ? t.summary.titleOnRequest : t.summary.title}</span>
+          <div className={est.onRequest ? 'konfig-price is-individual' : 'konfig-price'}>
             {est.onRequest ? (
+              <span className="konfig-individual">{t.summary.onRequest}</span>
+            ) : (
               <>
                 <span className="konfig-from">{t.summary.from}</span>{' '}
                 <span className="konfig-amount">
                   <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.priceFrom} />
                 </span>
               </>
-            ) : (
-              <span className="konfig-amount">
-                <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.price.min} />
-                <span className="konfig-dash">–</span>
-                <AnimatedNumber value={est.price.max} />
-              </span>
             )}
           </div>
           <p className="konfig-meta">
-            {est.onRequest ? `${t.summary.onRequest} · ${t.summary.weeksOnRequest}` : weeksText(t, est.weeks.min, est.weeks.max)}
+            {est.onRequest ? t.summary.onRequestText : weeksText(t, est.weeks.min, est.weeks.max)}
             {est.express && !est.onRequest ? ` · ${t.summary.express}` : ''}
           </p>
         </div>
@@ -285,7 +314,7 @@ export default function Configurator({ t, formTexts }) {
             </li>
             <li>
               <span>{t.configuration.features}</span>
-              <strong>{state.features.map((id) => t.features[id].name).join(', ') || t.configuration.none}</strong>
+              <strong>{featureNames(t, state)}</strong>
             </li>
             <li>
               <span>{t.configuration.timing}</span>

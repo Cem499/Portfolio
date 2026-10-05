@@ -412,6 +412,7 @@ test('Legal: Scroll-nach-oben ab 400px, Reveal', async () => {
 
 const konfig = (page) => ({
   prices: () => page.evaluate(() => [...document.querySelectorAll('.konfig-summary-main .konfig-sr')].map((el) => el.textContent).join('–')),
+  price: () => page.evaluate(() => document.querySelector('.konfig-price').textContent.replace(/\s+/g, ' ').trim()),
   meta: () => page.evaluate(() => document.querySelector('.konfig-meta').textContent.trim()),
   step: () => page.evaluate(() => [...document.querySelectorAll('.konfig-step')].findIndex((f) => !f.hidden) + 1 || (document.querySelector('.konfig-request') ? 5 : 0)),
   tile: (value) => page.click(`label.konfig-tile:has(input[value="${value}"])`),
@@ -426,10 +427,17 @@ test('Konfigurator: Schritt 1 und Standardpreis vorgerendert, noch ohne JavaScri
   await s.page.goto(base + '/konfigurator/')
   const k = konfig(s.page)
   expect((await k.step()) === 1, 'Schritt ' + (await k.step()))
-  expect((await k.prices()) === "2'500–4'500", await k.prices())
-  expect((await k.meta()).startsWith('3 – 5 Wochen'), await k.meta())
+  expect((await k.prices()) === "2'490", await k.prices())
+  expect((await k.price()).startsWith('ab ca. CHF'), await k.price())
+  expect((await k.meta()).startsWith('ca. 3 bis 5 Wochen'), await k.meta())
   const checked = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
   expect(checked === 'business', checked)
+  const tile = await s.page.evaluate(() => {
+    const business = document.querySelector('label.konfig-tile:has(input[value="business"])')
+    const cms = document.querySelector('input[value="cms"]')
+    return { badge: business.querySelector('.konfig-badge')?.textContent, price: business.querySelector('.konfig-tile-price').textContent, cms: cms.checked && cms.disabled && !cms.name }
+  })
+  expect(tile.badge === 'Beliebteste Wahl' && tile.price === "ab ca. CHF 2'490" && tile.cms, JSON.stringify(tile))
   await s.close()
 })
 
@@ -446,7 +454,7 @@ test('Konfigurator vor Hydration: Auswahl bleibt, „Weiter“ wird nachgeholt',
   await s.page.waitForFunction(() => !document.getElementById('pending-submit-hint'))
   await s.page.waitForTimeout(120)
   expect((await k.step()) === 2, 'Schritt ' + (await k.step()))
-  expect((await k.prices()) === "900–1'500", await k.prices())
+  expect((await k.prices()) === '790', await k.prices())
   const tiers = await s.page.evaluate(() => [...document.querySelectorAll('input[name=pages]')].map((i) => i.value).join())
   expect(tiers === 'single', tiers)
   await s.close()
@@ -460,18 +468,39 @@ test('Konfigurator: Preis und Wochen rechnen live, Zusammenfassung stimmt', asyn
   await k.tile('upTo10')
   await k.next()
   await k.tile('multilingual')
-  await k.tile('shop')
+  await k.tile('booking')
   await k.next()
   await k.tile('express')
   await s.page.waitForTimeout(100)
-  const expected = estimate({ siteType: 'business', pages: 'upTo10', features: ['multilingual', 'shop'], timing: 'express' })
-  expect((await k.prices()) === `${chf(expected.price.min)}–${chf(expected.price.max)}`, await k.prices())
+  const expected = estimate({ siteType: 'business', pages: 'upTo10', features: ['multilingual', 'booking'], timing: 'express' })
+  expect(!expected.onRequest && (await k.prices()) === chf(expected.priceFrom), (await k.prices()) + ' / ' + JSON.stringify(expected))
   const meta = await k.meta()
-  expect(meta.includes(`${expected.weeks.min} – ${expected.weeks.max} Wochen`) && meta.includes('Express'), meta)
+  expect(meta.includes(`ca. ${expected.weeks.min} bis ${expected.weeks.max} Wochen`) && meta.includes('Express'), meta)
   await k.next()
   expect((await k.step()) === 5, 'Schritt ' + (await k.step()))
   const config = await s.page.evaluate(() => document.querySelector('.konfig-config').textContent)
-  expect(config.includes('Seitentyp: Firmenwebsite') && config.includes('Umfang: 6 bis 10 Seiten') && config.includes('Funktionen: Mehrsprachig, Shop') && config.includes(`Richtpreis: CHF ${chf(expected.price.min)} – ${chf(expected.price.max)}`), config)
+  expect(config.includes('Seitentyp: Firmenwebsite') && config.includes('Umfang: 6 bis 10 Seiten') && config.includes('Funktionen: Mehrsprachig, Online-Buchung, CMS (inklusive)') && config.includes(`Richtpreis: ab ca. CHF ${chf(expected.priceFrom)}`), config)
+  await s.close()
+})
+
+test('Konfigurator: Shop oder grosser Umfang ergibt ein individuelles Angebot', async () => {
+  const s = await open()
+  await goto(s.page, '/konfigurator/')
+  const k = konfig(s.page)
+  await k.next()
+  await k.next()
+  await k.tile('shop')
+  await s.page.waitForTimeout(100)
+  const shop = { title: await s.page.evaluate(() => document.querySelector('.konfig-summary-title').textContent), price: await k.price(), meta: await k.meta() }
+  expect(shop.title === 'Ihr Projekt' && shop.price === 'Individuelles Angebot' && shop.meta.includes('24 Stunden'), JSON.stringify(shop))
+  await k.tile('shop')
+  await s.page.waitForTimeout(100)
+  expect((await k.prices()) === "2'490", await k.prices())
+  await s.page.click('.konfig-back')
+  await s.page.waitForTimeout(120)
+  await k.tile('over20')
+  await s.page.waitForTimeout(100)
+  expect((await k.price()) === 'Individuelles Angebot', await k.price())
   await s.close()
 })
 
@@ -488,7 +517,7 @@ test('Konfigurator: Anfrage schickt die Konfiguration mit', async () => {
   const status = await s.page.evaluate(() => document.getElementById('form-status').textContent)
   expect(status.startsWith('Vielen Dank'), status)
   const p = sent.payload?.template_params
-  expect(p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes("Richtpreis: CHF 2'500 – 4'500") && p.message === 'Eine genügend lange Nachricht', JSON.stringify(p))
+  expect(p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes("Richtpreis: ab ca. CHF 2'490") && p.message === 'Eine genügend lange Nachricht', JSON.stringify(p))
   await s.close()
 })
 
@@ -517,7 +546,7 @@ test('Konfigurator: Tastatur (Pfeiltasten wählen, Enter geht weiter, Leertaste 
   await s.page.keyboard.press('Space')
   const features = await s.page.evaluate(() => [...document.querySelectorAll('input[name=features]:checked')].map((i) => i.value).join())
   expect(features === 'multilingual', features)
-  expect((await k.prices()).startsWith("6'000"), await k.prices())
+  expect((await k.price()) === 'Individuelles Angebot', await k.price())
   await s.close()
 })
 

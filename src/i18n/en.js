@@ -253,14 +253,14 @@ export const home = {
 export const konfigurator = {
   "meta": {
     "title": "Project Configurator: What Does Your Website Cost? | Sin Digital",
-    "description": "Choose site type, scope, features and start date and instantly see a price range in CHF with a time frame. No obligation, two minutes, no sign-up.",
+    "description": "Choose site type, scope, features and start date and instantly see a guide price in CHF with a time frame. Agency quality from Zurich at a freelancer price. No obligation, no sign-up.",
     "ogTitle": "What does your website cost? Project configurator | Sin Digital"
   },
   "breadcrumb": "Configurator",
   "label": "Project configurator",
   "title1": "WHAT DOES",
   "title2": "YOUR SITE COST?",
-  "intro": "Four decisions, one honest range. Pick site type, scope, features and start date, and the guide price and time frame update live. At the end, your configuration goes straight to us as an enquiry.",
+  "intro": "Four clicks to your guide price. Honest, with no hidden costs. You get the fixed price after a free consultation, before we start.",
   "stepWord": "Step",
   "ofWord": "of",
   "steps": {
@@ -302,17 +302,17 @@ export const konfigurator = {
     },
     "custom": {
       "name": "Custom / platform",
-      "desc": "Web app, portal or booking platform with its own logic. Price on request."
+      "desc": "Web app, portal or booking platform. We plan it together with you."
     }
   },
   "pageTiers": {
     "single": {
       "name": "1 page",
-      "note": "included"
+      "note": "included in the package"
     },
     "upTo5": {
       "name": "Up to 5 pages",
-      "note": "included"
+      "note": "included in the package"
     },
     "upTo10": {
       "name": "6 to 10 pages",
@@ -324,7 +324,7 @@ export const konfigurator = {
     },
     "over20": {
       "name": "More than 20 pages",
-      "note": "price on request"
+      "note": ""
     }
   },
   "features": {
@@ -345,7 +345,7 @@ export const konfigurator = {
       "desc": "Edit texts and images yourself, no developer needed."
     },
     "seo": {
-      "name": "SEO package",
+      "name": "SEO starter",
       "desc": "Keyword research, local optimisation and Google Business."
     },
     "branding": {
@@ -356,7 +356,7 @@ export const konfigurator = {
   "timings": {
     "express": {
       "name": "As soon as possible",
-      "desc": "Start in under 3 weeks, with a 20 % express surcharge."
+      "desc": "Start in under 3 weeks, approx. + 20 % express."
     },
     "soon": {
       "name": "Within the next 1 to 3 months",
@@ -369,23 +369,30 @@ export const konfigurator = {
   },
   "summary": {
     "title": "Your guide price",
-    "from": "from",
+    "titleOnRequest": "Your project",
+    "from": "from approx.",
+    "approx": "approx.",
+    "to": "to",
     "currency": "CHF",
-    "onRequest": "Price on request",
+    "onRequest": "Individual quote",
+    "onRequestText": "We get back to you within 24 hours with a proposal.",
     "week": "week",
     "weeks": "weeks",
-    "weeksOnRequest": "Time frame on request",
-    "express": "incl. 20 % express surcharge",
+    "weeksOnRequest": "Time frame in the consultation",
+    "express": "incl. approx. 20 % express",
+    "included": "included",
+    "perLanguage": "per language",
+    "oneOff": "one-off",
     "selection": "Your selection",
     "notes": [
-      "Guide values. You get a fixed price after a short conversation.",
-      "One-time prices including setup, no hidden costs.",
-      "Hosting and care are separate, from CHF 49 per month."
+      "Free initial consultation",
+      "Fixed price before the project starts, no hidden costs",
+      "Hosting and care from approx. CHF 49 per month"
     ]
   },
   "next": "Next",
   "back": "Back",
-  "toRequest": "To the enquiry",
+  "toRequest": "Request a free quote",
   "request": {
     "title": "Send your configuration as an enquiry",
     "text": "Your selection comes along. Add your name, email and a few words about your project. We usually reply within 24 hours."
@@ -398,6 +405,11 @@ export const konfigurator = {
     "timing": "Start date",
     "price": "Guide price",
     "weeks": "Time frame"
+  },
+  "badges": {
+    "popular": "Most popular",
+    "recommended": "Recommended",
+    "cmsIncluded": "✓ CMS included"
   }
 }
 

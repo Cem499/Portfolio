@@ -233,6 +233,49 @@
   display: none;
 }
 
+.konfig-badge {
+  position: absolute;
+  top: 0;
+  left: 1.2rem;
+  transform: translateY(-50%);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--green);
+  color: #0a0a0a;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.konfig-tile-extra {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.konfig-tile.is-included {
+  cursor: default;
+  border-style: dashed;
+}
+
+.konfig-tile.is-included:hover {
+  transform: none;
+}
+
+.konfig-tile.is-included .konfig-tile-price {
+  color: var(--gray);
+}
+
+.konfig-price.is-individual {
+  white-space: normal;
+}
+
+.konfig-individual {
+  font-size: 0.8em;
+}
+
 .konfig-nav {
   display: flex;
   justify-content: space-between;

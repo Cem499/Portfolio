@@ -2,7 +2,8 @@ import { SITE } from '../pages.js'
 import { siteTypes } from '../pricing.js'
 
 // JSON-LD of /konfigurator/ and /en/configurator/: the page itself with its breadcrumb,
-// plus the public price list as an OfferCatalog (ranges from src/data/pricing.js).
+// plus the public price list as an OfferCatalog (starting prices from src/data/pricing.js;
+// a type on request carries no price).
 export default function konfiguratorSchema(lang, t, paths) {
   const url = SITE + paths[lang]
   const home = SITE + (lang === 'en' ? '/en/' : '/')
@@ -34,10 +35,12 @@ export default function konfiguratorSchema(lang, t, paths) {
         '@type': 'Offer',
         name: t.siteTypes[type.id].name,
         description: t.siteTypes[type.id].desc,
-        priceCurrency: 'CHF',
-        priceSpecification: type.onRequest
-          ? { '@type': 'PriceSpecification', minPrice: type.priceFrom, priceCurrency: 'CHF' }
-          : { '@type': 'PriceSpecification', minPrice: type.price.min, maxPrice: type.price.max, priceCurrency: 'CHF' },
+        ...(type.onRequest
+          ? {}
+          : {
+              priceCurrency: 'CHF',
+              priceSpecification: { '@type': 'PriceSpecification', minPrice: type.priceFrom, priceCurrency: 'CHF' },
+            }),
         offeredBy: { '@id': `${SITE}/#business` },
       })),
     },

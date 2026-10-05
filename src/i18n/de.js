@@ -253,14 +253,14 @@ export const home = {
 export const konfigurator = {
   "meta": {
     "title": "Projekt-Konfigurator: Was kostet Ihre Website? | Sin Digital",
-    "description": "Seitentyp, Umfang, Funktionen und Wunschtermin wählen und sofort eine Preisspanne in CHF mit Zeitrahmen sehen. Unverbindlich, in zwei Minuten, ohne Anmeldung.",
+    "description": "Seitentyp, Umfang, Funktionen und Wunschtermin wählen und sofort einen Richtpreis in CHF mit Zeitrahmen sehen. Agenturqualität aus Zürich zum Preis eines Freelancers. Unverbindlich, ohne Anmeldung.",
     "ogTitle": "Was kostet Ihre Website? Projekt-Konfigurator | Sin Digital"
   },
   "breadcrumb": "Konfigurator",
   "label": "Projekt-Konfigurator",
   "title1": "WAS KOSTET",
   "title2": "IHRE WEBSITE?",
-  "intro": "Vier Entscheidungen, eine ehrliche Spanne. Wählen Sie Seitentyp, Umfang, Funktionen und Wunschtermin, Richtpreis und Zeitrahmen rechnen live mit. Am Ende geht die Konfiguration direkt als Anfrage an uns.",
+  "intro": "Vier Klicks zu Ihrem Richtpreis. Ehrlich, ohne versteckte Kosten. Den Festpreis erhalten Sie nach einem kostenlosen Gespräch, bevor wir starten.",
   "stepWord": "Schritt",
   "ofWord": "von",
   "steps": {
@@ -302,17 +302,17 @@ export const konfigurator = {
     },
     "custom": {
       "name": "Individuell / Plattform",
-      "desc": "Web-App, Portal oder Buchungsplattform mit eigener Logik. Preis nach Gespräch."
+      "desc": "Web-App, Portal oder Buchungsplattform. Wir planen sie mit Ihnen gemeinsam."
     }
   },
   "pageTiers": {
     "single": {
       "name": "1 Seite",
-      "note": "im Paket enthalten"
+      "note": "im Paket inklusive"
     },
     "upTo5": {
       "name": "Bis 5 Seiten",
-      "note": "im Paket enthalten"
+      "note": "im Paket inklusive"
     },
     "upTo10": {
       "name": "6 bis 10 Seiten",
@@ -324,7 +324,7 @@ export const konfigurator = {
     },
     "over20": {
       "name": "Mehr als 20 Seiten",
-      "note": "Preis nach Gespräch"
+      "note": ""
     }
   },
   "features": {
@@ -345,7 +345,7 @@ export const konfigurator = {
       "desc": "Texte und Bilder selbst pflegen, ohne Entwickler."
     },
     "seo": {
-      "name": "SEO-Paket",
+      "name": "SEO-Start",
       "desc": "Keyword-Recherche, lokale Optimierung und Google Business."
     },
     "branding": {
@@ -356,7 +356,7 @@ export const konfigurator = {
   "timings": {
     "express": {
       "name": "So schnell wie möglich",
-      "desc": "Start in unter 3 Wochen, mit 20 % Express-Zuschlag."
+      "desc": "Start in unter 3 Wochen, ca. + 20 % Express."
     },
     "soon": {
       "name": "In den nächsten 1 bis 3 Monaten",
@@ -369,23 +369,30 @@ export const konfigurator = {
   },
   "summary": {
     "title": "Ihr Richtpreis",
-    "from": "ab",
+    "titleOnRequest": "Ihr Projekt",
+    "from": "ab ca.",
+    "approx": "ca.",
+    "to": "bis",
     "currency": "CHF",
-    "onRequest": "Preis nach Gespräch",
+    "onRequest": "Individuelles Angebot",
+    "onRequestText": "Wir melden uns innert 24 Stunden mit einem Vorschlag.",
     "week": "Woche",
     "weeks": "Wochen",
-    "weeksOnRequest": "Zeitrahmen nach Gespräch",
-    "express": "inkl. 20 % Express-Zuschlag",
+    "weeksOnRequest": "Zeitrahmen im Gespräch",
+    "express": "inkl. ca. 20 % Express",
+    "included": "inklusive",
+    "perLanguage": "pro Sprache",
+    "oneOff": "einmalig",
     "selection": "Ihre Auswahl",
     "notes": [
-      "Richtwerte. Den Festpreis erhalten Sie nach einem kurzen Gespräch.",
-      "Einmalpreise inklusive Einrichtung, keine versteckten Kosten.",
-      "Hosting und Betreuung sind separat, ab CHF 49 pro Monat."
+      "Kostenloses Erstgespräch",
+      "Festpreis vor Projektstart, keine versteckten Kosten",
+      "Hosting und Betreuung ab ca. CHF 49 pro Monat"
     ]
   },
   "next": "Weiter",
   "back": "Zurück",
-  "toRequest": "Zur Anfrage",
+  "toRequest": "Kostenloses Angebot anfordern",
   "request": {
     "title": "Konfiguration als Anfrage senden",
     "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Wir antworten in der Regel innerhalb von 24 Stunden."
@@ -398,6 +405,11 @@ export const konfigurator = {
     "timing": "Wunschtermin",
     "price": "Richtpreis",
     "weeks": "Zeitrahmen"
+  },
+  "badges": {
+    "popular": "Beliebteste Wahl",
+    "recommended": "Empfohlen",
+    "cmsIncluded": "✓ CMS inklusive"
   }
 }
 
