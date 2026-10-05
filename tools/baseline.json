@@ -1,0 +1,172 @@
+{
+  "note": "Lighthouse mobile, median of several runs on the local Render-like server. Only comparable on the same machine.",
+  "measured": "2026-10-05",
+  "runs": 3,
+  "pages": {
+    "/": {
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 907,
+        "lcp": 2257,
+        "tbt": 0,
+        "cls": 0,
+        "si": 907
+      }
+    },
+    "/en/": {
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 96,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 2106,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
+    },
+    "/webdesign-zuerich.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 95,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 756,
+        "lcp": 1206,
+        "tbt": 0,
+        "cls": 0,
+        "si": 756
+      }
+    },
+    "/website-zuerich.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 95,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 756,
+        "lcp": 1206,
+        "tbt": 0,
+        "cls": 0,
+        "si": 756
+      }
+    },
+    "/guenstige-website-zuerich.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 95,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 1206,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
+    },
+    "/seo-agentur-zuerich.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 95,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 755,
+        "lcp": 1205,
+        "tbt": 0,
+        "cls": 0,
+        "si": 755
+      }
+    },
+    "/webentwicklung-zuerich.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 95,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 905,
+        "lcp": 1205,
+        "tbt": 0,
+        "cls": 0,
+        "si": 905
+      }
+    },
+    "/agb.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 96,
+        "best-practices": 100,
+        "seo": 69
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 1506,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
+    },
+    "/datenschutz.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 90,
+        "best-practices": 100,
+        "seo": 69
+      },
+      "metrics": {
+        "fcp": 907,
+        "lcp": 1507,
+        "tbt": 0,
+        "cls": 0,
+        "si": 907
+      }
+    },
+    "/impressum.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 96,
+        "best-practices": 100,
+        "seo": 69
+      },
+      "metrics": {
+        "fcp": 907,
+        "lcp": 1507,
+        "tbt": 0,
+        "cls": 0,
+        "si": 907
+      }
+    },
+    "/404.html": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 58
+      },
+      "metrics": {
+        "fcp": 755,
+        "lcp": 1355,
+        "tbt": 0,
+        "cls": 0,
+        "si": 755
+      }
+    }
+  }
+}

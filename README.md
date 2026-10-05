@@ -23,6 +23,26 @@ Hinweis zum Dev-Server: Der `?lang=en`-Redirect, das Inline-Laden des kritischen
 Laden des JavaScripts passieren erst im Build (`vite.config.js`, `postProcess`). Für die Abnahme immer
 `npm run build && npm run preview` verwenden.
 
+## Tests
+
+Einmalig `npm run test:setup` ausführen (lädt Chromium für Playwright, rund 150 MB; läuft nicht beim
+Build, `npm ci` auf Render lädt keinen Browser). Alle Tests laufen gegen `dist/`, also zuerst `npm run build`.
+
+| Script | Was passiert |
+| --- | --- |
+| `npm run serve` | `dist/` wie auf Render ausliefern: http://localhost:4173 (exakte Pfade, 404 mit Status 404, gzip) |
+| `npm run test:e2e` | Playwright: FAQ, Menü, Karussell, Formular (auch vor der Hydration), Sprache, Legal-Seiten, 404, Konsole; inklusive Tastatur und `prefers-reduced-motion` |
+| `npm run test:lighthouse` | Lighthouse mobil, Median aus 3 Läufen je Seite, Vergleich mit `tools/baseline.json`. Exit 1, wenn eine bestehende Seite in einer Kategorie einen Punkt verliert oder eine neue Seite unter Performance 95 liegt |
+| `npm run test:lighthouse -- --update-baseline` | Basis neu schreiben, nur bewusst nach einem Review |
+| `npm run test:visual -- --label baseline` | Screenshots aller Seiten bei 375, 768 und 1440 px nach `tools/screenshots/baseline/` |
+| `npm run test:visual -- --compare baseline` | Neue Screenshots nach `tools/screenshots/current/`, Pixel-Diff gegen `baseline`, Diff-Bilder in `tools/screenshots/diff-current-vs-baseline/` |
+| `npm test` | E2E und Lighthouse nacheinander |
+
+Alle Scripts kennen `--only <Text>` (Seiten-ID oder Pfad, bei E2E der Testname). Lighthouse-Werte hängen
+von der Maschine ab, die Basis taugt nur für Vergleiche auf demselben Rechner. Die Seitenliste der Tests
+steht in `src/data/pages.js`. Screenshots und Lighthouse-Reports (`tools/screenshots/`, `tools/reports/`)
+sind nicht im Repo.
+
 ## Env-Variablen
 
 Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden beim Build ins Bundle geschrieben.
