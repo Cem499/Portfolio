@@ -62,7 +62,8 @@ src/
   hooks/                 useReveal, useSmoothScroll, useLegalLang
   i18n/                  de.js, en.js (Texte der Startseite)
   data/                  clients.js (Kundenlogos), schema/ (JSON-LD pro Seite)
-  styles/                global.css (= Portfolio/styles.min.css, unverändert), critical.css (Inline-Style
+  styles/                global.css (= Portfolio/styles.min.css; einzige Änderung: Kundenlogos immer
+                         farbig, Hover nur noch Vergrössern), critical.css (Inline-Style
                          der Startseite), agb/datenschutz/impressum.css, landing*.css, notfound.css,
                          lang-switch.css
 public/                  assets/, manifest.json, robots.txt, sitemap.xml, sitemap-style.xsl
