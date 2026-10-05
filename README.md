@@ -110,6 +110,22 @@ nur der Slider hat ein kleines Inline-Script. Die Kundenlogos der Startseite ver
   optional Logo auf der Startseite (`clients.js` mit `project: '<slug>'`). Routen, Sitemap und Tests
   folgen automatisch aus `projects.js`.
 
+## Website-Check
+
+`/website-check/` fragt Google PageSpeed Insights (mobil) direkt aus dem Browser ab und zeigt die
+vier Scores als Ringe plus drei Tipps. Nichts wird gespeichert.
+
+- **Key:** `VITE_PSI_API_KEY` (Google Cloud Console, API „PageSpeed Insights“, auf den Referrer
+  `https://www.sin-digital.com/*` eingeschränkt). Ohne Key läuft die API mit einem sehr kleinen,
+  geteilten Kontingent, reicht für lokale Tests.
+- **Logik:** `src/data/pagespeed.js`. `normalizeUrl` ergänzt `https://`, `fetchPageSpeed` bricht nach
+  60 s ab, `pickTips` wählt nach einer Prioritätsliste die drei wirksamsten Befunde; die Tipptexte
+  stehen in `websiteCheck.tips` der i18n-Dateien (Schlüssel = Lighthouse-Audit-ID).
+- **Fehlerfälle:** ungültige Adresse (ohne API-Aufruf), Seite nicht erreichbar (400 mit
+  `Lighthouse returned error`), Rate-Limit (429), Timeout, sonstiges.
+- **Proxy statt Key im Browser:** Wenn das Kontingent missbraucht wird, einen Cloudflare Worker
+  vorschalten und in `fetchPageSpeed` nur `ENDPOINT` auf die Worker-URL umstellen.
+
 ## Projektstruktur
 
 ```

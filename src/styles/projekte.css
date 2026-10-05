@@ -390,99 +390,7 @@
   color: var(--gray);
 }
 
-.ring {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 6rem;
-  text-align: center;
-}
-
-.ring-svg {
-  width: 4.5rem;
-  height: 4.5rem;
-}
-
-.ring-track {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.1);
-  stroke-width: 5;
-}
-
-.ring-value {
-  fill: none;
-  stroke-width: 5;
-  stroke-linecap: round;
-  transform: rotate(-90deg);
-  transform-origin: 50% 50%;
-  animation: ring-fill 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.ring-good .ring-value {
-  stroke: var(--green);
-}
-
-.ring-mid .ring-value {
-  stroke: #ffa400;
-}
-
-.ring-low .ring-value {
-  stroke: #ff4e42;
-}
-
-.ring-score {
-  position: absolute;
-  top: 2.25rem;
-  transform: translateY(-50%);
-  font-size: 1.15rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.ring-good .ring-score {
-  color: var(--green);
-}
-
-.ring-mid .ring-score {
-  color: #ffa400;
-}
-
-.ring-low .ring-score {
-  color: #ff4e42;
-}
-
-.ring-label,
-.proj-fact-label {
-  margin-top: 0.5rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gray);
-}
-
-.proj-fact {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 4.5rem;
-}
-
-.proj-fact-value {
-  font-size: 1.6rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--green);
-  font-variant-numeric: tabular-nums;
-}
-
-@keyframes ring-fill {
-  from {
-    stroke-dashoffset: 163.4;
-  }
-}
+/* Score rings: src/styles/rings.css */
 
 /* ── Story ─────────────────────────────────────────────────────────────── */
 
@@ -561,10 +469,6 @@
 /* ── Motion and layout ─────────────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .ring-value {
-    animation: none;
-  }
-
   .proj-row-media img,
   .proj-row-num,
   .proj-row {

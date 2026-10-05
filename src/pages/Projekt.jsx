@@ -11,6 +11,7 @@ import { projekte as deTexts, shared as deShared } from '../i18n/de.js'
 import { projekte as enTexts, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
 import '../styles/site.css'
+import '../styles/rings.css'
 import '../styles/projekte.css'
 
 const IMAGE_SIZES = '(min-width: 1360px) 1280px, calc(100vw - 3rem)'
@@ -158,7 +159,7 @@ export default function Projekt({ lang, slug }) {
         </article>
       </main>
 
-      <SiteFooter shared={shared} />
+      <SiteFooter shared={shared} lang={lang} />
     </>
   )
 }

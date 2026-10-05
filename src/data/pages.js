@@ -15,6 +15,7 @@ export const pages = [
   { id: 'home', de: '/', en: '/en/', lastmod: '2026-10-05', changefreq: 'weekly', priority: '1.0' },
   { id: 'konfigurator', de: '/konfigurator/', en: '/en/configurator/', lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9' },
   { id: 'projekte', de: listPaths.de, en: listPaths.en, lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9', js: false },
+  { id: 'websiteCheck', de: '/website-check/', en: '/en/website-check/', lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.8' },
   ...projects.map((project) => ({
     id: `projekt-${project.slug}`,
     de: projectPaths.de(project.slug),

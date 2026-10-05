@@ -317,6 +317,36 @@
         "cls": 0,
         "si": 911
       }
+    },
+    "/website-check/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 759,
+        "lcp": 1509,
+        "tbt": 0,
+        "cls": 0,
+        "si": 759
+      }
+    },
+    "/en/website-check/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 757,
+        "lcp": 1507,
+        "tbt": 3,
+        "cls": 0,
+        "si": 757
+      }
     }
   }
 }

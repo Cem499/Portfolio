@@ -15,7 +15,8 @@ export const shared = {
     "copyright": "© 2026 Sin Digital, Digital Agency & Web Design Zürich. All rights reserved.",
     "imprint": "Imprint",
     "privacy": "Privacy Policy",
-    "terms": "T&C"
+    "terms": "T&C",
+    "websiteCheck": "Website check"
   },
   "pendingSubmitHint": "One moment please, the form is being prepared …",
   "contactForm": {
@@ -474,5 +475,174 @@ export const projekte = {
       "solution": "A bilingual website in German and English with online booking, price list, gallery, reviews, location and FAQ. Locally optimised for terms like “Coiffeur Zürich” and “Barber Shop Seefeld”, hosted on Netlify.",
       "result": "The salon can be found online for the first time, also by English-speaking clients, and appointments can be booked directly, around the clock."
     }
+  }
+}
+
+export const websiteCheck = {
+  "meta": {
+    "title": "Website Check: How Fast and Visible Is Your Website? | Sin Digital",
+    "description": "Free website check with Google PageSpeed Insights: performance, SEO, accessibility and best practices of your site as scores, plus three concrete tips. No sign-up.",
+    "ogTitle": "Website check: how fast and visible is your website?"
+  },
+  "breadcrumb": "Website check",
+  "label": "Website check",
+  "title1": "HOW GOOD IS",
+  "title2": "YOUR WEBSITE?",
+  "intro": "Enter a URL and Google measures your site on a simulated smartphone. You get four scores and three tips you can understand without a degree in engineering. Free, no sign-up.",
+  "form": {
+    "label": "Address of your website",
+    "placeholder": "www.your-website.ch",
+    "submit": "Check website",
+    "checking": "Checking …",
+    "invalid": "Please enter a valid address, for example www.your-website.ch."
+  },
+  "progress": {
+    "title": "Google is measuring",
+    "seconds": "seconds",
+    "phases": [
+      "Connecting to PageSpeed Insights",
+      "Loading the page on a simulated smartphone",
+      "Lighthouse measures performance, SEO and accessibility",
+      "Almost done, large pages take longer"
+    ],
+    "hint": "A measurement usually takes 20 to 40 seconds."
+  },
+  "result": {
+    "title": "Result for",
+    "measured": "Google PageSpeed Insights, mobile. Values vary with server and time of day.",
+    "scores": {
+      "performance": "Performance",
+      "accessibility": "Accessibility",
+      "bestPractices": "Best practices",
+      "seo": "SEO"
+    },
+    "tipsTitle": "Three tips with the biggest impact",
+    "allGood": "Strong site. None of the usual brakes are here; keep it up and measure again after bigger changes.",
+    "again": "Check another website",
+    "cta": {
+      "title": "Want Sin Digital to fix this for you?",
+      "text": "We look at the measurement and tell you in a short call what is worth doing and what is not.",
+      "button": "Yes, please take a look",
+      "secondary": "Or configure a new site"
+    }
+  },
+  "errors": {
+    "unreachable": "Google could not load this address. Check the spelling and that the site is publicly reachable.",
+    "rateLimit": "Too many checks are running right now. Please try again in a few minutes.",
+    "timeout": "The measurement took too long. This happens with very large pages; please try again.",
+    "generic": "The measurement failed. Please try again later.",
+    "retry": "Try again"
+  },
+  "tips": {
+    "render-blocking-resources": {
+      "title": "CSS and scripts block the first paint",
+      "text": "Stylesheets and scripts in the head hold the browser back before it shows anything. Inline the critical CSS, load the rest later."
+    },
+    "uses-responsive-images": {
+      "title": "Images are too big for the screen",
+      "text": "The site sends desktop-sized images to phones. Proper sizes per device often save more than half the data."
+    },
+    "modern-image-formats": {
+      "title": "Old image formats",
+      "text": "JPEG and PNG are much larger than WebP or AVIF at the same quality."
+    },
+    "unused-javascript": {
+      "title": "Lots of JavaScript that is never used",
+      "text": "Large script bundles load code this page never runs. Split them and load only what the page needs."
+    },
+    "unused-css-rules": {
+      "title": "CSS with a lot of dead weight",
+      "text": "A large part of the stylesheet is not used on this page."
+    },
+    "uses-text-compression": {
+      "title": "Text is delivered uncompressed",
+      "text": "HTML, CSS and JavaScript should come gzip- or brotli-compressed from the server; that is a server setting."
+    },
+    "server-response-time": {
+      "title": "The server responds slowly",
+      "text": "The first byte takes its time. Hosting, caching or the CMS slow things down before the page even starts."
+    },
+    "font-display": {
+      "title": "Fonts delay the text",
+      "text": "Web fonts without font-display keep text invisible until the font has loaded."
+    },
+    "largest-contentful-paint": {
+      "title": "The largest content appears late",
+      "text": "The main image or heading takes too long. Preload the image, set its size, remove render blockers."
+    },
+    "cumulative-layout-shift": {
+      "title": "The page jumps while loading",
+      "text": "Elements move while images or fonts load. Reserve width and height for images and space for embeds."
+    },
+    "total-blocking-time": {
+      "title": "The page responds with a delay",
+      "text": "JavaScript blocks the main thread. Fewer scripts, load later, split up tasks."
+    },
+    "image-alt": {
+      "title": "Images without alternative text",
+      "text": "Screen readers and Google do not know what is in the images. Every meaningful image needs an alt attribute."
+    },
+    "color-contrast": {
+      "title": "Not enough contrast",
+      "text": "Text is hard to read on its background. At least 4.5:1 for body text."
+    },
+    "document-title": {
+      "title": "Page title missing",
+      "text": "The title is the most important thing in search results. Every page needs its own meaningful title."
+    },
+    "meta-description": {
+      "title": "Description for Google missing",
+      "text": "Without a meta description Google picks a snippet itself. A good description raises the click rate."
+    },
+    "link-text": {
+      "title": "Links that say nothing",
+      "text": "“Click here” tells Google and screen readers nothing. Link texts should describe the target."
+    },
+    "is-crawlable": {
+      "title": "The page locks Google out",
+      "text": "A noindex or the robots.txt prevents the page from appearing in search results."
+    },
+    "viewport": {
+      "title": "Not set up for smartphones",
+      "text": "Without a viewport setting the phone shows the desktop view, tiny."
+    },
+    "errors-in-console": {
+      "title": "Errors in the browser",
+      "text": "The page throws JavaScript errors. Often harmless, sometimes the reason for broken features."
+    },
+    "is-on-https": {
+      "title": "No HTTPS",
+      "text": "Without encryption the browser warns and Google ranks the site lower."
+    },
+    "target-size": {
+      "title": "Buttons too small",
+      "text": "Links and buttons are hard to hit on a phone. At least 24 × 24 pixels with spacing."
+    },
+    "heading-order": {
+      "title": "Headings in the wrong order",
+      "text": "Skipped heading levels confuse screen readers and search engines."
+    }
+  },
+  "about": {
+    "title": "What the website check tests",
+    "items": [
+      {
+        "title": "Performance",
+        "text": "How quickly your page becomes visible and usable on a phone with an average connection."
+      },
+      {
+        "title": "SEO",
+        "text": "Whether Google can read, understand and classify the page: title, description, links, mobile friendliness."
+      },
+      {
+        "title": "Accessibility",
+        "text": "Whether people with a screen reader, keyboard or weak eyesight can use the page."
+      },
+      {
+        "title": "Best practices",
+        "text": "Security, current technology, no errors in the browser."
+      }
+    ],
+    "note": "The measurement runs at Google (PageSpeed Insights). Sin Digital stores neither your address nor the result."
   }
 }

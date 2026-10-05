@@ -83,7 +83,7 @@ export default function Projekte({ lang }) {
         </section>
       </main>
 
-      <SiteFooter shared={shared} />
+      <SiteFooter shared={shared} lang={lang} />
     </>
   )
 }

@@ -15,7 +15,8 @@ export const shared = {
     "copyright": "© 2026 Sin Digital, Digitalagentur & Webdesign Zürich. Alle Rechte vorbehalten.",
     "imprint": "Impressum",
     "privacy": "Datenschutz",
-    "terms": "AGB"
+    "terms": "AGB",
+    "websiteCheck": "Website-Check"
   },
   "pendingSubmitHint": "Einen Moment bitte, das Formular wird vorbereitet …",
   "contactForm": {
@@ -474,5 +475,174 @@ export const projekte = {
       "solution": "Eine zweisprachige Website auf Deutsch und Englisch mit Online-Terminbuchung, Preisliste, Galerie, Bewertungen, Standort und FAQ. Lokal suchmaschinenoptimiert auf Begriffe wie „Coiffeur Zürich“ und „Barber Shop Seefeld“, gehostet auf Netlify.",
       "result": "Der Salon ist erstmals online auffindbar, auch für englischsprachige Kundschaft, und Termine lassen sich direkt buchen, rund um die Uhr."
     }
+  }
+}
+
+export const websiteCheck = {
+  "meta": {
+    "title": "Website-Check: Wie schnell und sichtbar ist Ihre Website? | Sin Digital",
+    "description": "Kostenloser Website-Check mit Google PageSpeed Insights: Performance, SEO, Barrierefreiheit und Best Practices Ihrer Website als Score, dazu drei konkrete Tipps. Ohne Anmeldung.",
+    "ogTitle": "Website-Check: Wie schnell und sichtbar ist Ihre Website?"
+  },
+  "breadcrumb": "Website-Check",
+  "label": "Website-Check",
+  "title1": "WIE GUT IST",
+  "title2": "IHRE WEBSITE?",
+  "intro": "URL eingeben, Google misst Ihre Seite auf einem simulierten Smartphone. Sie bekommen vier Scores und drei Tipps, die Sie verstehen, ohne Technik-Studium. Kostenlos, ohne Anmeldung.",
+  "form": {
+    "label": "Adresse Ihrer Website",
+    "placeholder": "www.ihre-website.ch",
+    "submit": "Website prüfen",
+    "checking": "Wird geprüft …",
+    "invalid": "Bitte geben Sie eine gültige Adresse ein, zum Beispiel www.ihre-website.ch."
+  },
+  "progress": {
+    "title": "Google misst gerade",
+    "seconds": "Sekunden",
+    "phases": [
+      "Verbindung zu PageSpeed Insights",
+      "Seite wird auf einem simulierten Smartphone geladen",
+      "Lighthouse misst Performance, SEO und Barrierefreiheit",
+      "Fast fertig, grosse Seiten brauchen länger"
+    ],
+    "hint": "Eine Messung dauert meist 20 bis 40 Sekunden."
+  },
+  "result": {
+    "title": "Ergebnis für",
+    "measured": "Google PageSpeed Insights, mobil. Werte schwanken je nach Server und Tageszeit.",
+    "scores": {
+      "performance": "Performance",
+      "accessibility": "Barrierefreiheit",
+      "bestPractices": "Best Practices",
+      "seo": "SEO"
+    },
+    "tipsTitle": "Drei Tipps mit der grössten Wirkung",
+    "allGood": "Starke Seite. Die üblichen Bremsen sind hier nicht zu finden; bleiben Sie dran und messen Sie nach grösseren Änderungen erneut.",
+    "again": "Andere Website prüfen",
+    "cta": {
+      "title": "Soll Sin Digital das für Sie fixen?",
+      "text": "Wir schauen uns die Messung an und sagen Ihnen in einem kurzen Gespräch, was sich lohnt und was nicht.",
+      "button": "Ja, bitte anschauen",
+      "secondary": "Oder gleich neu konfigurieren"
+    }
+  },
+  "errors": {
+    "unreachable": "Google konnte diese Adresse nicht laden. Prüfen Sie die Schreibweise, und ob die Seite öffentlich erreichbar ist.",
+    "rateLimit": "Gerade laufen zu viele Prüfungen. Bitte in ein paar Minuten noch einmal versuchen.",
+    "timeout": "Die Messung hat zu lange gedauert. Das passiert bei sehr grossen Seiten; bitte noch einmal versuchen.",
+    "generic": "Die Messung ist fehlgeschlagen. Bitte später noch einmal versuchen.",
+    "retry": "Noch einmal versuchen"
+  },
+  "tips": {
+    "render-blocking-resources": {
+      "title": "CSS und Scripts blockieren den ersten Eindruck",
+      "text": "Stylesheets und Scripts im Kopf der Seite halten den Browser auf, bevor er etwas zeigt. Kritisches CSS inline, der Rest später."
+    },
+    "uses-responsive-images": {
+      "title": "Bilder sind zu gross für den Bildschirm",
+      "text": "Die Seite liefert Bilder in Desktop-Grösse auch aufs Smartphone. Passende Grössen pro Gerät sparen oft über die Hälfte der Daten."
+    },
+    "modern-image-formats": {
+      "title": "Alte Bildformate",
+      "text": "JPEG und PNG sind deutlich grösser als WebP oder AVIF bei gleicher Qualität."
+    },
+    "unused-javascript": {
+      "title": "Viel JavaScript, das nicht gebraucht wird",
+      "text": "Grosse Script-Pakete laden Code, der auf dieser Seite nie läuft. Aufteilen und nur laden, was die Seite braucht."
+    },
+    "unused-css-rules": {
+      "title": "CSS mit viel Ballast",
+      "text": "Ein grosser Teil des Stylesheets wird auf dieser Seite nicht verwendet."
+    },
+    "uses-text-compression": {
+      "title": "Texte werden unkomprimiert geliefert",
+      "text": "HTML, CSS und JavaScript sollten gzip- oder brotli-komprimiert vom Server kommen, das ist eine Server-Einstellung."
+    },
+    "server-response-time": {
+      "title": "Der Server antwortet langsam",
+      "text": "Der erste Byte lässt auf sich warten. Hosting, Caching oder das CMS bremsen, bevor die Seite überhaupt beginnt."
+    },
+    "font-display": {
+      "title": "Schriften verzögern den Text",
+      "text": "Webfonts ohne font-display lassen Text unsichtbar, bis die Schrift geladen ist."
+    },
+    "largest-contentful-paint": {
+      "title": "Der grösste Inhalt erscheint spät",
+      "text": "Das Hauptbild oder die Überschrift braucht zu lange. Bild vorladen, Grösse festlegen, Render-Blocker entfernen."
+    },
+    "cumulative-layout-shift": {
+      "title": "Die Seite springt beim Laden",
+      "text": "Elemente verschieben sich, während Bilder oder Schriften laden. Breite und Höhe für Bilder und Platz für Einbettungen reservieren."
+    },
+    "total-blocking-time": {
+      "title": "Die Seite reagiert verzögert",
+      "text": "JavaScript blockiert den Hauptthread. Weniger Scripts, später laden, Aufgaben aufteilen."
+    },
+    "image-alt": {
+      "title": "Bilder ohne Alternativtext",
+      "text": "Screenreader und Google wissen nicht, was auf den Bildern ist. Jedes bedeutsame Bild braucht ein alt-Attribut."
+    },
+    "color-contrast": {
+      "title": "Zu wenig Kontrast",
+      "text": "Text ist auf seinem Hintergrund schwer lesbar. Mindestens 4.5:1 für Fliesstext."
+    },
+    "document-title": {
+      "title": "Seitentitel fehlt",
+      "text": "Der Titel ist das Wichtigste in den Suchergebnissen. Jede Seite braucht einen eigenen, aussagekräftigen Titel."
+    },
+    "meta-description": {
+      "title": "Beschreibung für Google fehlt",
+      "text": "Ohne Meta-Description wählt Google selbst einen Textausschnitt. Eine gute Beschreibung erhöht die Klickrate."
+    },
+    "link-text": {
+      "title": "Links ohne Aussage",
+      "text": "„Hier klicken“ sagt Google und Screenreadern nichts. Linktexte sollen das Ziel beschreiben."
+    },
+    "is-crawlable": {
+      "title": "Die Seite sperrt Google aus",
+      "text": "Ein noindex oder die robots.txt verhindert, dass die Seite in den Suchergebnissen erscheint."
+    },
+    "viewport": {
+      "title": "Nicht für Smartphones eingerichtet",
+      "text": "Ohne Viewport-Angabe zeigt das Smartphone die Desktop-Ansicht winzig an."
+    },
+    "errors-in-console": {
+      "title": "Fehler im Browser",
+      "text": "Die Seite wirft JavaScript-Fehler. Oft harmlos, manchmal der Grund für kaputte Funktionen."
+    },
+    "is-on-https": {
+      "title": "Kein HTTPS",
+      "text": "Ohne Verschlüsselung warnt der Browser, und Google stuft die Seite ab."
+    },
+    "target-size": {
+      "title": "Zu kleine Schaltflächen",
+      "text": "Links und Buttons sind auf dem Smartphone schwer zu treffen. Mindestens 24 × 24 Pixel mit Abstand."
+    },
+    "heading-order": {
+      "title": "Überschriften in falscher Reihenfolge",
+      "text": "Übersprungene Überschriften-Ebenen verwirren Screenreader und Suchmaschinen."
+    }
+  },
+  "about": {
+    "title": "Was der Website-Check prüft",
+    "items": [
+      {
+        "title": "Performance",
+        "text": "Wie schnell Ihre Seite auf einem Smartphone mit mittlerem Netz sichtbar und bedienbar ist."
+      },
+      {
+        "title": "SEO",
+        "text": "Ob Google die Seite lesen, verstehen und einordnen kann: Titel, Beschreibung, Links, Mobile-Tauglichkeit."
+      },
+      {
+        "title": "Barrierefreiheit",
+        "text": "Ob Menschen mit Screenreader, Tastatur oder schwachen Augen die Seite nutzen können."
+      },
+      {
+        "title": "Best Practices",
+        "text": "Sicherheit, aktuelle Technik, keine Fehler im Browser."
+      }
+    ],
+    "note": "Die Messung läuft bei Google (PageSpeed Insights). Sin Digital speichert weder Ihre Adresse noch das Ergebnis."
   }
 }

@@ -11,6 +11,7 @@ import { shared as enShared } from './src/i18n/en.js'
 const STATIC_ROUTES = new Set(staticRoutes())
 
 const HOME_ROUTES = new Set(['/', '/en/'])
+const OUT_DIR = path.resolve('dist')
 
 const langOf = (route) => (route.startsWith('/en/') ? 'en' : 'de')
 const sharedTexts = { de: deShared, en: enShared }
@@ -85,6 +86,12 @@ function postProcess(route, html) {
     sheets.unshift(sheets[0].replace('rel="stylesheet"', 'rel="preload"').replace('>', ' as="style">'))
   }
   html = html.replace('</head>', `${sheets.join('')}</head>`)
+
+  // Subpages: the page's own stylesheets are small, inline them so only the shared
+  // global.css stays a render-blocking request.
+  if (!HOME_ROUTES.has(route)) {
+    html = html.replace(/<link rel="stylesheet" href="(\/static\/(?!global-)[^"]+\.css)">/g, (_, href) => `<style>${fs.readFileSync(path.join(OUT_DIR, href), 'utf8')}</style>`)
+  }
 
   // Critical inline style of the home page, after the stylesheet links (same cascade order as before).
   if (HOME_ROUTES.has(route)) {

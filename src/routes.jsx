@@ -66,6 +66,20 @@ export const routes = [
   },
   projectRoute('de'),
   projectRoute('en'),
+  {
+    path: '/website-check/',
+    lazy: async () => {
+      const { default: WebsiteCheck } = await import('./pages/WebsiteCheck.jsx')
+      return { Component: () => <WebsiteCheck lang="de" /> }
+    },
+  },
+  {
+    path: '/en/website-check/',
+    lazy: async () => {
+      const { default: WebsiteCheck } = await import('./pages/WebsiteCheck.jsx')
+      return { Component: () => <WebsiteCheck lang="en" /> }
+    },
+  },
   { path: '/agb.html', lazy: async () => ({ Component: (await import('./pages/Agb.jsx')).default }) },
   { path: '/datenschutz.html', lazy: async () => ({ Component: (await import('./pages/Datenschutz.jsx')).default }) },
   { path: '/impressum.html', lazy: async () => ({ Component: (await import('./pages/Impressum.jsx')).default }) },

@@ -1,0 +1,367 @@
+/* Website check (/website-check/). The form is prerendered; progress, result and error
+   panels appear after the measurement. */
+
+.wc-section {
+  padding-top: 2.5rem;
+}
+
+.wc-header {
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
+}
+
+.wc-header .section-title {
+  margin-bottom: 1.5rem;
+}
+
+.wc-intro {
+  max-width: 36rem;
+  margin-bottom: 0;
+}
+
+.wc {
+  max-width: 52rem;
+}
+
+/* ── Form: a prompt line ───────────────────────────────────────────────── */
+
+.wc-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.wc-field {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.wc-input {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.wc-field input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0.95rem 1rem 0.95rem 2.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  background: #0d0d0d;
+  color: var(--white);
+  font: inherit;
+  font-size: 1.05rem;
+  transition: border-color 0.2s ease;
+}
+
+.wc-prompt {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--green);
+  pointer-events: none;
+}
+
+.wc-field input::placeholder {
+  color: var(--gray);
+}
+
+.wc-field input:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.wc-field input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.wc-field input[aria-invalid='true'] {
+  border-color: #ff6464;
+}
+
+.wc-field input:disabled {
+  opacity: 0.6;
+}
+
+.wc-submit {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.wc-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.wc-invalid {
+  margin: 0.75rem 0 0;
+  color: #ff6464;
+  font-size: 0.88rem;
+}
+
+/* ── Progress ──────────────────────────────────────────────────────────── */
+
+.wc-progress,
+.wc-result,
+.wc-error {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(10, 10, 10, 0.92);
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
+.wc-result:focus,
+.wc-error:focus {
+  outline: none;
+}
+
+.wc-progress-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.wc-progress-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.wc-progress-time {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+}
+
+.wc-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.wc-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--green);
+  box-shadow: 0 0 12px rgba(193, 255, 114, 0.6);
+  transition: width 1s linear;
+}
+
+.wc-phase {
+  margin: 0.9rem 0 0;
+  color: var(--white);
+  font-size: 0.92rem;
+}
+
+.wc-hint {
+  margin: 0.35rem 0 0;
+  color: var(--gray);
+  font-size: 0.82rem;
+}
+
+/* ── Result ────────────────────────────────────────────────────────────── */
+
+.wc-result-host {
+  margin: 0.2rem 0 1.5rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.wc-rings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.5rem;
+}
+
+.wc-measured {
+  margin: 1.25rem 0 0;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.wc-tips-title,
+.wc-cta-title {
+  margin: 2rem 0 1rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.wc-tips {
+  margin: 0;
+  padding: 0 0 0 1.5rem;
+  display: grid;
+  gap: 0.9rem;
+  counter-reset: tips;
+}
+
+.wc-tips li {
+  padding-left: 0.25rem;
+}
+
+.wc-tips li::marker {
+  color: var(--green);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.wc-tips strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--white);
+}
+
+.wc-tips span {
+  display: block;
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.wc-allgood {
+  margin: 0;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.wc-cta {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-green);
+  border-left: 3px solid var(--green);
+  border-radius: 0 10px 10px 0;
+  background: rgba(193, 255, 114, 0.05);
+}
+
+.wc-cta .wc-cta-title {
+  margin-top: 0;
+}
+
+.wc-cta p {
+  margin: 0 0 1.25rem;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.wc-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+}
+
+.wc-link {
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.wc-again {
+  margin-top: 1.5rem;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 0.7rem 1.4rem;
+  color: var(--gray);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.wc-again:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.wc-error p {
+  margin: 0 0 1rem;
+  color: #ff6464;
+  line-height: 1.7;
+}
+
+.wc-error .wc-again {
+  margin-top: 0;
+}
+
+/* ── About ─────────────────────────────────────────────────────────────── */
+
+.wc-about {
+  max-width: 52rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.wc-about-title {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.wc-about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem 2rem;
+  margin: 0;
+}
+
+.wc-about-grid dt {
+  margin-bottom: 0.35rem;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.wc-about-grid dd {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.wc-about-note {
+  margin: 1.75rem 0 0;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wc-bar-fill,
+  .wc-field input,
+  .wc-again {
+    transition: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .wc-field {
+    flex-direction: column;
+  }
+
+  .wc-submit {
+    text-align: center;
+  }
+}

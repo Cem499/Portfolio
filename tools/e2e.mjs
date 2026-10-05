@@ -608,6 +608,119 @@ test('Projekt EN: /en/projects/<slug>/ vorgerendert, unbekannter Slug ist 404', 
   await s.close()
 })
 
+// ── Website check ────────────────────────────────────────────────────────────
+
+const PSI = /googleapis\.com\/pagespeedonline/
+const psiResult = {
+  lighthouseResult: {
+    finalDisplayedUrl: 'https://www.example.ch/',
+    categories: { performance: { score: 0.72 }, accessibility: { score: 0.95 }, 'best-practices': { score: 1 }, seo: { score: 0.88 } },
+    audits: {
+      'largest-contentful-paint': { score: 0.3, numericValue: 4100 },
+      'render-blocking-resources': { score: 0.2, details: { overallSavingsMs: 1800 } },
+      'uses-responsive-images': { score: 0.5, details: { overallSavingsMs: 900, overallSavingsBytes: 500000 } },
+      'meta-description': { score: 0 },
+    },
+  },
+}
+// Fulfils after a delay; a closed page is ignored (timeout test).
+const fulfillJson = (route, status, body, delayMs = 0) =>
+  setTimeout(() => route.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) }).catch(() => {}), delayMs)
+
+const wc = (page) => ({
+  rings: () => page.evaluate(() => [...document.querySelectorAll('.wc-result .ring-score')].map((el) => el.textContent).join('/')),
+  tips: () => page.evaluate(() => [...document.querySelectorAll('.wc-tips strong')].map((el) => el.textContent)),
+  error: () => page.evaluate(() => document.querySelector('.wc-error p')?.textContent || ''),
+})
+
+test('Website-Check: Fortschritt, Scores und drei Tipps nach Wirkung (API gemockt)', async () => {
+  const s = await open()
+  await s.page.route(PSI, (route) => fulfillJson(route, 200, psiResult, 2500))
+  await goto(s.page, '/website-check/')
+  await s.page.fill('#wc-url', 'www.example.ch')
+  await s.page.click('.wc-submit')
+  await s.page.waitForSelector('.wc-progress')
+  const progress = await s.page.evaluate(() => ({ title: document.querySelector('.wc-progress-title').textContent, phase: document.querySelector('.wc-phase').textContent, disabled: document.getElementById('wc-url').disabled, btn: document.querySelector('.wc-submit').textContent }))
+  expect(progress.title === 'Google misst gerade' && progress.phase === 'Verbindung zu PageSpeed Insights' && progress.disabled && progress.btn === 'Wird geprüft …', JSON.stringify(progress))
+  await s.page.waitForSelector('.wc-result', { timeout: 10000 })
+  const w = wc(s.page)
+  expect((await w.rings()) === '72/95/100/88', await w.rings())
+  const tips = await w.tips()
+  expect(tips.join('|') === 'CSS und Scripts blockieren den ersten Eindruck|Der grösste Inhalt erscheint spät|Bilder sind zu gross für den Bildschirm', tips.join('|'))
+  const r = await s.page.evaluate(() => ({ host: document.querySelector('.wc-result-host').textContent, focused: document.activeElement.className, cta: [...document.querySelectorAll('.wc-cta-actions a')].map((a) => a.getAttribute('href')).join() }))
+  expect(r.host === 'www.example.ch' && r.focused === 'wc-result' && r.cta === '/#contact,/konfigurator/', JSON.stringify(r))
+  await s.close()
+})
+
+test('Website-Check: ungültige Adresse, nicht erreichbar, Rate-Limit, Timeout', async () => {
+  const s = await open()
+  let calls = 0
+  let mode = 'unreachable'
+  await s.page.route(PSI, (route) => {
+    calls++
+    if (mode === 'unreachable') fulfillJson(route, 400, { error: { message: 'Lighthouse returned error: FAILED_DOCUMENT_REQUEST' } })
+    else if (mode === 'rate') fulfillJson(route, 429, { error: { message: 'Quota exceeded' } })
+    else fulfillJson(route, 200, psiResult, 6000)
+  })
+  await goto(s.page, '/website-check/')
+  const w = wc(s.page)
+  await s.page.fill('#wc-url', 'keine adresse')
+  await s.page.click('.wc-submit')
+  const invalid = await s.page.evaluate(() => document.getElementById('wc-url-error')?.textContent)
+  expect(invalid?.startsWith('Bitte geben Sie eine gültige Adresse') && calls === 0, `${invalid} / Aufrufe ${calls}`)
+  await s.page.fill('#wc-url', 'www.example.ch')
+  await s.page.click('.wc-submit')
+  await s.page.waitForSelector('.wc-error')
+  expect((await w.error()).startsWith('Google konnte diese Adresse nicht laden'), await w.error())
+  mode = 'rate'
+  await s.page.click('.wc-error .wc-again')
+  await s.page.click('.wc-submit')
+  await s.page.waitForSelector('.wc-error')
+  expect((await w.error()).startsWith('Gerade laufen zu viele Prüfungen'), await w.error())
+  mode = 'slow'
+  await s.page.evaluate(() => {
+    window.__psiTimeoutMs = 1500
+  })
+  await s.page.click('.wc-error .wc-again')
+  await s.page.click('.wc-submit')
+  await s.page.waitForSelector('.wc-error', { timeout: 8000 })
+  expect((await w.error()).startsWith('Die Messung hat zu lange gedauert'), await w.error())
+  await s.close()
+})
+
+test('Website-Check vor Hydration: Eingabe und Absenden werden nachgeholt', async () => {
+  const s = await open({ holdBundle: true })
+  await s.page.route(PSI, (route) => fulfillJson(route, 200, psiResult, 300))
+  await s.page.goto(base + '/website-check/')
+  await s.page.fill('#wc-url', 'www.example.ch')
+  await s.page.click('.wc-submit')
+  await s.page.waitForTimeout(150)
+  expect(await s.page.evaluate(() => !!document.getElementById('pending-submit-hint')), 'kein Hinweis')
+  s.releaseBundle()
+  await s.page.waitForSelector('.wc-result', { timeout: 15000 })
+  expect((await wc(s.page).rings()) === '72/95/100/88', await wc(s.page).rings())
+  await s.close()
+})
+
+test('Website-Check: Enter sendet, reduced motion ohne Animation, EN-Seite', async () => {
+  const s = await open({ reducedMotion: 'reduce' })
+  await s.page.route(PSI, (route) => fulfillJson(route, 200, psiResult, 2000))
+  await goto(s.page, '/website-check/')
+  await s.page.focus('#wc-url')
+  await s.page.keyboard.type('www.example.ch')
+  await s.page.keyboard.press('Enter')
+  await s.page.waitForSelector('.wc-bar-fill')
+  const bar = await s.page.evaluate(() => getComputedStyle(document.querySelector('.wc-bar-fill')).transitionDuration)
+  expect(bar === '0s', bar)
+  await s.page.waitForSelector('.wc-result', { timeout: 10000 })
+  const ring = await s.page.evaluate(() => getComputedStyle(document.querySelector('.wc-result .ring-value')).animationName)
+  expect(ring === 'none', ring)
+  await s.page.goto(base + '/en/website-check/')
+  const r = await s.page.evaluate(() => ({ lang: document.documentElement.lang, title: document.title, label: document.querySelector('.wc-label').textContent, footer: document.querySelector('.footer-links a').getAttribute('href') }))
+  expect(r.lang === 'en' && r.title.startsWith('Website Check') && r.label === 'Address of your website' && r.footer === '/en/website-check/', JSON.stringify(r))
+  await s.close()
+})
+
 // ── Server behaviour ─────────────────────────────────────────────────────────
 
 test('404: unbekannter Pfad liefert Status 404 mit 404.html', async () => {

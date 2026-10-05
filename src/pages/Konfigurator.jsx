@@ -41,7 +41,7 @@ export default function Konfigurator({ lang }) {
         </section>
       </main>
 
-      <SiteFooter shared={shared} />
+      <SiteFooter shared={shared} lang={lang} />
     </>
   )
 }

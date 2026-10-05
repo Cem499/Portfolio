@@ -110,7 +110,7 @@ export default function Home({ lang }) {
         <Projects t={t} />
         <Faq t={t} />
         <Reviews t={t} />
-        <Contact t={t} shared={shared} />
+        <Contact t={t} shared={shared} lang={lang} />
       </main>
     </>
   )
