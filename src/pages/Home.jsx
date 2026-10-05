@@ -106,7 +106,7 @@ export default function Home({ lang }) {
         <Hero t={t} ctaHref={configuratorPath(lang)} />
         <LocalSeo t={t} />
         <Team t={t} />
-        <Clients t={t} />
+        <Clients t={t} lang={lang} />
         <Projects t={t} />
         <Faq t={t} />
         <Reviews t={t} />

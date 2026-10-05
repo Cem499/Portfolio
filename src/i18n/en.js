@@ -8,7 +8,8 @@ export const shared = {
     "services": "Services",
     "faq": "FAQ",
     "contact": "Contact",
-    "configurator": "Configurator"
+    "configurator": "Configurator",
+    "projects": "Projects"
   },
   "footer": {
     "copyright": "© 2026 Sin Digital, Digital Agency & Web Design Zürich. All rights reserved.",
@@ -393,5 +394,85 @@ export const konfigurator = {
     "timing": "Start date",
     "price": "Guide price",
     "weeks": "Time frame"
+  }
+}
+
+export const projekte = {
+  "meta": {
+    "title": "Projects: Websites and Web Apps from Zurich | Sin Digital",
+    "description": "Three projects, three starting points: a club platform with applications and reservations, an enquiry form for a building services company, a first website for a barber shop. With before/after and measured values.",
+    "ogTitle": "Projects by Sin Digital: websites and web apps from Zurich"
+  },
+  "breadcrumb": "Projects",
+  "label": "Projects",
+  "title1": "BUILT,",
+  "title2": "NOT CLAIMED.",
+  "intro": "No mockups, no placeholders: real websites for real businesses, with values measured on the live site. Starting point, solution, result.",
+  "all": "All projects",
+  "caseStudy": "Case study",
+  "firstSite": "First website",
+  "visit": "Open live site",
+  "readMore": "Read case study",
+  "madeWith": "Built with",
+  "clientLabel": "Client",
+  "yearLabel": "Year",
+  "sections": {
+    "situation": "Starting point",
+    "solution": "Solution",
+    "result": "Result"
+  },
+  "metrics": {
+    "title": "Measured on the live site",
+    "note": "Lighthouse mobile, measured on {date}. Values vary with network and device.",
+    "performance": "Performance",
+    "accessibility": "Accessibility",
+    "bestPractices": "Best practices",
+    "seo": "SEO",
+    "lcp": "Largest content visible",
+    "tests": "Automated tests",
+    "languages": "Languages"
+  },
+  "compare": {
+    "title": "Before / after",
+    "before": "Before",
+    "after": "After",
+    "handle": "Move comparison"
+  },
+  "tech": "Tech",
+  "next": "Next project",
+  "cta": {
+    "title": "Your project next?",
+    "text": "Configure your website in two minutes or get in touch directly.",
+    "configure": "To the configurator",
+    "contact": "Get in touch"
+  },
+  "items": {
+    "street-food-compassion": {
+      "name": "Street Food Compassion",
+      "client": "Verein Street Food Compassion, Baden AG",
+      "tagline": "Festivals, a winter market and an admin area that ends the manual work.",
+      "summary": "Web app for club events: vendor applications, online reservations for the fondue chalet and a protected admin area.",
+      "situation": "The club had an almost empty WordPress site under its old name. Nothing about the new Badener Weihnachtszauber, and vendors who wanted to take part applied by email, with follow-up questions, attachments and manual work on both sides.",
+      "solution": "A web app instead of a brochure: React and Vite on the front end, Spring Boot on the back end. Two worlds with their own mood, street food festivals and Badener Weihnachtszauber, designed with light as the material: warm embers on one side, a fir-tree night on the other. Vendors apply in a multi-step form, separated into food and goods, with photo upload and a power calculator. Guests reserve the fondue chalet online in time slots. In the protected admin area with roles, the club manages applications and reservations, sends mail templates and exports to Excel and PDF. More than 170 automated tests keep it all safe.",
+      "result": "Applications and reservations come together digitally in one place instead of inboxes and Excel lists. The club sees at a glance who is in, and visitors find both events under one name."
+    },
+    "rh-haustechnik": {
+      "name": "RH Haustechnik",
+      "client": "RH Haustechnik GmbH, Urdorf",
+      "tagline": "From phone call to complete enquiry.",
+      "summary": "New static website for a building services company with a detailed enquiry form and spam protection.",
+      "situation": "The previous website was badly outdated and practically unusable: no modern contact form, no help for customers with a request. Anyone who wanted something picked up the phone.",
+      "solution": "A completely new, fast static website, mobile-optimised and reduced to the essentials. At its heart is a detailed enquiry form: service, type of property, place, address, preferred date and message, sent via EmailJS and protected against spam with Cloudflare Turnstile. Every enquiry lands directly in the company inbox. Hosted on Hostpoint.",
+      "result": "Customers submit their enquiry online in a structured way, with everything the company needs for a quote. RH Haustechnik receives complete enquiries and saves follow-up calls."
+    },
+    "coiffeur-zuerich": {
+      "name": "Coiffeur Zürich",
+      "client": "Barber shop, Forchstrasse 26, Zurich Seefeld",
+      "tagline": "A first website, with appointments online from day one.",
+      "summary": "Bilingual website with online booking, price list, gallery and local SEO for a barber shop in Seefeld.",
+      "situation": "The barber shop on Forchstrasse in Zurich Seefeld had no website of its own. Anyone looking for the salon found no page showing services, prices and appointments.",
+      "solution": "A bilingual website in German and English with online booking, price list, gallery, reviews, location and FAQ. Locally optimised for terms like “Coiffeur Zürich” and “Barber Shop Seefeld”, hosted on Netlify.",
+      "result": "The salon can be found online for the first time, also by English-speaking clients, and appointments can be booked directly, around the clock."
+    }
   }
 }

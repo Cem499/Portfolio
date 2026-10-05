@@ -8,7 +8,8 @@ export const shared = {
     "services": "Leistungen",
     "faq": "FAQ",
     "contact": "Kontakt",
-    "configurator": "Konfigurator"
+    "configurator": "Konfigurator",
+    "projects": "Projekte"
   },
   "footer": {
     "copyright": "© 2026 Sin Digital, Digitalagentur & Webdesign Zürich. Alle Rechte vorbehalten.",
@@ -393,5 +394,85 @@ export const konfigurator = {
     "timing": "Wunschtermin",
     "price": "Richtpreis",
     "weeks": "Zeitrahmen"
+  }
+}
+
+export const projekte = {
+  "meta": {
+    "title": "Projekte: Websites und Web-Apps aus Zürich | Sin Digital",
+    "description": "Drei Projekte, drei Ausgangslagen: Vereins-Plattform mit Bewerbungen und Reservationen, Anfrageformular für einen Haustechnik-Betrieb, erste Website für einen Barber Shop. Mit Vorher/Nachher und Messwerten.",
+    "ogTitle": "Projekte von Sin Digital: Websites und Web-Apps aus Zürich"
+  },
+  "breadcrumb": "Projekte",
+  "label": "Projekte",
+  "title1": "GEBAUT,",
+  "title2": "NICHT BEHAUPTET.",
+  "intro": "Keine Mockups, keine Platzhalter: echte Websites für echte Betriebe, mit Messwerten von der Live-Seite. Ausgangslage, Lösung, Ergebnis.",
+  "all": "Alle Projekte",
+  "caseStudy": "Case Study",
+  "firstSite": "Erste Website",
+  "visit": "Live-Seite öffnen",
+  "readMore": "Case Study lesen",
+  "madeWith": "Umgesetzt mit",
+  "clientLabel": "Kunde",
+  "yearLabel": "Jahr",
+  "sections": {
+    "situation": "Ausgangslage",
+    "solution": "Lösung",
+    "result": "Ergebnis"
+  },
+  "metrics": {
+    "title": "Messwerte der Live-Seite",
+    "note": "Lighthouse mobil, gemessen am {date}. Werte schwanken je nach Netz und Gerät.",
+    "performance": "Performance",
+    "accessibility": "Barrierefreiheit",
+    "bestPractices": "Best Practices",
+    "seo": "SEO",
+    "lcp": "Grösster Inhalt sichtbar",
+    "tests": "Automatisierte Tests",
+    "languages": "Sprachen"
+  },
+  "compare": {
+    "title": "Vorher / Nachher",
+    "before": "Vorher",
+    "after": "Nachher",
+    "handle": "Vergleich verschieben"
+  },
+  "tech": "Technik",
+  "next": "Nächstes Projekt",
+  "cta": {
+    "title": "Ihr Projekt als Nächstes?",
+    "text": "Konfigurieren Sie Ihre Website in zwei Minuten oder schreiben Sie uns direkt.",
+    "configure": "Zum Konfigurator",
+    "contact": "Kontakt aufnehmen"
+  },
+  "items": {
+    "street-food-compassion": {
+      "name": "Street Food Compassion",
+      "client": "Verein Street Food Compassion, Baden AG",
+      "tagline": "Festivals, Weihnachtszauber und ein Adminbereich, der die Handarbeit abschafft.",
+      "summary": "Web-App für Vereinsanlässe: Bewerbungen von Standbetreibern, Online-Reservation fürs Fondue-Chalet und ein geschützter Adminbereich.",
+      "situation": "Der Verein hatte eine fast leere WordPress-Seite unter dem alten Vereinsnamen. Vom neuen Badener Weihnachtszauber stand dort nichts, und wer als Standbetreiber mitmachen wollte, bewarb sich per Mail, mit Rückfragen, Anhängen und Handarbeit auf beiden Seiten.",
+      "solution": "Eine Web-App statt einer Broschüre: React und Vite im Frontend, Spring Boot im Backend. Zwei Welten mit eigener Stimmung, Street Food Festivals und Badener Weihnachtszauber, gestaltet mit Licht als Material: warme Glut auf der einen, Tannennacht auf der anderen Seite. Anbieter bewerben sich in einem mehrstufigen Formular, getrennt nach Food und Waren, mit Foto-Upload und Stromrechner. Gäste reservieren das Fondue-Chalet online in Zeitfenstern. Im geschützten Adminbereich mit Rollen verwaltet der Verein Bewerbungen und Reservationen, verschickt Mailvorlagen und exportiert nach Excel und PDF. Über 170 automatisierte Tests sichern das Ganze ab.",
+      "result": "Bewerbungen und Reservationen laufen digital an einem Ort zusammen statt über Mailfächer und Excel-Listen. Der Verein sieht auf einen Blick, wer dabei ist, und Besucherinnen und Besucher finden beide Anlässe unter einem Namen."
+    },
+    "rh-haustechnik": {
+      "name": "RH Haustechnik",
+      "client": "RH Haustechnik GmbH, Urdorf",
+      "tagline": "Vom Anruf zur vollständigen Anfrage.",
+      "summary": "Neue statische Website für einen Haustechnik-Betrieb mit ausführlichem Anfrageformular und Spamschutz.",
+      "situation": "Die bisherige Website war stark veraltet und praktisch nicht brauchbar: kein modernes Kontaktformular, keine Hilfe für Kundinnen und Kunden mit einem Anliegen. Wer etwas wollte, griff zum Telefon.",
+      "solution": "Eine komplett neue, schnelle statische Website, mobil optimiert und auf das Wesentliche reduziert. Herzstück ist ein ausführliches Anfrageformular: Leistung, Objekttyp, Ort, Adresse, Terminwunsch und Nachricht, verschickt über EmailJS und gegen Spam geschützt mit Cloudflare Turnstile. Jede Anfrage landet direkt im Postfach des Betriebs. Gehostet wird auf Hostpoint.",
+      "result": "Kundinnen und Kunden stellen ihre Anfrage strukturiert online, mit allen Angaben, die der Betrieb für eine Offerte braucht. RH Haustechnik erhält vollständige Anfragen und spart sich Rückfragen."
+    },
+    "coiffeur-zuerich": {
+      "name": "Coiffeur Zürich",
+      "client": "Barber Shop, Forchstrasse 26, Zürich Seefeld",
+      "tagline": "Erste Website, und Termine gleich online.",
+      "summary": "Zweisprachige Website mit Online-Terminbuchung, Preisliste, Galerie und lokalem SEO für einen Barber Shop im Seefeld.",
+      "situation": "Der Barber Shop an der Forchstrasse im Zürcher Seefeld hatte keine eigene Website. Wer den Salon suchte, fand keine Seite, die Angebot, Preise und Termine zeigt.",
+      "solution": "Eine zweisprachige Website auf Deutsch und Englisch mit Online-Terminbuchung, Preisliste, Galerie, Bewertungen, Standort und FAQ. Lokal suchmaschinenoptimiert auf Begriffe wie „Coiffeur Zürich“ und „Barber Shop Seefeld“, gehostet auf Netlify.",
+      "result": "Der Salon ist erstmals online auffindbar, auch für englischsprachige Kundschaft, und Termine lassen sich direkt buchen, rund um die Uhr."
+    }
   }
 }

@@ -63,6 +63,8 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 | `/en/` | `en/index.html` | Startseite Englisch |
 | `/konfigurator/` | `konfigurator/index.html` | Projekt-Konfigurator Deutsch (React, hydriert nach dem ersten Paint) |
 | `/en/configurator/` | `en/configurator/index.html` | Projekt-Konfigurator Englisch |
+| `/projekte/`, `/projekte/<slug>/` | `projekte/index.html`, `projekte/<slug>/index.html` | Case Studies Deutsch, ohne React (nur Inline-Script für den Slider) |
+| `/en/projects/`, `/en/projects/<slug>/` | `en/projects/…` | Case Studies Englisch |
 | `/agb.html`, `/datenschutz.html`, `/impressum.html` | gleichnamig | Legal-Seiten, vorgerendert Deutsch, DE/EN per localStorage |
 | `/webdesign-zuerich.html`, `/website-zuerich.html`, `/guenstige-website-zuerich.html`, `/webentwicklung-zuerich.html`, `/seo-agentur-zuerich.html` | gleichnamig | SEO-Landingpages, nur Deutsch, ohne JS |
 | `/404.html` | `404.html` | Fehlerseite, ohne JS |
@@ -90,31 +92,53 @@ Die Zusammenfassung geht als EmailJS-Feld `configuration` mit (Template `templat
   (`DEFAULTS`). Eine Auswahl vor dem Laden von React bleibt erhalten, ein früher Klick auf „Weiter“
   wird nach der Hydration nachgeholt (gleicher Mechanismus wie beim Kontaktformular).
 
+## Case Studies
+
+`/projekte/` listet die Projekte, `/projekte/<slug>/` zeigt je eine Case Study (Ausgangslage, Lösung,
+Ergebnis, Messwerte der Live-Seite, Vorher/Nachher-Slider, Tech-Chips). Beide kommen ohne React aus;
+nur der Slider hat ein kleines Inline-Script. Die Kundenlogos der Startseite verlinken auf die Case Studies.
+
+- **Daten:** `src/data/projects.js` (Slug, URL, Jahr, Logo, Tech, Fakten, Bildnamen, optional `beforeUrl`
+  für den Vorher-Screenshot und `credit`). Reihenfolge = Anzeige-Reihenfolge. Keine Projektpreise.
+- **Texte:** `projekte.items[slug]` in `src/i18n/de.js` und `en.js` (Name, Kunde, Tagline, Zusammenfassung,
+  Ausgangslage, Lösung, Ergebnis). Qualitativ, ohne erfundene Zahlen.
+- **Messwerte und Bilder:** `npm run measure:projects` misst jede Live-Seite mit Lighthouse (mobil, Median
+  aus 3), schreibt `src/data/measured.js` und legt Screenshots (1440 × 900 und 720 × 450, WebP) unter
+  `public/assets/projects/` ab, bei `beforeUrl` auch das Vorher-Bild. Danach `npm run build`.
+  Das Datum der Messung erscheint auf der Seite. Vor einem Deploy gelegentlich neu messen.
+- **Neues Projekt:** Eintrag in `projects.js`, Texte in beiden Sprachen, `npm run measure:projects`,
+  optional Logo auf der Startseite (`clients.js` mit `project: '<slug>'`). Routen, Sitemap und Tests
+  folgen automatisch aus `projects.js`.
+
 ## Projektstruktur
 
 ```
 src/
   main.jsx, routes.jsx   Einstieg und Routen (lazy pro Seite, damit jede Seite nur ihr CSS lädt)
-  pages/                 Home und Konfigurator (bekommen lang), Agb, Datenschutz, Impressum,
-                         Landingpages, NotFound
+  pages/                 Home, Konfigurator, Projekte, Projekt (bekommen lang bzw. slug), Agb,
+                         Datenschutz, Impressum, Landingpages, NotFound
   components/            SiteHeader (Skip-Link, Nav, MobileMenu, Menü-Zustand), SiteFooter, PageSeo
                          (Head der Unterseiten), PageBreadcrumb, Nav, MobileMenu, LangSwitch, Hero,
                          LocalSeo, Team, Clients, Projects, Faq, Reviews, ReviewsCarousel, Contact,
                          ContactForm, Turnstile, Footer, Breadcrumb, LegalNav, LegalGrid,
-                         ScrollTopButton, Seo, Configurator, AnimatedNumber (rollende Ziffern)
+                         ScrollTopButton, Seo, Configurator, AnimatedNumber (rollende Ziffern),
+                         ScoreRing (Lighthouse-Ring), BeforeAfterSlider (mit Inline-Script)
   hooks/                 useReveal, useSmoothScroll, useLegalLang, usePendingSubmit (Formular vor der
                          Hydration abgeschickt: Werte übernehmen, nach der Hydration senden)
   i18n/                  de.js, en.js: benannte Exporte je Seite (`shared` für Nav, Footer, Hinweise,
-                         Kontaktformular; `home`, `konfigurator`), damit jede Seite nur ihre Texte bündelt
+                         Kontaktformular; `home`, `konfigurator`, `projekte`), damit jede Seite nur
+                         ihre Texte bündelt
   data/                  pages.js (alle Seiten: URLs, lastmod, Sitemap-Angaben, ohne JS?),
                          navigation.js (Hauptnavigation), pricing.js (Preisliste des Konfigurators),
-                         clients.js (Kundenlogos), schema/ (JSON-LD, statisch oder als Funktion je Sprache)
+                         projects.js (Case Studies), measured.js (generierte Messwerte), clients.js
+                         (Kundenlogos), schema/ (JSON-LD, statisch oder als Funktion je Sprache)
   styles/                global.css (= Portfolio/styles.min.css; einzige Änderung: Kundenlogos immer
                          farbig, Hover nur noch Vergrössern), critical.css (Inline-Style
-                         der Startseite), site.css (Unterseiten), konfigurator.css,
+                         der Startseite), site.css (Unterseiten), konfigurator.css, projekte.css,
                          agb/datenschutz/impressum.css, landing*.css, notfound.css, lang-switch.css
-public/                  assets/, manifest.json, robots.txt, sitemap-style.xsl
-tools/                   Test-Tooling, siehe „Tests“
+public/                  assets/ (Logos, Portrait, projects/ mit den Case-Study-Screenshots),
+                         manifest.json, robots.txt, sitemap-style.xsl
+tools/                   Test-Tooling (siehe „Tests“) und measure-projects.mjs (siehe „Case Studies“)
 vite.config.js           Build-Nachbearbeitung pro Seite (siehe Kommentare in postProcess) und
                          Sitemap-Generator
 ```

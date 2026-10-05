@@ -197,6 +197,126 @@
         "cls": 0,
         "si": 906
       }
+    },
+    "/projekte/": {
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 909,
+        "lcp": 2034,
+        "tbt": 0,
+        "cls": 0,
+        "si": 950
+      }
+    },
+    "/en/projects/": {
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 915,
+        "lcp": 2040,
+        "tbt": 0,
+        "cls": 0,
+        "si": 915
+      }
+    },
+    "/projekte/street-food-compassion/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 1656,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
+    },
+    "/projekte/rh-haustechnik/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 1806,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
+    },
+    "/projekte/coiffeur-zuerich/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 1806,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
+    },
+    "/en/projects/street-food-compassion/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 909,
+        "lcp": 1659,
+        "tbt": 0,
+        "cls": 0,
+        "si": 909
+      }
+    },
+    "/en/projects/rh-haustechnik/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 908,
+        "lcp": 1658,
+        "tbt": 0,
+        "cls": 0,
+        "si": 908
+      }
+    },
+    "/en/projects/coiffeur-zuerich/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 911,
+        "lcp": 1661,
+        "tbt": 0,
+        "cls": 0,
+        "si": 911
+      }
     }
   }
 }

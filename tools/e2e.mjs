@@ -98,9 +98,9 @@ test('FAQ: Tastatur (Enter und Leertaste)', async () => {
 test('Smooth Scroll: Ziel minus 70px', async () => {
   const s = await open()
   await goto(s.page, '/')
-  await s.page.click('.nav-link[href="#faq"]')
+  await s.page.click('.nav-link[href="#projects"]')
   await s.page.waitForTimeout(1500)
-  const r = await s.page.evaluate(() => ({ y: window.scrollY, target: document.querySelector('#faq').getBoundingClientRect().top + window.scrollY - 70 }))
+  const r = await s.page.evaluate(() => ({ y: window.scrollY, target: document.querySelector('#projects').getBoundingClientRect().top + window.scrollY - 70 }))
   expect(Math.abs(r.y - r.target) < 2, JSON.stringify(r))
   await s.close()
 })
@@ -538,6 +538,73 @@ test('Konfigurator EN: /en/configurator/ vorgerendert, Hinweis englisch', async 
   await s.page.waitForTimeout(150)
   const hint = await s.page.evaluate(() => document.getElementById('pending-submit-hint')?.textContent)
   expect(hint === 'One moment please, the form is being prepared …', hint)
+  await s.close()
+})
+
+// ── Case studies ─────────────────────────────────────────────────────────────
+
+test('Projekte: Liste und Startseiten-Logos ohne JavaScript, Logos verlinken auf Case Studies', async () => {
+  const s = await open()
+  await goto(s.page, '/projekte/', { hydrated: false })
+  const list = await s.page.evaluate(() => ({
+    rows: document.querySelectorAll('.proj-row').length,
+    first: document.querySelector('.proj-row-link')?.textContent,
+    modules: document.querySelectorAll('script[type="module"]').length,
+    root: !!document.getElementById('root'),
+  }))
+  expect(list.rows === 3 && list.first === 'Street Food Compassion' && list.modules === 0 && !list.root, JSON.stringify(list))
+  await goto(s.page, '/')
+  const links = await s.page.evaluate(() => [...document.querySelectorAll('.client-logo-link')].map((a) => a.getAttribute('href')))
+  expect(links.every((href) => href.startsWith('/projekte/')) && links.length === 3, links.join())
+  await s.close()
+})
+
+test('Projekt: Vorher/Nachher-Slider per Tastatur und Maus (Inline-Script, kein React)', async () => {
+  const s = await open()
+  await goto(s.page, '/projekte/street-food-compassion/', { hydrated: false })
+  const state = () => s.page.evaluate(() => ({ clip: document.querySelector('.ba-after').style.clipPath, left: document.querySelector('.ba-line').style.left, value: document.querySelector('.ba-range').value, modules: document.querySelectorAll('script[type="module"]').length }))
+  let r = await state()
+  expect(r.clip === 'inset(0px 0px 0px 50%)' && r.left === '50%' && r.modules === 0, JSON.stringify(r))
+  await s.page.focus('.ba-range')
+  for (let i = 0; i < 10; i++) await s.page.keyboard.press('ArrowRight')
+  r = await state()
+  expect(r.value === '60' && r.clip === 'inset(0px 0px 0px 60%)' && r.left === '60%', JSON.stringify(r))
+  const range = s.page.locator('.ba-range')
+  await range.scrollIntoViewIfNeeded()
+  const box = await range.boundingBox()
+  await range.click({ position: { x: box.width * 0.25, y: box.height / 2 }, force: true })
+  r = await state()
+  expect(Math.abs(Number(r.value) - 25) <= 2 && r.left === `${r.value}%`, JSON.stringify(r))
+  await s.close()
+})
+
+test('Projekt: ohne Vorher-Bild Cover und „Erste Website“, Ringe nur mit Messwerten', async () => {
+  const s = await open()
+  await goto(s.page, '/projekte/coiffeur-zuerich/', { hydrated: false })
+  const r = await s.page.evaluate(() => ({ slider: !!document.querySelector('.ba'), cover: !!document.querySelector('.proj-cover img'), label: document.querySelector('.proj-head .label').textContent, rings: document.querySelectorAll('.ring').length, measured: !!document.querySelector('.proj-metrics-note') }))
+  expect(!r.slider && r.cover && r.label.includes('Erste Website') && r.rings === 4 && r.measured, JSON.stringify(r))
+  await s.close()
+})
+
+test('Projekt: Ring-Animation nur ohne reduced motion', async () => {
+  const a = await open()
+  await goto(a.page, '/projekte/street-food-compassion/', { hydrated: false })
+  const animated = await a.page.evaluate(() => getComputedStyle(document.querySelector('.ring-value')).animationName)
+  await a.close()
+  const b = await open({ reducedMotion: 'reduce' })
+  await goto(b.page, '/projekte/street-food-compassion/', { hydrated: false })
+  const still = await b.page.evaluate(() => getComputedStyle(document.querySelector('.ring-value')).animationName)
+  await b.close()
+  expect(animated === 'ring-fill' && still === 'none', `${animated} / ${still}`)
+})
+
+test('Projekt EN: /en/projects/<slug>/ vorgerendert, unbekannter Slug ist 404', async () => {
+  const s = await open()
+  await goto(s.page, '/en/projects/rh-haustechnik/', { hydrated: false })
+  const r = await s.page.evaluate(() => ({ lang: document.documentElement.lang, title: document.title, canonical: document.querySelector('link[rel=canonical]').href, de: document.querySelector('link[hreflang="de-CH"]').href, crumb: document.querySelector('.page-breadcrumb').textContent.replace(/\s+/g, ' ').trim() }))
+  expect(r.lang === 'en' && r.title.startsWith('RH Haustechnik: Case study') && r.canonical === 'https://www.sin-digital.com/en/projects/rh-haustechnik/' && r.de === 'https://www.sin-digital.com/projekte/rh-haustechnik/' && r.crumb.includes('Projects'), JSON.stringify(r))
+  const response = await s.page.goto(base + '/projekte/gibt-es-nicht/')
+  expect(response.status() === 404, String(response.status()))
   await s.close()
 })
 

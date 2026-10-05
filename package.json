@@ -12,7 +12,8 @@
     "test:e2e": "node tools/e2e.mjs",
     "test:lighthouse": "node tools/lighthouse.mjs",
     "test:visual": "node tools/visual.mjs",
-    "test": "npm run test:e2e && npm run test:lighthouse"
+    "test": "npm run test:e2e && npm run test:lighthouse",
+    "measure:projects": "node tools/measure-projects.mjs"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

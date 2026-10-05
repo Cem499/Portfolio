@@ -1,8 +1,8 @@
 // Main navigation in display order. `anchor` points to a section of the start page,
 // `path` to a page of its own (one URL per language). Labels come from i18n `shared.nav`.
 export const mainNav = [
+  { id: 'projects', path: { de: '/projekte/', en: '/en/projects/' } },
   { id: 'services', anchor: 'projects' },
-  { id: 'faq', anchor: 'faq' },
   { id: 'configurator', path: { de: '/konfigurator/', en: '/en/configurator/' } },
   { id: 'contact', anchor: 'contact', cta: true },
 ]

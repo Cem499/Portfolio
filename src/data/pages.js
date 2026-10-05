@@ -7,11 +7,23 @@
 // sitemap   false keeps the page out of the sitemap (404)
 // js        false means the page ships without the React bundle (no hydration)
 
+import { listPaths, projectPaths, projects } from './projects.js'
+
 export const SITE = 'https://www.sin-digital.com'
 
 export const pages = [
   { id: 'home', de: '/', en: '/en/', lastmod: '2026-10-05', changefreq: 'weekly', priority: '1.0' },
   { id: 'konfigurator', de: '/konfigurator/', en: '/en/configurator/', lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9' },
+  { id: 'projekte', de: listPaths.de, en: listPaths.en, lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9', js: false },
+  ...projects.map((project) => ({
+    id: `projekt-${project.slug}`,
+    de: projectPaths.de(project.slug),
+    en: projectPaths.en(project.slug),
+    lastmod: '2026-10-05',
+    changefreq: 'yearly',
+    priority: '0.7',
+    js: false,
+  })),
   { id: 'webdesign', de: '/webdesign-zuerich.html', lastmod: '2026-03-13', changefreq: 'weekly', priority: '0.8', js: false },
   { id: 'website', de: '/website-zuerich.html', lastmod: '2026-03-13', changefreq: 'weekly', priority: '0.8', js: false },
   { id: 'guenstigeWebsite', de: '/guenstige-website-zuerich.html', lastmod: '2026-03-13', changefreq: 'weekly', priority: '0.8', js: false },
