@@ -1,0 +1,224 @@
+/* Start page additions (inlined into <head> with critical.css by vite.config.js). */
+
+/* ── Availability badge (hero) ─────────────────────────────────────────── */
+
+.avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1.5rem 0 0;
+  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
+  border: 1px solid var(--border-green);
+  border-radius: 50px;
+  background: rgba(193, 255, 114, 0.05);
+  color: var(--gray);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.avail-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(193, 255, 114, 0.5);
+  animation: avail-pulse 2.4s ease-out infinite;
+}
+
+.avail-month {
+  color: var(--white);
+  font-weight: 700;
+}
+
+@keyframes avail-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(193, 255, 114, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 0.6rem rgba(193, 255, 114, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(193, 255, 114, 0);
+  }
+}
+
+/* ── Hero: a thin lime line slowly crossing the stage (compositor-only transform) ── */
+
+.hero-scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(193, 255, 114, 0.9) 35%, rgba(193, 255, 114, 0.9) 65%, transparent 100%);
+  box-shadow: 0 0 14px rgba(193, 255, 114, 0.45);
+  opacity: 0.4;
+  pointer-events: none;
+  will-change: transform;
+  animation: hero-scan 18s linear infinite;
+}
+
+@keyframes hero-scan {
+  from {
+    transform: translateX(-2vw);
+  }
+  to {
+    transform: translateX(102vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avail-dot {
+    animation: none;
+  }
+
+  .hero-scan {
+    animation: none;
+    transform: translateX(66vw);
+    opacity: 0.22;
+  }
+}
+
+/* ── Process timeline ──────────────────────────────────────────────────── */
+
+.timeline-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.25rem;
+  max-width: 46rem;
+}
+
+/* The track and its fill, left of the steps. */
+.timeline-line {
+  position: absolute;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  left: 0.55rem;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.timeline-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--green);
+  transform-origin: top;
+  transform: scaleY(1);
+}
+
+.timeline-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 3rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0 0.5rem;
+}
+
+.timeline-dot {
+  position: relative;
+  top: 0.4rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  background: var(--bg);
+  box-shadow: 0 0 0 0 rgba(193, 255, 114, 0.35);
+}
+
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.timeline-num {
+  padding-top: 0.15rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-name {
+  margin-bottom: 0.4rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.timeline-desc {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.timeline-link {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Scroll-driven: the fill grows and each dot lights up as it passes the middle of the viewport. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline-line::after {
+      transform: scaleY(0);
+      animation: timeline-fill linear both;
+      animation-timeline: view();
+      animation-range: entry 10% exit 60%;
+    }
+
+    .timeline-dot::after {
+      transform: scale(0);
+      animation: timeline-dot linear both;
+      animation-timeline: view();
+      animation-range: entry 45% entry 70%;
+    }
+  }
+}
+
+@keyframes timeline-fill {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes timeline-dot {
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 767px) {
+  .timeline-list {
+    gap: 1.75rem;
+  }
+
+  .timeline-step {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+  }
+
+  .timeline-num {
+    grid-column: 2;
+    padding-top: 0;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-body {
+    grid-column: 2;
+  }
+
+  .timeline-dot {
+    grid-row: 1 / span 2;
+  }
+}
