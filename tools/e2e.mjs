@@ -6,6 +6,7 @@
 //
 // Third-party scripts are stubbed (Turnstile, EmailJS), nothing leaves the machine.
 import { chromium } from 'playwright-core'
+import { chf, estimate } from '../src/data/pricing.js'
 import { chromiumPath, pagesToTest, parseArgs, printTable, serveDist, stubThirdParty } from './lib.mjs'
 
 const { flags } = parseArgs()
@@ -404,6 +405,139 @@ test('Legal: Scroll-nach-oben ab 400px, Reveal', async () => {
   expect((await s.page.evaluate(() => window.scrollY)) === 0, 'scrollt nicht nach oben')
   const revealed = await s.page.evaluate(() => document.querySelector('.legal-grid').classList.contains('visible'))
   expect(revealed, 'erste .legal-grid nicht sichtbar')
+  await s.close()
+})
+
+// ── Configurator ─────────────────────────────────────────────────────────────
+
+const konfig = (page) => ({
+  prices: () => page.evaluate(() => [...document.querySelectorAll('.konfig-summary-main .konfig-sr')].map((el) => el.textContent).join('–')),
+  meta: () => page.evaluate(() => document.querySelector('.konfig-meta').textContent.trim()),
+  step: () => page.evaluate(() => [...document.querySelectorAll('.konfig-step')].findIndex((f) => !f.hidden) + 1 || (document.querySelector('.konfig-request') ? 5 : 0)),
+  tile: (value) => page.click(`label.konfig-tile:has(input[value="${value}"])`),
+  next: async () => {
+    await page.click('.konfig-next')
+    await page.waitForTimeout(120)
+  },
+})
+
+test('Konfigurator: Schritt 1 und Standardpreis vorgerendert, noch ohne JavaScript', async () => {
+  const s = await open({ holdBundle: true })
+  await s.page.goto(base + '/konfigurator/')
+  const k = konfig(s.page)
+  expect((await k.step()) === 1, 'Schritt ' + (await k.step()))
+  expect((await k.prices()) === "2'500–4'500", await k.prices())
+  expect((await k.meta()).startsWith('3 – 5 Wochen'), await k.meta())
+  const checked = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  expect(checked === 'business', checked)
+  await s.close()
+})
+
+test('Konfigurator vor Hydration: Auswahl bleibt, „Weiter“ wird nachgeholt', async () => {
+  const s = await open({ holdBundle: true })
+  await s.page.goto(base + '/konfigurator/')
+  const k = konfig(s.page)
+  await k.tile('landingpage')
+  await s.page.click('.konfig-next')
+  await s.page.waitForTimeout(150)
+  expect(await s.page.evaluate(() => !!document.getElementById('pending-submit-hint')), 'kein Hinweis')
+  s.releaseBundle()
+  await s.page.waitForFunction(() => window.__VITE_REACT_SSG_CONTEXT__)
+  await s.page.waitForFunction(() => !document.getElementById('pending-submit-hint'))
+  await s.page.waitForTimeout(120)
+  expect((await k.step()) === 2, 'Schritt ' + (await k.step()))
+  expect((await k.prices()) === "900–1'500", await k.prices())
+  const tiers = await s.page.evaluate(() => [...document.querySelectorAll('input[name=pages]')].map((i) => i.value).join())
+  expect(tiers === 'single', tiers)
+  await s.close()
+})
+
+test('Konfigurator: Preis und Wochen rechnen live, Zusammenfassung stimmt', async () => {
+  const s = await open()
+  await goto(s.page, '/konfigurator/')
+  const k = konfig(s.page)
+  await k.next()
+  await k.tile('upTo10')
+  await k.next()
+  await k.tile('multilingual')
+  await k.tile('shop')
+  await k.next()
+  await k.tile('express')
+  await s.page.waitForTimeout(100)
+  const expected = estimate({ siteType: 'business', pages: 'upTo10', features: ['multilingual', 'shop'], timing: 'express' })
+  expect((await k.prices()) === `${chf(expected.price.min)}–${chf(expected.price.max)}`, await k.prices())
+  const meta = await k.meta()
+  expect(meta.includes(`${expected.weeks.min} – ${expected.weeks.max} Wochen`) && meta.includes('Express'), meta)
+  await k.next()
+  expect((await k.step()) === 5, 'Schritt ' + (await k.step()))
+  const config = await s.page.evaluate(() => document.querySelector('.konfig-config').textContent)
+  expect(config.includes('Seitentyp: Firmenwebsite') && config.includes('Umfang: 6 bis 10 Seiten') && config.includes('Funktionen: Mehrsprachig, Shop') && config.includes(`Richtpreis: CHF ${chf(expected.price.min)} – ${chf(expected.price.max)}`), config)
+  await s.close()
+})
+
+test('Konfigurator: Anfrage schickt die Konfiguration mit', async () => {
+  const s = await open({ turnstile: { token: 'tok' } })
+  const sent = mockEmailJs(s.page)
+  await goto(s.page, '/konfigurator/')
+  const k = konfig(s.page)
+  for (let i = 0; i < 4; i++) await k.next()
+  await s.page.waitForTimeout(300)
+  await fillValid(s.page)
+  await s.page.click('#contactForm button[type="submit"]')
+  await s.page.waitForFunction(() => document.getElementById('form-status').style.display === 'block')
+  const status = await s.page.evaluate(() => document.getElementById('form-status').textContent)
+  expect(status.startsWith('Vielen Dank'), status)
+  const p = sent.payload?.template_params
+  expect(p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes("Richtpreis: CHF 2'500 – 4'500") && p.message === 'Eine genügend lange Nachricht', JSON.stringify(p))
+  await s.close()
+})
+
+test('Konfigurator: Tastatur (Pfeiltasten wählen, Enter geht weiter, Leertaste toggelt)', async () => {
+  const s = await open()
+  await goto(s.page, '/konfigurator/')
+  const k = konfig(s.page)
+  await s.page.focus('input[name=siteType]:checked')
+  await s.page.keyboard.press('ArrowDown')
+  const type = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  expect(type === 'custom', type)
+  await s.page.keyboard.press('Tab')
+  expect((await s.page.evaluate(() => document.activeElement.className)).includes('konfig-next'), 'Tab erreicht „Weiter“ nicht')
+  await s.page.keyboard.press('Enter')
+  await s.page.waitForTimeout(150)
+  expect((await k.step()) === 2, 'Enter geht nicht weiter')
+  await s.page.keyboard.press('Tab')
+  expect((await s.page.evaluate(() => document.activeElement.name)) === 'pages', 'Fokus nach Schrittwechsel: ' + (await s.page.evaluate(() => document.activeElement.outerHTML.slice(0, 60))))
+  await s.page.keyboard.press('ArrowDown')
+  await s.page.keyboard.press('Tab')
+  await s.page.keyboard.press('Tab')
+  await s.page.keyboard.press('Enter')
+  await s.page.waitForTimeout(150)
+  expect((await k.step()) === 3, 'Schritt ' + (await k.step()))
+  await s.page.keyboard.press('Tab')
+  await s.page.keyboard.press('Space')
+  const features = await s.page.evaluate(() => [...document.querySelectorAll('input[name=features]:checked')].map((i) => i.value).join())
+  expect(features === 'multilingual', features)
+  expect((await k.prices()).startsWith("6'000"), await k.prices())
+  await s.close()
+})
+
+test('Konfigurator: reduced motion ohne Zähler-Animation', async () => {
+  const s = await open({ reducedMotion: 'reduce' })
+  await goto(s.page, '/konfigurator/')
+  const duration = await s.page.evaluate(() => getComputedStyle(document.querySelector('.konfig-digit-strip')).transitionDuration)
+  expect(duration === '0s', duration)
+  await s.close()
+})
+
+test('Konfigurator EN: /en/configurator/ vorgerendert, Hinweis englisch', async () => {
+  const s = await open({ holdBundle: true })
+  await s.page.goto(base + '/en/configurator/')
+  const r = await s.page.evaluate(() => ({ lang: document.documentElement.lang, title: document.title, canonical: document.querySelector('link[rel=canonical]').href, alt: document.querySelector('link[hreflang="de-CH"]').href }))
+  expect(r.lang === 'en' && r.title.startsWith('Project Configurator') && r.canonical === 'https://www.sin-digital.com/en/configurator/' && r.alt === 'https://www.sin-digital.com/konfigurator/', JSON.stringify(r))
+  await s.page.click('.konfig-next')
+  await s.page.waitForTimeout(150)
+  const hint = await s.page.evaluate(() => document.getElementById('pending-submit-hint')?.textContent)
+  expect(hint === 'One moment please, the form is being prepared …', hint)
   await s.close()
 })
 

@@ -13,6 +13,11 @@ export function valuesFromDom(formId, defaults) {
   if (!form) return defaults
   const values = { ...defaults }
   for (const name of Object.keys(defaults)) {
+    if (Array.isArray(defaults[name])) {
+      // checkbox group
+      values[name] = [...form.querySelectorAll(`input[name="${name}"]:checked`)].map((input) => input.value)
+      continue
+    }
     const field = form.elements.namedItem(name)
     if (!field) continue
     values[name] = typeof defaults[name] === 'boolean' ? field.checked : field.value

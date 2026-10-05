@@ -18,6 +18,20 @@ export const routes = [
       return { Component: () => <Home lang="en" /> }
     },
   },
+  {
+    path: '/konfigurator/',
+    lazy: async () => {
+      const { default: Konfigurator } = await import('./pages/Konfigurator.jsx')
+      return { Component: () => <Konfigurator lang="de" /> }
+    },
+  },
+  {
+    path: '/en/configurator/',
+    lazy: async () => {
+      const { default: Konfigurator } = await import('./pages/Konfigurator.jsx')
+      return { Component: () => <Konfigurator lang="en" /> }
+    },
+  },
   { path: '/agb.html', lazy: async () => ({ Component: (await import('./pages/Agb.jsx')).default }) },
   { path: '/datenschutz.html', lazy: async () => ({ Component: (await import('./pages/Datenschutz.jsx')).default }) },
   { path: '/impressum.html', lazy: async () => ({ Component: (await import('./pages/Impressum.jsx')).default }) },

@@ -61,6 +61,8 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 | --- | --- | --- |
 | `/` | `index.html` | Startseite Deutsch |
 | `/en/` | `en/index.html` | Startseite Englisch |
+| `/konfigurator/` | `konfigurator/index.html` | Projekt-Konfigurator Deutsch (React, hydriert nach dem ersten Paint) |
+| `/en/configurator/` | `en/configurator/index.html` | Projekt-Konfigurator Englisch |
 | `/agb.html`, `/datenschutz.html`, `/impressum.html` | gleichnamig | Legal-Seiten, vorgerendert Deutsch, DE/EN per localStorage |
 | `/webdesign-zuerich.html`, `/website-zuerich.html`, `/guenstige-website-zuerich.html`, `/webentwicklung-zuerich.html`, `/seo-agentur-zuerich.html` | gleichnamig | SEO-Landingpages, nur Deutsch, ohne JS |
 | `/404.html` | `404.html` | Fehlerseite, ohne JS |
@@ -71,26 +73,46 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
   vor diesem Zeitpunkt bleiben erhalten; ein früher Klick auf „Senden“ zeigt kurz „Einen Moment bitte …“,
   lädt React sofort und sendet danach automatisch (bei gültigen Feldern nach dem Turnstile-Token, max. 8 s).
 
+## Projekt-Konfigurator
+
+`/konfigurator/` führt in vier Schritten (Seitentyp, Umfang, Funktionen, Wunschtermin) zu einer
+Preisspanne in CHF mit Zeitrahmen und übergibt die Auswahl im fünften Schritt an das Kontaktformular.
+Die Zusammenfassung geht als EmailJS-Feld `configuration` mit (Template `template_5mci63d` enthält
+`{{configuration}}`; bei normalen Kontaktanfragen bleibt das Feld leer).
+
+- **Preise anpassen:** `src/data/pricing.js`. Je Seitentyp Spanne, enthaltene Seiten und Wochen;
+  Staffeln für zusätzliche Seiten; Funktionen mit Aufpreis und Zusatzwochen; Express-Zuschlag.
+  `estimate()` rechnet daraus, `tiersFor()` bestimmt, welche Staffeln ein Seitentyp anbietet.
+  Der Typ `custom` und die Staffel `over20` haben keine Spanne („ab … CHF, Preis nach Gespräch“).
+- **Texte:** `konfigurator` in `src/i18n/de.js` und `en.js` (Namen und Beschreibungen sind nach den
+  IDs aus `pricing.js` verschlüsselt). Das JSON-LD (`OfferCatalog`) entsteht aus beiden Quellen.
+- **Vor der Hydration:** Schritt 1 ist vorgerendert, die Richtpreis-Karte zeigt den Standard
+  (`DEFAULTS`). Eine Auswahl vor dem Laden von React bleibt erhalten, ein früher Klick auf „Weiter“
+  wird nach der Hydration nachgeholt (gleicher Mechanismus wie beim Kontaktformular).
+
 ## Projektstruktur
 
 ```
 src/
   main.jsx, routes.jsx   Einstieg und Routen (lazy pro Seite, damit jede Seite nur ihr CSS lädt)
-  pages/                 Home (bekommt lang), Agb, Datenschutz, Impressum, Landingpages, NotFound
-  components/            SiteHeader (Skip-Link, Nav, MobileMenu, Menü-Zustand), SiteFooter, Nav,
-                         MobileMenu, LangSwitch, Hero, LocalSeo, Team, Clients, Projects, Faq, Reviews,
-                         ReviewsCarousel, Contact, ContactForm, Turnstile, Footer, Breadcrumb, LegalNav,
-                         LegalGrid, ScrollTopButton, Seo
+  pages/                 Home und Konfigurator (bekommen lang), Agb, Datenschutz, Impressum,
+                         Landingpages, NotFound
+  components/            SiteHeader (Skip-Link, Nav, MobileMenu, Menü-Zustand), SiteFooter, PageSeo
+                         (Head der Unterseiten), PageBreadcrumb, Nav, MobileMenu, LangSwitch, Hero,
+                         LocalSeo, Team, Clients, Projects, Faq, Reviews, ReviewsCarousel, Contact,
+                         ContactForm, Turnstile, Footer, Breadcrumb, LegalNav, LegalGrid,
+                         ScrollTopButton, Seo, Configurator, AnimatedNumber (rollende Ziffern)
   hooks/                 useReveal, useSmoothScroll, useLegalLang, usePendingSubmit (Formular vor der
                          Hydration abgeschickt: Werte übernehmen, nach der Hydration senden)
-  i18n/                  de.js, en.js: benannte Exporte je Seite (`shared` für Nav, Footer, Hinweise;
-                         `home` für die Startseite), damit jede Seite nur ihre Texte bündelt
+  i18n/                  de.js, en.js: benannte Exporte je Seite (`shared` für Nav, Footer, Hinweise,
+                         Kontaktformular; `home`, `konfigurator`), damit jede Seite nur ihre Texte bündelt
   data/                  pages.js (alle Seiten: URLs, lastmod, Sitemap-Angaben, ohne JS?),
-                         navigation.js (Hauptnavigation), clients.js (Kundenlogos), schema/ (JSON-LD)
+                         navigation.js (Hauptnavigation), pricing.js (Preisliste des Konfigurators),
+                         clients.js (Kundenlogos), schema/ (JSON-LD, statisch oder als Funktion je Sprache)
   styles/                global.css (= Portfolio/styles.min.css; einzige Änderung: Kundenlogos immer
                          farbig, Hover nur noch Vergrössern), critical.css (Inline-Style
-                         der Startseite), site.css (Unterseiten), agb/datenschutz/impressum.css,
-                         landing*.css, notfound.css, lang-switch.css
+                         der Startseite), site.css (Unterseiten), konfigurator.css,
+                         agb/datenschutz/impressum.css, landing*.css, notfound.css, lang-switch.css
 public/                  assets/, manifest.json, robots.txt, sitemap-style.xsl
 tools/                   Test-Tooling, siehe „Tests“
 vite.config.js           Build-Nachbearbeitung pro Seite (siehe Kommentare in postProcess) und

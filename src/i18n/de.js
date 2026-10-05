@@ -7,7 +7,8 @@ export const shared = {
     "team": "Team",
     "services": "Leistungen",
     "faq": "FAQ",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "configurator": "Konfigurator"
   },
   "footer": {
     "copyright": "© 2026 Sin Digital, Digitalagentur & Webdesign Zürich. Alle Rechte vorbehalten.",
@@ -15,7 +16,20 @@ export const shared = {
     "privacy": "Datenschutz",
     "terms": "AGB"
   },
-  "pendingSubmitHint": "Einen Moment bitte, das Formular wird vorbereitet …"
+  "pendingSubmitHint": "Einen Moment bitte, das Formular wird vorbereitet …",
+  "contactForm": {
+    "nameLabel": "Name *",
+    "emailLabel": "E-Mail *",
+    "subjectLabel": "Betreff",
+    "messageLabel": "Nachricht *",
+    "namePlaceholder": "Ihr vollständiger Name",
+    "subjectPlaceholder": "Worum geht es?",
+    "messagePlaceholder": "Erzählen Sie uns von Ihrem Projekt...",
+    "privacyBefore": "Ich habe die ",
+    "privacyLink": "Datenschutzerklärung",
+    "privacyAfter": " gelesen und bin damit einverstanden. *",
+    "submit": "Nachricht senden"
+  }
 }
 
 export const home = {
@@ -224,22 +238,160 @@ export const home = {
   "contact": {
     "subtitle": "Bereit für Ihr nächstes Projekt? Sin Digital, Ihre Digitalagentur & Webagentur in Zürich, freut sich auf Ihre Anfrage. Lassen Sie uns gemeinsam etwas Ausserordentliches schaffen.",
     "details": "Ob Sie eine neue Website für Ihr Unternehmen benötigen, ein bestehendes Design modernisieren möchten oder eine massgeschneiderte Lösung suchen, schreiben Sie uns. Wir antworten in der Regel innerhalb von 24 Stunden und erstellen Ihnen ein unverbindliches Angebot.",
-    "form": {
-      "nameLabel": "Name *",
-      "emailLabel": "E-Mail *",
-      "subjectLabel": "Betreff",
-      "messageLabel": "Nachricht *",
-      "namePlaceholder": "Ihr vollständiger Name",
-      "subjectPlaceholder": "Worum geht es?",
-      "messagePlaceholder": "Erzählen Sie uns von Ihrem Projekt...",
-      "privacyBefore": "Ich habe die ",
-      "privacyLink": "Datenschutzerklärung",
-      "privacyAfter": " gelesen und bin damit einverstanden. *",
-      "submit": "Nachricht senden"
-    },
     "locationLabel": "Sin Digital, Standort Zürich",
     "phoneLabel": "Telefon",
     "emailLabel": "E-Mail",
     "followLabel": "Sin Digital folgen"
+  }
+}
+
+export const konfigurator = {
+  "meta": {
+    "title": "Projekt-Konfigurator: Was kostet Ihre Website? | Sin Digital",
+    "description": "Seitentyp, Umfang, Funktionen und Wunschtermin wählen und sofort eine Preisspanne in CHF mit Zeitrahmen sehen. Unverbindlich, in zwei Minuten, ohne Anmeldung.",
+    "ogTitle": "Was kostet Ihre Website? Projekt-Konfigurator | Sin Digital"
+  },
+  "breadcrumb": "Konfigurator",
+  "label": "Projekt-Konfigurator",
+  "title1": "WAS KOSTET",
+  "title2": "IHRE WEBSITE?",
+  "intro": "Vier Entscheidungen, eine ehrliche Spanne. Wählen Sie Seitentyp, Umfang, Funktionen und Wunschtermin, Richtpreis und Zeitrahmen rechnen live mit. Am Ende geht die Konfiguration direkt als Anfrage an uns.",
+  "stepWord": "Schritt",
+  "ofWord": "von",
+  "steps": {
+    "type": {
+      "title": "Seitentyp",
+      "question": "Was soll entstehen?"
+    },
+    "scope": {
+      "title": "Umfang",
+      "question": "Wie viele Seiten braucht es?",
+      "singleHint": "Mehr als eine Seite? Dann passt die Firmenwebsite."
+    },
+    "features": {
+      "title": "Funktionen",
+      "question": "Was soll die Website können?",
+      "hint": "Mehrfachauswahl, alles optional."
+    },
+    "timing": {
+      "title": "Wunschtermin",
+      "question": "Wann soll es losgehen?"
+    },
+    "request": {
+      "title": "Anfrage",
+      "question": "Fast geschafft."
+    }
+  },
+  "siteTypes": {
+    "landingpage": {
+      "name": "Landingpage",
+      "desc": "Eine Seite mit einem Ziel: Kampagne, Aktion oder Angebot, gebaut für Anfragen."
+    },
+    "onepager": {
+      "name": "Onepager",
+      "desc": "Ihr Unternehmen auf einer Seite zum Durchscrollen: Leistungen, Team, Kontakt."
+    },
+    "business": {
+      "name": "Firmenwebsite",
+      "desc": "Mehrere Unterseiten für Leistungen, Referenzen und Team, mit Platz zum Wachsen."
+    },
+    "custom": {
+      "name": "Individuell / Plattform",
+      "desc": "Web-App, Portal oder Buchungsplattform mit eigener Logik. Preis nach Gespräch."
+    }
+  },
+  "pageTiers": {
+    "single": {
+      "name": "1 Seite",
+      "note": "im Paket enthalten"
+    },
+    "upTo5": {
+      "name": "Bis 5 Seiten",
+      "note": "im Paket enthalten"
+    },
+    "upTo10": {
+      "name": "6 bis 10 Seiten",
+      "note": ""
+    },
+    "upTo20": {
+      "name": "11 bis 20 Seiten",
+      "note": ""
+    },
+    "over20": {
+      "name": "Mehr als 20 Seiten",
+      "note": "Preis nach Gespräch"
+    }
+  },
+  "features": {
+    "multilingual": {
+      "name": "Mehrsprachig",
+      "desc": "Zweite Sprache mit eigenen URLs, sauber für Google."
+    },
+    "shop": {
+      "name": "Shop",
+      "desc": "Produkte, Warenkorb und Bezahlung, direkt auf der Website."
+    },
+    "booking": {
+      "name": "Online-Buchung",
+      "desc": "Termine oder Reservationen rund um die Uhr, ohne Anruf."
+    },
+    "cms": {
+      "name": "CMS",
+      "desc": "Texte und Bilder selbst pflegen, ohne Entwickler."
+    },
+    "seo": {
+      "name": "SEO-Paket",
+      "desc": "Keyword-Recherche, lokale Optimierung und Google Business."
+    },
+    "branding": {
+      "name": "Logo / Branding",
+      "desc": "Logo, Farben und Schrift, die zur neuen Website passen."
+    }
+  },
+  "timings": {
+    "express": {
+      "name": "So schnell wie möglich",
+      "desc": "Start in unter 3 Wochen, mit 20 % Express-Zuschlag."
+    },
+    "soon": {
+      "name": "In den nächsten 1 bis 3 Monaten",
+      "desc": "Der übliche Weg: Kennenlernen, Konzept, Start."
+    },
+    "flexible": {
+      "name": "Flexibel",
+      "desc": "Kein fester Termin, wir planen gemeinsam."
+    }
+  },
+  "summary": {
+    "title": "Ihr Richtpreis",
+    "from": "ab",
+    "currency": "CHF",
+    "onRequest": "Preis nach Gespräch",
+    "week": "Woche",
+    "weeks": "Wochen",
+    "weeksOnRequest": "Zeitrahmen nach Gespräch",
+    "express": "inkl. 20 % Express-Zuschlag",
+    "selection": "Ihre Auswahl",
+    "notes": [
+      "Richtwerte. Den Festpreis erhalten Sie nach einem kurzen Gespräch.",
+      "Einmalpreise inklusive Einrichtung, keine versteckten Kosten.",
+      "Hosting und Betreuung sind separat, ab CHF 49 pro Monat."
+    ]
+  },
+  "next": "Weiter",
+  "back": "Zurück",
+  "toRequest": "Zur Anfrage",
+  "request": {
+    "title": "Konfiguration als Anfrage senden",
+    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Wir antworten in der Regel innerhalb von 24 Stunden."
+  },
+  "configuration": {
+    "type": "Seitentyp",
+    "scope": "Umfang",
+    "features": "Funktionen",
+    "none": "keine",
+    "timing": "Wunschtermin",
+    "price": "Richtpreis",
+    "weeks": "Zeitrahmen"
   }
 }

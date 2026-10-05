@@ -167,6 +167,36 @@
         "cls": 0,
         "si": 755
       }
+    },
+    "/konfigurator/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 908,
+        "lcp": 1658,
+        "tbt": 0,
+        "cls": 0,
+        "si": 908
+      }
+    },
+    "/en/configurator/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 906,
+        "lcp": 1506,
+        "tbt": 0,
+        "cls": 0,
+        "si": 906
+      }
     }
   }
 }

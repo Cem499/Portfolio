@@ -26,7 +26,7 @@ export default function Contact({ t, shared }) {
 
         <div className="contact-grid">
           <div ref={formRef} className={revealClass('contact-form-wrapper reveal', formVisible)}>
-            <ContactForm texts={c.form} />
+            <ContactForm texts={shared.contactForm} />
           </div>
 
           <div ref={infoRef} className={revealClass('contact-info reveal reveal-delay-2', infoVisible)} itemScope itemType="https://schema.org/Organization">

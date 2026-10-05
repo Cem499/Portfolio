@@ -7,7 +7,8 @@ export const shared = {
     "team": "Team",
     "services": "Services",
     "faq": "FAQ",
-    "contact": "Contact"
+    "contact": "Contact",
+    "configurator": "Configurator"
   },
   "footer": {
     "copyright": "© 2026 Sin Digital, Digital Agency & Web Design Zürich. All rights reserved.",
@@ -15,7 +16,20 @@ export const shared = {
     "privacy": "Privacy Policy",
     "terms": "T&C"
   },
-  "pendingSubmitHint": "One moment please, the form is being prepared …"
+  "pendingSubmitHint": "One moment please, the form is being prepared …",
+  "contactForm": {
+    "nameLabel": "Name *",
+    "emailLabel": "Email *",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message *",
+    "namePlaceholder": "Your full name",
+    "subjectPlaceholder": "What's it about?",
+    "messagePlaceholder": "Tell us about your project...",
+    "privacyBefore": "I have read and agree to the ",
+    "privacyLink": "Privacy Policy",
+    "privacyAfter": ". *",
+    "submit": "Send message"
+  }
 }
 
 export const home = {
@@ -224,22 +238,160 @@ export const home = {
   "contact": {
     "subtitle": "Ready for your next big project? Sin Digital, your digital agency & web agency in Zürich, looks forward to hearing from you. Let's create something extraordinary together.",
     "details": "Whether you need a new website for your business, want to modernise an existing design, or are looking for a custom solution, get in touch. We typically reply within 24 hours and provide a no-obligation quote.",
-    "form": {
-      "nameLabel": "Name *",
-      "emailLabel": "Email *",
-      "subjectLabel": "Subject",
-      "messageLabel": "Message *",
-      "namePlaceholder": "Your full name",
-      "subjectPlaceholder": "What's it about?",
-      "messagePlaceholder": "Tell us about your project...",
-      "privacyBefore": "I have read and agree to the ",
-      "privacyLink": "Privacy Policy",
-      "privacyAfter": ". *",
-      "submit": "Send message"
-    },
     "locationLabel": "Sin Digital, Location Zürich",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "followLabel": "Follow Sin Digital"
+  }
+}
+
+export const konfigurator = {
+  "meta": {
+    "title": "Project Configurator: What Does Your Website Cost? | Sin Digital",
+    "description": "Choose site type, scope, features and start date and instantly see a price range in CHF with a time frame. No obligation, two minutes, no sign-up.",
+    "ogTitle": "What does your website cost? Project configurator | Sin Digital"
+  },
+  "breadcrumb": "Configurator",
+  "label": "Project configurator",
+  "title1": "WHAT DOES",
+  "title2": "YOUR SITE COST?",
+  "intro": "Four decisions, one honest range. Pick site type, scope, features and start date, and the guide price and time frame update live. At the end, your configuration goes straight to us as an enquiry.",
+  "stepWord": "Step",
+  "ofWord": "of",
+  "steps": {
+    "type": {
+      "title": "Site type",
+      "question": "What are we building?"
+    },
+    "scope": {
+      "title": "Scope",
+      "question": "How many pages do you need?",
+      "singleHint": "More than one page? Then the business website is the right fit."
+    },
+    "features": {
+      "title": "Features",
+      "question": "What should the site be able to do?",
+      "hint": "Pick as many as you like, all optional."
+    },
+    "timing": {
+      "title": "Start date",
+      "question": "When do you want to start?"
+    },
+    "request": {
+      "title": "Enquiry",
+      "question": "Almost there."
+    }
+  },
+  "siteTypes": {
+    "landingpage": {
+      "name": "Landing page",
+      "desc": "One page with one goal: a campaign, a promotion or an offer, built for enquiries."
+    },
+    "onepager": {
+      "name": "One-pager",
+      "desc": "Your business on a single scrolling page: services, team, contact."
+    },
+    "business": {
+      "name": "Business website",
+      "desc": "Several subpages for services, references and team, with room to grow."
+    },
+    "custom": {
+      "name": "Custom / platform",
+      "desc": "Web app, portal or booking platform with its own logic. Price on request."
+    }
+  },
+  "pageTiers": {
+    "single": {
+      "name": "1 page",
+      "note": "included"
+    },
+    "upTo5": {
+      "name": "Up to 5 pages",
+      "note": "included"
+    },
+    "upTo10": {
+      "name": "6 to 10 pages",
+      "note": ""
+    },
+    "upTo20": {
+      "name": "11 to 20 pages",
+      "note": ""
+    },
+    "over20": {
+      "name": "More than 20 pages",
+      "note": "price on request"
+    }
+  },
+  "features": {
+    "multilingual": {
+      "name": "Multilingual",
+      "desc": "A second language with its own URLs, clean for Google."
+    },
+    "shop": {
+      "name": "Shop",
+      "desc": "Products, cart and checkout, right on the site."
+    },
+    "booking": {
+      "name": "Online booking",
+      "desc": "Appointments or reservations around the clock, no phone call needed."
+    },
+    "cms": {
+      "name": "CMS",
+      "desc": "Edit texts and images yourself, no developer needed."
+    },
+    "seo": {
+      "name": "SEO package",
+      "desc": "Keyword research, local optimisation and Google Business."
+    },
+    "branding": {
+      "name": "Logo / branding",
+      "desc": "Logo, colours and type that fit the new site."
+    }
+  },
+  "timings": {
+    "express": {
+      "name": "As soon as possible",
+      "desc": "Start in under 3 weeks, with a 20 % express surcharge."
+    },
+    "soon": {
+      "name": "Within the next 1 to 3 months",
+      "desc": "The usual way: get to know each other, concept, start."
+    },
+    "flexible": {
+      "name": "Flexible",
+      "desc": "No fixed date, we plan it together."
+    }
+  },
+  "summary": {
+    "title": "Your guide price",
+    "from": "from",
+    "currency": "CHF",
+    "onRequest": "Price on request",
+    "week": "week",
+    "weeks": "weeks",
+    "weeksOnRequest": "Time frame on request",
+    "express": "incl. 20 % express surcharge",
+    "selection": "Your selection",
+    "notes": [
+      "Guide values. You get a fixed price after a short conversation.",
+      "One-time prices including setup, no hidden costs.",
+      "Hosting and care are separate, from CHF 49 per month."
+    ]
+  },
+  "next": "Next",
+  "back": "Back",
+  "toRequest": "To the enquiry",
+  "request": {
+    "title": "Send your configuration as an enquiry",
+    "text": "Your selection comes along. Add your name, email and a few words about your project. We usually reply within 24 hours."
+  },
+  "configuration": {
+    "type": "Site type",
+    "scope": "Scope",
+    "features": "Features",
+    "none": "none",
+    "timing": "Start date",
+    "price": "Guide price",
+    "weeks": "Time frame"
   }
 }

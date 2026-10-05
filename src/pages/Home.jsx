@@ -9,6 +9,7 @@ import Reviews from '../components/Reviews.jsx'
 import Seo from '../components/Seo.jsx'
 import SiteHeader from '../components/SiteHeader.jsx'
 import Team from '../components/Team.jsx'
+import { configuratorPath } from '../data/navigation.js'
 import schema from '../data/schema/home.js'
 import useSmoothScroll from '../hooks/useSmoothScroll.js'
 import { home as deHome, shared as deShared } from '../i18n/de.js'
@@ -102,7 +103,7 @@ export default function Home({ lang }) {
 
       <main id="main-content" role="main" itemScope itemType="https://schema.org/WebPageElement">
         <Breadcrumb homeUrl={URLS[lang]} />
-        <Hero t={t} />
+        <Hero t={t} ctaHref={configuratorPath(lang)} />
         <LocalSeo t={t} />
         <Team t={t} />
         <Clients t={t} />

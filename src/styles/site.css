@@ -9,6 +9,37 @@
   padding: 0 1.5rem 2.5rem;
 }
 
+/* Small text stays at --gray (not --gray-dim): 4.5:1 contrast on the dark background. */
+.page-breadcrumb {
+  margin-bottom: 1.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--gray);
+}
+
+.page-breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.page-breadcrumb li + li::before {
+  content: '›';
+  margin-right: 0.5rem;
+}
+
+.page-breadcrumb a {
+  color: var(--gray);
+  transition: color 0.2s ease;
+}
+
+.page-breadcrumb a:hover {
+  color: var(--green);
+}
+
 @media (max-width: 767px) {
   .site-footer {
     padding: 0 1.25rem 2rem;

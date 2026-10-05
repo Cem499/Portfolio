@@ -1,6 +1,7 @@
 import useReveal, { revealClass } from '../hooks/useReveal.js'
 
-export default function Hero({ t }) {
+// `ctaHref` leads to the project configurator of the page's language.
+export default function Hero({ t, ctaHref }) {
   const [trustRef, trustVisible] = useReveal()
 
   return (
@@ -16,7 +17,7 @@ export default function Hero({ t }) {
             <h1 id="hero-heading" className="hero-title hero-anim-2">
               <span aria-hidden="true">WE<br /><span className="text-green">CREATE</span><br />FUTURE</span>
             </h1>
-            <a href="#contact" className="btn-primary hero-anim-3" role="button">{t.hero.cta}</a>
+            <a href={ctaHref} className="btn-primary hero-anim-3">{t.hero.cta}</a>
           </div>
 
           <div className="hero-right hero-anim-4">
