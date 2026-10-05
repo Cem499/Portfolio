@@ -1,3 +1,4 @@
+import { plans } from '../data/maintenance.js'
 import useReveal, { revealClass } from '../hooks/useReveal.js'
 
 // Package name and price markup (language independent, same on / and /en/).
@@ -32,7 +33,9 @@ function PaketCard({ position, pkg, texts }) {
   )
 }
 
-function PartnerCard({ texts }) {
+// The care tiers come from src/data/maintenance.js (prices) and shared.care (names, summaries),
+// the same source as /wartung/.
+function PartnerCard({ texts, care }) {
   return (
     <div className="paket-card" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
       <meta itemProp="position" content="4" />
@@ -41,11 +44,11 @@ function PartnerCard({ texts }) {
         <h3 className="paket-name" itemProp="name">Partner</h3>
         <p className="paket-positioning">{texts.positioning}</p>
         <ul className="paket-features partner-care-list">
-          {texts.tiers.map((tier, i) => (
-            <li key={i} className="care-tier">
-              <span className="care-tier-title">{tier.title}</span>
+          {plans.map((plan) => (
+            <li key={plan.id} className="care-tier">
+              <span className="care-tier-title">{`${care.plans[plan.id].name} Care, CHF ${plan.monthly}/${texts.month}`}</span>
               {' '}
-              <span className="care-tier-text">{tier.text}</span>
+              <span className="care-tier-text">{care.plans[plan.id].summary}</span>
             </li>
           ))}
         </ul>
@@ -59,7 +62,7 @@ function PartnerCard({ texts }) {
   )
 }
 
-export default function Projects({ t }) {
+export default function Projects({ t, care }) {
   const p = t.projects
   const [headerRef, headerVisible] = useReveal()
   const [gridRef, gridVisible] = useReveal()
@@ -88,7 +91,7 @@ export default function Projects({ t }) {
           {PACKAGES.map((pkg, i) => (
             <PaketCard key={pkg.name} position={i + 1} pkg={pkg} texts={p.packages[i]} />
           ))}
-          <PartnerCard texts={p.packages[3]} />
+          <PartnerCard texts={p.packages[3]} care={care} />
         </div>
 
         <div ref={processRef} className={revealClass('prozess-section reveal', processVisible)}>

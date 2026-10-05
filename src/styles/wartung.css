@@ -1,0 +1,348 @@
+/* Care plans (/wartung/). No JavaScript: the billing toggle is a radio pair read with :has(),
+   the FAQ uses <details name="…"> so only one answer is open. */
+
+.care-section {
+  padding-top: 2.5rem;
+}
+
+.care-header {
+  max-width: 44rem;
+  margin-bottom: 2.5rem;
+}
+
+.care-header .section-title {
+  margin-bottom: 1.5rem;
+}
+
+.care-intro {
+  max-width: 36rem;
+  margin-bottom: 0;
+}
+
+/* ── Billing toggle ────────────────────────────────────────────────────── */
+
+.care-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 2rem;
+  padding: 3px;
+  border: 1px solid var(--border-green);
+  border-radius: 50px;
+  background: rgba(193, 255, 114, 0.04);
+}
+
+.care-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.care-toggle label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  color: var(--gray);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.care-toggle input:checked + label {
+  background: var(--green);
+  color: #010101;
+}
+
+.care-toggle input:focus-visible + label {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.care-save {
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  background: rgba(1, 1, 1, 0.15);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.care-toggle input:not(:checked) + label .care-save {
+  background: rgba(193, 255, 114, 0.12);
+  color: var(--green);
+}
+
+/* Monthly by default; yearly once the toggle says so. Browsers without :has() keep monthly. */
+.care-price-yearly {
+  display: none;
+}
+
+.care:has(#billing-yearly:checked) .care-price-monthly {
+  display: none;
+}
+
+.care:has(#billing-yearly:checked) .care-price-yearly {
+  display: block;
+}
+
+/* ── Plans ─────────────────────────────────────────────────────────────── */
+
+.care-plans {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.care-plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: #0d0d0d;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.care-plan:hover {
+  border-color: rgba(193, 255, 114, 0.3);
+  transform: translateY(-2px);
+}
+
+.care-plan.is-featured {
+  border-color: var(--green);
+  box-shadow: inset 0 0 0 1px var(--green), 0 20px 50px rgba(193, 255, 114, 0.08);
+}
+
+.care-badge {
+  position: absolute;
+  top: -0.8rem;
+  left: 1.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 50px;
+  background: var(--green);
+  color: #010101;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.care-plan-name {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.care-plan-tagline {
+  margin: 0 0 1.5rem;
+  min-height: 3.2em;
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.care-price {
+  margin: 0 0 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.care-amount {
+  display: block;
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--green);
+  font-variant-numeric: tabular-nums;
+}
+
+.care-unit {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.care-equals {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.care-includes {
+  margin: 0 0 0.75rem;
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.care-plan-rows {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 1.75rem;
+  flex: 1 1 auto;
+}
+
+.care-plan-rows div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.88rem;
+}
+
+.care-plan-rows dt {
+  color: var(--gray);
+}
+
+.care-plan-rows dd {
+  margin: 0;
+  text-align: right;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.care-cta {
+  text-align: center;
+}
+
+.care-cta-secondary {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--border-green);
+  border-radius: 50px;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.care-cta-secondary:hover {
+  background: var(--green);
+  color: #010101;
+}
+
+.care-note {
+  margin: 1.5rem 0 0;
+  color: var(--gray);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.care-note a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── FAQ ───────────────────────────────────────────────────────────────── */
+
+.care-faq {
+  max-width: 48rem;
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.care-faq-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.care-faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.care-faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.2s ease;
+}
+
+.care-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.care-faq-item summary::after {
+  content: '+';
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--green);
+  transition: transform 0.3s ease;
+}
+
+.care-faq-item[open] summary {
+  color: var(--green);
+}
+
+.care-faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.care-faq-item summary:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.care-faq-item p {
+  margin: 0;
+  padding: 0 2.5rem 1.5rem 0;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .care-plan,
+  .care-toggle label,
+  .care-faq-item summary,
+  .care-faq-item summary::after,
+  .care-cta-secondary {
+    transition: none;
+  }
+
+  .care-plan:hover {
+    transform: none;
+  }
+}
+
+@media (min-width: 900px) {
+  .care-plans {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .care-plan.is-featured {
+    transform: translateY(-0.75rem);
+  }
+
+  .care-plan.is-featured:hover {
+    transform: translateY(-0.9rem);
+  }
+}

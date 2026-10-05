@@ -126,6 +126,20 @@ vier Scores als Ringe plus drei Tipps. Nichts wird gespeichert.
 - **Proxy statt Key im Browser:** Wenn das Kontingent missbraucht wird, einen Cloudflare Worker
   vorschalten und in `fetchPageSpeed` nur `ENDPOINT` auf die Worker-URL umstellen.
 
+## Wartung & Hosting
+
+`/wartung/` zeigt die drei Betreuungspakete (Basis, Business, Premium) mit Vergleich und FAQ, ohne
+JavaScript: Der Toggle monatlich/jährlich sind zwei Radio-Buttons, die CSS per `:has()` auswertet,
+die FAQ nutzt `<details name="…">` (nur eine Antwort offen; ältere Browser öffnen mehrere).
+
+- **Preise und Leistungen:** `src/data/maintenance.js`, eine Quelle für `/wartung/`, die Partner-Karte
+  der Startseite und das JSON-LD (Service mit Monatsangeboten, FAQPage). `yearlyPaidMonths` ist die
+  Zahl der bezahlten Monate bei Jahresabrechnung (z. B. 10 = „2 Monate geschenkt“); solange `null`,
+  gibt es keinen Toggle und keine Jahrespreise.
+- **Texte:** Paketnamen und Kurzbeschreibungen in `shared.care` (beide Seiten), Taglines,
+  Vergleichszeilen und FAQ in `wartung` der i18n-Dateien. Werte der Vergleichszeilen sind Schlüssel
+  (`weekly`, `daily`, `twoDays`, …) in `wartung.values`.
+
 ## Projektstruktur
 
 ```

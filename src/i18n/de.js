@@ -9,7 +9,8 @@ export const shared = {
     "faq": "FAQ",
     "contact": "Kontakt",
     "configurator": "Konfigurator",
-    "projects": "Projekte"
+    "projects": "Projekte",
+    "maintenance": "Wartung"
   },
   "footer": {
     "copyright": "© 2026 Sin Digital, Digitalagentur & Webdesign Zürich. Alle Rechte vorbehalten.",
@@ -31,6 +32,22 @@ export const shared = {
     "privacyLink": "Datenschutzerklärung",
     "privacyAfter": " gelesen und bin damit einverstanden. *",
     "submit": "Nachricht senden"
+  },
+  "care": {
+    "plans": {
+      "basis": {
+        "name": "Basis",
+        "summary": "Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 2 Arbeitstagen."
+      },
+      "business": {
+        "name": "Business",
+        "summary": "Alles aus Basis plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und priorisierter Support in 1 Arbeitstag."
+      },
+      "premium": {
+        "name": "Premium",
+        "summary": "Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und schnellstmögliche priorisierte Reaktion."
+      }
+    }
   }
 }
 
@@ -127,20 +144,6 @@ export const home = {
       {
         "label": "Paket 04",
         "positioning": "Für Unternehmen, die langfristig von Sin Digital betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen, Sie konzentrieren sich auf Ihr Geschäft.",
-        "tiers": [
-          {
-            "title": "Basic Care, CHF 49/Monat",
-            "text": "Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 2 Arbeitstagen."
-          },
-          {
-            "title": "Business Care, CHF 89/Monat",
-            "text": "Alles aus Basic plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und priorisierter Support in 1 Arbeitstag."
-          },
-          {
-            "title": "Pro Care, CHF 149/Monat",
-            "text": "Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und schnellstmögliche priorisierte Reaktion."
-          }
-        ],
         "month": "Monat",
         "priceNote": "Laufende Betreuung durch Sin Digital"
       }
@@ -645,4 +648,116 @@ export const websiteCheck = {
     ],
     "note": "Die Messung läuft bei Google (PageSpeed Insights). Sin Digital speichert weder Ihre Adresse noch das Ergebnis."
   }
+}
+
+export const wartung = {
+  "meta": {
+    "title": "Wartung & Hosting: Betreuung ab CHF 49 pro Monat | Sin Digital",
+    "description": "Drei Betreuungspakete für Ihre Website: Hosting, Sicherheitsupdates, Backups, Monitoring, Änderungen und feste Reaktionszeit. Klar abgegrenzt, ab CHF 49 pro Monat.",
+    "ogTitle": "Wartung & Hosting: Betreuung ab CHF 49 pro Monat"
+  },
+  "breadcrumb": "Wartung",
+  "label": "Wartung & Hosting",
+  "title1": "GEBAUT",
+  "title2": "UND BETREUT.",
+  "intro": "Eine Website ist kein Projekt, das endet. Updates, Backups, Monitoring und kleine Änderungen: drei Pakete, klar abgegrenzt. Sie wählen, wie viel Betreuung Sie wollen.",
+  "billing": {
+    "label": "Abrechnung",
+    "monthly": "Monatlich",
+    "yearly": "Jährlich",
+    "perMonth": "pro Monat",
+    "perYear": "pro Jahr",
+    "save": "{months} Monate geschenkt",
+    "equals": "entspricht CHF {price} pro Monat"
+  },
+  "featured": "Meistgewählt",
+  "choose": "Paket anfragen",
+  "includesAll": "Alles aus {plan}, plus",
+  "plans": {
+    "basis": {
+      "tagline": "Die Grundsicherung: Ihre Website bleibt online, aktuell und gesichert."
+    },
+    "business": {
+      "tagline": "Für Betriebe, bei denen die Website Anfragen bringt und nicht stillstehen darf."
+    },
+    "premium": {
+      "tagline": "Für alle, die regelmässig etwas ändern wollen und sofortige Reaktion erwarten."
+    }
+  },
+  "rows": {
+    "hosting": "Hosting",
+    "updates": "Updates",
+    "backups": "Backups",
+    "monitoring": "Monitoring",
+    "changeMinutes": "Änderungen pro Monat",
+    "response": "Reaktionszeit"
+  },
+  "values": {
+    "hosting": {
+      "true": "inklusive"
+    },
+    "updates": {
+      "security": "Sicherheitsupdates"
+    },
+    "backups": {
+      "weekly": "wöchentlich",
+      "daily": "täglich"
+    },
+    "monitoring": {
+      "none": "–",
+      "performance": "Performance-Überwachung",
+      "advanced": "erweitertes Monitoring"
+    },
+    "changeMinutes": {
+      "15": "bis 15 Minuten",
+      "30": "bis 30 Minuten",
+      "60": "bis 1 Stunde"
+    },
+    "response": {
+      "twoDays": "max. 2 Arbeitstage",
+      "oneDay": "1 Arbeitstag, priorisiert",
+      "priority": "schnellstmöglich, priorisiert"
+    }
+  },
+  "compareTitle": "Die Pakete im Vergleich",
+  "note": {
+    "before": "Alle Preise in CHF. Die Betreuung ergänzt eine bestehende Website; eine neue Website konfigurieren Sie im ",
+    "link": "Konfigurator",
+    "after": "."
+  },
+  "faqTitle": "Fragen zur Betreuung",
+  "faq": [
+    {
+      "q": "Was ist in der Betreuung enthalten?",
+      "a": "Je nach Paket: Hosting, Sicherheitsupdates, regelmässige Backups, Monitoring und ein Kontingent für kleine Änderungen wie neue Texte, Bilder oder Öffnungszeiten. Dazu eine feste Reaktionszeit, wenn etwas nicht funktioniert."
+    },
+    {
+      "q": "Kann ich das Paket später wechseln?",
+      "a": "Ja. Ein Wechsel nach oben oder unten ist jeweils auf den nächsten Monat möglich, ohne Umstellungsgebühr."
+    },
+    {
+      "q": "Was passiert, wenn meine Änderungswünsche die enthaltene Zeit übersteigen?",
+      "a": "Wir sagen es Ihnen vorher. Grössere Anpassungen offerieren wir separat, nichts wird ohne Ihr Ja verrechnet."
+    },
+    {
+      "q": "Brauche ich ein Paket, wenn Sin Digital meine Website gebaut hat?",
+      "a": "Nein. Die Website gehört Ihnen, so wie sie ist. Ohne Paket liegen Updates, Backups und Hosting bei Ihnen oder Ihrem Anbieter."
+    },
+    {
+      "q": "Betreut Sin Digital auch Websites, die jemand anderes gebaut hat?",
+      "a": "Meistens ja. Wir schauen uns die Technik kurz an und sagen Ihnen, ob und in welchem Paket die Betreuung sinnvoll ist."
+    },
+    {
+      "q": "Wie schnell reagiert Sin Digital, wenn die Website nicht läuft?",
+      "a": "Innerhalb der Reaktionszeit Ihres Pakets: spätestens nach 2 Arbeitstagen im Basis-Paket, innerhalb eines Arbeitstags im Business-Paket, schnellstmöglich und priorisiert im Premium-Paket."
+    },
+    {
+      "q": "Wo wird gehostet, und wem gehören die Daten?",
+      "a": "Bei etablierten Anbietern wie Hostpoint oder Netlify, passend zum Projekt. Domain, Inhalte und Daten gehören Ihnen."
+    },
+    {
+      "q": "Wie wird abgerechnet?",
+      "a": "Monatlich per Rechnung, Banküberweisung oder TWINT."
+    }
+  ]
 }

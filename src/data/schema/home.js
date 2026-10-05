@@ -147,7 +147,7 @@ const schema = [
         {
           "@type": "Offer",
           "name": "Partner Monatsbetreuung",
-          "description": "Monatliche Betreuung in drei Care-Stufen: Basic (CHF 49), Business (CHF 89), Pro (CHF 149)",
+          "description": "Monatliche Betreuung in drei Care-Stufen: Basis (CHF 49), Business (CHF 89), Premium (CHF 149)",
           "price": "49",
           "priceCurrency": "CHF",
           "availability": "https://schema.org/InStock",

@@ -107,7 +107,7 @@ export default function Home({ lang }) {
         <LocalSeo t={t} />
         <Team t={t} />
         <Clients t={t} lang={lang} />
-        <Projects t={t} />
+        <Projects t={t} care={shared.care} />
         <Faq t={t} />
         <Reviews t={t} />
         <Contact t={t} shared={shared} lang={lang} />

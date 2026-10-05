@@ -3,6 +3,7 @@
 export const mainNav = [
   { id: 'projects', path: { de: '/projekte/', en: '/en/projects/' } },
   { id: 'services', anchor: 'projects' },
+  { id: 'maintenance', path: { de: '/wartung/', en: '/en/maintenance/' } },
   { id: 'configurator', path: { de: '/konfigurator/', en: '/en/configurator/' } },
   { id: 'contact', anchor: 'contact', cta: true },
 ]

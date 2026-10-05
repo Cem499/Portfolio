@@ -67,6 +67,20 @@ export const routes = [
   projectRoute('de'),
   projectRoute('en'),
   {
+    path: '/wartung/',
+    lazy: async () => {
+      const { default: Wartung } = await import('./pages/Wartung.jsx')
+      return { Component: () => <Wartung lang="de" /> }
+    },
+  },
+  {
+    path: '/en/maintenance/',
+    lazy: async () => {
+      const { default: Wartung } = await import('./pages/Wartung.jsx')
+      return { Component: () => <Wartung lang="en" /> }
+    },
+  },
+  {
     path: '/website-check/',
     lazy: async () => {
       const { default: WebsiteCheck } = await import('./pages/WebsiteCheck.jsx')

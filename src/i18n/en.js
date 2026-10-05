@@ -9,7 +9,8 @@ export const shared = {
     "faq": "FAQ",
     "contact": "Contact",
     "configurator": "Configurator",
-    "projects": "Projects"
+    "projects": "Projects",
+    "maintenance": "Maintenance"
   },
   "footer": {
     "copyright": "© 2026 Sin Digital, Digital Agency & Web Design Zürich. All rights reserved.",
@@ -31,6 +32,22 @@ export const shared = {
     "privacyLink": "Privacy Policy",
     "privacyAfter": ". *",
     "submit": "Send message"
+  },
+  "care": {
+    "plans": {
+      "basis": {
+        "name": "Basis",
+        "summary": "Hosting, security updates, weekly backups, minor changes up to 15 min/month, support within max. 2 working days."
+      },
+      "business": {
+        "name": "Business",
+        "summary": "Everything from Basis plus daily backups, performance monitoring, minor changes up to 30 min/month and priority support within 1 working day."
+      },
+      "premium": {
+        "name": "Premium",
+        "summary": "Everything from Business plus up to 1 hour of changes/month, advanced monitoring and fastest priority response."
+      }
+    }
   }
 }
 
@@ -127,20 +144,6 @@ export const home = {
       {
         "label": "Package 04",
         "positioning": "For businesses that want long-term support from Sin Digital. We handle hosting, updates and ongoing changes, you focus on your business.",
-        "tiers": [
-          {
-            "title": "Basic Care, CHF 49/month",
-            "text": "Hosting, security updates, weekly backups, minor changes up to 15 min/month, support within max. 2 working days."
-          },
-          {
-            "title": "Business Care, CHF 89/month",
-            "text": "Everything from Basic plus daily backups, performance monitoring, minor changes up to 30 min/month and priority support within 1 working day."
-          },
-          {
-            "title": "Pro Care, CHF 149/month",
-            "text": "Everything from Business plus up to 1 hour of changes/month, advanced monitoring and fastest priority response."
-          }
-        ],
         "month": "month",
         "priceNote": "Ongoing care by Sin Digital"
       }
@@ -645,4 +648,116 @@ export const websiteCheck = {
     ],
     "note": "The measurement runs at Google (PageSpeed Insights). Sin Digital stores neither your address nor the result."
   }
+}
+
+export const wartung = {
+  "meta": {
+    "title": "Maintenance & Hosting: Care from CHF 49 per Month | Sin Digital",
+    "description": "Three care plans for your website: hosting, security updates, backups, monitoring, changes and a fixed response time. Clearly defined, from CHF 49 per month.",
+    "ogTitle": "Maintenance & hosting: care from CHF 49 per month"
+  },
+  "breadcrumb": "Maintenance",
+  "label": "Maintenance & hosting",
+  "title1": "BUILT",
+  "title2": "AND LOOKED AFTER.",
+  "intro": "A website is not a project that ends. Updates, backups, monitoring and small changes: three plans, clearly defined. You choose how much care you want.",
+  "billing": {
+    "label": "Billing",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "perMonth": "per month",
+    "perYear": "per year",
+    "save": "{months} months free",
+    "equals": "equals CHF {price} per month"
+  },
+  "featured": "Most popular",
+  "choose": "Request plan",
+  "includesAll": "Everything in {plan}, plus",
+  "plans": {
+    "basis": {
+      "tagline": "The basics: your website stays online, up to date and backed up."
+    },
+    "business": {
+      "tagline": "For businesses whose website brings in enquiries and must not stand still."
+    },
+    "premium": {
+      "tagline": "For everyone who changes things regularly and expects an immediate response."
+    }
+  },
+  "rows": {
+    "hosting": "Hosting",
+    "updates": "Updates",
+    "backups": "Backups",
+    "monitoring": "Monitoring",
+    "changeMinutes": "Changes per month",
+    "response": "Response time"
+  },
+  "values": {
+    "hosting": {
+      "true": "included"
+    },
+    "updates": {
+      "security": "security updates"
+    },
+    "backups": {
+      "weekly": "weekly",
+      "daily": "daily"
+    },
+    "monitoring": {
+      "none": "–",
+      "performance": "performance monitoring",
+      "advanced": "advanced monitoring"
+    },
+    "changeMinutes": {
+      "15": "up to 15 minutes",
+      "30": "up to 30 minutes",
+      "60": "up to 1 hour"
+    },
+    "response": {
+      "twoDays": "max. 2 working days",
+      "oneDay": "1 working day, priority",
+      "priority": "as fast as possible, priority"
+    }
+  },
+  "compareTitle": "The plans side by side",
+  "note": {
+    "before": "All prices in CHF. Care complements an existing website; configure a new website in the ",
+    "link": "configurator",
+    "after": "."
+  },
+  "faqTitle": "Questions about care",
+  "faq": [
+    {
+      "q": "What does the care include?",
+      "a": "Depending on the plan: hosting, security updates, regular backups, monitoring and an allowance for small changes such as new texts, images or opening hours. Plus a fixed response time when something does not work."
+    },
+    {
+      "q": "Can I change the plan later?",
+      "a": "Yes. Switching up or down is possible for the next month, with no switching fee."
+    },
+    {
+      "q": "What if my change requests exceed the included time?",
+      "a": "We tell you beforehand. Larger changes get a separate quote; nothing is billed without your yes."
+    },
+    {
+      "q": "Do I need a plan if Sin Digital built my website?",
+      "a": "No. The website is yours as it is. Without a plan, updates, backups and hosting are with you or your provider."
+    },
+    {
+      "q": "Does Sin Digital also look after websites someone else built?",
+      "a": "Usually yes. We take a short look at the technology and tell you whether and in which plan care makes sense."
+    },
+    {
+      "q": "How fast does Sin Digital react when the website is down?",
+      "a": "Within the response time of your plan: at the latest after 2 working days on Basis, within one working day on Business, as fast as possible and with priority on Premium."
+    },
+    {
+      "q": "Where is the site hosted, and who owns the data?",
+      "a": "With established providers such as Hostpoint or Netlify, matching the project. Domain, content and data belong to you."
+    },
+    {
+      "q": "How is it billed?",
+      "a": "Monthly by invoice, bank transfer or TWINT."
+    }
+  ]
 }

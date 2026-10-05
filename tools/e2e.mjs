@@ -721,6 +721,61 @@ test('Website-Check: Enter sendet, reduced motion ohne Animation, EN-Seite', asy
   await s.close()
 })
 
+// ── Maintenance ──────────────────────────────────────────────────────────────
+
+test('Wartung: drei Pakete ohne JavaScript, Preise aus maintenance.js, FAQ-Schema', async () => {
+  const s = await open()
+  await goto(s.page, '/wartung/', { hydrated: false })
+  const r = await s.page.evaluate(() => ({
+    plans: [...document.querySelectorAll('.care-plan-name')].map((el) => el.textContent).join(','),
+    prices: [...document.querySelectorAll('.care-price-monthly .care-amount')].map((el) => el.textContent).join(','),
+    featured: document.querySelector('.care-plan.is-featured .care-plan-name')?.textContent,
+    modules: document.querySelectorAll('script[type="module"]').length,
+    faq: document.querySelectorAll('details.care-faq-item').length,
+    schemaFaq: [...document.querySelectorAll('script[type="application/ld+json"]')].some((el) => el.textContent.includes('"FAQPage"')),
+  }))
+  expect(r.plans === 'Basis,Business,Premium' && r.prices === 'CHF 49,CHF 89,CHF 149' && r.featured === 'Business' && r.modules === 0 && r.faq === 8 && r.schemaFaq, JSON.stringify(r))
+  await s.close()
+})
+
+test('Wartung: Jahres-Toggle per CSS (nur wenn ein Jahrespreis konfiguriert ist)', async () => {
+  const s = await open()
+  await goto(s.page, '/wartung/', { hydrated: false })
+  const hasToggle = await s.page.evaluate(() => !!document.querySelector('.care-toggle'))
+  if (hasToggle) {
+    await s.page.click('label[for="billing-yearly"]')
+    const r = await s.page.evaluate(() => ({ monthly: getComputedStyle(document.querySelector('.care-price-monthly')).display, yearly: getComputedStyle(document.querySelector('.care-price-yearly')).display }))
+    expect(r.monthly === 'none' && r.yearly === 'block', JSON.stringify(r))
+  } else {
+    const yearly = await s.page.evaluate(() => document.querySelectorAll('.care-price-yearly').length)
+    expect(yearly === 0, 'Jahrespreise ohne Toggle')
+  }
+  await s.close()
+})
+
+test('Wartung: FAQ per <details>, nur eins offen, Tastatur', async () => {
+  const s = await open()
+  await goto(s.page, '/wartung/', { hydrated: false })
+  const items = s.page.locator('details.care-faq-item')
+  await items.nth(0).locator('summary').click()
+  await items.nth(1).locator('summary').click()
+  let state = await s.page.evaluate(() => [...document.querySelectorAll('details.care-faq-item')].map((d) => d.open))
+  expect(state[1] === true && state[0] === false, state.join(','))
+  await items.nth(2).locator('summary').focus()
+  await s.page.keyboard.press('Enter')
+  state = await s.page.evaluate(() => [...document.querySelectorAll('details.care-faq-item')].map((d) => d.open))
+  expect(state[2] === true && state[1] === false, state.join(','))
+  await s.close()
+})
+
+test('Startseite: Partner-Stufen kommen aus maintenance.js', async () => {
+  const s = await open()
+  await goto(s.page, '/')
+  const tiers = await s.page.evaluate(() => [...document.querySelectorAll('.care-tier-title')].map((el) => el.textContent).join('|'))
+  expect(tiers === 'Basis Care, CHF 49/Monat|Business Care, CHF 89/Monat|Premium Care, CHF 149/Monat', tiers)
+  await s.close()
+})
+
 // ── Server behaviour ─────────────────────────────────────────────────────────
 
 test('404: unbekannter Pfad liefert Status 404 mit 404.html', async () => {
