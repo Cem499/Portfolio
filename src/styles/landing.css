@@ -1,0 +1,113 @@
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: #050505;
+      color: #f5f5f5;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-top: 2.2rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 1.2rem;
+    }
+
+    .lead {
+      color: #c9c9c9;
+      font-size: 1.05rem;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin-top: 1.2rem;
+    }
+
+    a {
+      color: #c1ff72;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: #c1ff72;
+      color: #111;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.85rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #b0f060;
+    }
+
+    ul {
+      padding-left: 1.1rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb a {
+      color: #c1ff72;
+      text-decoration: none;
+    }
+
+    .internal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .internal-links a {
+      background: rgba(193, 255, 114, 0.1);
+      border: 1px solid rgba(193, 255, 114, 0.25);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: #c1ff72;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+      border: 1px solid rgba(193, 255, 114, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+    }

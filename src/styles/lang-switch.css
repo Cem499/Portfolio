@@ -1,0 +1,8 @@
+/* The home language switch is now a link (/ and /en/) instead of a <button>.
+   .lang-btn in global.css relies on the browser's button defaults for line height
+   and alignment; restate them so the link looks exactly like the old button. */
+a.lang-btn {
+  display: inline-block;
+  line-height: normal;
+  text-align: center;
+}

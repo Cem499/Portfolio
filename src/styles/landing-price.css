@@ -1,0 +1,8 @@
+/* Nur guenstige-website-zuerich.html */
+.price-highlight {
+  background: rgba(193, 255, 114, 0.08);
+  border-left: 3px solid #c1ff72;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  border-radius: 0 8px 8px 0;
+}
