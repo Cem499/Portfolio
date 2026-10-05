@@ -2,19 +2,18 @@ import fs from 'node:fs'
 import path from 'node:path'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { SITE, pages, staticRoutes } from './src/data/pages.js'
+import { shared as deShared } from './src/i18n/de.js'
+import { shared as enShared } from './src/i18n/en.js'
 
-// Pages that had no JavaScript in the original site. They are prerendered and
-// shipped as plain HTML + CSS (no React bundle, no hydration).
-const STATIC_ROUTES = new Set([
-  '/webdesign-zuerich.html',
-  '/website-zuerich.html',
-  '/guenstige-website-zuerich.html',
-  '/webentwicklung-zuerich.html',
-  '/seo-agentur-zuerich.html',
-  '/404.html',
-])
+// Pages marked `js: false` in src/data/pages.js are prerendered and shipped as plain
+// HTML + CSS (no React bundle, no hydration).
+const STATIC_ROUTES = new Set(staticRoutes())
 
 const HOME_ROUTES = new Set(['/', '/en/'])
+
+const langOf = (route) => (route.startsWith('/en/') ? 'en' : 'de')
+const sharedTexts = { de: deShared, en: enShared }
 
 // Runs before anything renders on "/": the old ?lang=en URL moves to /en/,
 // ?lang=de is dropped because "/" is German anyway.
@@ -22,10 +21,10 @@ const LANG_REDIRECT = `<script>(function () { var p = new URLSearchParams(locati
 
 // Inline loader for the client bundle: waits for "load" and the first paint.
 // Until React has taken over, a form submit must not fall back to a native GET request
-// (it would put the contact form fields into the URL). Instead the submit is remembered,
-// a short hint is shown (outside the React root) and React is loaded right away;
-// ContactForm then sends the form (see ContactForm.jsx, PENDING_SUBMIT_KEY / PENDING_HINT_ID).
-function hydrateAfterPaint(src) {
+// (it would put the form fields into the URL). Instead the submit is remembered, a short
+// hint is shown (outside the React root) and React is loaded right away; the form then
+// sends itself through usePendingSubmit (src/hooks/usePendingSubmit.js).
+function hydrateAfterPaint(src, hint) {
   return `(function () {
   var started = false;
   function start() { if (started) return; started = true; var s = document.createElement('script'); s.type = 'module'; s.crossOrigin = ''; s.src = '${src}'; document.head.appendChild(s); }
@@ -37,7 +36,7 @@ function hydrateAfterPaint(src) {
     var hint = document.createElement('div');
     hint.id = 'pending-submit-hint';
     hint.setAttribute('role', 'status');
-    hint.textContent = 'Einen Moment bitte, das Formular wird vorbereitet …';
+    hint.textContent = ${JSON.stringify(hint)};
     hint.style.cssText = 'position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%);z-index:10000;max-width:calc(100% - 2rem);padding:1rem 1.25rem;border-radius:8px;font-size:0.9rem;background:#121212;color:#C1FF72;border:1px solid rgba(193,255,114,0.5);box-shadow:0 10px 26px rgba(0,0,0,0.4);';
     document.body.appendChild(hint);
     start();
@@ -100,7 +99,7 @@ function postProcess(route, html) {
     html = html
       .replace(entry[0], '')
       .replace(/<link rel="modulepreload"[^>]*>\s*/g, '')
-      .replace('</head>', `<script>${hydrateAfterPaint(entry[1])}</script></head>`)
+      .replace('</head>', `<script>${hydrateAfterPaint(entry[1], sharedTexts[langOf(route)].pendingSubmitHint)}</script></head>`)
   }
 
   if (STATIC_ROUTES.has(route)) {
@@ -118,8 +117,43 @@ function postProcess(route, html) {
   return html
 }
 
+// sitemap.xml from src/data/pages.js: pages with an English version get a DE and an EN
+// entry that both list the same alternates; German-only pages point to themselves;
+// noindex pages carry no alternates.
+function sitemapXml() {
+  const entry = (loc, page, alternates) => [
+    '  <url>',
+    `    <loc>${SITE}${loc}</loc>`,
+    ...alternates.map(([hreflang, href]) => `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${SITE}${href}"/>`),
+    `    <lastmod>${page.lastmod}</lastmod>`,
+    `    <changefreq>${page.changefreq}</changefreq>`,
+    `    <priority>${page.priority}</priority>`,
+    '  </url>',
+  ].join('\n')
+
+  const entries = []
+  for (const page of pages) {
+    if (page.sitemap === false) continue
+    let alternates = []
+    if (page.en) alternates = [['de-CH', page.de], ['en', page.en], ['x-default', page.de]]
+    else if (!page.noindex) alternates = [['de-CH', page.de], ['x-default', page.de]]
+    entries.push(entry(page.de, page, alternates))
+    if (page.en) entries.push(entry(page.en, page, alternates))
+  }
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<?xml-stylesheet type="text/xsl" href="sitemap-style.xsl"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+    '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...entries,
+    '</urlset>',
+    '',
+  ].join('\n')
+}
+
 function finish(outDir) {
   const out = path.resolve(outDir)
+  fs.writeFileSync(path.join(out, 'sitemap.xml'), sitemapXml())
   // Routes ending in .html come out as foo.html.html in "flat" mode.
   for (const file of fs.readdirSync(out)) {
     if (file.endsWith('.html.html')) fs.renameSync(path.join(out, file), path.join(out, file.slice(0, -5)))

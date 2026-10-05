@@ -53,6 +53,7 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 | `VITE_EMAILJS_SERVICE_ID` | `service_qlylu4x` | EmailJS Service |
 | `VITE_EMAILJS_TEMPLATE_ID` | `template_5mci63d` | EmailJS Template |
 | `VITE_TURNSTILE_SITEKEY` | `0x4AAAAAACkZoLXteSgJ1jzs` | Cloudflare Turnstile Sitekey |
+| `VITE_PSI_API_KEY` | eigener Key | Google PageSpeed Insights API für den Website-Check; in der Google Cloud Console auf den HTTP-Referrer `https://www.sin-digital.com/*` einschränken |
 
 ## Routen
 
@@ -76,22 +77,36 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 src/
   main.jsx, routes.jsx   Einstieg und Routen (lazy pro Seite, damit jede Seite nur ihr CSS lädt)
   pages/                 Home (bekommt lang), Agb, Datenschutz, Impressum, Landingpages, NotFound
-  components/            Nav, MobileMenu, LangSwitch, Hero, LocalSeo, Team, Clients, Projects, Faq,
-                         Reviews, ReviewsCarousel, Contact, ContactForm, Turnstile, Footer, Breadcrumb,
-                         LegalNav, LegalGrid, ScrollTopButton, Seo
-  hooks/                 useReveal, useSmoothScroll, useLegalLang
-  i18n/                  de.js, en.js (Texte der Startseite)
-  data/                  clients.js (Kundenlogos), schema/ (JSON-LD pro Seite)
+  components/            SiteHeader (Skip-Link, Nav, MobileMenu, Menü-Zustand), SiteFooter, Nav,
+                         MobileMenu, LangSwitch, Hero, LocalSeo, Team, Clients, Projects, Faq, Reviews,
+                         ReviewsCarousel, Contact, ContactForm, Turnstile, Footer, Breadcrumb, LegalNav,
+                         LegalGrid, ScrollTopButton, Seo
+  hooks/                 useReveal, useSmoothScroll, useLegalLang, usePendingSubmit (Formular vor der
+                         Hydration abgeschickt: Werte übernehmen, nach der Hydration senden)
+  i18n/                  de.js, en.js: benannte Exporte je Seite (`shared` für Nav, Footer, Hinweise;
+                         `home` für die Startseite), damit jede Seite nur ihre Texte bündelt
+  data/                  pages.js (alle Seiten: URLs, lastmod, Sitemap-Angaben, ohne JS?),
+                         navigation.js (Hauptnavigation), clients.js (Kundenlogos), schema/ (JSON-LD)
   styles/                global.css (= Portfolio/styles.min.css; einzige Änderung: Kundenlogos immer
                          farbig, Hover nur noch Vergrössern), critical.css (Inline-Style
-                         der Startseite), agb/datenschutz/impressum.css, landing*.css, notfound.css,
-                         lang-switch.css
-public/                  assets/, manifest.json, robots.txt, sitemap.xml, sitemap-style.xsl
-vite.config.js           Build-Nachbearbeitung pro Seite (siehe Kommentare in postProcess)
+                         der Startseite), site.css (Unterseiten), agb/datenschutz/impressum.css,
+                         landing*.css, notfound.css, lang-switch.css
+public/                  assets/, manifest.json, robots.txt, sitemap-style.xsl
+tools/                   Test-Tooling, siehe „Tests“
+vite.config.js           Build-Nachbearbeitung pro Seite (siehe Kommentare in postProcess) und
+                         Sitemap-Generator
 ```
 
-Neuen Kunden hinzufügen: Logo nach `public/assets/`, Eintrag in `src/data/clients.js`, optional
-JSON-LD-Block in `src/data/schema/home.js`.
+Pflege:
+
+- Neue Seite: Eintrag in `src/data/pages.js` (URLs DE/EN, `lastmod`, `changefreq`, `priority`,
+  `js: false` wenn sie ohne React auskommt). Daraus entstehen beim Build `dist/sitemap.xml` und die
+  Liste der Seiten ohne JavaScript; die Tests laufen automatisch über alle Einträge.
+- Inhalt einer Seite geändert: `lastmod` in `pages.js` auf das Deploy-Datum setzen.
+- Navigation: `src/data/navigation.js` (Anker auf der Startseite oder eigene Seite je Sprache),
+  Beschriftungen in `shared.nav` der i18n-Dateien.
+- Neuer Kunde: Logo nach `public/assets/`, Eintrag in `src/data/clients.js`, optional
+  JSON-LD-Block in `src/data/schema/home.js`.
 
 ## Deploy auf Render (Static Site)
 

@@ -1,20 +1,18 @@
-import { useEffect, useState } from 'react'
 import Breadcrumb from '../components/Breadcrumb.jsx'
 import Clients from '../components/Clients.jsx'
 import Contact from '../components/Contact.jsx'
 import Faq from '../components/Faq.jsx'
 import Hero from '../components/Hero.jsx'
 import LocalSeo from '../components/LocalSeo.jsx'
-import MobileMenu from '../components/MobileMenu.jsx'
-import Nav from '../components/Nav.jsx'
 import Projects from '../components/Projects.jsx'
 import Reviews from '../components/Reviews.jsx'
 import Seo from '../components/Seo.jsx'
+import SiteHeader from '../components/SiteHeader.jsx'
 import Team from '../components/Team.jsx'
 import schema from '../data/schema/home.js'
 import useSmoothScroll from '../hooks/useSmoothScroll.js'
-import de from '../i18n/de.js'
-import en from '../i18n/en.js'
+import { home as deHome, shared as deShared } from '../i18n/de.js'
+import { home as enHome, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
 
 // critical.css and lang-switch.css are inlined into <head> of / and /en/ at build time
@@ -25,7 +23,8 @@ if (import.meta.env.DEV && !import.meta.env.SSR) {
 }
 
 const SITE = 'https://www.sin-digital.com'
-const URLS = { de: `${SITE}/`, en: `${SITE}/en/` }
+const PATHS = { de: '/', en: '/en/' }
+const URLS = { de: `${SITE}${PATHS.de}`, en: `${SITE}${PATHS.en}` }
 
 function HomeHead({ t, lang }) {
   const url = URLS[lang]
@@ -90,43 +89,16 @@ function HomeHead({ t, lang }) {
 
 // Start page, prerendered once per language: "/" (de) and "/en/" (en).
 export default function Home({ lang }) {
-  const t = lang === 'en' ? en : de
-  const homePath = lang === 'en' ? '/en/' : '/'
-  const [menuOpen, setMenuOpen] = useState(false)
+  const t = lang === 'en' ? enHome : deHome
+  const shared = lang === 'en' ? enShared : deShared
 
   useSmoothScroll()
-
-  // Mobile menu side effects: body scroll lock and Escape to close.
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-  }, [menuOpen])
-
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === 'Escape') setMenuOpen(false)
-    }
-    document.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-      document.body.style.overflow = ''
-    }
-  }, [])
 
   return (
     <>
       <HomeHead t={t} lang={lang} />
 
-      <a
-        href="#main-content"
-        className="skip-link"
-        style={{ position: 'absolute', left: '-9999px', top: '0', zIndex: '9999', padding: '8px 16px', background: '#C1FF72', color: '#010101', fontWeight: '700', borderRadius: '0 0 8px 0' }}
-      >
-        {t.skipLink}
-      </a>
-
-      <Nav t={t} lang={lang} homePath={homePath} menuOpen={menuOpen} onToggleMenu={() => setMenuOpen((open) => !open)} />
-
-      <MobileMenu t={t} open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <SiteHeader lang={lang} shared={shared} paths={PATHS} isHome />
 
       <main id="main-content" role="main" itemScope itemType="https://schema.org/WebPageElement">
         <Breadcrumb homeUrl={URLS[lang]} />
@@ -137,7 +109,7 @@ export default function Home({ lang }) {
         <Projects t={t} />
         <Faq t={t} />
         <Reviews t={t} />
-        <Contact t={t} />
+        <Contact t={t} shared={shared} />
       </main>
     </>
   )

@@ -1,0 +1,16 @@
+/* Layout shared by the subpages (configurator, projects, website check, maintenance).
+   The start page, legal pages and landing pages keep their own layouts. */
+
+.site-main {
+  padding-top: var(--nav-h);
+}
+
+.site-footer {
+  padding: 0 1.5rem 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .site-footer {
+    padding: 0 1.25rem 2rem;
+  }
+}

@@ -4,7 +4,7 @@ import Footer from './Footer.jsx'
 
 const MAPS_URL = 'https://www.google.com/maps/place/Sin+Digital/@47.4009377,8.4082974,10.9z/data=!4m8!3m7!1s0xfb5425956d5fd7:0x5a64c84bb9485552!8m2!3d47.3774417!4d8.5367356!9m1!1b1!16s%2Fg%2F11z1yv_130?entry=ttu&g_ep=EgoyMDI2MDMwNS4wIKXMDSoASAFQAw%3D%3D'
 
-export default function Contact({ t }) {
+export default function Contact({ t, shared }) {
   const c = t.contact
   const [headerRef, headerVisible] = useReveal()
   const [formRef, formVisible] = useReveal()
@@ -26,7 +26,7 @@ export default function Contact({ t }) {
 
         <div className="contact-grid">
           <div ref={formRef} className={revealClass('contact-form-wrapper reveal', formVisible)}>
-            <ContactForm t={t} />
+            <ContactForm texts={c.form} />
           </div>
 
           <div ref={infoRef} className={revealClass('contact-info reveal reveal-delay-2', infoVisible)} itemScope itemType="https://schema.org/Organization">
@@ -97,7 +97,7 @@ export default function Contact({ t }) {
           </div>
         </div>
 
-        <Footer t={t} />
+        <Footer shared={shared} />
       </div>
 
       <div className="bottom-line" aria-hidden="true"></div>

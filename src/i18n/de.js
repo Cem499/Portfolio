@@ -1,5 +1,24 @@
-// Texte der Startseite (Deutsch), 1:1 aus den data-de-Attributen von Portfolio/index.html übernommen.
-const de = {
+// Texte (Deutsch). `shared` gilt für alle Seiten, die anderen Exporte je für eine Seite.
+// Startseiten-Texte 1:1 aus den data-de-Attributen von Portfolio/index.html übernommen.
+
+export const shared = {
+  "skipLink": "Zum Inhalt springen",
+  "nav": {
+    "team": "Team",
+    "services": "Leistungen",
+    "faq": "FAQ",
+    "contact": "Kontakt"
+  },
+  "footer": {
+    "copyright": "© 2026 Sin Digital, Digitalagentur & Webdesign Zürich. Alle Rechte vorbehalten.",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "terms": "AGB"
+  },
+  "pendingSubmitHint": "Einen Moment bitte, das Formular wird vorbereitet …"
+}
+
+export const home = {
   "meta": {
     "title": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
     "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. ✓ Fertig in 2 Wochen ✓ Hosting inklusive ✓ Jetzt kostenlos anfragen!",
@@ -7,13 +26,6 @@ const de = {
     "ogDescription": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelle Websites ab CHF 990. ✓ Fertig in 2 Wochen ✓ SEO inklusive ✓ Hosting. Webagentur für KMU, Startups & Firmen.",
     "twitterTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
     "twitterDescription": "Sin Digital, Digitalagentur & Webagentur Zürich. Professionelle Websites ab CHF 990. Fertig in 2 Wochen. Jetzt anfragen!"
-  },
-  "skipLink": "Zum Inhalt springen",
-  "nav": {
-    "team": "Team",
-    "services": "Leistungen",
-    "faq": "FAQ",
-    "contact": "Kontakt"
   },
   "hero": {
     "label": "Sin Digital, Digitalagentur & Webagentur Zürich",
@@ -229,13 +241,5 @@ const de = {
     "phoneLabel": "Telefon",
     "emailLabel": "E-Mail",
     "followLabel": "Sin Digital folgen"
-  },
-  "footer": {
-    "copyright": "© 2026 Sin Digital, Digitalagentur & Webdesign Zürich. Alle Rechte vorbehalten.",
-    "imprint": "Impressum",
-    "privacy": "Datenschutz",
-    "terms": "AGB"
   }
 }
-
-export default de

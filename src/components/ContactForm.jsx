@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import Turnstile from './Turnstile.jsx'
 
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
@@ -14,30 +15,7 @@ const STATUS_COLORS = {
 }
 const SUCCESS_HIDE_MS = 8000
 
-// Set by the inline loader in vite.config.js when the form was submitted before React took over.
-const PENDING_SUBMIT_KEY = '__pendingSubmit'
-const PENDING_HINT_ID = 'pending-submit-hint'
-// How long a submit from before hydration waits for the Turnstile token before it is sent anyway
-// (it then shows the usual "kein Bot" message, as on a normal submit without token).
-const PENDING_TOKEN_WAIT_MS = 8000
-
 const EMPTY = { name: '', email: '', subject: '', message: '', privacyConsent: false }
-
-// The page is prerendered; hydrating the controlled inputs would wipe whatever a visitor typed
-// before the JavaScript arrived. On the first client render, start from the values in the DOM.
-function initialValues() {
-  if (typeof document === 'undefined') return EMPTY
-  const form = document.getElementById('contactForm')
-  if (!form) return EMPTY
-  const field = (name) => form.elements.namedItem(name)
-  return {
-    name: field('name').value,
-    email: field('email').value,
-    subject: field('subject').value,
-    message: field('message').value,
-    privacyConsent: field('privacyConsent').checked,
-  }
-}
 
 // First three checks of the original, in the original order.
 function fieldError(values) {
@@ -49,50 +27,24 @@ function fieldError(values) {
 
 let emailjsReady = false
 
-export default function ContactForm({ t }) {
-  const f = t.contact.form
-  const [values, setValues] = useState(initialValues)
+// `texts` are the form labels (i18n home.contact.form). `configuration` is the summary the
+// project configurator hands over; it goes into its own template field and stays empty for
+// normal contact requests.
+export default function ContactForm({ texts: f, configuration = '' }) {
+  // The page is prerendered: start from what a visitor may have typed before hydration.
+  const [values, setValues] = useState(() => valuesFromDom('contactForm', EMPTY))
   const [status, setStatus] = useState({ visible: false, message: '', type: null })
   const [sending, setSending] = useState(false)
-  const [pendingSubmit, setPendingSubmit] = useState(false)
   const formRef = useRef(null)
   const turnstileRef = useRef(null)
   const hideTimersRef = useRef([])
-  const sendPendingRef = useRef(null)
 
   useEffect(() => () => hideTimersRef.current.forEach(clearTimeout), [])
 
-  // A submit from before hydration: pick it up once React is in control.
-  useEffect(() => {
-    if (window[PENDING_SUBMIT_KEY] === formRef.current) {
-      delete window[PENDING_SUBMIT_KEY]
-      setPendingSubmit(true)
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!pendingSubmit) return undefined
-    const form = formRef.current
-    let timer = null
-    const send = () => {
-      clearTimeout(timer)
-      sendPendingRef.current = null
-      document.getElementById(PENDING_HINT_ID)?.remove()
-      setPendingSubmit(false)
-      if (form.requestSubmit) form.requestSubmit()
-      else form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }))
-    }
-    // Field errors show right away; a valid form waits for Turnstile to hand out its token.
-    if (fieldError(values) || turnstileRef.current?.getResponse()) {
-      send()
-    } else {
-      sendPendingRef.current = send
-      timer = setTimeout(send, PENDING_TOKEN_WAIT_MS)
-    }
-    return () => clearTimeout(timer)
-    // runs once per pending submit with the values that were synced on hydration
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingSubmit])
+  // A submit from before hydration: field errors show right away, a valid form waits for the Turnstile token.
+  const { release } = usePendingSubmit(formRef, {
+    canSubmit: () => Boolean(fieldError(values) || turnstileRef.current?.getResponse()),
+  })
 
   function showStatus(message, type) {
     setStatus({ visible: true, message, type })
@@ -135,6 +87,7 @@ export default function ContactForm({ t }) {
         email,
         subject: values.subject.trim() || 'Keine Angabe',
         message: values.message.trim(),
+        configuration,
       })
 
       showStatus('Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.', 'success')
@@ -182,7 +135,7 @@ export default function ContactForm({ t }) {
         </label>
       </div>
 
-      <Turnstile ref={turnstileRef} onToken={() => sendPendingRef.current?.()} />
+      <Turnstile ref={turnstileRef} onToken={release} />
 
       <div id="form-status" role="alert" aria-live="polite" style={statusStyle}>{status.message}</div>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '0.5rem' }}>

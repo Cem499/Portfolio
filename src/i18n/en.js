@@ -1,5 +1,24 @@
-// Texte der Startseite (Englisch), 1:1 aus den data-en-Attributen von Portfolio/index.html übernommen.
-const en = {
+// Texts (English). `shared` is used on every page, the other exports belong to one page each.
+// Start page texts taken over 1:1 from the data-en attributes of Portfolio/index.html.
+
+export const shared = {
+  "skipLink": "Skip to content",
+  "nav": {
+    "team": "Team",
+    "services": "Services",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2026 Sin Digital, Digital Agency & Web Design Zürich. All rights reserved.",
+    "imprint": "Imprint",
+    "privacy": "Privacy Policy",
+    "terms": "T&C"
+  },
+  "pendingSubmitHint": "One moment please, the form is being prepared …"
+}
+
+export const home = {
   "meta": {
     "title": "Digital Agency Zurich | Web Design & Development for SMEs | Sin Digital",
     "description": "Sin Digital, your digital agency in Zurich. Web design, development & SEO for SMEs from CHF 990. ✓ Ready in 2 weeks ✓ Hosting included ✓ Get your free quote!",
@@ -7,13 +26,6 @@ const en = {
     "ogDescription": "Sin Digital, your digital agency in Zurich. Professional websites from CHF 990. Ready in 2 weeks. SEO included. Web agency for SMEs, startups and local businesses.",
     "twitterTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
     "twitterDescription": "Sin Digital, digital and web agency in Zurich. Professional and affordable websites from CHF 990. Get your quote today."
-  },
-  "skipLink": "Skip to content",
-  "nav": {
-    "team": "Team",
-    "services": "Services",
-    "faq": "FAQ",
-    "contact": "Contact"
   },
   "hero": {
     "label": "Sin Digital, Digital Agency & Web Agency Zürich",
@@ -229,13 +241,5 @@ const en = {
     "phoneLabel": "Phone",
     "emailLabel": "Email",
     "followLabel": "Follow Sin Digital"
-  },
-  "footer": {
-    "copyright": "© 2026 Sin Digital, Digital Agency & Web Design Zürich. All rights reserved.",
-    "imprint": "Imprint",
-    "privacy": "Privacy Policy",
-    "terms": "T&C"
   }
 }
-
-export default en

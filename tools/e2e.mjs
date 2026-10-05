@@ -295,7 +295,7 @@ test('Formular: Erfolg, Reset, EmailJS-Payload, Ausblenden nach 8 s', async () =
   })
   expect(r.text === 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.' && r.color === 'rgb(193, 255, 114)' && r.name === '' && !r.consent && r.resets === 1 && !r.btn[0] && r.btn[1] === 'Nachricht senden', JSON.stringify(r))
   const p = sent.payload
-  expect(p && p.service_id === 'service_qlylu4x' && p.template_id === 'template_5mci63d' && p.user_id === '_U_phGxH8KcaJXxfq' && p.template_params.subject === 'Keine Angabe' && p.template_params.from_email === 'max@example.ch', JSON.stringify(p))
+  expect(p && p.service_id === 'service_qlylu4x' && p.template_id === 'template_5mci63d' && p.user_id === '_U_phGxH8KcaJXxfq' && p.template_params.subject === 'Keine Angabe' && p.template_params.from_email === 'max@example.ch' && p.template_params.configuration === '', JSON.stringify(p))
   await s.page.waitForTimeout(8000)
   expect((await formStatus(s.page)).display === 'none', 'Erfolgsmeldung bleibt sichtbar')
   await s.close()
