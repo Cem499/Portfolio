@@ -11,3 +11,6 @@ dist
 # test tooling output
 tools/screenshots
 tools/reports
+
+# local scratch files (test screenshots, helper scripts)
+.tmp/
