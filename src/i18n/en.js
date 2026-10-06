@@ -726,7 +726,7 @@ export const wartung = {
   },
   "compareTitle": "The plans side by side",
   "note": {
-    "before": "All prices in CHF. Care complements an existing website; configure a new website in the ",
+    "before": "All prices in CHF. Hosting and maintenance are optional: once paid in full, your website is yours. Care complements an existing website; configure a new website in the ",
     "link": "configurator",
     "after": "."
   },
@@ -737,16 +737,20 @@ export const wartung = {
       "a": "Depending on the plan: hosting, security updates, regular backups, monitoring and an allowance for small changes such as new texts, images or opening hours. Plus a fixed response time when something does not work."
     },
     {
+      "q": "How long does the contract run, and how can I cancel?",
+      "a": "The minimum term is 6 months from launch. After that, you can cancel in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year."
+    },
+    {
       "q": "Can I change the plan later?",
-      "a": "Yes. Switching up or down is possible for the next month, with no switching fee."
+      "a": "Yes. You can move to a larger plan at any time, effective the next month. You can move to a smaller plan after the minimum term, or at the end of the paid year with yearly payment. There is no switching fee."
     },
     {
       "q": "What if my change requests exceed the included time?",
-      "a": "We tell you beforehand. Larger changes get a separate quote; nothing is billed without your yes."
+      "a": "We tell you beforehand. Larger changes get a separate quote. Additional work is billed at CHF 120 per hour, but only after your yes."
     },
     {
       "q": "Do I need a plan if Sin Digital built my website?",
-      "a": "No. The website is yours as it is. Without a plan, updates, backups and hosting are with you or your provider."
+      "a": "No. Once paid in full, the website is yours. Without a plan, hosting, updates and backups are with you or your provider."
     },
     {
       "q": "Does Sin Digital also look after websites someone else built?",
@@ -754,11 +758,11 @@ export const wartung = {
     },
     {
       "q": "How fast does Sin Digital react when the website is down?",
-      "a": "Within the response time of your plan: at the latest after 3 working days on Basis, after 2 working days on Business and after 1 working day, with priority, on Premium."
+      "a": "Within the response time of your plan: at the latest after 3 working days on Basis, after 2 working days on Business and after 1 working day, with priority, on Premium. Response time means: we get back to you and start the analysis. Working days are Monday to Friday, excluding public holidays in the canton of Zurich."
     },
     {
       "q": "Where is the site hosted, and who owns the data?",
-      "a": "With established providers such as Hostpoint or Netlify, matching the project. Domain, content and data belong to you."
+      "a": "With established providers such as Hostpoint or Netlify, matching the project. Domain, content and data belong to you. If you cancel, you receive your website files and content free of charge."
     },
     {
       "q": "How is it billed?",

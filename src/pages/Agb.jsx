@@ -26,7 +26,7 @@ export default function Agb() {
           <div className="legal-hero">
             <span className="legal-tag">{t("AGB", "T&C")}</span>
             <h1 className="legal-title">{t("Allgemeine Geschäftsbedingungen", "General Terms & Conditions")}</h1>
-            <p className="legal-subtitle">{t("Stand: Februar 2026", "As of: February 2026")}</p>
+            <p className="legal-subtitle">{t("Stand: Oktober 2026", "As of: October 2026")}</p>
           </div>
           <nav className="toc" aria-label="Inhaltsverzeichnis">
             <a href="#leistungsumfang" className="toc-link">{t("1. Leistungsumfang", "1. Scope of Services")}</a>
@@ -53,7 +53,7 @@ export default function Agb() {
             {' '}
             <a href="#gewaehrleistung" className="toc-link">{t("12. Gewährleistung", "12. Warranty")}</a>
             {' '}
-            <a href="#hosting" className="toc-link">{t("13. Hosting", "13. Hosting")}</a>
+            <a href="#hosting" className="toc-link">{t("13. Hosting & Wartung", "13. Hosting & Maintenance")}</a>
             {' '}
             <a href="#abnahme" className="toc-link">{t("14. Abnahme", "14. Acceptance")}</a>
             {' '}
@@ -136,7 +136,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Im Projektpreis sind alle für die Umsetzung notwendigen Drittanbieter-Leistungen (z.B. Domain, Hosting, Plugins, APIs) enthalten, sofern nicht anders vereinbart. Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden.", "The project price includes all necessary third-party services (e.g. domain, hosting, plugins, APIs) unless otherwise agreed. Changes in third-party prices after contract conclusion may be passed on to the client.")}
+                {t("Im Projektpreis sind alle für die Umsetzung notwendigen Drittanbieter-Leistungen (z.B. Domain, Plugins, APIs) enthalten, sofern nicht anders vereinbart. Hosting und Wartung sind nicht Teil des Projektpreises, sie sind optional (siehe Ziffer 13). Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden.", "The project price includes all necessary third-party services (e.g. domain, plugins, APIs) unless otherwise agreed. Hosting and maintenance are not part of the project price; they are optional (see section 13). Changes in third-party prices after contract conclusion may be passed on to the client.")}
               </p>
             </div>
           </LegalGrid>
@@ -204,18 +204,15 @@ export default function Agb() {
           <LegalGrid id="eigentum" className="legal-grid wide">
             <div className="legal-block">
               <span className="legal-block-label">10</span>
-              <h2>{t("Eigentumsrechte & Nutzung", "Ownership & Usage Rights")}</h2>
+              <h2>{t("Eigentumsrechte & Nutzung", "Ownership & Use")}</h2>
             </div>
             <div className="legal-block">
               <ul>
                 <li>
-                  {t("Der Quellcode verbleibt dauerhaft Eigentum des Auftragnehmers.", "The source code remains the permanent property of the contractor.")}
+                  {t("Nach vollständiger Bezahlung gehen die Rechte an der individuell erstellten Website (Code, Design, Inhalte) auf den Auftraggeber über. Ausgenommen sind Drittanbieter- und Open-Source-Komponenten, für die deren Lizenzen gelten.", "Upon full payment, the rights to the individually created website (code, design, content) pass to the client. Excluded are third-party and open-source components, which remain subject to their own licences.")}
                 </li>
                 <li>
-                  {t("Der Kunde erhält ein nicht übertragbares Nutzungsrecht für die Dauer der Hosting-Vereinbarung.", "The client receives a non-transferable right of use for the duration of the hosting agreement.")}
-                </li>
-                <li>
-                  {t("Keine Weitergabe oder Lizenzierung an Dritte ohne schriftliche Zustimmung.", "No transfer or licensing to third parties without written consent.")}
+                  {t("Bis zur vollständigen Bezahlung kann der Auftragnehmer die Website zurückbehalten (siehe Zurückbehaltungsrecht und Eigentumsvorbehalt).", "Until full payment, the contractor may withhold the website (see right of retention and retention of title).")}
                 </li>
                 <li>
                   {t("Der Auftragnehmer darf die Website im Portfolio erwähnen und einen diskreten Hinweis im Footer platzieren.", "The contractor may mention the website in their portfolio and place a discreet note in the footer.")}
@@ -251,14 +248,20 @@ export default function Agb() {
           <LegalGrid id="hosting" className="legal-grid wide">
             <div className="legal-block">
               <span className="legal-block-label">13</span>
-              <h2>{t("Hosting", "Hosting")}</h2>
+              <h2>{t("Hosting & Wartung", "Hosting & Maintenance")}</h2>
             </div>
             <div className="legal-block">
               <p>
-                {t("Die monatliche Hosting-Gebühr richtet sich nach dem gewählten Paket und umfasst Serverbereitstellung, Sicherheitsupdates, kleinere Inhaltspflege (Texte, Bilder, Preise) sowie E-Mail-Support (Reaktionszeit bis zu 48 Stunden an Werktagen). Neue Seiten, Funktionen oder strukturelle Änderungen sind nicht enthalten und werden separat zu CHF 120.00 pro Stunde verrechnet.", "The monthly hosting fee depends on the selected package and includes server provision, security updates, minor content maintenance (texts, images, prices) and email support (response time up to 48 hours on working days). New pages, features or structural changes are not included and will be billed separately at CHF 120.00 per hour.")}
+                {t("Hosting und Wartung sind optional. Ohne Wartungspaket liegen Hosting, Updates und Backups beim Auftraggeber.", "Hosting and maintenance are optional. Without a maintenance plan, hosting, updates and backups are the client's responsibility.")}
               </p>
               <p>
-                {t("Die Hosting-Vereinbarung läuft mindestens 6 Monate ab Abnahme der Website. Nach Ablauf der Mindestlaufzeit kann sie von beiden Parteien mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Die Gebühr beginnt ab Abnahme der Website. Eine permanente oder unterbrechungsfreie Verfügbarkeit wird nicht geschuldet.", "The hosting agreement runs for a minimum of 6 months from acceptance of the website. After the minimum term, it may be terminated by either party with 30 days' notice at the end of the month. The fee commences upon acceptance of the website. Permanent or uninterrupted availability is not guaranteed.")}
+                {t("Wählt der Auftraggeber ein Wartungspaket (Basis, Business oder Premium), richten sich Leistungen, Backups, Änderungskontingent und Reaktionszeit nach dem gewählten Paket gemäss sin-digital.com/wartung/. Die Reaktionszeit wird in Werktagen gerechnet (Montag bis Freitag ohne Feiertage im Kanton Zürich). Reaktion heisst Rückmeldung und Beginn der Analyse, nicht Behebung. Arbeiten über dem Kontingent des Pakets sowie neue Seiten, Funktionen oder strukturelle Änderungen werden nach vorheriger Rückfrage zu CHF 120.00 pro Stunde verrechnet.", "If the client chooses a maintenance plan (Basis, Business or Premium), services, backups, change allowance and response time depend on the selected plan as described at sin-digital.com/en/maintenance/. Response time is counted in working days (Monday to Friday, excluding public holidays in the canton of Zurich). Response means a reply and the start of the analysis, not the fix. Work beyond the plan's allowance as well as new pages, features or structural changes are billed at CHF 120.00 per hour after prior consultation.")}
+              </p>
+              <p>
+                {t("Die Gebühr ist monatlich oder jährlich zahlbar. Bei jährlicher Zahlung sind 10 statt 12 Monatsgebühren im Voraus zu bezahlen.", "The fee is payable monthly or yearly. With yearly payment, 10 instead of 12 monthly fees are payable in advance.")}
+              </p>
+              <p>
+                {t("Ein Wartungspaket läuft mindestens 6 Monate ab Abnahme der Website. Danach kann es von beiden Parteien mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Die Gebühr beginnt ab Abnahme der Website. Eine permanente oder unterbrechungsfreie Verfügbarkeit wird nicht geschuldet.", "A maintenance plan runs for a minimum of 6 months from acceptance of the website. After that, it may be terminated by either party in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. The fee commences upon acceptance of the website. Permanent or uninterrupted availability is not guaranteed.")}
               </p>
             </div>
           </LegalGrid>
@@ -286,10 +289,10 @@ export default function Agb() {
                   {t("Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet.", "If termination occurs after development has begun, the work completed up to that point will be invoiced proportionally. The deposit is non-refundable.")}
                 </li>
                 <li>
-                  {t("Eine Kündigung der Hosting-Vereinbarung ist frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten möglich. Nach Ablauf kann sie von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet.", "The hosting agreement may only be terminated after the minimum term of 6 months. After expiry, it may be terminated by either party with 30 days' notice at the end of the month. In the event of early termination, the remaining months until the end of the minimum term are fully owed.")}
+                  {t("Ein Wartungspaket kann frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten gekündigt werden. Danach kann es von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet.", "A maintenance plan may only be terminated after the minimum term of 6 months. Thereafter, it may be terminated by either party in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. In the event of early termination, the remaining months until the end of the minimum term are fully owed.")}
                 </li>
                 <li>
-                  {t("Die Domain ist auf den Auftraggeber registriert und wird bei Kündigung innerhalb von 7 Tagen übertragen. Die Website wird nach Ablauf der Frist vollständig entfernt. Ein Datenexport ist gegen CHF 50.00 möglich.", "The domain is registered in the client's name and will be transferred within 7 days upon termination. The website will be completely removed after the notice period. A data export is available for CHF 50.00.")}
+                  {t("Die Domain ist auf den Auftraggeber registriert und wird bei Kündigung innerhalb von 7 Tagen übertragen. Auf Wunsch erhält der Auftraggeber die Website-Dateien und Inhalte kostenlos. Danach wird die Website vom Server des Auftragnehmers entfernt.", "The domain is registered in the client's name and will be transferred within 7 days upon termination. On request, the client receives the website files and content free of charge. The website is then removed from the contractor's server.")}
                 </li>
               </ul>
             </div>
@@ -406,7 +409,7 @@ export default function Agb() {
               <ul>
                 <li>{t("Einmalige Entwicklungsgebühr: gemäss Angebot", "One-time development fee: as per offer")}</li>
                 <li>
-                  {t("Monatliche Hosting & Wartungsgebühr: gemäss Angebot", "Monthly hosting & maintenance fee: as per offer")}
+                  {t("Hosting & Wartung (optional): Gebühr gemäss gewähltem Wartungspaket, monatlich oder jährlich. Bei jährlicher Zahlung 10 statt 12 Monatsgebühren, im Voraus zahlbar.", "Hosting & maintenance (optional): fee according to the selected maintenance plan, monthly or yearly. With yearly payment, 10 instead of 12 monthly fees, payable in advance.")}
                 </li>
               </ul>
               <h3>{t("Zahlungsplan", "Payment Plan")}</h3>
@@ -438,19 +441,16 @@ export default function Agb() {
           <LegalGrid id="nutzungsrechte" className="legal-grid wide">
             <div className="legal-block">
               <span className="legal-block-label">§ 6</span>
-              <h2>{t("Nutzungsrechte & Urheberrecht", "Usage Rights & Copyright")}</h2>
+              <h2>{t("Rechte an der Website & Urheberrecht", "Rights to the Website & Copyright")}</h2>
             </div>
             <div className="legal-block">
-              <h3>{t("Eigentumsrechte & Nutzung", "Ownership & Usage")}</h3>
+              <h3>{t("Rechteübergang", "Transfer of Rights")}</h3>
               <ul>
                 <li>
-                  {t("Der Quellcode bleibt dauerhaft Eigentum des Auftragnehmers.", "The source code remains the permanent property of the contractor.")}
+                  {t("Nach vollständiger Bezahlung gehen die Rechte an der individuell erstellten Website (Code, Design, Inhalte) auf den Auftraggeber über. Ausgenommen sind Drittanbieter- und Open-Source-Komponenten, für die deren Lizenzen gelten.", "Upon full payment, the rights to the individually created website (code, design, content) pass to the client. Excluded are third-party and open-source components, which remain subject to their own licences.")}
                 </li>
                 <li>
-                  {t("Der Auftraggeber erhält ein nicht übertragbares Nutzungsrecht für die Dauer der Hosting-Vereinbarung.", "The client receives a non-transferable right of use for the duration of the hosting agreement.")}
-                </li>
-                <li>
-                  {t("Keine Weitergabe oder Lizenzierung an Dritte ohne schriftliche Zustimmung.", "No transfer or licensing to third parties without written consent.")}
+                  {t("Bis zur vollständigen Bezahlung kann der Auftragnehmer die Website zurückbehalten (siehe Zurückbehaltungsrecht und Eigentumsvorbehalt).", "Until full payment, the contractor may withhold the website (see right of retention and retention of title).")}
                 </li>
                 <li>
                   {t("Der Auftragnehmer darf die Website im Portfolio erwähnen und einen diskreten Hinweis im Footer platzieren.", "The contractor may mention the website in their portfolio and place a discreet note in the footer ('Website created by Sin Digital').")}
@@ -517,13 +517,13 @@ export default function Agb() {
                   {t("Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet.", "If termination occurs after development has begun, work completed to date will be invoiced proportionally. The deposit is non-refundable.")}
                 </li>
                 <li>
-                  {t("Eine Kündigung der Hosting-Vereinbarung ist frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten möglich. Danach kann sie von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet.", "The hosting agreement may only be terminated after the minimum term of 6 months. Thereafter, it may be terminated by either party with 30 days' notice at the end of the month. In the event of early termination, the remaining months until the end of the minimum term are fully owed.")}
+                  {t("Ein Wartungspaket kann frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten gekündigt werden. Danach kann es von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet.", "A maintenance plan may only be terminated after the minimum term of 6 months. Thereafter, it may be terminated by either party in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. In the event of early termination, the remaining months until the end of the minimum term are fully owed.")}
                 </li>
                 <li>
                   {t("Die Domain ist auf den Namen des Auftraggebers registriert und wird bei Kündigung innerhalb von 7 Tagen auf ihn übertragen.", "The domain is registered in the client's name and will be transferred to them within 7 days upon termination.")}
                 </li>
                 <li>
-                  {t("Die Website wird nach Ablauf der Kündigungsfrist vollständig vom Server entfernt. Ein Datenexport kann gegen eine Pauschale von CHF 50.00 angefordert werden.", "The website will be completely removed from the server after the notice period. A data export can be requested for a flat fee of CHF 50.00.")}
+                  {t("Auf Wunsch erhält der Auftraggeber die Website-Dateien und Inhalte kostenlos. Nach Ablauf der Kündigungsfrist wird die Website vom Server des Auftragnehmers entfernt.", "On request, the client receives the website files and content free of charge. After the notice period, the website is removed from the contractor's server.")}
                 </li>
               </ul>
             </div>
@@ -569,7 +569,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Der Auftragnehmer erstellt wöchentliche Backups der Website-Daten im Rahmen der Hosting-Vereinbarung. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt der Auftragnehmer keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt. Dem Auftraggeber wird empfohlen, zusätzlich eigene Datensicherungen vorzunehmen.", "The contractor creates weekly backups of website data as part of the hosting agreement. Backups are retained for a maximum of 6 months and then automatically deleted. Recovery is based exclusively on the most recent available backup. The contractor accepts no liability for data loss resulting from third-party outages, force majeure or cyberattacks, unless intentional or grossly negligent conduct is present. The client is advised to maintain their own additional backups.")}
+                {t("Im Rahmen eines Wartungspakets erstellt der Auftragnehmer Backups der Website-Daten in der Häufigkeit des gewählten Pakets (gemäss sin-digital.com/wartung/). Ohne Wartungspaket ist der Auftraggeber selbst für Backups verantwortlich. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Die Wiederherstellung erfolgt ausschliesslich auf Basis des zuletzt verfügbaren Backups. Bei Datenverlust infolge von Drittanbieter-Ausfällen, höherer Gewalt oder Cyberangriffen übernimmt der Auftragnehmer keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt. Dem Auftraggeber wird empfohlen, zusätzlich eigene Datensicherungen vorzunehmen.", "As part of a maintenance plan, the contractor creates backups of website data at the frequency of the selected plan (see sin-digital.com/en/maintenance/). Without a maintenance plan, backups are the client's responsibility. Backups are retained for a maximum of 6 months and then automatically deleted. Recovery is based exclusively on the most recent available backup. The contractor accepts no liability for data loss resulting from third-party outages, force majeure or cyberattacks, unless intentional or grossly negligent conduct is present. The client is advised to maintain their own additional backups.")}
               </p>
             </div>
           </LegalGrid>
@@ -593,7 +593,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Der Auftragnehmer stellt dem Auftraggeber nach Abnahme einen persönlichen Login-Zugang für das Dashboard bereit. Der Auftraggeber ist verpflichtet, seine Zugangsdaten vertraulich zu behandeln und nicht an Dritte weiterzugeben. Bei Verdacht auf Missbrauch oder Verlust ist der Auftraggeber verpflichtet, den Auftragnehmer unverzüglich schriftlich zu informieren. Der Auftragnehmer übernimmt keine Haftung für Schäden durch unsachgemässe Handhabung oder Weitergabe der Zugangsdaten. Bei Kündigung der Hosting-Vereinbarung werden alle Zugangsdaten innerhalb von 7 Tagen vollständig deaktiviert.", "After acceptance, the contractor provides the client with a personal login for the dashboard. The client is obliged to keep access credentials confidential and not share them with third parties. In case of suspected misuse or loss, the client must immediately notify the contractor in writing. The contractor accepts no liability for damages arising from improper handling or disclosure of access credentials. Upon termination of the hosting agreement, all client access credentials will be fully deactivated within 7 days.")}
+                {t("Der Auftragnehmer stellt dem Auftraggeber nach Abnahme einen persönlichen Login-Zugang für das Dashboard bereit. Der Auftraggeber ist verpflichtet, seine Zugangsdaten vertraulich zu behandeln und nicht an Dritte weiterzugeben. Bei Verdacht auf Missbrauch oder Verlust ist der Auftraggeber verpflichtet, den Auftragnehmer unverzüglich schriftlich zu informieren. Der Auftragnehmer übernimmt keine Haftung für Schäden durch unsachgemässe Handhabung oder Weitergabe der Zugangsdaten. Bei Kündigung des Wartungspakets werden die Zugänge zu Systemen des Auftragnehmers innerhalb von 7 Tagen deaktiviert.", "After acceptance, the contractor provides the client with a personal login for the dashboard. The client is obliged to keep access credentials confidential and not share them with third parties. In case of suspected misuse or loss, the client must immediately notify the contractor in writing. The contractor accepts no liability for damages arising from improper handling or disclosure of access credentials. Upon termination of the maintenance plan, access to the contractor's systems will be deactivated within 7 days.")}
               </p>
             </div>
           </LegalGrid>
@@ -653,7 +653,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Bis zur vollständigen Begleichung aller aus diesem Vertrag resultierenden Forderungen bleibt die erstellte Website, einschliesslich Design, Struktur, Quellcode und sämtlicher damit verbundenen Dateien, Eigentum des Auftragnehmers. Der Auftraggeber erhält erst nach vollständiger Bezahlung sämtlicher Rechnungen das vertraglich vereinbarte Nutzungsrecht. Der Auftragnehmer ist berechtigt, die Website oder einzelne Funktionen vorübergehend zu deaktivieren, sofern offene Forderungen bestehen oder vereinbarte Zahlungen nicht fristgerecht erfolgen. Eine dauerhafte Nutzung der Website ohne vollständige Zahlung der vereinbarten Vergütung ist ausgeschlossen.", "Until full payment of all claims arising from this contract, the created website, including design, structure, source code and all associated files, remains the property of the contractor. The client only receives the contractually agreed right of use after full payment of all invoices. The contractor is entitled to temporarily deactivate the website or individual functions if outstanding claims exist or agreed payments are not made on time. Permanent use of the website without full payment of the agreed remuneration is excluded.")}
+                {t("Bis zur vollständigen Bezahlung der Vergütung für die Erstellung der Website bleibt die erstellte Website, einschliesslich Design, Struktur, Quellcode und sämtlicher damit verbundenen Dateien, Eigentum des Auftragnehmers. Mit der vollständigen Bezahlung gehen die Rechte gemäss § 6 auf den Auftraggeber über. Der Auftragnehmer ist berechtigt, die Website oder einzelne Funktionen vorübergehend zu deaktivieren, sofern offene Forderungen bestehen oder vereinbarte Zahlungen nicht fristgerecht erfolgen. Eine dauerhafte Nutzung der Website ohne vollständige Zahlung der vereinbarten Vergütung ist ausgeschlossen.", "Until full payment of the remuneration for creating the website, the created website, including design, structure, source code and all associated files, remains the property of the contractor. Upon full payment, the rights pass to the client as set out in § 6. The contractor is entitled to temporarily deactivate the website or individual functions if outstanding claims exist or agreed payments are not made on time. Permanent use of the website without full payment of the agreed remuneration is excluded.")}
               </p>
             </div>
           </LegalGrid>

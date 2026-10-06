@@ -375,6 +375,24 @@ test('Sprache: ?lang=en leitet auf /en/, ?lang=de wird entfernt, EN-Link speiche
   await s.close()
 })
 
+test('Recht: Website gehört dem Kunden, keine alten Hosting-Regeln in AGB, Datenschutz und Wartung', async () => {
+  const OLD = [/48 Stunden/, /48 hours/, /Nutzungsrecht/, /right of use/i, /Datenexport/, /data export/i, /CHF 50/, /Hosting-Vereinbarung/, /hosting agreement/i, /wöchentliche Backups der Website/, /weekly backups of website/i, /bleibt dauerhaft Eigentum/, /verbleibt dauerhaft Eigentum/, /permanent property/]
+  const problems = []
+  for (const [path, storage] of [['/agb.html', 'de'], ['/agb.html', 'en'], ['/datenschutz.html', 'de'], ['/datenschutz.html', 'en'], ['/wartung/'], ['/en/maintenance/']]) {
+    const s = await open(storage ? { storage } : {})
+    await goto(s.page, path, storage ? {} : { hydrated: false })
+    await s.page.waitForTimeout(300)
+    const text = await s.page.evaluate(() => document.body.innerText)
+    for (const pattern of OLD) if (pattern.test(text)) problems.push(`${path} ${storage || ''}: ${pattern}`)
+    if (path === '/agb.html') {
+      const must = storage === 'en' ? ['As of: October 2026', 'pass to the client', 'free of charge', '10 instead of 12', 'canton of Zurich'] : ['Stand: Oktober 2026', 'auf den Auftraggeber über', 'kostenlos', '10 statt 12', 'Kanton Zürich']
+      for (const phrase of must) if (!text.includes(phrase)) problems.push(`${path} ${storage}: fehlt "${phrase}"`)
+    }
+    await s.close()
+  }
+  expect(problems.length === 0, problems.join(' | '))
+})
+
 test('Legal: EN aus localStorage, Zurück-Link, DE-Umschaltung', async () => {
   const s = await open({ storage: 'en' })
   await goto(s.page, '/agb.html')
@@ -753,9 +771,17 @@ test('Wartung: drei Pakete ohne JavaScript, Preise aus maintenance.js, FAQ-Schem
     featured: document.querySelector('.care-plan.is-featured .care-plan-name')?.textContent,
     modules: document.querySelectorAll('script[type="module"]').length,
     faq: document.querySelectorAll('details.care-faq-item').length,
-    schemaFaq: [...document.querySelectorAll('script[type="application/ld+json"]')].some((el) => el.textContent.includes('"FAQPage"')),
+    schemaFaq: [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .map((el) => JSON.parse(el.textContent))
+      .flat()
+      .find((item) => item['@type'] === 'FAQPage')?.mainEntity.map((q) => q.name),
+    second: document.querySelectorAll('details.care-faq-item summary')[1]?.textContent,
   }))
-  expect(r.plans === 'Basis,Business,Premium' && r.prices === 'CHF 49,CHF 89,CHF 149' && r.featured === 'Business' && r.modules === 0 && r.faq === 8 && r.schemaFaq, JSON.stringify(r))
+  expect(
+    r.plans === 'Basis,Business,Premium' && r.prices === 'CHF 49,CHF 89,CHF 149' && r.featured === 'Business' && r.modules === 0 && r.faq === 9 &&
+      r.schemaFaq?.length === 9 && r.schemaFaq[1] === 'Wie lange läuft der Vertrag, und wie kann ich kündigen?' && r.second?.includes('Wie lange läuft der Vertrag'),
+    JSON.stringify(r),
+  )
   await s.close()
 })
 

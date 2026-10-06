@@ -32,7 +32,7 @@ export default function Datenschutz() {
             <p className="legal-subtitle">
               {t("Transparente Information über die Verarbeitung Ihrer personenbezogenen Daten gemäss Schweizer Datenschutzgesetz (DSG).", "Transparent information about the processing of your personal data in accordance with the Swiss Federal Act on Data Protection (FADP).")}
             </p>
-            <p style={{ color: "#6b7280", marginTop: "1rem", fontSize: "0.85rem", opacity: "0", animation: "fadeSlideUp 0.6s ease forwards 0.5s" }}>{t("Stand: Februar 2026", "As of: February 2026")}</p>
+            <p style={{ color: "#6b7280", marginTop: "1rem", fontSize: "0.85rem", opacity: "0", animation: "fadeSlideUp 0.6s ease forwards 0.5s" }}>{t("Stand: Oktober 2026", "As of: October 2026")}</p>
           </div>
           <nav className="toc" aria-label="Inhaltsverzeichnis">
             <a href="#verantwortlicher" className="toc-link">{t("Verantwortlicher", "Controller")}</a>
@@ -366,7 +366,7 @@ export default function Datenschutz() {
               </p>
               <h3>{t("Backup-Regelung", "Backup Policy")}</h3>
               <p>
-                {t("Im Rahmen der Hosting-Vereinbarung werden wöchentliche Backups der Website-Daten erstellt. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Bei Datenverlust infolge höherer Gewalt, Cyberangriffen oder Ausfällen von Drittanbietern übernimmt Sin Digital keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt.", "Weekly backups of website data are created as part of the hosting agreement. Backups are retained for a maximum of 6 months and then automatically deleted. Sin Digital accepts no liability for data loss resulting from force majeure, cyberattacks or third-party outages, unless intentional or grossly negligent conduct is present.")}
+                {t("Im Rahmen eines Wartungspakets werden Backups der Website-Daten in der Häufigkeit des gewählten Pakets erstellt. Backups werden maximal 6 Monate aufbewahrt und danach automatisch gelöscht. Bei Datenverlust infolge höherer Gewalt, Cyberangriffen oder Ausfällen von Drittanbietern übernimmt Sin Digital keine Haftung, sofern kein vorsätzliches oder grob fahrlässiges Verhalten vorliegt.", "As part of a maintenance plan, backups of website data are created at the frequency of the selected plan. Backups are retained for a maximum of 6 months and then automatically deleted. Sin Digital accepts no liability for data loss resulting from force majeure, cyberattacks or third-party outages, unless intentional or grossly negligent conduct is present.")}
               </p>
               <h3>{t("Zugangsdaten", "Access Credentials")}</h3>
               <p>

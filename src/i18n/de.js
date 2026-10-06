@@ -726,7 +726,7 @@ export const wartung = {
   },
   "compareTitle": "Die Pakete im Vergleich",
   "note": {
-    "before": "Alle Preise in CHF. Die Betreuung ergänzt eine bestehende Website; eine neue Website konfigurieren Sie im ",
+    "before": "Alle Preise in CHF. Hosting und Wartung sind freiwillig: Nach vollständiger Bezahlung gehört Ihre Website Ihnen. Die Betreuung ergänzt eine bestehende Website; eine neue Website konfigurieren Sie im ",
     "link": "Konfigurator",
     "after": "."
   },
@@ -737,16 +737,20 @@ export const wartung = {
       "a": "Je nach Paket: Hosting, Sicherheitsupdates, regelmässige Backups, Monitoring und ein Kontingent für kleine Änderungen wie neue Texte, Bilder oder Öffnungszeiten. Dazu eine feste Reaktionszeit, wenn etwas nicht funktioniert."
     },
     {
+      "q": "Wie lange läuft der Vertrag, und wie kann ich kündigen?",
+      "a": "Die Mindestlaufzeit beträgt 6 Monate ab Livegang. Danach können Sie mit 30 Tagen Frist auf Monatsende schriftlich kündigen. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres."
+    },
+    {
       "q": "Kann ich das Paket später wechseln?",
-      "a": "Ja. Ein Wechsel nach oben oder unten ist jeweils auf den nächsten Monat möglich, ohne Umstellungsgebühr."
+      "a": "Ja. In ein grösseres Paket können Sie jederzeit auf den nächsten Monat wechseln. In ein kleineres Paket nach der Mindestlaufzeit, bei jährlicher Zahlung auf Ende des bezahlten Jahres. Eine Umstellungsgebühr gibt es nicht."
     },
     {
       "q": "Was passiert, wenn meine Änderungswünsche die enthaltene Zeit übersteigen?",
-      "a": "Wir sagen es Ihnen vorher. Grössere Anpassungen offerieren wir separat, nichts wird ohne Ihr Ja verrechnet."
+      "a": "Wir sagen es Ihnen vorher. Grössere Anpassungen offerieren wir separat. Zusätzliche Arbeit verrechnen wir zu CHF 120.– pro Stunde, aber nur nach Ihrem Ja."
     },
     {
       "q": "Brauche ich ein Paket, wenn Sin Digital meine Website gebaut hat?",
-      "a": "Nein. Die Website gehört Ihnen, so wie sie ist. Ohne Paket liegen Updates, Backups und Hosting bei Ihnen oder Ihrem Anbieter."
+      "a": "Nein. Nach vollständiger Bezahlung gehört die Website Ihnen. Ohne Paket liegen Hosting, Updates und Backups bei Ihnen oder Ihrem Anbieter."
     },
     {
       "q": "Betreut Sin Digital auch Websites, die jemand anderes gebaut hat?",
@@ -754,11 +758,11 @@ export const wartung = {
     },
     {
       "q": "Wie schnell reagiert Sin Digital, wenn die Website nicht läuft?",
-      "a": "Innerhalb der Reaktionszeit Ihres Pakets: spätestens nach 3 Werktagen im Basis-Paket, nach 2 Werktagen im Business-Paket und nach 1 Werktag, priorisiert, im Premium-Paket."
+      "a": "Innerhalb der Reaktionszeit Ihres Pakets: spätestens nach 3 Werktagen im Basis-Paket, nach 2 Werktagen im Business-Paket und nach 1 Werktag, priorisiert, im Premium-Paket. Reaktionszeit heisst: Wir melden uns und beginnen mit der Analyse. Als Werktage zählen Montag bis Freitag ohne Feiertage im Kanton Zürich."
     },
     {
       "q": "Wo wird gehostet, und wem gehören die Daten?",
-      "a": "Bei etablierten Anbietern wie Hostpoint oder Netlify, passend zum Projekt. Domain, Inhalte und Daten gehören Ihnen."
+      "a": "Bei etablierten Anbietern wie Hostpoint oder Netlify, passend zum Projekt. Domain, Inhalte und Daten gehören Ihnen. Wenn Sie kündigen, erhalten Sie Ihre Website-Dateien und Inhalte kostenlos."
     },
     {
       "q": "Wie wird abgerechnet?",
