@@ -230,6 +230,11 @@
   object-position: top;
 }
 
+/* A pair in its own ratio (e.g. a hand-cut before image) stays at its width, centred. */
+.ba-custom {
+  margin-inline: auto;
+}
+
 .ba-frame {
   position: relative;
   overflow: hidden;
@@ -383,14 +388,6 @@
   gap: 1.5rem 2.5rem;
   align-items: flex-start;
 }
-
-.proj-metrics-note {
-  margin: 1.5rem 0 0;
-  font-size: 0.78rem;
-  color: var(--gray);
-}
-
-/* Score rings: src/styles/rings.css */
 
 /* ── Story ─────────────────────────────────────────────────────────────── */
 

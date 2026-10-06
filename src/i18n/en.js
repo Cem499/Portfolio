@@ -413,14 +413,14 @@ export const konfigurator = {
 export const projekte = {
   "meta": {
     "title": "Projects: Websites and Web Apps from Zurich | Sin Digital",
-    "description": "Three projects, three starting points: a club platform with applications and reservations, an enquiry form for a building services company, a first website for a barber shop. With before/after and measured values.",
+    "description": "Three projects, three starting points: a club platform with applications and reservations, an enquiry form for a building services company, a first website for a barber shop. With starting point, solution and result.",
     "ogTitle": "Projects by Sin Digital: websites and web apps from Zurich"
   },
   "breadcrumb": "Projects",
   "label": "Projects",
   "title1": "BUILT,",
   "title2": "NOT CLAIMED.",
-  "intro": "No mockups, no placeholders: real websites for real businesses, with values measured on the live site. Starting point, solution, result.",
+  "intro": "No mockups, no placeholders: real websites for real businesses, live and open for anyone to see. Starting point, solution, result.",
   "all": "All projects",
   "caseStudy": "Case study",
   "firstSite": "First website",
@@ -435,13 +435,7 @@ export const projekte = {
     "result": "Result"
   },
   "metrics": {
-    "title": "Measured on the live site",
-    "note": "Lighthouse mobile, measured on {date}. Values vary with network and device.",
-    "performance": "Performance",
-    "accessibility": "Accessibility",
-    "bestPractices": "Best practices",
-    "seo": "SEO",
-    "lcp": "Largest content visible",
+    "title": "At a glance",
     "tests": "Automated tests",
     "languages": "Languages"
   },
@@ -474,6 +468,8 @@ export const projekte = {
       "client": "RH Haustechnik GmbH, Urdorf",
       "tagline": "From phone call to complete enquiry.",
       "summary": "New static website for a building services company with a detailed enquiry form and spam protection.",
+      "beforeAlt": "Old RH Haustechnik website, March 2025",
+      "afterAlt": "New RH Haustechnik website, same section",
       "situation": "The previous website was badly outdated and practically unusable: no modern contact form, no help for customers with a request. Anyone who wanted something picked up the phone.",
       "solution": "A completely new, fast static website, mobile-optimised and reduced to the essentials. At its heart is a detailed enquiry form: service, type of property, place, address, preferred date and message, sent via EmailJS and protected against spam with Cloudflare Turnstile. Every enquiry lands directly in the company inbox. Hosted on Hostpoint.",
       "result": "Customers submit their enquiry online in a structured way, with everything the company needs for a quote. RH Haustechnik receives complete enquiries and saves follow-up calls."
@@ -484,7 +480,7 @@ export const projekte = {
       "tagline": "A first website, with appointments online from day one.",
       "summary": "Bilingual website with online booking, price list, gallery and local SEO for a barber shop in Seefeld.",
       "situation": "The barber shop on Forchstrasse in Zurich Seefeld had no website of its own. Anyone looking for the salon found no page showing services, prices and appointments.",
-      "solution": "A bilingual website in German and English with online booking, price list, gallery, reviews, location and FAQ. Locally optimised for terms like “Coiffeur Zürich” and “Barber Shop Seefeld”, hosted on Netlify.",
+      "solution": "A bilingual website in German and English with online booking, price list, gallery, reviews, location and FAQ. Locally optimised for terms like “Coiffeur Zürich” and “Barber Shop Seefeld”. Built with HTML5, CSS3 and vanilla JavaScript, hosted on Netlify. The contact form is protected against spam with Cloudflare Turnstile and writes enquiries straight into Google Sheets.",
       "result": "The salon can be found online for the first time, also by English-speaking clients, and appointments can be booked directly, around the clock."
     }
   }

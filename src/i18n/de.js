@@ -413,14 +413,14 @@ export const konfigurator = {
 export const projekte = {
   "meta": {
     "title": "Projekte: Websites und Web-Apps aus Zürich | Sin Digital",
-    "description": "Drei Projekte, drei Ausgangslagen: Vereins-Plattform mit Bewerbungen und Reservationen, Anfrageformular für einen Haustechnik-Betrieb, erste Website für einen Barber Shop. Mit Vorher/Nachher und Messwerten.",
+    "description": "Drei Projekte, drei Ausgangslagen: Vereins-Plattform mit Bewerbungen und Reservationen, Anfrageformular für einen Haustechnik-Betrieb, erste Website für einen Barber Shop. Mit Ausgangslage, Lösung und Ergebnis.",
     "ogTitle": "Projekte von Sin Digital: Websites und Web-Apps aus Zürich"
   },
   "breadcrumb": "Projekte",
   "label": "Projekte",
   "title1": "GEBAUT,",
   "title2": "NICHT BEHAUPTET.",
-  "intro": "Keine Mockups, keine Platzhalter: echte Websites für echte Betriebe, mit Messwerten von der Live-Seite. Ausgangslage, Lösung, Ergebnis.",
+  "intro": "Keine Mockups, keine Platzhalter: echte Websites für echte Betriebe, live und öffentlich einsehbar. Ausgangslage, Lösung, Ergebnis.",
   "all": "Alle Projekte",
   "caseStudy": "Case Study",
   "firstSite": "Erste Website",
@@ -435,13 +435,7 @@ export const projekte = {
     "result": "Ergebnis"
   },
   "metrics": {
-    "title": "Messwerte der Live-Seite",
-    "note": "Lighthouse mobil, gemessen am {date}. Werte schwanken je nach Netz und Gerät.",
-    "performance": "Performance",
-    "accessibility": "Barrierefreiheit",
-    "bestPractices": "Best Practices",
-    "seo": "SEO",
-    "lcp": "Grösster Inhalt sichtbar",
+    "title": "Auf einen Blick",
     "tests": "Automatisierte Tests",
     "languages": "Sprachen"
   },
@@ -474,6 +468,8 @@ export const projekte = {
       "client": "RH Haustechnik GmbH, Urdorf",
       "tagline": "Vom Anruf zur vollständigen Anfrage.",
       "summary": "Neue statische Website für einen Haustechnik-Betrieb mit ausführlichem Anfrageformular und Spamschutz.",
+      "beforeAlt": "Alte Website von RH Haustechnik, März 2025",
+      "afterAlt": "Neue Website von RH Haustechnik, gleicher Ausschnitt",
       "situation": "Die bisherige Website war stark veraltet und praktisch nicht brauchbar: kein modernes Kontaktformular, keine Hilfe für Kundinnen und Kunden mit einem Anliegen. Wer etwas wollte, griff zum Telefon.",
       "solution": "Eine komplett neue, schnelle statische Website, mobil optimiert und auf das Wesentliche reduziert. Herzstück ist ein ausführliches Anfrageformular: Leistung, Objekttyp, Ort, Adresse, Terminwunsch und Nachricht, verschickt über EmailJS und gegen Spam geschützt mit Cloudflare Turnstile. Jede Anfrage landet direkt im Postfach des Betriebs. Gehostet wird auf Hostpoint.",
       "result": "Kundinnen und Kunden stellen ihre Anfrage strukturiert online, mit allen Angaben, die der Betrieb für eine Offerte braucht. RH Haustechnik erhält vollständige Anfragen und spart sich Rückfragen."
@@ -484,7 +480,7 @@ export const projekte = {
       "tagline": "Erste Website, und Termine gleich online.",
       "summary": "Zweisprachige Website mit Online-Terminbuchung, Preisliste, Galerie und lokalem SEO für einen Barber Shop im Seefeld.",
       "situation": "Der Barber Shop an der Forchstrasse im Zürcher Seefeld hatte keine eigene Website. Wer den Salon suchte, fand keine Seite, die Angebot, Preise und Termine zeigt.",
-      "solution": "Eine zweisprachige Website auf Deutsch und Englisch mit Online-Terminbuchung, Preisliste, Galerie, Bewertungen, Standort und FAQ. Lokal suchmaschinenoptimiert auf Begriffe wie „Coiffeur Zürich“ und „Barber Shop Seefeld“, gehostet auf Netlify.",
+      "solution": "Eine zweisprachige Website auf Deutsch und Englisch mit Online-Terminbuchung, Preisliste, Galerie, Bewertungen, Standort und FAQ. Lokal suchmaschinenoptimiert auf Begriffe wie „Coiffeur Zürich“ und „Barber Shop Seefeld“. Gebaut mit HTML5, CSS3 und Vanilla JavaScript, gehostet auf Netlify. Das Kontaktformular ist mit Cloudflare Turnstile gegen Spam geschützt und schreibt Anfragen direkt in Google Sheets.",
       "result": "Der Salon ist erstmals online auffindbar, auch für englischsprachige Kundschaft, und Termine lassen sich direkt buchen, rund um die Uhr."
     }
   }

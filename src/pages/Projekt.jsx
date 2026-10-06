@@ -1,25 +1,18 @@
 import BeforeAfterSlider, { BEFORE_AFTER_SCRIPT } from '../components/BeforeAfterSlider.jsx'
 import PageBreadcrumb from '../components/PageBreadcrumb.jsx'
 import PageSeo from '../components/PageSeo.jsx'
-import ScoreRing from '../components/ScoreRing.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import SiteHeader from '../components/SiteHeader.jsx'
 import { configuratorPath } from '../data/navigation.js'
-import { listPaths, projectBySlug, projectImage, projectPaths, projects } from '../data/projects.js'
+import { comparePair, listPaths, projectBySlug, projectImage, projectPaths, projects } from '../data/projects.js'
 import { projectSchema } from '../data/schema/projekte.js'
 import { projekte as deTexts, shared as deShared } from '../i18n/de.js'
 import { projekte as enTexts, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
 import '../styles/site.css'
-import '../styles/rings.css'
 import '../styles/projekte.css'
 
 const IMAGE_SIZES = '(min-width: 1360px) 1280px, calc(100vw - 3rem)'
-const RING_IDS = ['performance', 'accessibility', 'bestPractices', 'seo']
-
-function formatDate(iso, lang) {
-  return new Intl.DateTimeFormat(lang === 'en' ? 'en-GB' : 'de-CH', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(iso))
-}
 
 // /projekte/<slug>/: one case study, prerendered per language, served without React.
 // Only the before/after slider carries a small inline script.
@@ -31,8 +24,9 @@ export default function Projekt({ lang, slug }) {
   const paths = { de: projectPaths.de(slug), en: projectPaths.en(slug) }
   const next = projects[(projects.indexOf(project) + 1) % projects.length]
   const after = projectImage(project.images.after)
-  const before = project.images.before ? projectImage(project.images.before) : null
-  const measured = project.measured
+  const pair = comparePair(project)
+  // A pair with its own size is shown at most at its width (see BeforeAfterSlider).
+  const pairSizes = pair && pair.width !== 1440 ? `(min-width: ${pair.width + 48}px) ${pair.width}px, calc(100vw - 3rem)` : IMAGE_SIZES
   const home = lang === 'en' ? '/en/' : '/'
 
   return (
@@ -45,6 +39,7 @@ export default function Projekt({ lang, slug }) {
         ogTitle={`${texts.name}: ${texts.tagline}`}
         jsonLd={projectSchema(lang, t, project, paths)}
         image={{ src: after.src, srcSet: after.srcSet, sizes: IMAGE_SIZES }}
+        preload={pair ? { ...pair.before, sizes: pairSizes } : undefined}
       />
 
       <SiteHeader lang={lang} shared={shared} paths={paths} />
@@ -94,11 +89,13 @@ export default function Projekt({ lang, slug }) {
               </a>
             </header>
 
-            {before ? (
+            {pair ? (
               <>
                 <BeforeAfterSlider
-                  before={{ ...before, sizes: IMAGE_SIZES, alt: `${t.compare.before}: ${texts.name}` }}
-                  after={{ ...after, sizes: IMAGE_SIZES, alt: `${t.compare.after}: ${texts.name}` }}
+                  width={pair.width}
+                  height={pair.height}
+                  before={{ ...pair.before, sizes: pairSizes, alt: texts.beforeAlt || `${t.compare.before}: ${texts.name}` }}
+                  after={{ ...pair.after, sizes: pairSizes, alt: texts.afterAlt || `${t.compare.after}: ${texts.name}` }}
                   labels={t.compare}
                 />
                 <script dangerouslySetInnerHTML={{ __html: BEFORE_AFTER_SCRIPT }} />
@@ -109,26 +106,19 @@ export default function Projekt({ lang, slug }) {
               </figure>
             )}
 
-            <section className="proj-metrics" aria-labelledby="proj-metrics-title">
-              <h2 id="proj-metrics-title" className="proj-h2">{t.metrics.title}</h2>
-              <div className="proj-metrics-grid">
-                {measured &&
-                  RING_IDS.map((id) => <ScoreRing key={id} score={measured.lighthouse[id]} label={t.metrics[id]} />)}
-                {measured?.lcpMs != null && (
-                  <div className="proj-fact">
-                    <span className="proj-fact-value">{(measured.lcpMs / 1000).toFixed(1).replace('.', lang === 'en' ? '.' : ',')} s</span>
-                    <span className="proj-fact-label">{t.metrics.lcp}</span>
-                  </div>
-                )}
-                {project.facts.map((fact) => (
-                  <div key={fact.id} className="proj-fact">
-                    <span className="proj-fact-value">{fact.value}</span>
-                    <span className="proj-fact-label">{t.metrics[fact.id]}</span>
-                  </div>
-                ))}
-              </div>
-              {measured && <p className="proj-metrics-note">{t.metrics.note.replace('{date}', formatDate(measured.date, lang))}</p>}
-            </section>
+            {project.facts.length > 0 && (
+              <section className="proj-metrics" aria-labelledby="proj-metrics-title">
+                <h2 id="proj-metrics-title" className="proj-h2">{t.metrics.title}</h2>
+                <div className="proj-metrics-grid">
+                  {project.facts.map((fact) => (
+                    <div key={fact.id} className="proj-fact">
+                      <span className="proj-fact-value">{fact.value}</span>
+                      <span className="proj-fact-label">{t.metrics[fact.id]}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <div className="proj-story">
               {['situation', 'solution', 'result'].map((key, i) => (

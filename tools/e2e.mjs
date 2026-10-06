@@ -578,24 +578,45 @@ test('Projekt: Vorher/Nachher-Slider per Tastatur und Maus (Inline-Script, kein 
   await s.close()
 })
 
-test('Projekt: ohne Vorher-Bild Cover und „Erste Website“, Ringe nur mit Messwerten', async () => {
+test('Projekt: ohne Vorher-Bild Cover und „Erste Website“, keine Lighthouse-Zahlen', async () => {
   const s = await open()
   await goto(s.page, '/projekte/coiffeur-zuerich/', { hydrated: false })
-  const r = await s.page.evaluate(() => ({ slider: !!document.querySelector('.ba'), cover: !!document.querySelector('.proj-cover img'), label: document.querySelector('.proj-head .label').textContent, rings: document.querySelectorAll('.ring').length, measured: !!document.querySelector('.proj-metrics-note') }))
-  expect(!r.slider && r.cover && r.label.includes('Erste Website') && r.rings === 4 && r.measured, JSON.stringify(r))
+  const r = await s.page.evaluate(() => ({ slider: !!document.querySelector('.ba'), cover: !!document.querySelector('.proj-cover img'), label: document.querySelector('.proj-head .label').textContent, rings: document.querySelectorAll('.ring').length, facts: [...document.querySelectorAll('.proj-fact-value')].map((el) => el.textContent).join(','), text: document.body.textContent }))
+  expect(!r.slider && r.cover && r.label.includes('Erste Website') && r.rings === 0 && r.facts === 'DE / EN' && !/Lighthouse/.test(r.text), JSON.stringify({ ...r, text: undefined }))
   await s.close()
 })
 
-test('Projekt: Ring-Animation nur ohne reduced motion', async () => {
-  const a = await open()
-  await goto(a.page, '/projekte/street-food-compassion/', { hydrated: false })
-  const animated = await a.page.evaluate(() => getComputedStyle(document.querySelector('.ring-value')).animationName)
-  await a.close()
-  const b = await open({ reducedMotion: 'reduce' })
-  await goto(b.page, '/projekte/street-food-compassion/', { hydrated: false })
-  const still = await b.page.evaluate(() => getComputedStyle(document.querySelector('.ring-value')).animationName)
-  await b.close()
-  expect(animated === 'ring-fill' && still === 'none', `${animated} / ${still}`)
+test('Projekt: RH-Slider im Format des Vorher-Bilds (745 × 763), Alt-Texte, keine Kennzahlen-Box', async () => {
+  for (const [path, beforeAlt] of [['/projekte/rh-haustechnik/', 'Alte Website von RH Haustechnik, März 2025'], ['/en/projects/rh-haustechnik/', 'Old RH Haustechnik website, March 2025']]) {
+    const s = await open()
+    await goto(s.page, path, { hydrated: false })
+    const r = await s.page.evaluate(() => {
+      const [before, after] = document.querySelectorAll('.ba-img')
+      const frame = document.querySelector('.ba-frame').getBoundingClientRect()
+      return {
+        before: before.currentSrc.split('/').pop(),
+        after: after.currentSrc.split('/').pop(),
+        beforeAlt: before.alt,
+        loaded: before.naturalWidth === 745 && after.naturalWidth >= 745,
+        ratio: Math.round((frame.width / frame.height) * 1000) / 1000,
+        width: Math.round(frame.width),
+        metrics: !!document.querySelector('.proj-metrics'),
+        year: document.querySelector('.proj-facts').textContent.includes('2026'),
+      }
+    })
+    expect(r.before === 'rh-haustechnik-before-745.webp' && r.after.startsWith('rh-haustechnik-compare-') && r.beforeAlt === beforeAlt && r.loaded && Math.abs(r.ratio - 745 / 763) < 0.01 && r.width <= 745 && !r.metrics && r.year, `${path} ${JSON.stringify(r)}`)
+    await s.close()
+  }
+})
+
+test('Projekt: Credit „Yangzom“ bei Street Food Compassion (DE und EN)', async () => {
+  for (const [path, label] of [['/projekte/street-food-compassion/', 'Umgesetzt mit'], ['/en/projects/street-food-compassion/', 'Built with']]) {
+    const s = await open()
+    await goto(s.page, path, { hydrated: false })
+    const r = await s.page.evaluate(() => ({ pairs: [...document.querySelectorAll('.proj-facts div')].map((d) => d.querySelector('dt').textContent + '=' + d.querySelector('dd').textContent), link: !!document.querySelector('.proj-facts a') }))
+    expect(r.pairs.includes(`${label}=Yangzom`) && !r.link, `${path} ${JSON.stringify(r)}`)
+    await s.close()
+  }
 })
 
 test('Projekt EN: /en/projects/<slug>/ vorgerendert, unbekannter Slug ist 404', async () => {

@@ -5,8 +5,8 @@ const OG_IMAGE = `${SITE}/assets/ICON-Logo_Sin-Digital.webp`
 
 // <head> of the subpages: the same meta set as the start page, canonical and hreflang
 // from `paths` ({ de, en }), JSON-LD blocks via `jsonLd`. `image` ({ src, srcSet, sizes })
-// is preloaded (the LCP image of the page) and used for Open Graph.
-export default function PageSeo({ lang, paths, title, description, ogTitle = title, jsonLd = [], image }) {
+// is used for Open Graph and preloaded as the LCP image, unless `preload` names another one.
+export default function PageSeo({ lang, paths, title, description, ogTitle = title, jsonLd = [], image, preload = image }) {
   const url = SITE + paths[lang]
   return (
     <Seo htmlAttributes={{ lang: lang === 'en' ? 'en' : 'de-CH', prefix: 'og: https://ogp.me/ns#' }} jsonLd={jsonLd}>
@@ -41,7 +41,7 @@ export default function PageSeo({ lang, paths, title, description, ogTitle = tit
       <meta name="twitter:title" content={ogTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image ? SITE + image.src : OG_IMAGE} />
-      {image && <link rel="preload" as="image" href={image.src} imageSrcSet={image.srcSet} imageSizes={image.sizes} fetchpriority="high" />}
+      {preload && <link rel="preload" as="image" href={preload.src} imageSrcSet={preload.srcSet} imageSizes={preload.sizes} fetchpriority="high" />}
       <link rel="icon" type="image/webp" href="/assets/ICON-Logo_Sin-Digital.webp" />
       <link rel="apple-touch-icon" href="/assets/ICON-Logo_Sin-Digital.webp" />
       <link rel="manifest" href="/manifest.json" />
