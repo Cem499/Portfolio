@@ -470,7 +470,7 @@ export const projekte = {
       "summary": "Neue statische Website für einen Haustechnik-Betrieb mit ausführlichem Anfrageformular und Spamschutz.",
       "beforeAlt": "Alte Website von RH Haustechnik, März 2025",
       "afterAlt": "Neue Website von RH Haustechnik, gleicher Ausschnitt",
-      "situation": "Die bisherige Website war stark veraltet und praktisch nicht brauchbar: kein modernes Kontaktformular, keine Hilfe für Kundinnen und Kunden mit einem Anliegen. Wer etwas wollte, griff zum Telefon.",
+      "situation": "Die bisherige Website war veraltet und hatte kein Kontaktformular. Wer etwas brauchte, musste anrufen.",
       "solution": "Eine komplett neue, schnelle statische Website, mobil optimiert und auf das Wesentliche reduziert. Herzstück ist ein ausführliches Anfrageformular: Leistung, Objekttyp, Ort, Adresse, Terminwunsch und Nachricht, verschickt über EmailJS und gegen Spam geschützt mit Cloudflare Turnstile. Jede Anfrage landet direkt im Postfach des Betriebs. Gehostet wird auf Hostpoint.",
       "result": "Kundinnen und Kunden stellen ihre Anfrage strukturiert online, mit allen Angaben, die der Betrieb für eine Offerte braucht. RH Haustechnik erhält vollständige Anfragen und spart sich Rückfragen."
     },

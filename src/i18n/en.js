@@ -418,8 +418,8 @@ export const projekte = {
   },
   "breadcrumb": "Projects",
   "label": "Projects",
-  "title1": "BUILT,",
-  "title2": "NOT CLAIMED.",
+  "title1": "REAL PROJECTS.",
+  "title2": "LIVE ONLINE.",
   "intro": "No mockups, no placeholders: real websites for real businesses, live and open for anyone to see. Starting point, solution, result.",
   "all": "All projects",
   "caseStudy": "Case study",
@@ -457,10 +457,10 @@ export const projekte = {
     "street-food-compassion": {
       "name": "Street Food Compassion",
       "client": "Verein Street Food Compassion, Baden AG",
-      "tagline": "Festivals, a winter market and an admin area that ends the manual work.",
+      "tagline": "Festivals, a Christmas market and an admin area that ends the manual work.",
       "summary": "Web app for club events: vendor applications, online reservations for the fondue chalet and a protected admin area.",
       "situation": "The club had an almost empty WordPress site under its old name. Nothing about the new Badener Weihnachtszauber, and vendors who wanted to take part applied by email, with follow-up questions, attachments and manual work on both sides.",
-      "solution": "A web app instead of a brochure: React and Vite on the front end, Spring Boot on the back end. Two worlds with their own mood, street food festivals and Badener Weihnachtszauber, designed with light as the material: warm embers on one side, a fir-tree night on the other. Vendors apply in a multi-step form, separated into food and goods, with photo upload and a power calculator. Guests reserve the fondue chalet online in time slots. In the protected admin area with roles, the club manages applications and reservations, sends mail templates and exports to Excel and PDF. More than 170 automated tests keep it all safe.",
+      "solution": "A web app instead of a brochure: React and Vite on the front end, Spring Boot on the back end. Two worlds with their own mood, street food festivals and Badener Weihnachtszauber, designed with light as the material: warm embers on one side, a winter night among fir trees on the other. Vendors apply in a multi-step form, separated into food and goods, with photo upload and an electricity demand calculator. Guests reserve the fondue chalet online in time slots. In the protected admin area with roles, the club manages applications and reservations, sends mail templates and exports to Excel and PDF. More than 170 automated tests keep everything reliable.",
       "result": "Applications and reservations come together digitally in one place instead of inboxes and Excel lists. The club sees at a glance who is in, and visitors find both events under one name."
     },
     "rh-haustechnik": {
@@ -470,7 +470,7 @@ export const projekte = {
       "summary": "New static website for a building services company with a detailed enquiry form and spam protection.",
       "beforeAlt": "Old RH Haustechnik website, March 2025",
       "afterAlt": "New RH Haustechnik website, same section",
-      "situation": "The previous website was badly outdated and practically unusable: no modern contact form, no help for customers with a request. Anyone who wanted something picked up the phone.",
+      "situation": "The previous website was outdated and had no contact form. Anyone who needed something had to call.",
       "solution": "A completely new, fast static website, mobile-optimised and reduced to the essentials. At its heart is a detailed enquiry form: service, type of property, place, address, preferred date and message, sent via EmailJS and protected against spam with Cloudflare Turnstile. Every enquiry lands directly in the company inbox. Hosted on Hostpoint.",
       "result": "Customers submit their enquiry online in a structured way, with everything the company needs for a quote. RH Haustechnik receives complete enquiries and saves follow-up calls."
     },
