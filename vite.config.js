@@ -51,10 +51,11 @@ function hydrateAfterPaint(src, hint) {
 }
 
 // Inline <style> of / and /en/: the original critical CSS plus the rules for the
-// language links (kept inline so the home page still loads a single stylesheet).
+// language links and the start page additions (process timeline, hero line), kept inline
+// so the home page still loads a single stylesheet.
 function readInlineHomeCss() {
   const read = (file) => fs.readFileSync(path.resolve('src/styles', file), 'utf8')
-  return `${read('critical.css')}\n${read('lang-switch.css')}`
+  return `${read('critical.css')}\n${read('lang-switch.css')}\n${read('home.css')}`
 }
 
 function postProcess(route, html) {

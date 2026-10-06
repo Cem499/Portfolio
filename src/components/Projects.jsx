@@ -1,4 +1,6 @@
+import ProcessTimeline from './ProcessTimeline.jsx'
 import { plans } from '../data/maintenance.js'
+import { maintenancePath } from '../data/navigation.js'
 import useReveal, { revealClass } from '../hooks/useReveal.js'
 
 // Package name and price markup (language independent, same on / and /en/).
@@ -62,11 +64,10 @@ function PartnerCard({ texts, care }) {
   )
 }
 
-export default function Projects({ t, care }) {
+export default function Projects({ t, care, lang }) {
   const p = t.projects
   const [headerRef, headerVisible] = useReveal()
   const [gridRef, gridVisible] = useReveal()
-  const [processRef, processVisible] = useReveal()
   const [ctaRef, ctaVisible] = useReveal()
 
   return (
@@ -94,23 +95,7 @@ export default function Projects({ t, care }) {
           <PartnerCard texts={p.packages[3]} care={care} />
         </div>
 
-        <div ref={processRef} className={revealClass('prozess-section reveal', processVisible)}>
-          <span className="prozess-label">{p.process.label}</span>
-          <h3 className="prozess-title">
-            <span>{p.process.title1}</span><br />
-            <span className="text-green">{p.process.title2}</span>
-          </h3>
-
-          <div className="prozess-grid">
-            {p.process.steps.map((step, i) => (
-              <div key={i} className="prozess-step">
-                <div className="prozess-step-num">{`0${i + 1}`}</div>
-                <div className="prozess-step-name">{step.name}</div>
-                <p className="prozess-step-desc">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ProcessTimeline t={p.process} careHref={maintenancePath(lang)} />
 
         <div ref={ctaRef} className={revealClass('leistungen-cta reveal', ctaVisible)}>
           <div className="leistungen-cta-text">

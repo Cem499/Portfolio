@@ -9,6 +9,7 @@ export const mainNav = [
 ]
 
 export const configuratorPath = (lang) => mainNav.find((item) => item.id === 'configurator').path[lang]
+export const maintenancePath = (lang) => mainNav.find((item) => item.id === 'maintenance').path[lang]
 
 export function homePath(lang) {
   return lang === 'en' ? '/en/' : '/'

@@ -16,11 +16,12 @@ import { home as deHome, shared as deShared } from '../i18n/de.js'
 import { home as enHome, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
 
-// critical.css and lang-switch.css are inlined into <head> of / and /en/ at build time
-// (vite.config.js). In dev there is no prerender step, so load them as normal stylesheets.
+// critical.css, lang-switch.css and home.css are inlined into <head> of / and /en/ at build
+// time (vite.config.js). In dev there is no prerender step, so load them as normal stylesheets.
 if (import.meta.env.DEV && !import.meta.env.SSR) {
   import('../styles/critical.css')
   import('../styles/lang-switch.css')
+  import('../styles/home.css')
 }
 
 const SITE = 'https://www.sin-digital.com'
@@ -107,7 +108,7 @@ export default function Home({ lang }) {
         <LocalSeo t={t} />
         <Team t={t} />
         <Clients t={t} lang={lang} />
-        <Projects t={t} care={shared.care} />
+        <Projects t={t} care={shared.care} lang={lang} />
         <Faq t={t} />
         <Reviews t={t} />
         <Contact t={t} shared={shared} lang={lang} />

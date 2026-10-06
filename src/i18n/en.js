@@ -154,8 +154,12 @@ export const home = {
       "title2": "PROCESS WORKS",
       "steps": [
         {
-          "name": "Discovery",
+          "name": "First call",
           "desc": "We get to know your business, your target clients, your services and what matters to you. No tech talk, just an honest conversation."
+        },
+        {
+          "name": "Offer",
+          "desc": "You receive a written offer with scope, price and timeline. We only start once everything works for you."
         },
         {
           "name": "Concept",
@@ -166,8 +170,13 @@ export const home = {
           "desc": "We build your website cleanly and reliably. You stay informed throughout, without having to worry about technical details."
         },
         {
-          "name": "Launch & Support",
-          "desc": "After launch, Sin Digital doesn't disappear. We guide you through going live, explain everything that matters and remain available for questions."
+          "name": "Launch",
+          "desc": "We test everything on smartphone, tablet and desktop, set up domain and hosting and take your website live. Then we walk you through everything that matters."
+        },
+        {
+          "name": "Care",
+          "desc": "After launch, we don't disappear. Hosting, updates, backups and small changes can be handled by us on an ongoing basis.",
+          "link": "See the maintenance plans"
         }
       ]
     },

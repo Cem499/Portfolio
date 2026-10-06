@@ -1,4 +1,9 @@
 // JSON-LD von index.html, 1:1 aus dem Original übernommen; letzter Block (Street Food Compassion) neu.
+// HowTo: die Schritte kommen aus der Prozess-Timeline (i18n home.projects.process).
+import { home } from '../../i18n/de.js'
+
+const steps = home.projects.process.steps
+
 const schema = [
   {
     "@context": "https://schema.org",
@@ -457,43 +462,20 @@ const schema = [
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "Wie läuft ein Webdesign-Projekt bei Sin Digital ab?",
-    "description": "In 4 Schritten zur professionellen Website für Ihr Unternehmen.",
+    "description": `In ${steps.length} Schritten zur professionellen Website für Ihr Unternehmen.`,
     "totalTime": "P15D",
     "estimatedCost": {
       "@type": "MonetaryAmount",
       "currency": "CHF",
       "value": "990"
     },
-    "step": [
-      {
-        "@type": "HowToStep",
-        "position": 1,
-        "name": "Analyse",
-        "text": "Wir lernen Ihr Unternehmen kennen, Ihre Zielgruppe, Dienstleistungen und Ziele.",
-        "url": "https://www.sin-digital.com/#projects"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 2,
-        "name": "Konzeption",
-        "text": "Gemeinsame Entwicklung von Struktur, Design und Inhalten mit frühem Feedback.",
-        "url": "https://www.sin-digital.com/#projects"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 3,
-        "name": "Umsetzung",
-        "text": "Professionelle Entwicklung Ihrer Website mit regelmässigen Updates.",
-        "url": "https://www.sin-digital.com/#projects"
-      },
-      {
-        "@type": "HowToStep",
-        "position": 4,
-        "name": "Livegang & Betreuung",
-        "text": "Launch Ihrer Website mit persönlicher Begleitung und laufendem Support.",
-        "url": "https://www.sin-digital.com/#contact"
-      }
-    ]
+    "step": steps.map((step, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": step.name,
+      "text": step.desc,
+      "url": "https://www.sin-digital.com/#projects"
+    }))
   },
   {
     "@context": "https://schema.org",

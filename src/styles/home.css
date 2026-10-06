@@ -1,47 +1,5 @@
 /* Start page additions (inlined into <head> with critical.css by vite.config.js). */
 
-/* ── Availability badge (hero) ─────────────────────────────────────────── */
-
-.avail {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin: 1.5rem 0 0;
-  padding: 0.45rem 0.9rem 0.45rem 0.7rem;
-  border: 1px solid var(--border-green);
-  border-radius: 50px;
-  background: rgba(193, 255, 114, 0.05);
-  color: var(--gray);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-}
-
-.avail-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 0 0 rgba(193, 255, 114, 0.5);
-  animation: avail-pulse 2.4s ease-out infinite;
-}
-
-.avail-month {
-  color: var(--white);
-  font-weight: 700;
-}
-
-@keyframes avail-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(193, 255, 114, 0.5);
-  }
-  70% {
-    box-shadow: 0 0 0 0.6rem rgba(193, 255, 114, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(193, 255, 114, 0);
-  }
-}
-
 /* ── Hero: a thin lime line slowly crossing the stage (compositor-only transform) ── */
 
 .hero-scan {
@@ -68,10 +26,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .avail-dot {
-    animation: none;
-  }
-
   .hero-scan {
     animation: none;
     transform: translateX(66vw);

@@ -776,6 +776,33 @@ test('Startseite: Partner-Stufen kommen aus maintenance.js', async () => {
   await s.close()
 })
 
+test('Startseite: Prozess-Timeline mit 6 Schritten, Link zur Wartung, HowTo-Schema, kein Badge', async () => {
+  for (const [path, care] of [['/', '/wartung/'], ['/en/', '/en/maintenance/']]) {
+    const s = await open()
+    await goto(s.page, path)
+    const r = await s.page.evaluate(() => ({
+      steps: document.querySelectorAll('.timeline-step').length,
+      oldGrid: document.querySelectorAll('.prozess-grid').length,
+      link: document.querySelector('.timeline-link')?.getAttribute('href'),
+      badge: document.querySelectorAll('.avail').length,
+      howTo: [...document.querySelectorAll('script[type="application/ld+json"]')]
+        .map((el) => JSON.parse(el.textContent))
+        .flat()
+        .find((item) => item['@type'] === 'HowTo')?.step.length,
+    }))
+    expect(r.steps === 6 && r.oldGrid === 0 && r.link === care && r.badge === 0 && r.howTo === 6, `${path} ${JSON.stringify(r)}`)
+    await s.close()
+  }
+})
+
+test('Startseite: Timeline-Linie ist bei reduced motion ganz gefüllt', async () => {
+  const s = await open({ reducedMotion: 'reduce' })
+  await goto(s.page, '/')
+  const transform = await s.page.evaluate(() => getComputedStyle(document.querySelector('.timeline-line'), '::after').transform)
+  expect(transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)', transform)
+  await s.close()
+})
+
 // ── Server behaviour ─────────────────────────────────────────────────────────
 
 test('404: unbekannter Pfad liefert Status 404 mit 404.html', async () => {

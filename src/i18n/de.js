@@ -154,8 +154,12 @@ export const home = {
       "title2": "ZUSAMMENARBEIT AB",
       "steps": [
         {
-          "name": "Analyse",
+          "name": "Erstgespräch",
           "desc": "Wir lernen Ihr Unternehmen kennen, Ihre Zielgruppe, Ihre Dienstleistungen und was Ihnen wichtig ist. Kein Technikgespräch, sondern ein ehrliches Kennenlernen."
+        },
+        {
+          "name": "Angebot",
+          "desc": "Sie erhalten ein schriftliches Angebot mit Umfang, Preis und Zeitplan. Erst wenn alles für Sie stimmt, starten wir."
         },
         {
           "name": "Konzeption",
@@ -166,8 +170,13 @@ export const home = {
           "desc": "Wir bauen Ihre Website sauber und zuverlässig. Sie werden regelmässig informiert, ohne dass Sie sich um technische Details kümmern müssen."
         },
         {
-          "name": "Livegang & Betreuung",
-          "desc": "Nach dem Start sind wir nicht weg. Sin Digital begleitet Sie beim Livegang, erklärt alles Wichtige und steht für Fragen zur Verfügung."
+          "name": "Livegang",
+          "desc": "Wir testen alles auf Smartphone, Tablet und Desktop, richten Domain und Hosting ein und schalten Ihre Website live. Danach erklären wir Ihnen alles Wichtige."
+        },
+        {
+          "name": "Betreuung",
+          "desc": "Nach dem Start sind wir nicht weg. Hosting, Updates, Backups und kleine Anpassungen übernehmen wir auf Wunsch laufend.",
+          "link": "Zu den Wartungsplänen"
         }
       ]
     },
