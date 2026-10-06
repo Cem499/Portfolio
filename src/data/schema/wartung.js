@@ -1,7 +1,7 @@
-import { plans } from '../maintenance.js'
+import { plans, yearlyPrice } from '../maintenance.js'
 import { SITE } from '../pages.js'
 
-// JSON-LD of /wartung/: the page, the care plans as a Service with monthly offers, and the FAQ.
+// JSON-LD of /wartung/: the page, the care plans as a Service with monthly (and yearly) offers, and the FAQ.
 // `care` is shared.care (plan names and summaries, also used on the start page).
 export default function wartungSchema(lang, t, care, paths) {
   const url = SITE + paths[lang]
@@ -42,12 +42,24 @@ export default function wartungSchema(lang, t, care, paths) {
           description: care.plans[plan.id].summary,
           price: String(plan.monthly),
           priceCurrency: 'CHF',
-          priceSpecification: {
-            '@type': 'UnitPriceSpecification',
-            price: String(plan.monthly),
-            priceCurrency: 'CHF',
-            unitText: lang === 'en' ? 'per month' : 'monatlich',
-          },
+          priceSpecification: [
+            {
+              '@type': 'UnitPriceSpecification',
+              price: String(plan.monthly),
+              priceCurrency: 'CHF',
+              unitText: lang === 'en' ? 'per month' : 'monatlich',
+            },
+            ...(yearlyPrice(plan)
+              ? [
+                  {
+                    '@type': 'UnitPriceSpecification',
+                    price: String(yearlyPrice(plan)),
+                    priceCurrency: 'CHF',
+                    unitText: lang === 'en' ? 'per year' : 'jährlich',
+                  },
+                ]
+              : []),
+          ],
           availability: 'https://schema.org/InStock',
         })),
       },

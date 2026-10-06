@@ -4,7 +4,7 @@
 // yearlyPaidMonths  how many months a client pays for a year when billed yearly (e.g. 10 =
 //                   "2 Monate geschenkt"). null hides the monthly/yearly toggle entirely.
 
-export const yearlyPaidMonths = null
+export const yearlyPaidMonths = 10
 
 export const plans = [
   {
@@ -15,7 +15,7 @@ export const plans = [
     backups: 'weekly',
     monitoring: 'none',
     changeMinutes: 15,
-    response: 'twoDays',
+    response: 'threeDays',
   },
   {
     id: 'business',
@@ -26,7 +26,7 @@ export const plans = [
     backups: 'daily',
     monitoring: 'performance',
     changeMinutes: 30,
-    response: 'oneDay',
+    response: 'twoDays',
   },
   {
     id: 'premium',
@@ -36,7 +36,7 @@ export const plans = [
     backups: 'daily',
     monitoring: 'advanced',
     changeMinutes: 60,
-    response: 'priority',
+    response: 'oneDay',
   },
 ]
 

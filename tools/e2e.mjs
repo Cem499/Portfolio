@@ -744,8 +744,18 @@ test('Wartung: Jahres-Toggle per CSS (nur wenn ein Jahrespreis konfiguriert ist)
   const hasToggle = await s.page.evaluate(() => !!document.querySelector('.care-toggle'))
   if (hasToggle) {
     await s.page.click('label[for="billing-yearly"]')
-    const r = await s.page.evaluate(() => ({ monthly: getComputedStyle(document.querySelector('.care-price-monthly')).display, yearly: getComputedStyle(document.querySelector('.care-price-yearly')).display }))
-    expect(r.monthly === 'none' && r.yearly === 'block', JSON.stringify(r))
+    const r = await s.page.evaluate(() => ({
+      monthly: getComputedStyle(document.querySelector('.care-price-monthly')).display,
+      yearly: getComputedStyle(document.querySelector('.care-price-yearly')).display,
+      prices: [...document.querySelectorAll('.care-price-yearly .care-amount')].map((el) => el.textContent).join(','),
+      save: document.querySelector('.care-save')?.textContent,
+      response: [...document.querySelectorAll('.care-plan-rows div:last-child dd')].map((el) => el.textContent).join('|'),
+    }))
+    expect(
+      r.monthly === 'none' && r.yearly === 'block' && r.prices === "CHF 490,CHF 890,CHF 1'490" && r.save === '2 Monate geschenkt' &&
+        r.response === 'max. 3 Werktage|max. 2 Werktage|max. 1 Werktag, priorisiert',
+      JSON.stringify(r),
+    )
   } else {
     const yearly = await s.page.evaluate(() => document.querySelectorAll('.care-price-yearly').length)
     expect(yearly === 0, 'Jahrespreise ohne Toggle')

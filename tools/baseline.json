@@ -347,6 +347,36 @@
         "cls": 0,
         "si": 757
       }
+    },
+    "/wartung/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 756,
+        "lcp": 1506,
+        "tbt": 0,
+        "cls": 0,
+        "si": 756
+      }
+    },
+    "/en/maintenance/": {
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "fcp": 756,
+        "lcp": 1506,
+        "tbt": 0,
+        "cls": 0,
+        "si": 756
+      }
     }
   }
 }

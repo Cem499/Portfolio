@@ -37,15 +37,15 @@ export const shared = {
     "plans": {
       "basis": {
         "name": "Basis",
-        "summary": "Hosting, security updates, weekly backups, minor changes up to 15 min/month, support within max. 2 working days."
+        "summary": "Hosting, security updates, weekly backups, minor changes up to 15 min/month, support within max. 3 working days."
       },
       "business": {
         "name": "Business",
-        "summary": "Everything from Basis plus daily backups, performance monitoring, minor changes up to 30 min/month and priority support within 1 working day."
+        "summary": "Everything from Basis plus daily backups, performance monitoring, minor changes up to 30 min/month and support within max. 2 working days."
       },
       "premium": {
         "name": "Premium",
-        "summary": "Everything from Business plus up to 1 hour of changes/month, advanced monitoring and fastest priority response."
+        "summary": "Everything from Business plus up to 1 hour of changes/month, advanced monitoring and priority support within max. 1 working day."
       }
     }
   }
@@ -690,7 +690,7 @@ export const wartung = {
       "tagline": "For businesses whose website brings in enquiries and must not stand still."
     },
     "premium": {
-      "tagline": "For everyone who changes things regularly and expects an immediate response."
+      "tagline": "For everyone who changes things regularly and expects a quick response."
     }
   },
   "rows": {
@@ -723,9 +723,9 @@ export const wartung = {
       "60": "up to 1 hour"
     },
     "response": {
+      "threeDays": "max. 3 working days",
       "twoDays": "max. 2 working days",
-      "oneDay": "1 working day, priority",
-      "priority": "as fast as possible, priority"
+      "oneDay": "max. 1 working day, priority"
     }
   },
   "compareTitle": "The plans side by side",
@@ -758,7 +758,7 @@ export const wartung = {
     },
     {
       "q": "How fast does Sin Digital react when the website is down?",
-      "a": "Within the response time of your plan: at the latest after 2 working days on Basis, within one working day on Business, as fast as possible and with priority on Premium."
+      "a": "Within the response time of your plan: at the latest after 3 working days on Basis, after 2 working days on Business and after 1 working day, with priority, on Premium."
     },
     {
       "q": "Where is the site hosted, and who owns the data?",
@@ -766,7 +766,7 @@ export const wartung = {
     },
     {
       "q": "How is it billed?",
-      "a": "Monthly by invoice, bank transfer or TWINT."
+      "a": "Monthly or yearly by invoice, paid by bank transfer or TWINT. With yearly billing you pay 10 instead of 12 months."
     }
   ]
 }

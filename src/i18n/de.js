@@ -37,15 +37,15 @@ export const shared = {
     "plans": {
       "basis": {
         "name": "Basis",
-        "summary": "Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 2 Arbeitstagen."
+        "summary": "Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 3 Werktagen."
       },
       "business": {
         "name": "Business",
-        "summary": "Alles aus Basis plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und priorisierter Support in 1 Arbeitstag."
+        "summary": "Alles aus Basis plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und Support in max. 2 Werktagen."
       },
       "premium": {
         "name": "Premium",
-        "summary": "Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und schnellstmögliche priorisierte Reaktion."
+        "summary": "Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und priorisierter Support in max. 1 Werktag."
       }
     }
   }
@@ -690,7 +690,7 @@ export const wartung = {
       "tagline": "Für Betriebe, bei denen die Website Anfragen bringt und nicht stillstehen darf."
     },
     "premium": {
-      "tagline": "Für alle, die regelmässig etwas ändern wollen und sofortige Reaktion erwarten."
+      "tagline": "Für alle, die regelmässig etwas ändern wollen und eine schnelle Reaktion erwarten."
     }
   },
   "rows": {
@@ -723,9 +723,9 @@ export const wartung = {
       "60": "bis 1 Stunde"
     },
     "response": {
-      "twoDays": "max. 2 Arbeitstage",
-      "oneDay": "1 Arbeitstag, priorisiert",
-      "priority": "schnellstmöglich, priorisiert"
+      "threeDays": "max. 3 Werktage",
+      "twoDays": "max. 2 Werktage",
+      "oneDay": "max. 1 Werktag, priorisiert"
     }
   },
   "compareTitle": "Die Pakete im Vergleich",
@@ -758,7 +758,7 @@ export const wartung = {
     },
     {
       "q": "Wie schnell reagiert Sin Digital, wenn die Website nicht läuft?",
-      "a": "Innerhalb der Reaktionszeit Ihres Pakets: spätestens nach 2 Arbeitstagen im Basis-Paket, innerhalb eines Arbeitstags im Business-Paket, schnellstmöglich und priorisiert im Premium-Paket."
+      "a": "Innerhalb der Reaktionszeit Ihres Pakets: spätestens nach 3 Werktagen im Basis-Paket, nach 2 Werktagen im Business-Paket und nach 1 Werktag, priorisiert, im Premium-Paket."
     },
     {
       "q": "Wo wird gehostet, und wem gehören die Daten?",
@@ -766,7 +766,7 @@ export const wartung = {
     },
     {
       "q": "Wie wird abgerechnet?",
-      "a": "Monatlich per Rechnung, Banküberweisung oder TWINT."
+      "a": "Monatlich oder jährlich per Rechnung, bezahlt per Banküberweisung oder TWINT. Bei jährlicher Abrechnung zahlen Sie 10 statt 12 Monate."
     }
   ]
 }
