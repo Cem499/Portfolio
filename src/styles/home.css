@@ -1,6 +1,8 @@
 /* Start page additions (inlined into <head> with critical.css by vite.config.js). */
 
-/* ── Hero: a thin lime line slowly crossing the stage (compositor-only transform) ── */
+/* ── Hero: a thin lime line slowly crossing the stage (compositor-only transform) ──
+   Behind the text (the container sits on z-index 2). Reduced motion: no animation, the line
+   rests at two thirds of the width. */
 
 .hero-scan {
   position: absolute;
@@ -10,7 +12,7 @@
   width: 1px;
   background: linear-gradient(to bottom, transparent 0%, rgba(193, 255, 114, 0.9) 35%, rgba(193, 255, 114, 0.9) 65%, transparent 100%);
   box-shadow: 0 0 14px rgba(193, 255, 114, 0.45);
-  opacity: 0.4;
+  opacity: 0.3;
   pointer-events: none;
   will-change: transform;
   animation: hero-scan 18s linear infinite;

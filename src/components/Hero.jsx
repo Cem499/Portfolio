@@ -8,6 +8,7 @@ export default function Hero({ t, ctaHref }) {
     <section id="hero" className="section hero" aria-label="Einleitung, Sin Digital Webdesign Zürich" aria-labelledby="hero-heading">
       <div className="blob blob-1" aria-hidden="true"></div>
       <div className="blob blob-2" aria-hidden="true"></div>
+      <div className="hero-scan" aria-hidden="true"></div>
 
       <div className="container hero-content">
         <span className="label hero-label hero-anim-1">{t.hero.label}</span>

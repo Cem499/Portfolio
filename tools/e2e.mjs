@@ -826,6 +826,21 @@ test('Startseite: Prozess-Timeline mit 6 Schritten, Link zur Wartung, HowTo-Sche
   }
 })
 
+test('Startseite: Hero-Linie wandert, bei reduced motion steht sie still', async () => {
+  const a = await open()
+  await goto(a.page, '/')
+  const moving = await a.page.evaluate(() => {
+    const el = document.querySelector('#hero .hero-scan')
+    return el && { name: getComputedStyle(el).animationName, hidden: el.getAttribute('aria-hidden'), events: getComputedStyle(el).pointerEvents }
+  })
+  await a.close()
+  const b = await open({ reducedMotion: 'reduce' })
+  await goto(b.page, '/')
+  const still = await b.page.evaluate(() => getComputedStyle(document.querySelector('#hero .hero-scan')).animationName)
+  await b.close()
+  expect(moving?.name === 'hero-scan' && moving.hidden === 'true' && moving.events === 'none' && still === 'none', `${JSON.stringify(moving)} / ${still}`)
+})
+
 test('Startseite: Timeline-Linie ist bei reduced motion ganz gefüllt', async () => {
   const s = await open({ reducedMotion: 'reduce' })
   await goto(s.page, '/')
