@@ -144,7 +144,7 @@ export default function GuenstigeWebsite() {
           <p>Social-Media-Integration, Google Analytics, Terminbuchung und automatische Backups.</p>
           <h3>{"Pro-Paket, ab CHF 2'490"}</h3>
           <p>Individuelles Design, Animationen, Mehrsprachigkeit und 6 Monate Support.</p>
-          <h3>Partner-Betreuung, ab CHF 49/Monat</h3>
+          <h3>Partner-Betreuung, ab CHF 39/Monat</h3>
           <p>Hosting, Sicherheitsupdates, Backups und laufende Änderungen.</p>
         </div>
         <div className="card">
@@ -153,7 +153,7 @@ export default function GuenstigeWebsite() {
           <p>Ja. Alle Websites von Sin Digital sind modular aufgebaut und können jederzeit erweitert werden.</p>
           <h3>Gibt es versteckte Kosten?</h3>
           <p>
-            Nein. Der Preis von CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Hosting und Wartung sind optional, ab CHF 49 / Monat: <a href="/wartung/">Wartungspläne</a>.
+            Nein. Der Preis von CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Hosting und Wartung sind optional, ab CHF 39 / Monat: <a href="/wartung/">Wartungspläne</a>.
           </p>
           <h3>Wie schnell ist meine günstige Website online?</h3>
           <p>In der Regel in ca. 2 Wochen.</p>

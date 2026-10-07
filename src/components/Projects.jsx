@@ -55,7 +55,7 @@ function PartnerCard({ texts, care }) {
           ))}
         </ul>
         <div className="paket-price">
-          <strong>Ab CHF 49 / <span>{texts.month}</span></strong>
+          <strong>Ab CHF {plans[0].monthly} / <span>{texts.month}</span></strong>
           {' '}
           <span>{texts.priceNote}</span>
         </div>

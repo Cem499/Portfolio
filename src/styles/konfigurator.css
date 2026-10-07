@@ -138,6 +138,52 @@
   line-height: 1.7;
 }
 
+/* Single fields: number of additional languages (step 3) and desired start date (step 4). */
+.konfig-field {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 22rem;
+  margin-top: 1.25rem;
+}
+
+.konfig-step > .konfig-field:first-of-type {
+  margin-top: 0;
+}
+
+.konfig-field label {
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.konfig-field input,
+.konfig-field select {
+  min-height: 3rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #0d0d0d;
+  color: var(--white);
+  font: inherit;
+  font-size: 1rem;
+  color-scheme: dark;
+}
+
+.konfig-field input:focus-visible,
+.konfig-field select:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-color: var(--green);
+}
+
+.konfig-field-hint {
+  color: var(--gray);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
 .konfig-tiles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));

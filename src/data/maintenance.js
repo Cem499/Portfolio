@@ -9,7 +9,7 @@ export const yearlyPaidMonths = 10
 export const plans = [
   {
     id: 'basis',
-    monthly: 49,
+    monthly: 39,
     hosting: true,
     updates: 'security',
     backups: 'weekly',
@@ -19,7 +19,7 @@ export const plans = [
   },
   {
     id: 'business',
-    monthly: 89,
+    monthly: 79,
     featured: true,
     hosting: true,
     updates: 'security',
@@ -30,7 +30,7 @@ export const plans = [
   },
   {
     id: 'premium',
-    monthly: 149,
+    monthly: 129,
     hosting: true,
     updates: 'security',
     backups: 'daily',

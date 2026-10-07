@@ -1,6 +1,7 @@
 // JSON-LD von index.html, 1:1 aus dem Original übernommen; letzter Block (Street Food Compassion) neu.
 // HowTo: die Schritte kommen aus der Prozess-Timeline (i18n home.projects.process).
 import { home } from '../../i18n/de.js'
+import { plans } from '../maintenance.js'
 
 const steps = home.projects.process.steps
 
@@ -152,13 +153,13 @@ const schema = [
         {
           "@type": "Offer",
           "name": "Partner Monatsbetreuung",
-          "description": "Monatliche Betreuung in drei Care-Stufen: Basis (CHF 49), Business (CHF 89), Premium (CHF 149)",
-          "price": "49",
+          "description": `Monatliche Betreuung in drei Care-Stufen: ${plans.map((plan) => `${plan.id[0].toUpperCase()}${plan.id.slice(1)} (CHF ${plan.monthly})`).join(', ')}`,
+          "price": String(plans[0].monthly),
           "priceCurrency": "CHF",
           "availability": "https://schema.org/InStock",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
-            "price": "49",
+            "price": String(plans[0].monthly),
             "priceCurrency": "CHF",
             "unitText": "monatlich"
           }
@@ -248,7 +249,7 @@ const schema = [
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Digitalagentur Zürich, Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelles Webdesign, Webentwicklung und SEO für KMU, Startups und Unternehmen ab CHF 990. Hosting und Wartung optional ab CHF 49 pro Monat.",
+    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelles Webdesign, Webentwicklung und SEO für KMU, Startups und Unternehmen ab CHF 990. Hosting und Wartung optional ab CHF 39 pro Monat.",
     "provider": {
       "@id": "https://www.sin-digital.com/#business"
     },
@@ -327,7 +328,7 @@ const schema = [
         "name": "Was kostet eine Website bei Sin Digital?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Unsere Pakete starten ab CHF 990 (Basic), CHF 1'690 (Growth mit erweiterten Funktionen), CHF 2'490 (Pro) und ab CHF 49/Monat (Partner-Betreuung). Die Website-Pakete sind Einmalpreise inklusive Einrichtung."
+          "text": "Unsere Pakete starten ab CHF 990 (Basic), CHF 1'690 (Growth mit erweiterten Funktionen), CHF 2'490 (Pro) und ab CHF 39/Monat (Partner-Betreuung). Die Website-Pakete sind Einmalpreise inklusive Einrichtung."
         }
       },
       {
@@ -418,7 +419,7 @@ const schema = [
     "@id": "https://www.sin-digital.com/#webpage",
     "url": "https://www.sin-digital.com/",
     "name": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. Fertig in 2 Wochen. Hosting und Wartung optional ab CHF 49 pro Monat.",
+    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. Fertig in 2 Wochen. Hosting und Wartung optional ab CHF 39 pro Monat.",
     "inLanguage": [
       "de-CH",
       "en"

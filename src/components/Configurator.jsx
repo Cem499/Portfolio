@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DEFAULTS, chf, estimate, features as featureList, siteTypes, tiersFor, timings } from '../data/pricing.js'
+import { DEFAULTS, LANGUAGE_COUNTS, chf, estimate, features as featureList, siteTypes, tiersFor } from '../data/pricing.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import AnimatedNumber from './AnimatedNumber.jsx'
 import ContactForm from './ContactForm.jsx'
@@ -15,12 +15,30 @@ function weeksText(t, min, max) {
   return `${n} ${max === 1 ? t.summary.week : t.summary.weeks}`
 }
 
-// "+ CHF 600 – 1'500 · +1 Woche"
+// "+ CHF 590 – 1'290 pro Sprache · +1 Woche"
 function addOnText(t, feature) {
-  const price = `+ ${range(feature)}`
+  const price = `+ ${range(feature)}${feature.perLanguage ? ` ${t.summary.perLanguage}` : ''}`
   if (!feature.weeks.max) return price
   const n = feature.weeks.min === feature.weeks.max ? String(feature.weeks.min) : `${feature.weeks.min}–${feature.weeks.max}`
   return `${price} · +${n} ${feature.weeks.max === 1 ? t.summary.week : t.summary.weeks}`
+}
+
+// "Mehrsprachig (2 zusätzliche Sprachen), Shop"
+function featuresText(t, state) {
+  const names = state.features.map((id) => {
+    if (id !== 'multilingual') return t.features[id].name
+    const n = Number(state.languages) || 1
+    return `${t.features[id].name} (${n} ${n === 1 ? t.languages.one : t.languages.many})`
+  })
+  return names.join(', ') || t.configuration.none
+}
+
+// "15. Januar 2027", or "offen" without a date. Parsed as a local date (no time zone shift).
+function startText(t, value) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '')
+  if (!match) return t.configuration.startOpen
+  const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]))
+  return new Intl.DateTimeFormat(t.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' }).format(date)
 }
 
 // Plain-text summary that travels with the enquiry (EmailJS field "configuration").
@@ -28,9 +46,9 @@ function configurationText(t, state, est) {
   const lines = [
     [t.configuration.type, t.siteTypes[state.siteType].name],
     [t.configuration.scope, t.pageTiers[state.pages].name],
-    [t.configuration.features, state.features.map((id) => t.features[id].name).join(', ') || t.configuration.none],
-    [t.configuration.timing, t.timings[state.timing].name],
-    [t.configuration.price, est.onRequest ? `${t.summary.from} CHF ${chf(est.priceFrom)}, ${t.summary.onRequest}` : `${range(est)}${est.express ? ` (${t.summary.express})` : ''}`],
+    [t.configuration.features, featuresText(t, state)],
+    [t.configuration.timing, startText(t, state.start)],
+    [t.configuration.price, est.onRequest ? `${t.summary.from} CHF ${chf(est.priceFrom)}, ${t.summary.onRequest}` : range(est)],
     [t.configuration.weeks, est.onRequest ? t.summary.weeksOnRequest : weeksText(t, est.weeks.min, est.weeks.max)],
   ]
   return lines.map(([label, value]) => `${label}: ${value}`).join('\n')
@@ -53,7 +71,7 @@ function Tile({ type, name, value, checked, onChange, title, desc, price, note }
   )
 }
 
-// Four choices (site type, scope, features, start date) with a live price range, then the
+// Four choices (site type, scope, features, desired start date) with a live price range, then the
 // contact form with the configuration attached. Step 1 is prerendered; choices made before
 // React is ready stay (valuesFromDom) and a "Weiter" pressed early is picked up (usePendingSubmit).
 export default function Configurator({ t, formTexts }) {
@@ -63,6 +81,8 @@ export default function Configurator({ t, formTexts }) {
   const [fromDom] = useState(() => valuesFromDom('configurator', DEFAULTS))
   const [state, setState] = useState(DEFAULTS)
   const [step, setStep] = useState(1)
+  // Earliest selectable start date; set after hydration so the prerendered HTML stays stable.
+  const [today, setToday] = useState('')
   const formRef = useRef(null)
   const stepRefs = useRef([])
   const moveFocusRef = useRef(false)
@@ -70,6 +90,12 @@ export default function Configurator({ t, formTexts }) {
   useEffect(() => {
     setState(fromDom)
   }, [fromDom])
+
+  useEffect(() => {
+    const now = new Date()
+    const pad = (n) => String(n).padStart(2, '0')
+    setToday(`${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`)
+  }, [])
 
   usePendingSubmit(formRef)
 
@@ -195,23 +221,42 @@ export default function Configurator({ t, formTexts }) {
               />
             ))}
           </div>
+          {state.features.includes('multilingual') && (
+            <div className="konfig-field">
+              <label htmlFor="konfig-languages">{t.languages.label}</label>
+              <select
+                id="konfig-languages"
+                name="languages"
+                value={state.languages}
+                onChange={(e) => setState((s) => ({ ...s, languages: e.target.value }))}
+              >
+                {LANGUAGE_COUNTS.map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+              <span className="konfig-field-hint">{t.languages.hint}</span>
+            </div>
+          )}
         </fieldset>
 
         <fieldset ref={stepRef(3)} className="konfig-step" hidden={step !== 4} tabIndex={-1}>
           {legend(3, 'timing')}
-          <div className="konfig-tiles">
-            {timings.map((timing) => (
-              <Tile
-                key={timing.id}
-                type="radio"
-                name="timing"
-                value={timing.id}
-                checked={state.timing === timing.id}
-                onChange={() => setState((s) => ({ ...s, timing: timing.id }))}
-                title={t.timings[timing.id].name}
-                desc={t.timings[timing.id].desc}
-              />
-            ))}
+          <div className="konfig-field">
+            <label htmlFor="konfig-start">{t.start.label}</label>
+            <input
+              id="konfig-start"
+              type="date"
+              name="start"
+              value={state.start}
+              min={today || undefined}
+              aria-describedby="konfig-start-hint"
+              onChange={(e) => setState((s) => ({ ...s, start: e.target.value }))}
+            />
+            <span id="konfig-start-hint" className="konfig-field-hint">
+              {t.start.hint}
+            </span>
           </div>
         </fieldset>
 
@@ -269,7 +314,6 @@ export default function Configurator({ t, formTexts }) {
           </div>
           <p className="konfig-meta">
             {est.onRequest ? `${t.summary.onRequest} · ${t.summary.weeksOnRequest}` : weeksText(t, est.weeks.min, est.weeks.max)}
-            {est.express && !est.onRequest ? ` · ${t.summary.express}` : ''}
           </p>
         </div>
         <div className="konfig-summary-details">
@@ -285,11 +329,11 @@ export default function Configurator({ t, formTexts }) {
             </li>
             <li>
               <span>{t.configuration.features}</span>
-              <strong>{state.features.map((id) => t.features[id].name).join(', ') || t.configuration.none}</strong>
+              <strong>{featuresText(t, state)}</strong>
             </li>
             <li>
               <span>{t.configuration.timing}</span>
-              <strong>{t.timings[state.timing].name}</strong>
+              <strong>{startText(t, state.start)}</strong>
             </li>
           </ul>
           <ul className="konfig-notes">

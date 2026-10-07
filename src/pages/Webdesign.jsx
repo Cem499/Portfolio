@@ -126,7 +126,7 @@ export default function Webdesign() {
           </p>
           <p>
             <strong>4. Livegang & Betreuung:</strong>
-            {" Launch Ihrer Website mit persönlicher Begleitung und optionalem Support ab CHF 49/Monat."}
+            {" Launch Ihrer Website mit persönlicher Begleitung und optionalem Support ab CHF 39/Monat."}
           </p>
         </div>
         <div className="card">

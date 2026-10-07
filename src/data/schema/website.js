@@ -35,7 +35,7 @@ const schema = [
         "name": "Was brauche ich, um eine Website erstellen zu lassen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Im Grunde nichts ausser einer Idee und ein paar Informationen zu Ihrem Unternehmen. Sin Digital übernimmt die komplette Umsetzung: Konzept, Design, Texte, technische Entwicklung und SEO-Basis. Hosting und Wartung übernehmen wir auf Wunsch, optional ab CHF 49 pro Monat. Sie geben in jedem Schritt Feedback, wir kümmern uns um die Umsetzung. Ein erstes unverbindliches Gespräch reicht, um loszulegen."
+          "text": "Im Grunde nichts ausser einer Idee und ein paar Informationen zu Ihrem Unternehmen. Sin Digital übernimmt die komplette Umsetzung: Konzept, Design, Texte, technische Entwicklung und SEO-Basis. Hosting und Wartung übernehmen wir auf Wunsch, optional ab CHF 39 pro Monat. Sie geben in jedem Schritt Feedback, wir kümmern uns um die Umsetzung. Ein erstes unverbindliches Gespräch reicht, um loszulegen."
         }
       },
       {
@@ -59,7 +59,7 @@ const schema = [
         "name": "Kann ich die Website später selbst bearbeiten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Je nach Setup ist das möglich. Sin Digital bietet auch laufende Betreuung ab CHF 49/Monat an, damit Sie sich auf Ihr Geschäft konzentrieren können, während wir uns um Updates und Änderungen kümmern."
+          "text": "Je nach Setup ist das möglich. Sin Digital bietet auch laufende Betreuung ab CHF 39/Monat an, damit Sie sich auf Ihr Geschäft konzentrieren können, während wir uns um Updates und Änderungen kümmern."
         }
       },
       {

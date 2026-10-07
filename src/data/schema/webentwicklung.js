@@ -67,7 +67,7 @@ const schema = [
         "name": "Bietet Sin Digital auch Hosting und Wartung an?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja. Sin Digital bietet professionelles Hosting und laufende Betreuung ab CHF 49/Monat an. Das umfasst Hosting, Sicherheitsupdates, Backups, Performance-Überwachung und Änderungswünsche."
+          "text": "Ja. Sin Digital bietet professionelles Hosting und laufende Betreuung ab CHF 39/Monat an. Das umfasst Hosting, Sicherheitsupdates, Backups, Performance-Überwachung und Änderungswünsche."
         }
       }
     ]

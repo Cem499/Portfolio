@@ -403,8 +403,34 @@ test('Recht: Website gehört dem Kunden, keine alten Hosting-Regeln in AGB, Date
 
 // Hosting is not part of the project price: no "included" wording anywhere, neither in the
 // sources nor in what the build ships (HTML incl. meta and JSON-LD, client bundles, sitemap).
-test('Recht: nirgends „Hosting inklusive“ oder „Hosting included“ (Quellen und Build)', async () => {
-  const FORBIDDEN = /hosting\s+(inklusive|inkl\.|included|incl\.)|(inklusive|inkl\.|including|incl\.)\s+hosting|swiss hosting/i
+test('Preise: Hosting und Wartung ab CHF 39, Websites weiterhin ab CHF 990 (DE und EN)', async () => {
+  const problems = []
+  const checks = [
+    ['/', [['meta[name="description"]', 'content', ['ab CHF 990', 'ab CHF 39 / Monat']], ['.hero-trust', 'text', ['Ab CHF 990', 'ab CHF 39 / Monat']], ['.pakete-grid', 'text', ['Ab CHF 39 /']]]],
+    ['/en/', [['meta[name="description"]', 'content', ['from CHF 990', 'from CHF 39 / month']], ['.hero-trust', 'text', ['From CHF 990', 'from CHF 39 / month']]]],
+    ['/wartung/', [['title', 'text', ['ab CHF 39 pro Monat']]]],
+    ['/en/maintenance/', [['title', 'text', ['from CHF 39 per Month']]]],
+    ['/konfigurator/', [['.konfig-notes', 'text', ['ab CHF 39 pro Monat']]]],
+    ['/website-zuerich.html', [['meta[name="twitter:description"]', 'content', ['ab CHF 990', 'ab CHF 39 / Monat']]]],
+  ]
+  for (const [path, list] of checks) {
+    const s = await open()
+    await goto(s.page, path, { hydrated: false })
+    for (const [selector, kind, phrases] of list) {
+      const value = await s.page.evaluate(([sel, k]) => {
+        const el = document.querySelector(sel)
+        return el ? (k === 'content' ? el.getAttribute('content') : el.textContent) : null
+      }, [selector, kind])
+      for (const phrase of phrases) if (!value?.includes(phrase)) problems.push(`${path} ${selector}: fehlt „${phrase}“`)
+    }
+    await s.close()
+  }
+  expect(problems.length === 0, problems.join(' | '))
+})
+
+test('Recht: nirgends „Hosting inklusive“, „Hosting included“ oder alte Wartungspreise (Quellen und Build)', async () => {
+  // also the old care prices (CHF 49 / 89 / 149): hosting and care now start at CHF 39
+  const FORBIDDEN = /hosting\s+(inklusive|inkl\.|included|incl\.)|(inklusive|inkl\.|including|incl\.)\s+hosting|swiss hosting|CHF\s*(49|89|149)\b/i
   const roots = [path.join(ROOT, 'src'), path.join(ROOT, 'public'), DIST, path.join(ROOT, 'index.html')]
   const hits = []
   const walk = (entry) => {
@@ -472,8 +498,9 @@ test('Konfigurator: Schritt 1 und Standardpreis vorgerendert, noch ohne JavaScri
   await s.page.goto(base + '/konfigurator/')
   const k = konfig(s.page)
   expect((await k.step()) === 1, 'Schritt ' + (await k.step()))
-  expect((await k.prices()) === "2'500–4'500", await k.prices())
-  expect((await k.meta()).startsWith('3 – 5 Wochen'), await k.meta())
+  const defaults = estimate()
+  expect((await k.prices()) === `${chf(defaults.price.min)}–${chf(defaults.price.max)}`, await k.prices())
+  expect((await k.meta()).startsWith(`${defaults.weeks.min} – ${defaults.weeks.max} Wochen`), await k.meta())
   const checked = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
   expect(checked === 'business', checked)
   await s.close()
@@ -492,13 +519,14 @@ test('Konfigurator vor Hydration: Auswahl bleibt, „Weiter“ wird nachgeholt',
   await s.page.waitForFunction(() => !document.getElementById('pending-submit-hint'))
   await s.page.waitForTimeout(120)
   expect((await k.step()) === 2, 'Schritt ' + (await k.step()))
-  expect((await k.prices()) === "900–1'500", await k.prices())
+  const landing = estimate({ siteType: 'landingpage', pages: 'single', features: [] })
+  expect((await k.prices()) === `${chf(landing.price.min)}–${chf(landing.price.max)}`, await k.prices())
   const tiers = await s.page.evaluate(() => [...document.querySelectorAll('input[name=pages]')].map((i) => i.value).join())
   expect(tiers === 'single', tiers)
   await s.close()
 })
 
-test('Konfigurator: Preis und Wochen rechnen live, Zusammenfassung stimmt', async () => {
+test('Konfigurator: Preis und Wochen rechnen live, Sprachen zählen pro Sprache, Zusammenfassung stimmt', async () => {
   const s = await open()
   await goto(s.page, '/konfigurator/')
   const k = konfig(s.page)
@@ -507,17 +535,29 @@ test('Konfigurator: Preis und Wochen rechnen live, Zusammenfassung stimmt', asyn
   await k.next()
   await k.tile('multilingual')
   await k.tile('shop')
-  await k.next()
-  await k.tile('express')
+  await s.page.selectOption('#konfig-languages', '2')
   await s.page.waitForTimeout(100)
-  const expected = estimate({ siteType: 'business', pages: 'upTo10', features: ['multilingual', 'shop'], timing: 'express' })
+  const expected = estimate({ siteType: 'business', pages: 'upTo10', features: ['multilingual', 'shop'], languages: '2' })
+  const one = estimate({ siteType: 'business', pages: 'upTo10', features: ['multilingual', 'shop'], languages: '1' })
+  expect(expected.price.min - one.price.min === 590 && expected.price.max - one.price.max === 1290 && expected.weeks.max - one.weeks.max === 1, 'Preis pro Sprache')
   expect((await k.prices()) === `${chf(expected.price.min)}–${chf(expected.price.max)}`, await k.prices())
   const meta = await k.meta()
-  expect(meta.includes(`${expected.weeks.min} – ${expected.weeks.max} Wochen`) && meta.includes('Express'), meta)
+  expect(meta.includes(`${expected.weeks.min} – ${expected.weeks.max} Wochen`), meta)
+  await k.next()
+  const priceBefore = await k.prices()
+  await s.page.fill('#konfig-start', '2027-03-15')
+  await s.page.waitForTimeout(100)
+  expect((await k.prices()) === priceBefore, 'Wunschtermin ändert den Preis')
   await k.next()
   expect((await k.step()) === 5, 'Schritt ' + (await k.step()))
   const config = await s.page.evaluate(() => document.querySelector('.konfig-config').textContent)
-  expect(config.includes('Seitentyp: Firmenwebsite') && config.includes('Umfang: 6 bis 10 Seiten') && config.includes('Funktionen: Mehrsprachig, Shop') && config.includes(`Richtpreis: CHF ${chf(expected.price.min)} – ${chf(expected.price.max)}`), config)
+  expect(
+    config.includes('Seitentyp: Firmenwebsite') && config.includes('Umfang: 6 bis 10 Seiten') && config.includes('Funktionen: Mehrsprachig (2 zusätzliche Sprachen), Shop') &&
+      config.includes('Wunschtermin: 15. März 2027') && config.includes(`Richtpreis: CHF ${chf(expected.price.min)} – ${chf(expected.price.max)}`),
+    config,
+  )
+  const page = await s.page.evaluate(() => document.body.textContent)
+  expect(!/express|zuschlag|surcharge/i.test(page), 'Express-Zuschlag noch sichtbar')
   await s.close()
 })
 
@@ -534,7 +574,12 @@ test('Konfigurator: Anfrage schickt die Konfiguration mit', async () => {
   const status = await s.page.evaluate(() => document.getElementById('form-status').textContent)
   expect(status.startsWith('Vielen Dank'), status)
   const p = sent.payload?.template_params
-  expect(p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes("Richtpreis: CHF 2'500 – 4'500") && p.message === 'Eine genügend lange Nachricht', JSON.stringify(p))
+  const defaults = estimate()
+  expect(
+    p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes('Wunschtermin: offen') &&
+      p.configuration.includes(`Richtpreis: CHF ${chf(defaults.price.min)} – ${chf(defaults.price.max)}`) && p.message === 'Eine genügend lange Nachricht',
+    JSON.stringify(p),
+  )
   await s.close()
 })
 
@@ -563,7 +608,7 @@ test('Konfigurator: Tastatur (Pfeiltasten wählen, Enter geht weiter, Leertaste 
   await s.page.keyboard.press('Space')
   const features = await s.page.evaluate(() => [...document.querySelectorAll('input[name=features]:checked')].map((i) => i.value).join())
   expect(features === 'multilingual', features)
-  expect((await k.prices()).startsWith("6'000"), await k.prices())
+  expect((await k.prices()).startsWith("5'900"), await k.prices())
   await s.close()
 })
 
@@ -806,7 +851,7 @@ test('Wartung: drei Pakete ohne JavaScript, Preise aus maintenance.js, FAQ-Schem
     second: document.querySelectorAll('details.care-faq-item summary')[1]?.textContent,
   }))
   expect(
-    r.plans === 'Basis,Business,Premium' && r.prices === 'CHF 49,CHF 89,CHF 149' && r.featured === 'Business' && r.modules === 0 && r.faq === 9 &&
+    r.plans === 'Basis,Business,Premium' && r.prices === 'CHF 39,CHF 79,CHF 129' && r.featured === 'Business' && r.modules === 0 && r.faq === 9 &&
       r.schemaFaq?.length === 9 && r.schemaFaq[1] === 'Wie lange läuft der Vertrag, und wie kann ich kündigen?' && r.second?.includes('Wie lange läuft der Vertrag'),
     JSON.stringify(r),
   )
@@ -827,7 +872,7 @@ test('Wartung: Jahres-Toggle per CSS (nur wenn ein Jahrespreis konfiguriert ist)
       response: [...document.querySelectorAll('.care-plan-rows div:last-child dd')].map((el) => el.textContent).join('|'),
     }))
     expect(
-      r.monthly === 'none' && r.yearly === 'block' && r.prices === "CHF 490,CHF 890,CHF 1'490" && r.save === '2 Monate geschenkt' &&
+      r.monthly === 'none' && r.yearly === 'block' && r.prices === "CHF 390,CHF 790,CHF 1'290" && r.save === '2 Monate geschenkt' &&
         r.response === 'max. 3 Werktage|max. 2 Werktage|max. 1 Werktag, priorisiert',
       JSON.stringify(r),
     )
@@ -857,7 +902,7 @@ test('Startseite: Partner-Stufen kommen aus maintenance.js', async () => {
   const s = await open()
   await goto(s.page, '/')
   const tiers = await s.page.evaluate(() => [...document.querySelectorAll('.care-tier-title')].map((el) => el.textContent).join('|'))
-  expect(tiers === 'Basis Care, CHF 49/Monat|Business Care, CHF 89/Monat|Premium Care, CHF 149/Monat', tiers)
+  expect(tiers === 'Basis Care, CHF 39/Monat|Business Care, CHF 79/Monat|Premium Care, CHF 129/Monat', tiers)
   await s.close()
 })
 

@@ -54,7 +54,7 @@ export const shared = {
 export const home = {
   "meta": {
     "title": "Digital Agency Zurich | Web Design & Development for SMEs | Sin Digital",
-    "description": "Sin Digital, your digital agency in Zurich. Web design, development & SEO for SMEs from CHF 990. ✓ Ready in 2 weeks ✓ Hosting & maintenance optional from CHF 49 / month ✓ Get your free quote!",
+    "description": "Sin Digital, your digital agency in Zurich. Web design, development & SEO for SMEs from CHF 990. ✓ Ready in 2 weeks ✓ Hosting & maintenance optional from CHF 39 / month ✓ Get your free quote!",
     "ogTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
     "ogDescription": "Sin Digital, your digital agency in Zurich. Professional websites from CHF 990. Ready in 2 weeks. SEO included. Web agency for SMEs, startups and local businesses.",
     "twitterTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
@@ -68,7 +68,7 @@ export const home = {
       "✓ From CHF 990",
       "✓ Ready in 2 weeks",
       "✓ SEO included",
-      "✓ Hosting & maintenance optional from CHF 49 / month"
+      "✓ Hosting & maintenance optional from CHF 39 / month"
     ]
   },
   "localSeo": {
@@ -339,7 +339,7 @@ export const konfigurator = {
   "features": {
     "multilingual": {
       "name": "Multilingual",
-      "desc": "A second language with its own URLs, clean for Google."
+      "desc": "Per additional language, with its own URLs and clean for Google."
     },
     "shop": {
       "name": "Shop",
@@ -362,20 +362,17 @@ export const konfigurator = {
       "desc": "Logo, colours and type that fit the new site."
     }
   },
-  "timings": {
-    "express": {
-      "name": "As soon as possible",
-      "desc": "Start in under 3 weeks, with a 20 % express surcharge."
-    },
-    "soon": {
-      "name": "Within the next 1 to 3 months",
-      "desc": "The usual way: get to know each other, concept, start."
-    },
-    "flexible": {
-      "name": "Flexible",
-      "desc": "No fixed date, we plan it together."
-    }
+  "languages": {
+    "label": "Additional languages",
+    "hint": "Besides the main language. Price and time apply per language.",
+    "one": "additional language",
+    "many": "additional languages"
   },
+  "start": {
+    "label": "Preferred start date (optional)",
+    "hint": "Does not change the guide price. Short-notice starts are settled in the offer."
+  },
+  "dateLocale": "en-GB",
   "summary": {
     "title": "Your guide price",
     "from": "from",
@@ -384,12 +381,12 @@ export const konfigurator = {
     "week": "week",
     "weeks": "weeks",
     "weeksOnRequest": "Time frame on request",
-    "express": "incl. 20 % express surcharge",
+    "perLanguage": "per language",
     "selection": "Your selection",
     "notes": [
       "Guide values. You get a fixed price after a short conversation.",
-      "One-time prices including setup, no hidden costs.",
-      "Hosting and care are separate, from CHF 49 per month."
+      "One-time prices including setup. Domain and other third-party costs are listed separately in the offer.",
+      "Hosting and maintenance are optional, from CHF 39 per month."
     ]
   },
   "next": "Next",
@@ -657,9 +654,9 @@ export const websiteCheck = {
 
 export const wartung = {
   "meta": {
-    "title": "Maintenance & Hosting: Care from CHF 49 per Month | Sin Digital",
-    "description": "Three care plans for your website: hosting, security updates, backups, monitoring, changes and a fixed response time. Clearly defined, from CHF 49 per month.",
-    "ogTitle": "Maintenance & hosting: care from CHF 49 per month"
+    "title": "Maintenance & Hosting: Care from CHF 39 per Month | Sin Digital",
+    "description": "Three care plans for your website: hosting, security updates, backups, monitoring, changes and a fixed response time. Clearly defined, from CHF 39 per month.",
+    "ogTitle": "Maintenance & hosting: care from CHF 39 per month"
   },
   "breadcrumb": "Maintenance",
   "label": "Maintenance & hosting",

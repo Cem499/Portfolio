@@ -54,7 +54,7 @@ export const shared = {
 export const home = {
   "meta": {
     "title": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. ✓ Fertig in 2 Wochen ✓ Hosting und Wartung optional ab CHF 49 / Monat ✓ Jetzt kostenlos anfragen!",
+    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. ✓ Fertig in 2 Wochen ✓ Hosting und Wartung optional ab CHF 39 / Monat ✓ Jetzt kostenlos anfragen!",
     "ogTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
     "ogDescription": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelle Websites ab CHF 990. ✓ Fertig in 2 Wochen ✓ SEO inklusive. Webagentur für KMU, Startups & Firmen.",
     "twitterTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
@@ -68,7 +68,7 @@ export const home = {
       "✓ Ab CHF 990",
       "✓ Fertig in 2 Wochen",
       "✓ SEO inklusive",
-      "✓ Hosting und Wartung optional ab CHF 49 / Monat"
+      "✓ Hosting und Wartung optional ab CHF 39 / Monat"
     ]
   },
   "localSeo": {
@@ -339,7 +339,7 @@ export const konfigurator = {
   "features": {
     "multilingual": {
       "name": "Mehrsprachig",
-      "desc": "Zweite Sprache mit eigenen URLs, sauber für Google."
+      "desc": "Pro zusätzliche Sprache, mit eigenen URLs und sauber für Google."
     },
     "shop": {
       "name": "Shop",
@@ -362,20 +362,17 @@ export const konfigurator = {
       "desc": "Logo, Farben und Schrift, die zur neuen Website passen."
     }
   },
-  "timings": {
-    "express": {
-      "name": "So schnell wie möglich",
-      "desc": "Start in unter 3 Wochen, mit 20 % Express-Zuschlag."
-    },
-    "soon": {
-      "name": "In den nächsten 1 bis 3 Monaten",
-      "desc": "Der übliche Weg: Kennenlernen, Konzept, Start."
-    },
-    "flexible": {
-      "name": "Flexibel",
-      "desc": "Kein fester Termin, wir planen gemeinsam."
-    }
+  "languages": {
+    "label": "Zusätzliche Sprachen",
+    "hint": "Neben der Hauptsprache. Preis und Zeit gelten pro Sprache.",
+    "one": "zusätzliche Sprache",
+    "many": "zusätzliche Sprachen"
   },
+  "start": {
+    "label": "Wunschtermin (optional)",
+    "hint": "Hat keinen Einfluss auf den Richtpreis. Kurzfristige Starts klären wir im Angebot."
+  },
+  "dateLocale": "de-CH",
   "summary": {
     "title": "Ihr Richtpreis",
     "from": "ab",
@@ -384,12 +381,12 @@ export const konfigurator = {
     "week": "Woche",
     "weeks": "Wochen",
     "weeksOnRequest": "Zeitrahmen nach Gespräch",
-    "express": "inkl. 20 % Express-Zuschlag",
+    "perLanguage": "pro Sprache",
     "selection": "Ihre Auswahl",
     "notes": [
       "Richtwerte. Den Festpreis erhalten Sie nach einem kurzen Gespräch.",
-      "Einmalpreise inklusive Einrichtung, keine versteckten Kosten.",
-      "Hosting und Betreuung sind separat, ab CHF 49 pro Monat."
+      "Einmalpreise inklusive Einrichtung. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus.",
+      "Hosting und Wartung sind optional, ab CHF 39 pro Monat."
     ]
   },
   "next": "Weiter",
@@ -405,6 +402,7 @@ export const konfigurator = {
     "features": "Funktionen",
     "none": "keine",
     "timing": "Wunschtermin",
+    "startOpen": "offen",
     "price": "Richtpreis",
     "weeks": "Zeitrahmen"
   }
@@ -657,9 +655,9 @@ export const websiteCheck = {
 
 export const wartung = {
   "meta": {
-    "title": "Wartung & Hosting: Betreuung ab CHF 49 pro Monat | Sin Digital",
-    "description": "Drei Betreuungspakete für Ihre Website: Hosting, Sicherheitsupdates, Backups, Monitoring, Änderungen und feste Reaktionszeit. Klar abgegrenzt, ab CHF 49 pro Monat.",
-    "ogTitle": "Wartung & Hosting: Betreuung ab CHF 49 pro Monat"
+    "title": "Wartung & Hosting: Betreuung ab CHF 39 pro Monat | Sin Digital",
+    "description": "Drei Betreuungspakete für Ihre Website: Hosting, Sicherheitsupdates, Backups, Monitoring, Änderungen und feste Reaktionszeit. Klar abgegrenzt, ab CHF 39 pro Monat.",
+    "ogTitle": "Wartung & Hosting: Betreuung ab CHF 39 pro Monat"
   },
   "breadcrumb": "Wartung",
   "label": "Wartung & Hosting",
