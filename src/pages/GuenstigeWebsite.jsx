@@ -153,7 +153,7 @@ export default function GuenstigeWebsite() {
           <p>Ja. Alle Websites von Sin Digital sind modular aufgebaut und können jederzeit erweitert werden.</p>
           <h3>Gibt es versteckte Kosten?</h3>
           <p>
-            Nein. Der Preis von CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Hosting und Betreuung sind optional.
+            Nein. Der Preis von CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Hosting und Wartung sind optional, ab CHF 49 / Monat: <a href="/wartung/">Wartungspläne</a>.
           </p>
           <h3>Wie schnell ist meine günstige Website online?</h3>
           <p>In der Regel in ca. 2 Wochen.</p>

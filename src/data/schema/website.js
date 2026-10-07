@@ -35,7 +35,7 @@ const schema = [
         "name": "Was brauche ich, um eine Website erstellen zu lassen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Im Grunde nichts ausser einer Idee und ein paar Informationen zu Ihrem Unternehmen. Sin Digital übernimmt die komplette Umsetzung: Konzept, Design, Texte, technische Entwicklung, SEO-Basis und Hosting. Sie geben in jedem Schritt Feedback, wir kümmern uns um die Umsetzung. Ein erstes unverbindliches Gespräch reicht, um loszulegen."
+          "text": "Im Grunde nichts ausser einer Idee und ein paar Informationen zu Ihrem Unternehmen. Sin Digital übernimmt die komplette Umsetzung: Konzept, Design, Texte, technische Entwicklung und SEO-Basis. Hosting und Wartung übernehmen wir auf Wunsch, optional ab CHF 49 pro Monat. Sie geben in jedem Schritt Feedback, wir kümmern uns um die Umsetzung. Ein erstes unverbindliches Gespräch reicht, um loszulegen."
         }
       },
       {

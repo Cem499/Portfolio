@@ -65,21 +65,21 @@ export default function Agb() {
             {' '}
             <a href="#schriftform" className="toc-link">{t("18. Schriftform", "18. Written Form")}</a>
             {' '}
-            <a href="#projektkommunikation" className="toc-link">{t("19. Projektkommunikation", "19. Communication")}</a>
+            <a href="#projektkommunikation" className="toc-link">{t("§ 15 Projektkommunikation", "§ 15 Communication")}</a>
             {' '}
-            <a href="#projektpause" className="toc-link">{t("20. Projektpause", "20. Project Pause")}</a>
+            <a href="#projektpause" className="toc-link">{t("§ 16 Projektpause", "§ 16 Project Pause")}</a>
             {' '}
-            <a href="#referenznutzung" className="toc-link">{t("21. Referenznutzung", "21. References")}</a>
+            <a href="#referenznutzung" className="toc-link">{t("§ 17 Referenznutzung", "§ 17 References")}</a>
             {' '}
-            <a href="#unangemessenes-verhalten" className="toc-link">{t("22. Verhaltensklausel", "22. Conduct Clause")}</a>
+            <a href="#unangemessenes-verhalten" className="toc-link">{t("§ 18 Verhaltensklausel", "§ 18 Conduct Clause")}</a>
             {' '}
-            <a href="#eigentumsvorbehalt" className="toc-link">{t("23. Eigentumsvorbehalt", "23. Retention of Title")}</a>
+            <a href="#eigentumsvorbehalt" className="toc-link">{t("§ 19 Eigentumsvorbehalt", "§ 19 Retention of Title")}</a>
             {' '}
-            <a href="#scope-creep" className="toc-link">{t("24. Leistungsabgrenzung", "24. Scope Definition")}</a>
+            <a href="#scope-creep" className="toc-link">{t("§ 20 Leistungsabgrenzung", "§ 20 Scope Definition")}</a>
             {' '}
-            <a href="#online-stellung" className="toc-link">{t("25. Online-Stellung", "25. Go-Live")}</a>
+            <a href="#online-stellung" className="toc-link">{t("§ 21 Online-Stellung", "§ 21 Go-Live")}</a>
             {' '}
-            <a href="#datenschutzerklaerung-impressum" className="toc-link">{t("26. Datenschutz & Impressum", "26. Privacy & Legal Notice")}</a>
+            <a href="#datenschutzerklaerung-impressum" className="toc-link">{t("§ 22 Datenschutz & Impressum", "§ 22 Privacy & Legal Notice")}</a>
           </nav>
           <div className="legal-divider"></div>
           <LegalGrid id="leistungsumfang" className="legal-grid wide">
@@ -136,7 +136,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Im Projektpreis sind alle für die Umsetzung notwendigen Drittanbieter-Leistungen (z.B. Domain, Plugins, APIs) enthalten, sofern nicht anders vereinbart. Hosting und Wartung sind nicht Teil des Projektpreises, sie sind optional (siehe Ziffer 13). Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden.", "The project price includes all necessary third-party services (e.g. domain, plugins, APIs) unless otherwise agreed. Hosting and maintenance are not part of the project price; they are optional (see section 13). Changes in third-party prices after contract conclusion may be passed on to the client.")}
+                {t("Kosten für Drittanbieter-Leistungen (z.B. Domain, Plugins, APIs) sind nicht im Projektpreis enthalten. Sie werden im Angebot separat ausgewiesen und zusätzlich verrechnet. Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden. Hosting und Wartung sind ebenfalls nicht Teil des Projektpreises, sie sind optional (siehe Ziffer 13).", "Costs for third-party services (e.g. domain, plugins, APIs) are not included in the project price. They are listed separately in the offer and billed in addition. Changes in third-party prices after contract conclusion may be passed on to the client. Hosting and maintenance are not part of the project price either; they are optional (see section 13).")}
               </p>
             </div>
           </LegalGrid>
@@ -458,7 +458,7 @@ export default function Agb() {
               </ul>
               <h3>{t("Drittanbieter & Open-Source", "Third-Party & Open-Source")}</h3>
               <p>
-                {t("Notwendige Drittanbieter-Leistungen (z.B. Domain, Hosting, Plugins, APIs) werden separat ausgewiesen. Lizenzbedingungen von Drittanbietern sind einzuhalten.", "Necessary third-party services (e.g. domain, hosting, plugins, APIs) are listed separately. Third-party license terms must be complied with.")}
+                {t("Notwendige Drittanbieter-Leistungen (z.B. Domain, Plugins, APIs) werden im Angebot separat ausgewiesen und zusätzlich verrechnet. Lizenzbedingungen von Drittanbietern sind einzuhalten.", "Necessary third-party services (e.g. domain, plugins, APIs) are listed separately in the offer and billed in addition. Third-party license terms must be complied with.")}
               </p>
               <h3>{t("Kundenmaterialien", "Client Materials")}</h3>
               <p>

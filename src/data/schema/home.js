@@ -248,7 +248,7 @@ const schema = [
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Digitalagentur Zürich, Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelles Webdesign, Webentwicklung, SEO und Hosting für KMU, Startups und Unternehmen ab CHF 990.",
+    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelles Webdesign, Webentwicklung und SEO für KMU, Startups und Unternehmen ab CHF 990. Hosting und Wartung optional ab CHF 49 pro Monat.",
     "provider": {
       "@id": "https://www.sin-digital.com/#business"
     },
@@ -418,7 +418,7 @@ const schema = [
     "@id": "https://www.sin-digital.com/#webpage",
     "url": "https://www.sin-digital.com/",
     "name": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. Fertig in 2 Wochen, hosting inklusive.",
+    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. Fertig in 2 Wochen. Hosting und Wartung optional ab CHF 49 pro Monat.",
     "inLanguage": [
       "de-CH",
       "en"

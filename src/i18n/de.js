@@ -54,9 +54,9 @@ export const shared = {
 export const home = {
   "meta": {
     "title": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. ✓ Fertig in 2 Wochen ✓ Hosting inklusive ✓ Jetzt kostenlos anfragen!",
+    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. ✓ Fertig in 2 Wochen ✓ Hosting und Wartung optional ab CHF 49 / Monat ✓ Jetzt kostenlos anfragen!",
     "ogTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
-    "ogDescription": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelle Websites ab CHF 990. ✓ Fertig in 2 Wochen ✓ SEO inklusive ✓ Hosting. Webagentur für KMU, Startups & Firmen.",
+    "ogDescription": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelle Websites ab CHF 990. ✓ Fertig in 2 Wochen ✓ SEO inklusive. Webagentur für KMU, Startups & Firmen.",
     "twitterTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
     "twitterDescription": "Sin Digital, Digitalagentur & Webagentur Zürich. Professionelle Websites ab CHF 990. Fertig in 2 Wochen. Jetzt anfragen!"
   },
@@ -68,7 +68,7 @@ export const home = {
       "✓ Ab CHF 990",
       "✓ Fertig in 2 Wochen",
       "✓ SEO inklusive",
-      "✓ Hosting"
+      "✓ Hosting und Wartung optional ab CHF 49 / Monat"
     ]
   },
   "localSeo": {
@@ -738,7 +738,7 @@ export const wartung = {
     },
     {
       "q": "Wie lange läuft der Vertrag, und wie kann ich kündigen?",
-      "a": "Die Mindestlaufzeit beträgt 6 Monate ab Livegang. Danach können Sie mit 30 Tagen Frist auf Monatsende schriftlich kündigen. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres."
+      "a": "Die Mindestlaufzeit beträgt 6 Monate ab Abnahme Ihrer Website (in der Regel der Livegang). Danach können Sie mit 30 Tagen Frist auf Monatsende schriftlich kündigen. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres."
     },
     {
       "q": "Kann ich das Paket später wechseln?",

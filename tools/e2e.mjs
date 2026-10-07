@@ -5,9 +5,11 @@
 //   node tools/e2e.mjs --only Formular  tests whose name contains the text
 //
 // Third-party scripts are stubbed (Turnstile, EmailJS), nothing leaves the machine.
+import fs from 'node:fs'
+import path from 'node:path'
 import { chromium } from 'playwright-core'
 import { chf, estimate } from '../src/data/pricing.js'
-import { chromiumPath, pagesToTest, parseArgs, printTable, serveDist, stubThirdParty } from './lib.mjs'
+import { DIST, ROOT, chromiumPath, pagesToTest, parseArgs, printTable, serveDist, stubThirdParty } from './lib.mjs'
 
 const { flags } = parseArgs()
 const { base, close } = await serveDist()
@@ -382,15 +384,41 @@ test('Recht: Website gehört dem Kunden, keine alten Hosting-Regeln in AGB, Date
     const s = await open(storage ? { storage } : {})
     await goto(s.page, path, storage ? {} : { hydrated: false })
     await s.page.waitForTimeout(300)
-    const text = await s.page.evaluate(() => document.body.innerText)
+    // innerText for what is visible, textContent so closed <details> answers count too
+    const text = await s.page.evaluate(() => `${document.body.innerText}\n${document.body.textContent}`)
     for (const pattern of OLD) if (pattern.test(text)) problems.push(`${path} ${storage || ''}: ${pattern}`)
     if (path === '/agb.html') {
-      const must = storage === 'en' ? ['As of: October 2026', 'pass to the client', 'free of charge', '10 instead of 12', 'canton of Zurich'] : ['Stand: Oktober 2026', 'auf den Auftraggeber über', 'kostenlos', '10 statt 12', 'Kanton Zürich']
+      const must = storage === 'en'
+        ? ['As of: October 2026', 'pass to the client', 'free of charge', '10 instead of 12', 'canton of Zurich', 'billed in addition', '§ 15 Communication', '§ 22 Privacy']
+        : ['Stand: Oktober 2026', 'auf den Auftraggeber über', 'kostenlos', '10 statt 12', 'Kanton Zürich', 'zusätzlich verrechnet', '§ 15 Projektkommunikation', '§ 22 Datenschutz']
       for (const phrase of must) if (!text.includes(phrase)) problems.push(`${path} ${storage}: fehlt "${phrase}"`)
+      if (/\b(19|2[0-6])\. [A-ZÄÖÜ]/.test(text)) problems.push(`${path} ${storage}: Inhaltsverzeichnis zählt noch 19 bis 26`)
     }
+    if (path === '/wartung/' && !text.includes('6 Monate ab Abnahme Ihrer Website')) problems.push('/wartung/: Mindestlaufzeit nicht ab Abnahme')
+    if (path === '/en/maintenance/' && !text.includes('6 months from acceptance of your website')) problems.push('/en/maintenance/: minimum term not from acceptance')
     await s.close()
   }
   expect(problems.length === 0, problems.join(' | '))
+})
+
+// Hosting is not part of the project price: no "included" wording anywhere, neither in the
+// sources nor in what the build ships (HTML incl. meta and JSON-LD, client bundles, sitemap).
+test('Recht: nirgends „Hosting inklusive“ oder „Hosting included“ (Quellen und Build)', async () => {
+  const FORBIDDEN = /hosting\s+(inklusive|inkl\.|included|incl\.)|(inklusive|inkl\.|including|incl\.)\s+hosting|swiss hosting/i
+  const roots = [path.join(ROOT, 'src'), path.join(ROOT, 'public'), DIST, path.join(ROOT, 'index.html')]
+  const hits = []
+  const walk = (entry) => {
+    const stat = fs.statSync(entry)
+    if (stat.isDirectory()) return fs.readdirSync(entry).forEach((name) => walk(path.join(entry, name)))
+    if (!/\.(html|js|jsx|mjs|json|xml|css|txt|md)$/.test(entry)) return
+    const lines = fs.readFileSync(entry, 'utf8').split('\n')
+    lines.forEach((line, i) => {
+      const match = line.match(FORBIDDEN)
+      if (match) hits.push(`${path.relative(ROOT, entry)}:${i + 1} „${match[0]}“`)
+    })
+  }
+  roots.forEach(walk)
+  expect(hits.length === 0, hits.slice(0, 10).join(' | '))
 })
 
 test('Legal: EN aus localStorage, Zurück-Link, DE-Umschaltung', async () => {

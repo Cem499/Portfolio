@@ -54,7 +54,7 @@ export const shared = {
 export const home = {
   "meta": {
     "title": "Digital Agency Zurich | Web Design & Development for SMEs | Sin Digital",
-    "description": "Sin Digital, your digital agency in Zurich. Web design, development & SEO for SMEs from CHF 990. ✓ Ready in 2 weeks ✓ Hosting included ✓ Get your free quote!",
+    "description": "Sin Digital, your digital agency in Zurich. Web design, development & SEO for SMEs from CHF 990. ✓ Ready in 2 weeks ✓ Hosting & maintenance optional from CHF 49 / month ✓ Get your free quote!",
     "ogTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
     "ogDescription": "Sin Digital, your digital agency in Zurich. Professional websites from CHF 990. Ready in 2 weeks. SEO included. Web agency for SMEs, startups and local businesses.",
     "twitterTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
@@ -68,7 +68,7 @@ export const home = {
       "✓ From CHF 990",
       "✓ Ready in 2 weeks",
       "✓ SEO included",
-      "✓ Swiss Hosting"
+      "✓ Hosting & maintenance optional from CHF 49 / month"
     ]
   },
   "localSeo": {
@@ -738,7 +738,7 @@ export const wartung = {
     },
     {
       "q": "How long does the contract run, and how can I cancel?",
-      "a": "The minimum term is 6 months from launch. After that, you can cancel in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year."
+      "a": "The minimum term is 6 months from acceptance of your website (usually the launch). After that, you can cancel in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year."
     },
     {
       "q": "Can I change the plan later?",
