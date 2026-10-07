@@ -37,34 +37,22 @@
 
 /* ── Process timeline ──────────────────────────────────────────────────── */
 
+/*
+   Dot centres sit 1rem below the top of each step (dot top 0.4rem + half of 1.2rem), at
+   0.6rem from the left. The grey track runs from dot to dot as one segment per step, so it
+   is exact without JavaScript. The green fill (ProcessTimeline.jsx) starts at dot 01 and
+   only changes its scaleY while scrolling. Stacking: track 0, fill 1, dots 2.
+*/
+
 .timeline-list {
+  --timeline-gap: 2.25rem;
   position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 2.25rem;
+  gap: var(--timeline-gap);
   max-width: 46rem;
-}
-
-/* The track and its fill, left of the steps. */
-.timeline-line {
-  position: absolute;
-  top: 0.4rem;
-  bottom: 0.4rem;
-  left: 0.55rem;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.timeline-line::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--green);
-  transform-origin: top;
-  transform: scaleY(1);
 }
 
 .timeline-step {
@@ -75,22 +63,50 @@
   gap: 0 0.5rem;
 }
 
+/* Grey track from this dot to the next one. */
+.timeline-step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 1rem;
+  left: calc(0.6rem - 1px);
+  width: 2px;
+  height: calc(100% + var(--timeline-gap));
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Green progress from dot 01; height and scale come from the script after hydration. */
+.timeline-fill {
+  position: absolute;
+  z-index: 1;
+  top: 1rem;
+  left: calc(0.6rem - 1px);
+  width: 2px;
+  height: 0;
+  background: var(--green);
+  transform-origin: top;
+  transform: scaleY(0);
+  pointer-events: none;
+}
+
 .timeline-dot {
   position: relative;
+  z-index: 2;
   top: 0.4rem;
   width: 1.2rem;
   height: 1.2rem;
   border-radius: 50%;
-  border: 2px solid var(--green);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   background: var(--bg);
-  box-shadow: 0 0 0 0 rgba(193, 255, 114, 0.35);
+  transition: border-color 250ms ease, background-color 250ms ease;
 }
 
-.timeline-dot::after {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border-radius: 50%;
+.timeline-step.is-passed .timeline-dot {
+  border-color: var(--green);
+}
+
+.timeline-step.is-active .timeline-dot {
+  border-color: var(--green);
   background: var(--green);
 }
 
@@ -109,6 +125,17 @@
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--white);
+  /* as wide as the text, so the 6 % scale never reaches past the column */
+  width: fit-content;
+  max-width: 100%;
+  transform-origin: left center;
+  transition: color 250ms ease, transform 250ms ease;
+}
+
+/* transform does not touch layout: the bigger title never moves the text below it. */
+.timeline-step.is-active .timeline-name {
+  color: var(--green);
+  transform: scale(1.06);
 }
 
 .timeline-desc {
@@ -124,40 +151,9 @@
   text-underline-offset: 2px;
 }
 
-/* Scroll-driven: the fill grows and each dot lights up as it passes the middle of the viewport. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .timeline-line::after {
-      transform: scaleY(0);
-      animation: timeline-fill linear both;
-      animation-timeline: view();
-      animation-range: entry 10% exit 60%;
-    }
-
-    .timeline-dot::after {
-      transform: scale(0);
-      animation: timeline-dot linear both;
-      animation-timeline: view();
-      animation-range: entry 45% entry 70%;
-    }
-  }
-}
-
-@keyframes timeline-fill {
-  to {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes timeline-dot {
-  to {
-    transform: scale(1);
-  }
-}
-
 @media (max-width: 767px) {
   .timeline-list {
-    gap: 1.75rem;
+    --timeline-gap: 1.75rem;
   }
 
   .timeline-step {
@@ -176,5 +172,28 @@
 
   .timeline-dot {
     grid-row: 1 / span 2;
+  }
+}
+
+/* Reduced motion: the whole line green, every dot outlined, no highlight and no scaling. */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-step:not(:last-child)::before {
+    background: var(--green);
+  }
+
+  .timeline-fill {
+    display: none;
+  }
+
+  .timeline-dot {
+    border-color: var(--green);
+    transition: none;
+  }
+
+  .timeline-name,
+  .timeline-step.is-active .timeline-name {
+    color: var(--white);
+    transform: none;
+    transition: none;
   }
 }

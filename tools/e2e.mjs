@@ -895,12 +895,117 @@ test('Startseite: Hero-Linie wandert, bei reduced motion steht sie still', async
   expect(moving?.name === 'hero-scan' && moving.hidden === 'true' && moving.events === 'none' && still === 'none', `${JSON.stringify(moving)} / ${still}`)
 })
 
-test('Startseite: Timeline-Linie ist bei reduced motion ganz gefüllt', async () => {
+test('Timeline: vorgerendert ohne aktiven Schritt, Linie grau', async () => {
+  const s = await open({ holdBundle: true })
+  await goto(s.page, '/', { hydrated: false })
+  const r = await s.page.evaluate(() => ({
+    current: document.querySelectorAll('.timeline-step[aria-current]').length,
+    active: document.querySelectorAll('.timeline-step.is-active, .timeline-step.is-passed').length,
+    fill: getComputedStyle(document.querySelector('.timeline-fill')).transform,
+    track: getComputedStyle(document.querySelector('.timeline-step'), '::before').backgroundColor,
+  }))
+  s.releaseBundle()
+  expect(r.current === 0 && r.active === 0 && r.fill === 'matrix(1, 0, 0, 0, 0, 0)' && r.track === 'rgba(255, 255, 255, 0.12)', JSON.stringify(r))
+  await s.close()
+})
+
+// Scrolls so that the reference line (50 % of the viewport) lies between dot `index` and the
+// next one (or below dot 06), then reports the timeline state.
+async function timelineAt(page, index) {
+  await page.evaluate((i) => {
+    const dots = [...document.querySelectorAll('.timeline-dot')].map((d) => { const r = d.getBoundingClientRect(); return r.top + r.height / 2 + window.scrollY })
+    const y = i < 0 ? dots[0] - 200 : i >= dots.length - 1 ? dots[dots.length - 1] + 150 : (dots[i] + dots[i + 1]) / 2
+    window.scrollTo({ top: y - window.innerHeight / 2, behavior: 'instant' })
+  }, index)
+  await page.waitForTimeout(400) // rAF plus the 250 ms transitions
+  return page.evaluate(() => {
+    const steps = [...document.querySelectorAll('.timeline-step')]
+    const dots = [...document.querySelectorAll('.timeline-dot')].map((d) => { const r = d.getBoundingClientRect(); return r.top + r.height / 2 })
+    const fill = document.querySelector('.timeline-fill').getBoundingClientRect()
+    const name = steps.find((st) => st.getAttribute('aria-current'))?.querySelector('.timeline-name')
+    return {
+      current: steps.map((st, i) => (st.getAttribute('aria-current') === 'step' ? i : -1)).filter((i) => i >= 0),
+      passed: steps.map((st, i) => (st.classList.contains('is-passed') ? i : -1)).filter((i) => i >= 0),
+      fillTop: Math.round(fill.top - dots[0]),
+      fillBottom: Math.round(fill.bottom),
+      reference: Math.round(window.innerHeight / 2),
+      lastDot: Math.round(dots[dots.length - 1]),
+      color: name && getComputedStyle(name).color,
+      transform: name && getComputedStyle(name).transform,
+    }
+  })
+}
+
+test('Timeline: Linie folgt der Bildschirmmitte, genau ein aktiver Schritt (aria-current)', async () => {
+  for (const path of ['/', '/en/']) {
+    const s = await open()
+    await goto(s.page, path)
+    await s.page.evaluate(() => {
+      window.__shift = 0
+      new PerformanceObserver((list) => list.getEntries().forEach((e) => (window.__shift += e.value))).observe({ type: 'layout-shift', buffered: true })
+    })
+    const before = await timelineAt(s.page, -1)
+    expect(before.current.length === 0, `${path} vor Punkt 01: ${JSON.stringify(before)}`)
+    const third = await timelineAt(s.page, 2)
+    expect(
+      third.current.join() === '2' && third.passed.join() === '0,1' && Math.abs(third.fillBottom - third.reference) <= 2 && Math.abs(third.fillTop) <= 1 &&
+        third.color === 'rgb(193, 255, 114)' && third.transform.startsWith('matrix(1.06'),
+      `${path} Schritt 3: ${JSON.stringify(third)}`,
+    )
+    const first = await timelineAt(s.page, 0)
+    expect(first.current.join() === '0' && first.passed.length === 0 && Math.abs(first.fillBottom - first.reference) <= 2, `${path} zurück zu Schritt 1: ${JSON.stringify(first)}`)
+    const end = await timelineAt(s.page, 5)
+    expect(end.current.join() === '5' && Math.abs(end.fillBottom - end.lastDot) <= 1, `${path} nach Punkt 06: ${JSON.stringify(end)}`)
+    const others = await s.page.evaluate(() => [...document.querySelectorAll('.timeline-step:not(.is-active) .timeline-name')].map((n) => getComputedStyle(n).color + '|' + getComputedStyle(n).transform))
+    expect(others.every((v) => v === 'rgb(255, 255, 255)|none'), others.join())
+    const shift = await s.page.evaluate(() => window.__shift)
+    expect(shift === 0, `${path} Layout-Shift beim Scrollen: ${shift}`)
+    await s.close()
+  }
+})
+
+test('Timeline: reduced motion ohne Hervorhebung, Linie ganz grün', async () => {
   const s = await open({ reducedMotion: 'reduce' })
   await goto(s.page, '/')
-  const transform = await s.page.evaluate(() => getComputedStyle(document.querySelector('.timeline-line'), '::after').transform)
-  expect(transform === 'none' || transform === 'matrix(1, 0, 0, 1, 0, 0)', transform)
+  const r = await timelineAt(s.page, 2)
+  const css = await s.page.evaluate(() => ({
+    track: [...document.querySelectorAll('.timeline-step')].slice(0, 5).map((st) => getComputedStyle(st, '::before').backgroundColor),
+    fill: getComputedStyle(document.querySelector('.timeline-fill')).display,
+    names: [...document.querySelectorAll('.timeline-name')].map((n) => getComputedStyle(n).transform + '|' + getComputedStyle(n).color),
+  }))
+  expect(
+    r.current.length === 0 && css.track.every((c) => c === 'rgb(193, 255, 114)') && css.fill === 'none' && css.names.every((v) => v === 'none|rgb(255, 255, 255)'),
+    JSON.stringify({ ...r, ...css }),
+  )
   await s.close()
+})
+
+test('Timeline 375 px: aktiver Titel nicht abgeschnitten, kein Umbruch, Text darunter bleibt', async () => {
+  for (const path of ['/', '/en/']) {
+    const s = await open({ viewport: { width: 375, height: 812 } })
+    await goto(s.page, path)
+    const layout = () => s.page.evaluate(() => [...document.querySelectorAll('.timeline-step')].map((st) => st.querySelector('.timeline-desc').offsetTop))
+    await timelineAt(s.page, -1)
+    const idle = await layout()
+    const problems = []
+    for (let i = 0; i < 6; i++) {
+      await timelineAt(s.page, i)
+      const r = await s.page.evaluate((index) => {
+        const step = document.querySelectorAll('.timeline-step')[index]
+        const name = step.querySelector('.timeline-name')
+        const rect = name.getBoundingClientRect()
+        const clip = name.closest('.section').getBoundingClientRect()
+        const fontSize = parseFloat(getComputedStyle(name).fontSize)
+        return { active: step.getAttribute('aria-current'), right: rect.right, clipRight: Math.min(window.innerWidth, clip.right), oneLine: name.offsetHeight < fontSize * 1.8, text: name.textContent }
+      }, i)
+      if (r.active !== 'step') problems.push(`${i}: nicht aktiv`)
+      if (r.right > r.clipRight - 1) problems.push(`${r.text}: rechts abgeschnitten (${Math.round(r.right)} > ${Math.round(r.clipRight)})`)
+      if (!r.oneLine) problems.push(`${r.text}: bricht um`)
+      if ((await layout()).join() !== idle.join()) problems.push(`${r.text}: Text darunter verschoben`)
+    }
+    expect(problems.length === 0, `${path} ${problems.join(' | ')}`)
+    await s.close()
+  }
 })
 
 // ── Server behaviour ─────────────────────────────────────────────────────────
