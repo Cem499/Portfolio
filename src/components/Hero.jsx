@@ -26,13 +26,6 @@ export default function Hero({ t, ctaHref }) {
           </div>
         </div>
 
-        <div className="scroll-indicator" aria-label="Weiter scrollen" role="img">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
-        </div>
-
         <div ref={trustRef} className={revealClass('hero-trust reveal', trustVisible)} aria-label="Vorteile von Sin Digital">
           {t.hero.trust.map((item) => (
             <span key={item} className="hero-trust-item">{item}</span>
