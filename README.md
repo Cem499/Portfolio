@@ -74,6 +74,9 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 - React wird erst nach `load` und dem ersten Paint geladen (Performance). Eingaben ins Kontaktformular
   vor diesem Zeitpunkt bleiben erhalten; ein früher Klick auf „Senden“ zeigt kurz „Einen Moment bitte …“,
   lädt React sofort und sendet danach automatisch (bei gültigen Feldern nach dem Turnstile-Token, max. 8 s).
+- Die Buttons der Paketkarten unter „Leistungen“ verlinken `#contact-<paket>` (IDs und Preise in
+  `src/data/packages.js`). Das Kontaktformular liest den Hash und füllt Betreff und Nachricht für das
+  Paket vor (Texte `contactForm.prefill` in `src/i18n`), auch wenn der Klick vor dem Laden von React fällt.
 
 ## Projekt-Konfigurator
 

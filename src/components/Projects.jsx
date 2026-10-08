@@ -1,16 +1,23 @@
 import ProcessTimeline from './ProcessTimeline.jsx'
 import { plans } from '../data/maintenance.js'
 import { maintenancePath } from '../data/navigation.js'
+import { contactAnchor, partnerPackage, websitePackages } from '../data/packages.js'
+import { chf } from '../data/pricing.js'
 import useReveal, { revealClass } from '../hooks/useReveal.js'
 
-// Package name and price markup (language independent, same on / and /en/).
-const PACKAGES = [
-  { name: 'Basic', price: '990', priceText: 'Ab CHF 990' },
-  { name: 'Growth', price: '1690', priceText: "Ab CHF 1'690", featured: true },
-  { name: 'Pro', price: '2490', priceText: "Ab CHF 2'490" },
-]
+const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, key) => values[key])
 
-function PaketCard({ position, pkg, texts }) {
+// "Growth anfragen": jumps to the contact form, which prefills subject and message for the
+// package. ContactForm reads the #contact-<id> hash, so a click before hydration works too.
+function RequestButton({ pkg, label }) {
+  return (
+    <a href={`#${contactAnchor(pkg.id)}`} className="paket-cta">
+      {fill(label, { name: pkg.name })}
+    </a>
+  )
+}
+
+function PaketCard({ position, pkg, texts, requestLabel }) {
   return (
     <div className={pkg.featured ? 'paket-card featured' : 'paket-card'} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
       <meta itemProp="position" content={String(position)} />
@@ -26,18 +33,19 @@ function PaketCard({ position, pkg, texts }) {
           ))}
         </ul>
         <div className="paket-price">
-          <strong itemProp="price" content={pkg.price}><span itemProp="priceCurrency" content="CHF">{pkg.priceText}</span></strong>
+          <strong itemProp="price" content={String(pkg.price)}><span itemProp="priceCurrency" content="CHF">Ab CHF {chf(pkg.price)}</span></strong>
           {' '}
           <span>{texts.priceNote}</span>
         </div>
       </div>
+      <RequestButton pkg={pkg} label={requestLabel} />
     </div>
   )
 }
 
 // The care tiers come from src/data/maintenance.js (prices) and shared.care (names, summaries),
 // the same source as /wartung/.
-function PartnerCard({ texts, care }) {
+function PartnerCard({ pkg, texts, care, requestLabel }) {
   return (
     <div className="paket-card" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
       <meta itemProp="position" content="4" />
@@ -55,11 +63,12 @@ function PartnerCard({ texts, care }) {
           ))}
         </ul>
         <div className="paket-price">
-          <strong>Ab CHF {plans[0].monthly} / <span>{texts.month}</span></strong>
+          <strong>Ab CHF {pkg.monthly} / <span>{texts.month}</span></strong>
           {' '}
           <span>{texts.priceNote}</span>
         </div>
       </div>
+      <RequestButton pkg={pkg} label={requestLabel} />
     </div>
   )
 }
@@ -89,10 +98,10 @@ export default function Projects({ t, care, lang }) {
 
         <div ref={gridRef} className={revealClass('pakete-grid reveal reveal-delay-1', gridVisible)} itemScope itemType="https://schema.org/ItemList">
           <meta itemProp="name" content="Sin Digital Webdesign-Pakete, Digitalagentur Zürich" />
-          {PACKAGES.map((pkg, i) => (
-            <PaketCard key={pkg.name} position={i + 1} pkg={pkg} texts={p.packages[i]} />
+          {websitePackages.map((pkg, i) => (
+            <PaketCard key={pkg.id} position={i + 1} pkg={pkg} texts={p.packages[i]} requestLabel={p.request} />
           ))}
-          <PartnerCard texts={p.packages[3]} care={care} />
+          <PartnerCard pkg={partnerPackage} texts={p.packages[3]} care={care} requestLabel={p.request} />
         </div>
 
         <ProcessTimeline t={p.process} careHref={maintenancePath(lang)} />

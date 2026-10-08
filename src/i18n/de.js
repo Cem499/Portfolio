@@ -31,7 +31,12 @@ export const shared = {
     "privacyBefore": "Ich habe die ",
     "privacyLink": "Datenschutzerklärung",
     "privacyAfter": " gelesen und bin damit einverstanden. *",
-    "submit": "Nachricht senden"
+    "submit": "Nachricht senden",
+    "prefill": {
+      "subject": "Anfrage Paket {name}",
+      "message": "Guten Tag\nIch interessiere mich für das Paket {name} (ab CHF {price}).\nKurz zu meinem Vorhaben:\n",
+      "partnerMessage": "Guten Tag\nIch interessiere mich für das Partner-Paket, Hosting und Wartung ab CHF {price} pro Monat.\nKurz zu meiner Website:\n"
+    }
   },
   "care": {
     "plans": {
@@ -180,6 +185,7 @@ export const home = {
         }
       ]
     },
+    "request": "{name} anfragen",
     "cta": {
       "title": "Bereit für Ihre neue Unternehmenswebsite?",
       "text": "In einem unverbindlichen Gespräch zeigt Sin Digital Ihnen konkret, was für Ihr Unternehmen möglich ist. Kein Verkaufsgespräch, sondern ein ehrlicher Austausch darüber, ob und wie wir zusammenarbeiten können.",

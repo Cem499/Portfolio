@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { packageFromHash } from '../data/packages.js'
+import { chf } from '../data/pricing.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import Turnstile from './Turnstile.jsx'
 
@@ -27,6 +29,18 @@ function fieldError(values) {
 
 let emailjsReady = false
 
+// The package buttons on the start page link to #contact-<id>: subject and message are
+// prefilled for that package (texts.prefill), name and email stay as typed.
+function prefillFor(f, pkg) {
+  if (!pkg || !f.prefill) return null
+  const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, key) => values[key])
+  const values = { name: pkg.name, price: chf(pkg.monthly ?? pkg.price) }
+  return {
+    subject: fill(f.prefill.subject, values),
+    message: fill(pkg.monthly ? f.prefill.partnerMessage : f.prefill.message, values),
+  }
+}
+
 // `texts` are the form labels (i18n home.contact.form). `configuration` is the summary the
 // project configurator hands over; it goes into its own template field and stays empty for
 // normal contact requests.
@@ -40,6 +54,18 @@ export default function ContactForm({ texts: f, configuration = '' }) {
   const hideTimersRef = useRef([])
 
   useEffect(() => () => hideTimersRef.current.forEach(clearTimeout), [])
+
+  // Applied after hydration and on every hash change, so a package button clicked before
+  // React was ready lands as well (the hash is already in the URL by then).
+  useEffect(() => {
+    const apply = () => {
+      const prefill = prefillFor(f, packageFromHash(window.location.hash))
+      if (prefill) setValues((v) => ({ ...v, ...prefill }))
+    }
+    apply()
+    window.addEventListener('hashchange', apply)
+    return () => window.removeEventListener('hashchange', apply)
+  }, [f])
 
   // A submit from before hydration: field errors show right away, a valid form waits for the Turnstile token.
   const { release } = usePendingSubmit(formRef, {

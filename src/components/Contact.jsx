@@ -1,3 +1,4 @@
+import { contactAnchor, packages } from '../data/packages.js'
 import useReveal, { revealClass } from '../hooks/useReveal.js'
 import ContactForm from './ContactForm.jsx'
 import Footer from './Footer.jsx'
@@ -12,6 +13,11 @@ export default function Contact({ t, shared, lang }) {
 
   return (
     <section id="contact" className="section contact" aria-label="Kontakt, Projekt anfragen bei Sin Digital" aria-labelledby="contact-heading">
+      {/* Targets of the package buttons (#contact-<id>), same scroll position as #contact; the
+          form reads the hash and prefills subject and message. */}
+      {packages.map((pkg) => (
+        <span key={pkg.id} id={contactAnchor(pkg.id)} className="contact-anchor" aria-hidden="true"></span>
+      ))}
       <div className="rotating-circle" aria-hidden="true"></div>
 
       <div className="container">

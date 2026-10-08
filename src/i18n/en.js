@@ -31,7 +31,12 @@ export const shared = {
     "privacyBefore": "I have read and agree to the ",
     "privacyLink": "Privacy Policy",
     "privacyAfter": ". *",
-    "submit": "Send message"
+    "submit": "Send message",
+    "prefill": {
+      "subject": "Enquiry: {name} package",
+      "message": "Hello\nI am interested in the {name} package (from CHF {price}).\nA few words about my project:\n",
+      "partnerMessage": "Hello\nI am interested in the Partner package, hosting and care from CHF {price} per month.\nA few words about my website:\n"
+    }
   },
   "care": {
     "plans": {
@@ -180,6 +185,7 @@ export const home = {
         }
       ]
     },
+    "request": "Request {name}",
     "cta": {
       "title": "Ready for your new business website?",
       "text": "In a no-obligation conversation, Sin Digital will show you exactly what's possible for your business. No sales pitch, just an honest exchange about whether and how we could work together.",

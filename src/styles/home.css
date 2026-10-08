@@ -197,3 +197,44 @@
     transition: none;
   }
 }
+
+/* "Growth anfragen" buttons of the package cards, and the invisible targets of their
+   #contact-<id> links at the top of the contact section (ContactForm prefills from the hash). */
+/* The card is a flex column: price gets a gap below, the button sits at the bottom edge. */
+.paket-card .paket-price {
+  margin-bottom: 1.25rem;
+}
+
+.paket-cta {
+  display: block;
+  margin-top: auto;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  background: var(--green);
+  color: #010101;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.paket-cta:hover {
+  background: #d4ff99;
+  transform: translateY(-1px);
+}
+
+.paket-cta:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 2px;
+}
+
+.contact-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}

@@ -911,6 +911,62 @@ test('Startseite: Partner-Stufen kommen aus maintenance.js', async () => {
   await s.close()
 })
 
+const contactValues = (page) =>
+  page.evaluate(() => ({
+    subject: document.getElementById('contact-subject').value,
+    message: document.getElementById('contact-message').value,
+    hash: location.hash,
+    y: window.scrollY,
+  }))
+
+test('Startseite: Paket-Buttons springen zum Formular und füllen Betreff und Nachricht vor', async () => {
+  const s = await open()
+  await goto(s.page, '/')
+  const buttons = await s.page.evaluate(() => [...document.querySelectorAll('.paket-cta')].map((a) => `${a.textContent}→${a.getAttribute('href')}`).join('|'))
+  expect(buttons === 'Basic anfragen→#contact-basic|Growth anfragen→#contact-growth|Pro anfragen→#contact-pro|Partner anfragen→#contact-partner', buttons)
+  await s.page.click('.paket-cta[href="#contact-growth"]')
+  await s.page.waitForTimeout(200)
+  let r = await contactValues(s.page)
+  expect(r.subject === 'Anfrage Paket Growth' && r.message.includes("Paket Growth (ab CHF 1'690)") && r.hash === '#contact-growth' && r.y > 0, JSON.stringify(r))
+  await s.page.click('.paket-cta[href="#contact-partner"]')
+  await s.page.waitForTimeout(200)
+  r = await contactValues(s.page)
+  expect(r.subject === 'Anfrage Paket Partner' && r.message.includes('ab CHF 39 pro Monat'), JSON.stringify(r))
+  await s.close()
+})
+
+test('Startseite: Paket-Button vor der Hydration, Formular füllt sich nach dem Laden von React', async () => {
+  const s = await open({ holdBundle: true })
+  await s.page.goto(base + '/')
+  await s.page.click('.paket-cta[href="#contact-pro"]')
+  await s.page.waitForTimeout(200)
+  let r = await contactValues(s.page)
+  expect(r.hash === '#contact-pro' && r.subject === '' && r.y > 0, JSON.stringify(r))
+  s.releaseBundle()
+  await s.page.waitForFunction(() => document.getElementById('contact-subject').value !== '')
+  r = await contactValues(s.page)
+  expect(r.subject === 'Anfrage Paket Pro' && r.message.includes("Paket Pro (ab CHF 2'490)"), JSON.stringify(r))
+  await s.close()
+})
+
+test('Startseite EN: Paket-Button füllt englisch vor, Anfrage schickt den Betreff mit', async () => {
+  const s = await open({ turnstile: { token: 'tok' } })
+  const sent = mockEmailJs(s.page)
+  await goto(s.page, '/en/')
+  await s.page.click('.paket-cta[href="#contact-growth"]')
+  await s.page.waitForTimeout(200)
+  const r = await contactValues(s.page)
+  expect(r.subject === 'Enquiry: Growth package' && r.message.includes("Growth package (from CHF 1'690)"), JSON.stringify(r))
+  await s.page.fill('#contact-name', 'Max')
+  await s.page.fill('#contact-email', 'max@example.ch')
+  await s.page.check('#privacy-consent')
+  await s.page.click('#contactForm button[type="submit"]')
+  await s.page.waitForFunction(() => document.getElementById('form-status').style.display === 'block')
+  const p = sent.payload?.template_params
+  expect(p && p.subject === 'Enquiry: Growth package' && p.message.startsWith('Hello') && p.configuration === '', JSON.stringify(p))
+  await s.close()
+})
+
 test('Startseite: Prozess-Timeline mit 6 Schritten, Link zur Wartung, HowTo-Schema, kein Badge', async () => {
   for (const [path, care] of [['/', '/wartung/'], ['/en/', '/en/maintenance/']]) {
     const s = await open()
