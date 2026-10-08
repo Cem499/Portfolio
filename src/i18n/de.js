@@ -289,7 +289,8 @@ export const konfigurator = {
     },
     "timing": {
       "title": "Wunschtermin",
-      "question": "Wann soll es losgehen?"
+      "question": "Wann soll es losgehen?",
+      "hint": "Ohne Einfluss auf den Richtpreis. Kurzfristige Starts klären wir im Angebot."
     },
     "request": {
       "title": "Anfrage",
@@ -368,9 +369,27 @@ export const konfigurator = {
     "one": "zusätzliche Sprache",
     "many": "zusätzliche Sprachen"
   },
+  "timings": {
+    "asap": {
+      "name": "So schnell wie möglich",
+      "desc": "Start in den nächsten Wochen. Ob das klappt, klären wir im Angebot."
+    },
+    "soon": {
+      "name": "In den nächsten 1 bis 3 Monaten",
+      "desc": "Der übliche Weg: Kennenlernen, Konzept, Start."
+    },
+    "flexible": {
+      "name": "Flexibel",
+      "desc": "Kein fester Termin, wir planen gemeinsam."
+    },
+    "date": {
+      "name": "Individueller Termin",
+      "desc": "Sie nennen ein Datum, wir planen darauf hin."
+    }
+  },
   "start": {
-    "label": "Wunschtermin (optional)",
-    "hint": "Hat keinen Einfluss auf den Richtpreis. Kurzfristige Starts klären wir im Angebot."
+    "label": "Wunschdatum",
+    "hint": "Frühestens heute, als Richtwert für die Planung."
   },
   "dateLocale": "de-CH",
   "summary": {
@@ -402,7 +421,7 @@ export const konfigurator = {
     "features": "Funktionen",
     "none": "keine",
     "timing": "Wunschtermin",
-    "startOpen": "offen",
+    "startOpen": "Individueller Termin, Datum offen",
     "price": "Richtpreis",
     "weeks": "Zeitrahmen"
   }

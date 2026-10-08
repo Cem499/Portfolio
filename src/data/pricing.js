@@ -2,8 +2,8 @@
 // in weeks. Labels and descriptions live in src/i18n (konfigurator.*), keyed by the ids here.
 // Edit the numbers below; estimate() does the maths.
 //
-// The desired start date is asked for in the configurator but has no effect on the price:
-// short-notice starts are settled in the offer, so there is no surcharge here.
+// The desired start (step 4) is asked for but has no effect on the price: short-notice starts
+// are settled in the offer, so there is no surcharge here. `date` reveals a date field.
 
 export const siteTypes = [
   { id: 'landingpage', price: { min: 990, max: 1490 }, includedPages: 1, weeks: { min: 1, max: 2 } },
@@ -35,8 +35,11 @@ export const features = [
 // Choices for the number of additional languages (only shown with "multilingual").
 export const LANGUAGE_COUNTS = ['1', '2', '3', '4']
 
+// Desired start, labels in i18n (konfigurator.timings). No price effect, see above.
+export const timings = [{ id: 'asap' }, { id: 'soon' }, { id: 'flexible' }, { id: 'date' }]
+
 // `languages` and `start` are strings because they come from form fields (valuesFromDom).
-export const DEFAULTS = { siteType: 'business', pages: 'upTo5', features: [], languages: '1', start: '' }
+export const DEFAULTS = { siteType: 'business', pages: 'upTo5', features: [], languages: '1', timing: 'soon', start: '' }
 
 export function tiersFor(siteTypeId) {
   const type = siteTypes.find((t) => t.id === siteTypeId)

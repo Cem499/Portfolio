@@ -545,9 +545,14 @@ test('Konfigurator: Preis und Wochen rechnen live, Sprachen zählen pro Sprache,
   expect(meta.includes(`${expected.weeks.min} – ${expected.weeks.max} Wochen`), meta)
   await k.next()
   const priceBefore = await k.prices()
-  await s.page.fill('#konfig-start', '2027-03-15')
+  expect(!(await s.page.$('#konfig-start')), 'Datumsfeld schon vor „Individueller Termin“ sichtbar')
+  await k.tile('asap')
   await s.page.waitForTimeout(100)
   expect((await k.prices()) === priceBefore, 'Wunschtermin ändert den Preis')
+  await k.tile('date')
+  await s.page.fill('#konfig-start', '2027-03-15')
+  await s.page.waitForTimeout(100)
+  expect((await k.prices()) === priceBefore, 'Wunschdatum ändert den Preis')
   await k.next()
   expect((await k.step()) === 5, 'Schritt ' + (await k.step()))
   const config = await s.page.evaluate(() => document.querySelector('.konfig-config').textContent)
@@ -576,7 +581,7 @@ test('Konfigurator: Anfrage schickt die Konfiguration mit', async () => {
   const p = sent.payload?.template_params
   const defaults = estimate()
   expect(
-    p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes('Wunschtermin: offen') &&
+    p && p.configuration.includes('Seitentyp: Firmenwebsite') && p.configuration.includes('Wunschtermin: In den nächsten 1 bis 3 Monaten') &&
       p.configuration.includes(`Richtpreis: CHF ${chf(defaults.price.min)} – ${chf(defaults.price.max)}`) && p.message === 'Eine genügend lange Nachricht',
     JSON.stringify(p),
   )

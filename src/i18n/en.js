@@ -262,14 +262,14 @@ export const home = {
 export const konfigurator = {
   "meta": {
     "title": "Project Configurator: What Does Your Website Cost? | Sin Digital",
-    "description": "Choose site type, scope, features and start date and instantly see a price range in CHF with a time frame. No obligation, two minutes, no sign-up.",
+    "description": "Choose site type, scope, features and preferred start and instantly see a price range in CHF with a time frame. No obligation, two minutes, no sign-up.",
     "ogTitle": "What does your website cost? Project configurator | Sin Digital"
   },
   "breadcrumb": "Configurator",
   "label": "Project configurator",
   "title1": "WHAT DOES",
   "title2": "YOUR SITE COST?",
-  "intro": "Four decisions, one honest range. Pick site type, scope, features and start date, and the guide price and time frame update live. At the end, your configuration goes straight to us as an enquiry.",
+  "intro": "Four decisions, one honest range. Pick site type, scope, features and preferred start, and the guide price and time frame update live. At the end, your configuration goes straight to us as an enquiry.",
   "stepWord": "Step",
   "ofWord": "of",
   "steps": {
@@ -288,8 +288,9 @@ export const konfigurator = {
       "hint": "Pick as many as you like, all optional."
     },
     "timing": {
-      "title": "Start date",
-      "question": "When do you want to start?"
+      "title": "Start",
+      "question": "When do you want to start?",
+      "hint": "No effect on the guide price. Short-notice starts are settled in the offer."
     },
     "request": {
       "title": "Enquiry",
@@ -368,9 +369,27 @@ export const konfigurator = {
     "one": "additional language",
     "many": "additional languages"
   },
+  "timings": {
+    "asap": {
+      "name": "As soon as possible",
+      "desc": "Start in the next few weeks. Whether that works, we settle in the offer."
+    },
+    "soon": {
+      "name": "Within the next 1 to 3 months",
+      "desc": "The usual way: get to know each other, concept, start."
+    },
+    "flexible": {
+      "name": "Flexible",
+      "desc": "No fixed date, we plan it together."
+    },
+    "date": {
+      "name": "Individual date",
+      "desc": "You name a date, we plan towards it."
+    }
+  },
   "start": {
-    "label": "Preferred start date (optional)",
-    "hint": "Does not change the guide price. Short-notice starts are settled in the offer."
+    "label": "Preferred date",
+    "hint": "Today at the earliest, as a guide value for planning."
   },
   "dateLocale": "en-GB",
   "summary": {
@@ -401,7 +420,8 @@ export const konfigurator = {
     "scope": "Scope",
     "features": "Features",
     "none": "none",
-    "timing": "Start date",
+    "timing": "Start",
+    "startOpen": "Individual date, still open",
     "price": "Guide price",
     "weeks": "Time frame"
   }

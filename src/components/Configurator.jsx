@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { DEFAULTS, LANGUAGE_COUNTS, chf, estimate, features as featureList, siteTypes, tiersFor } from '../data/pricing.js'
+import { DEFAULTS, LANGUAGE_COUNTS, chf, estimate, features as featureList, siteTypes, tiersFor, timings } from '../data/pricing.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import AnimatedNumber from './AnimatedNumber.jsx'
 import ContactForm from './ContactForm.jsx'
@@ -33,9 +33,11 @@ function featuresText(t, state) {
   return names.join(', ') || t.configuration.none
 }
 
-// "15. Januar 2027", or "offen" without a date. Parsed as a local date (no time zone shift).
-function startText(t, value) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '')
+// "So schnell wie möglich", or for an individual date "15. Januar 2027" ("Datum offen" while
+// empty). The date is parsed as a local date (no time zone shift).
+function timingText(t, state) {
+  if (state.timing !== 'date') return (t.timings[state.timing] || t.timings[DEFAULTS.timing]).name
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(state.start || '')
   if (!match) return t.configuration.startOpen
   const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]))
   return new Intl.DateTimeFormat(t.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' }).format(date)
@@ -47,7 +49,7 @@ function configurationText(t, state, est) {
     [t.configuration.type, t.siteTypes[state.siteType].name],
     [t.configuration.scope, t.pageTiers[state.pages].name],
     [t.configuration.features, featuresText(t, state)],
-    [t.configuration.timing, startText(t, state.start)],
+    [t.configuration.timing, timingText(t, state)],
     [t.configuration.price, est.onRequest ? `${t.summary.from} CHF ${chf(est.priceFrom)}, ${t.summary.onRequest}` : range(est)],
     [t.configuration.weeks, est.onRequest ? t.summary.weeksOnRequest : weeksText(t, est.weeks.min, est.weeks.max)],
   ]
@@ -71,7 +73,7 @@ function Tile({ type, name, value, checked, onChange, title, desc, price, note }
   )
 }
 
-// Four choices (site type, scope, features, desired start date) with a live price range, then the
+// Four choices (site type, scope, features, desired start) with a live price range, then the
 // contact form with the configuration attached. Step 1 is prerendered; choices made before
 // React is ready stay (valuesFromDom) and a "Weiter" pressed early is picked up (usePendingSubmit).
 export default function Configurator({ t, formTexts }) {
@@ -81,7 +83,7 @@ export default function Configurator({ t, formTexts }) {
   const [fromDom] = useState(() => valuesFromDom('configurator', DEFAULTS))
   const [state, setState] = useState(DEFAULTS)
   const [step, setStep] = useState(1)
-  // Earliest selectable start date; set after hydration so the prerendered HTML stays stable.
+  // Earliest selectable date for "individual start"; set after hydration (stable prerender).
   const [today, setToday] = useState('')
   const formRef = useRef(null)
   const stepRefs = useRef([])
@@ -243,21 +245,38 @@ export default function Configurator({ t, formTexts }) {
 
         <fieldset ref={stepRef(3)} className="konfig-step" hidden={step !== 4} tabIndex={-1}>
           {legend(3, 'timing')}
-          <div className="konfig-field">
-            <label htmlFor="konfig-start">{t.start.label}</label>
-            <input
-              id="konfig-start"
-              type="date"
-              name="start"
-              value={state.start}
-              min={today || undefined}
-              aria-describedby="konfig-start-hint"
-              onChange={(e) => setState((s) => ({ ...s, start: e.target.value }))}
-            />
-            <span id="konfig-start-hint" className="konfig-field-hint">
-              {t.start.hint}
-            </span>
+          <p className="konfig-hint">{t.steps.timing.hint}</p>
+          <div className="konfig-tiles" data-count={timings.length}>
+            {timings.map((timing) => (
+              <Tile
+                key={timing.id}
+                type="radio"
+                name="timing"
+                value={timing.id}
+                checked={state.timing === timing.id}
+                onChange={() => setState((s) => ({ ...s, timing: timing.id }))}
+                title={t.timings[timing.id].name}
+                desc={t.timings[timing.id].desc}
+              />
+            ))}
           </div>
+          {state.timing === 'date' && (
+            <div className="konfig-field">
+              <label htmlFor="konfig-start">{t.start.label}</label>
+              <input
+                id="konfig-start"
+                type="date"
+                name="start"
+                value={state.start}
+                min={today || undefined}
+                aria-describedby="konfig-start-hint"
+                onChange={(e) => setState((s) => ({ ...s, start: e.target.value }))}
+              />
+              <span id="konfig-start-hint" className="konfig-field-hint">
+                {t.start.hint}
+              </span>
+            </div>
+          )}
         </fieldset>
 
         {step <= LAST_CHOICE && (
@@ -333,7 +352,7 @@ export default function Configurator({ t, formTexts }) {
             </li>
             <li>
               <span>{t.configuration.timing}</span>
-              <strong>{startText(t, state.start)}</strong>
+              <strong>{timingText(t, state)}</strong>
             </li>
           </ul>
           <ul className="konfig-notes">

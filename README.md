@@ -84,8 +84,9 @@ Die Zusammenfassung geht als EmailJS-Feld `configuration` mit (Template `templat
 
 - **Preise anpassen:** `src/data/pricing.js`. Je Seitentyp Spanne, enthaltene Seiten und Wochen;
   Staffeln für zusätzliche Seiten; Funktionen mit Aufpreis und Zusatzwochen (`perLanguage`: pro
-  zusätzlicher Sprache, Anzahl in `LANGUAGE_COUNTS`). Der Wunschtermin ist ein Datumsfeld ohne
-  Preiswirkung, einen Express-Zuschlag gibt es nicht (kurzfristige Starts regelt das Angebot).
+  zusätzlicher Sprache, Anzahl in `LANGUAGE_COUNTS`). Der Wunschtermin (`timings`: so schnell wie
+  möglich, 1 bis 3 Monate, flexibel, individuelles Datum) hat keine Preiswirkung, einen
+  Express-Zuschlag gibt es nicht (kurzfristige Starts regelt das Angebot).
   `estimate()` rechnet daraus, `tiersFor()` bestimmt, welche Staffeln ein Seitentyp anbietet.
   Der Typ `custom` und die Staffel `over20` haben keine Spanne („ab … CHF, Preis nach Gespräch“).
 - **Texte:** `konfigurator` in `src/i18n/de.js` und `en.js` (Namen und Beschreibungen sind nach den
