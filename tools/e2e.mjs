@@ -617,6 +617,23 @@ test('Konfigurator: Tastatur (Pfeiltasten wählen, Enter geht weiter, Leertaste 
   await s.close()
 })
 
+test('Konfigurator: Hinweis in Schritt 2 verlinkt die Firmenwebsite, Preis mit schmalen Leerzeichen', async () => {
+  const s = await open()
+  await goto(s.page, '/konfigurator/')
+  const k = konfig(s.page)
+  await k.tile('landingpage')
+  await k.next()
+  const hint = await s.page.evaluate(() => document.querySelector('.konfig-step:not([hidden]) .konfig-hint')?.textContent)
+  expect(hint === 'Mehr als eine Seite? Dann passt die Firmenwebsite.', hint)
+  await s.page.click('.konfig-hint .konfig-link')
+  await s.page.waitForTimeout(150)
+  const type = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  expect((await k.step()) === 1 && type === 'business', `Schritt ${await k.step()}, Typ ${type}`)
+  const dash = await s.page.evaluate(() => document.querySelector('.konfig-dash').textContent)
+  expect(dash === '\u2009–\u2009', JSON.stringify(dash))
+  await s.close()
+})
+
 test('Konfigurator: reduced motion ohne Zähler-Animation', async () => {
   const s = await open({ reducedMotion: 'reduce' })
   await goto(s.page, '/konfigurator/')

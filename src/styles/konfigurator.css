@@ -20,7 +20,12 @@
   margin-bottom: 0;
 }
 
+/* Spacing tokens of the configurator (the site has no global spacing scale): `gap` between
+   the tiles and from the tiles to a hint or field below them, `block` between heading and
+   options and between options and the Back/Next buttons. */
 .konfig {
+  --konfig-gap: 1.25rem;
+  --konfig-block: 1.5rem;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 2rem;
@@ -109,7 +114,7 @@
 .konfig-legend {
   display: block;
   padding: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--konfig-block);
 }
 
 .konfig-step-label {
@@ -131,23 +136,53 @@
   color: var(--white);
 }
 
+/* Secondary text like the footnotes of the summary (.konfig-notes). Under the question it
+   is pulled up a little, below the tiles it keeps the tile gap. */
 .konfig-hint {
-  margin: -0.5rem 0 1.25rem;
+  margin: -0.5rem 0 var(--konfig-gap);
   color: var(--gray);
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.78rem;
+  line-height: 1.6;
 }
 
-/* Single fields: number of additional languages (step 3) and desired start date (step 4). */
+.konfig-tiles + .konfig-hint {
+  margin-top: var(--konfig-gap);
+}
+
+/* Last block of a step carries no bottom margin, so the Back/Next buttons keep the same
+   distance in every step. */
+.konfig-step > :last-child {
+  margin-bottom: 0;
+}
+
+/* Inline link inside a hint ("Firmenwebsite" jumps back to step 1). */
+.konfig-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--green);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+.konfig-link:hover {
+  color: var(--white);
+}
+
+.konfig-link:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Single fields below the tiles: additional languages (step 3), individual date (step 4). */
 .konfig-field {
   display: grid;
   gap: 0.45rem;
   max-width: 22rem;
-  margin-top: 1.25rem;
-}
-
-.konfig-step > .konfig-field:first-of-type {
-  margin-top: 0;
+  margin-top: var(--konfig-gap);
 }
 
 .konfig-field label {
@@ -180,14 +215,14 @@
 
 .konfig-field-hint {
   color: var(--gray);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   line-height: 1.6;
 }
 
 .konfig-tiles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 0.85rem;
+  gap: var(--konfig-gap);
 }
 
 /* Four tiles sit as 2 × 2 instead of 3 + 1. */
@@ -284,7 +319,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: var(--konfig-block);
 }
 
 .konfig-next {
@@ -381,8 +416,14 @@
   vertical-align: 0.35em;
 }
 
+/* "990 – 1'490": thin spaces around the dash come from the markup; the dash gets the same
+   1em box as the rolling digits and is nudged onto their vertical centre. */
 .konfig-dash {
-  margin: 0 0.15em;
+  display: inline-block;
+  height: 1em;
+  line-height: 1;
+  vertical-align: top;
+  transform: translateY(-0.1em);
   color: var(--gray-dim);
 }
 

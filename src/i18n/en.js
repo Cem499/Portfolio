@@ -286,7 +286,7 @@ export const konfigurator = {
     "scope": {
       "title": "Scope",
       "question": "How many pages do you need?",
-      "singleHint": "More than one page? Then the business website is the right fit."
+      "singleHint": "More than one page? Then the {business} is the right fit."
     },
     "features": {
       "title": "Features",

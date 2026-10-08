@@ -286,7 +286,7 @@ export const konfigurator = {
     "scope": {
       "title": "Umfang",
       "question": "Wie viele Seiten braucht es?",
-      "singleHint": "Mehr als eine Seite? Dann passt die Firmenwebsite."
+      "singleHint": "Mehr als eine Seite? Dann passt die {business}."
     },
     "features": {
       "title": "Funktionen",

@@ -56,6 +56,21 @@ function configurationText(t, state, est) {
   return lines.map(([label, value]) => `${label}: ${value}`).join('\n')
 }
 
+// "Mehr als eine Seite? Dann passt die {business}." with the site type name as a button.
+function hintWithLink(text, label, onClick) {
+  const [before, after] = text.split('{business}')
+  if (after === undefined) return text
+  return (
+    <>
+      {before}
+      <button type="button" className="konfig-link" onClick={onClick}>
+        {label}
+      </button>
+      {after}
+    </>
+  )
+}
+
 function Tile({ type, name, value, checked, onChange, title, desc, price, note }) {
   return (
     <label className={checked ? 'konfig-tile is-selected' : 'konfig-tile'}>
@@ -202,7 +217,14 @@ export default function Configurator({ t, formTexts }) {
               />
             ))}
           </div>
-          {tiers.length === 1 && <p className="konfig-hint">{t.steps.scope.singleHint}</p>}
+          {tiers.length === 1 && (
+            <p className="konfig-hint">
+              {hintWithLink(t.steps.scope.singleHint, t.siteTypes.business.name, () => {
+                selectType('business')
+                goTo(1)
+              })}
+            </p>
+          )}
         </fieldset>
 
         <fieldset ref={stepRef(2)} className="konfig-step" hidden={step !== 3} tabIndex={-1}>
@@ -326,7 +348,7 @@ export default function Configurator({ t, formTexts }) {
             ) : (
               <span className="konfig-amount">
                 <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.price.min} />
-                <span className="konfig-dash">–</span>
+                <span className="konfig-dash">{'\u2009–\u2009'}</span>
                 <AnimatedNumber value={est.price.max} />
               </span>
             )}
