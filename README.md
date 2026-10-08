@@ -20,8 +20,10 @@ npm run preview      # dist/ lokal ausliefern
 ```
 
 Hinweis zum Dev-Server: Der `?lang=en`-Redirect, das Inline-Laden des kritischen CSS und das verzögerte
-Laden des JavaScripts passieren erst im Build (`vite.config.js`, `postProcess`). Für die Abnahme immer
-`npm run build && npm run preview` verwenden.
+Laden des JavaScripts passieren erst im Build (`vite.config.js`, `postProcess`). Im Dev-Modus verlinkt
+`postProcess` die Stylesheets der jeweiligen Seite im `<head>` (vite-react-ssg tut das nur für `.ts/.tsx`),
+damit auch dort nichts ungestylt aufblitzt; Seiten mit `js: false` behalten im Dev-Modus den React-Client
+und sind erst im Build ohne JavaScript. Für die Abnahme immer `npm run build && npm run preview` verwenden.
 
 ## Tests
 

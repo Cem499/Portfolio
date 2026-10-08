@@ -7,7 +7,8 @@ import { shared as deShared } from './src/i18n/de.js'
 import { shared as enShared } from './src/i18n/en.js'
 
 // Pages marked `js: false` in src/data/pages.js are prerendered and shipped as plain
-// HTML + CSS (no React bundle, no hydration).
+// HTML + CSS (no React bundle, no hydration). Only in the build: the dev server has no
+// stylesheet links, Vite delivers a page's CSS through the client, so dev keeps it.
 const STATIC_ROUTES = new Set(staticRoutes())
 
 const HOME_ROUTES = new Set(['/', '/en/'])
@@ -53,12 +54,30 @@ function hydrateAfterPaint(src, hint) {
 // Inline <style> of / and /en/: the original critical CSS plus the rules for the
 // language links and the start page additions (process timeline, hero line), kept inline
 // so the home page still loads a single stylesheet.
+const INLINE_HOME_CSS = ['critical.css', 'lang-switch.css', 'home.css']
 function readInlineHomeCss() {
-  const read = (file) => fs.readFileSync(path.resolve('src/styles', file), 'utf8')
-  return `${read('critical.css')}\n${read('lang-switch.css')}\n${read('home.css')}`
+  return INLINE_HOME_CSS.map((file) => fs.readFileSync(path.resolve('src/styles', file), 'utf8')).join('\n')
 }
 
-function postProcess(route, html) {
+// Dev server only. vite-react-ssg links a route's CSS in the dev HTML only for .ts/.tsx
+// modules, so these .jsx pages would paint unstyled until the client injects the CSS (and a
+// #hash would scroll on the unstyled layout). Find the page module behind the matched route
+// (its lazy() source names it) and link the stylesheets it imports, in import order like the
+// build. Vite serves /src/styles/*.css as plain CSS for <link> requests.
+function devStylesheets(pathname, routes = []) {
+  const route = routes.find((r) => r.path && new RegExp(`^${r.path.replace(/\/$/, '/?').replace(/:[^/]+/g, '[^/]+')}$`).test(pathname))
+  const page = route && /pages\/(\w+)\.jsx/.exec(String(route.lazy))?.[1]
+  if (!page) return ''
+  const source = fs.readFileSync(path.resolve('src/pages', `${page}.jsx`), 'utf8')
+  const files = [...source.matchAll(/'\.\.\/styles\/([\w-]+\.css)'/g)].map((m) => m[1])
+  const inlined = HOME_ROUTES.has(pathname) ? INLINE_HOME_CSS : []
+  return files
+    .filter((file) => !inlined.includes(file))
+    .map((file) => `<link rel="stylesheet" href="/src/styles/${file}">`)
+    .join('')
+}
+
+function postProcess(route, html, { dev = false, routes } = {}) {
   // Helmet tags are inserted right after <head>; move charset/viewport (and the
   // redirect) back to the very top like in the original pages.
   const top = []
@@ -94,12 +113,16 @@ function postProcess(route, html) {
     html = html.replace(/<link rel="stylesheet" href="(\/static\/(?!global-)[^"]+\.css)">/g, (_, href) => `<style>${fs.readFileSync(path.join(OUT_DIR, href), 'utf8')}</style>`)
   }
 
+  if (dev) html = html.replace('</head>', `${devStylesheets(route, routes)}</head>`)
+
   // Critical inline style of the home page, after the stylesheet links (same cascade order as before).
   if (HOME_ROUTES.has(route)) {
     html = html.replace('</head>', `<style>\n${readInlineHomeCss()}\n</style></head>`)
   }
 
-  if (!STATIC_ROUTES.has(route)) {
+  const noJs = STATIC_ROUTES.has(route) && !dev
+
+  if (!noJs) {
     // The prerendered HTML is complete; the React bundle only adds interactivity (hydration).
     // Start it once the page has loaded and painted, so loading and hydrating React never
     // delays the first render (the original site also started its carousel on "load").
@@ -110,7 +133,7 @@ function postProcess(route, html) {
       .replace('</head>', `<script>${hydrateAfterPaint(entry[1], sharedTexts[langOf(route)].pendingSubmitHint)}</script></head>`)
   }
 
-  if (STATIC_ROUTES.has(route)) {
+  if (noJs) {
     html = html
       .replace(/<script type="module"[^>]*><\/script>\s*/g, '')
       .replace(/<link rel="modulepreload"[^>]*>\s*/g, '')
@@ -173,7 +196,7 @@ function finish(outDir) {
   fs.rmSync(path.join(out, '.vite'), { recursive: true, force: true })
 }
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
   build: {
     // public/assets holds the original images, keep Vite's hashed files apart.
@@ -185,7 +208,8 @@ export default defineConfig({
   ssgOptions: {
     dirStyle: 'flat',
     beastiesOptions: false,
-    onPageRendered: postProcess,
+    // In dev the route is the request URL (may carry a query string) and appCtx has the routes.
+    onPageRendered: (route, html, appCtx) => postProcess(route.split('?')[0], html, { dev: command === 'serve', routes: appCtx?.routes }),
     onFinished: finish,
   },
-})
+}))
