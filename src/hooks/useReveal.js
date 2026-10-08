@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Same observer options as the original script.js (decided once per element on mount).
+// Observer options, decided once per element on mount. A block is revealed as soon as it peeks
+// into the viewport (the original script.js wanted 12 % on desktop: after "Leistungen" in the
+// nav the tall package grid showed only ~7 %, so the packages stayed invisible until the next
+// scroll). Desktop keeps the 40 px margin below the fold, mobile reveals a little early.
 function defaultOptions() {
   return window.innerWidth <= 768
     ? { threshold: 0.01, rootMargin: '0px 0px 50px 0px' }
-    : { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    : { threshold: 0.01, rootMargin: '0px 0px -40px 0px' }
 }
 
 // Adds the "visible" class once the element scrolls into view, then stops observing.

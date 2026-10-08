@@ -238,3 +238,10 @@
   width: 0;
   height: 0;
 }
+
+/* Hash links from other pages ("/#projects", "#contact-growth") jump natively: land below the
+   fixed nav, like the smooth scroll on the page itself (useSmoothScroll). */
+.section,
+.contact-anchor {
+  scroll-margin-top: var(--nav-h);
+}
