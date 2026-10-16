@@ -11,6 +11,7 @@ import SiteHeader from '../components/SiteHeader.jsx'
 import Team from '../components/Team.jsx'
 import { configuratorPath } from '../data/navigation.js'
 import schema from '../data/schema/home.js'
+import { fill, siteValues } from '../data/siteValues.js'
 import useSmoothScroll from '../hooks/useSmoothScroll.js'
 import { home as deHome, shared as deShared } from '../i18n/de.js'
 import { home as enHome, shared as enShared } from '../i18n/en.js'
@@ -28,10 +29,11 @@ const SITE = 'https://www.sin-digital.com'
 const PATHS = { de: '/', en: '/en/' }
 const URLS = { de: `${SITE}${PATHS.de}`, en: `${SITE}${PATHS.en}` }
 
-function HomeHead({ t, lang }) {
+function HomeHead({ t, lang, values }) {
   const url = URLS[lang]
   const locale = lang === 'en' ? 'en_US' : 'de_CH'
   const altLocales = lang === 'en' ? ['de_CH', 'en_CH'] : ['en_US', 'en_CH']
+  const m = Object.fromEntries(Object.entries(t.meta).map(([key, text]) => [key, fill(text, values)]))
 
   return (
     <Seo
@@ -39,9 +41,9 @@ function HomeHead({ t, lang }) {
       bodyAttributes={{ itemscope: '', itemtype: 'https://schema.org/WebPage' }}
       jsonLd={schema}
     >
-      <title>{t.meta.title}</title>
-      <meta name="description" content={t.meta.description} />
-      <meta name="keywords" content="Digitalagentur Zürich, Digital Agentur Zürich, digitale Agentur Zürich, Webagentur Zürich, Webdesign Zürich, Webentwicklung Zürich, Website Zürich, günstige Website Zürich, professionelle Website Zürich, KMU Website Zürich, Firmenwebsite Zürich, Website erstellen Zürich, Website erstellen lassen Zürich, website Zurich, affordable website Zurich, digital agency Zurich, web agency Zurich, web design Zurich, web development Zurich, professional website Zurich, business website Zurich, Sin Digital, Cem Sin" />
+      <title>{m.title}</title>
+      <meta name="description" content={m.description} />
+      <meta name="keywords" content="Digitalagentur Zürich, Digital Agentur Zürich, digitale Agentur Zürich, Webagentur Zürich, Webdesign Zürich, Webentwicklung Zürich, SEO Agentur Zürich, Website erstellen lassen Zürich, Website Zürich, Firmenwebsite Zürich, Landingpage Zürich, Onepager Zürich, KMU Website Zürich, Webdesigner Zürich, Webentwickler Zürich" />
       <meta name="author" content="Sin Digital, Digitalagentur Zürich" />
       <meta name="language" content="de-CH, en" />
       <meta name="geo.region" content="CH-ZH" />
@@ -60,8 +62,8 @@ function HomeHead({ t, lang }) {
       <link id="alt-x" rel="alternate" hrefLang="x-default" href={URLS.de} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
-      <meta property="og:title" content={t.meta.ogTitle} />
-      <meta property="og:description" content={t.meta.ogDescription} />
+      <meta property="og:title" content={m.ogTitle} />
+      <meta property="og:description" content={m.ogDescription} />
       <meta property="og:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
@@ -70,11 +72,11 @@ function HomeHead({ t, lang }) {
       <meta property="og:locale" content={locale} />
       <meta property="og:locale:alternate" content={altLocales[0]} />
       <meta property="og:locale:alternate" content={altLocales[1]} />
-      <meta property="og:updated_time" content="2026-03-13T00:00:00+01:00" />
+      <meta property="og:updated_time" content="2026-10-08T00:00:00+02:00" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@sindigital" />
-      <meta name="twitter:title" content={t.meta.twitterTitle} />
-      <meta name="twitter:description" content={t.meta.twitterDescription} />
+      <meta name="twitter:title" content={m.twitterTitle} />
+      <meta name="twitter:description" content={m.twitterDescription} />
       <meta name="twitter:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
       <link rel="icon" type="image/webp" href="/assets/ICON-Logo_Sin-Digital.webp" />
       <link rel="apple-touch-icon" href="/assets/ICON-Logo_Sin-Digital.webp" />
@@ -93,23 +95,24 @@ function HomeHead({ t, lang }) {
 export default function Home({ lang }) {
   const t = lang === 'en' ? enHome : deHome
   const shared = lang === 'en' ? enShared : deShared
+  const values = siteValues(lang)
 
   useSmoothScroll()
 
   return (
     <>
-      <HomeHead t={t} lang={lang} />
+      <HomeHead t={t} lang={lang} values={values} />
 
       <SiteHeader lang={lang} shared={shared} paths={PATHS} isHome />
 
       <main id="main-content" role="main" itemScope itemType="https://schema.org/WebPageElement">
         <Breadcrumb homeUrl={URLS[lang]} />
-        <Hero t={t} ctaHref={configuratorPath(lang)} />
+        <Hero t={t} ctaHref={configuratorPath(lang)} values={values} />
         <LocalSeo t={t} />
         <Team t={t} />
         <Clients t={t} lang={lang} />
-        <Projects t={t} care={shared.care} lang={lang} />
-        <Faq t={t} />
+        <Projects t={t} shared={shared} values={values} lang={lang} />
+        <Faq t={t} values={values} />
         <Reviews t={t} />
         <Contact t={t} shared={shared} lang={lang} />
       </main>

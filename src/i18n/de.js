@@ -1,5 +1,5 @@
 // Texte (Deutsch). `shared` gilt für alle Seiten, die anderen Exporte je für eine Seite.
-// Startseiten-Texte 1:1 aus den data-de-Attributen von Portfolio/index.html übernommen.
+// Zahlen in {Platzhaltern} kommen aus src/data (siteValues.js), die Texte tragen keine Preise.
 
 export const shared = {
   "skipLink": "Zum Inhalt springen",
@@ -20,6 +20,7 @@ export const shared = {
     "websiteCheck": "Website-Check"
   },
   "pendingSubmitHint": "Einen Moment bitte, das Formular wird vorbereitet …",
+  "vatNote": "Alle Preise in CHF. Sin Digital ist nicht mehrwertsteuerpflichtig.",
   "contactForm": {
     "nameLabel": "Name *",
     "emailLabel": "E-Mail *",
@@ -33,25 +34,36 @@ export const shared = {
     "privacyAfter": " gelesen und bin damit einverstanden. *",
     "submit": "Nachricht senden",
     "prefill": {
-      "subject": "Anfrage Paket {name}",
-      "message": "Guten Tag\nIch interessiere mich für das Paket {name} (ab CHF {price}).\nKurz zu meinem Vorhaben:\n",
-      "partnerMessage": "Guten Tag\nIch interessiere mich für das Partner-Paket, Hosting und Wartung ab CHF {price} pro Monat.\nKurz zu meiner Website:\n"
+      "individuell": {
+        "subject": "Individuelles Projekt besprechen",
+        "message": "Guten Tag\nIch möchte ein individuelles Projekt besprechen: mehr als {maxPages} Seiten oder eigene Funktionen.\nKurz zu meinem Vorhaben:\n"
+      }
     }
+  },
+  "packages": {
+    "landingpage": { "name": "Landingpage" },
+    "onepager": { "name": "Onepager" },
+    "firmenwebsite": { "name": "Firmenwebsite" },
+    "individuell": { "name": "Individuell / Plattform" }
   },
   "care": {
     "plans": {
       "basis": {
         "name": "Basis",
-        "summary": "Hosting, Sicherheitsupdates, wöchentliche Backups, kleine Änderungen bis 15 Min./Monat, Support in max. 3 Werktagen."
+        "summary": "Hosting, Sicherheit, Updates, Überwachung der Erreichbarkeit, wöchentliche Backups. Antwort innerhalb von 3 Werktagen."
       },
       "business": {
         "name": "Business",
-        "summary": "Alles aus Basis plus tägliche Backups, Performance-Überwachung, kleine Änderungen bis 30 Min./Monat und Support in max. 2 Werktagen."
+        "summary": "Dazu tägliche Backups, 30 Minuten Änderungen pro Monat, Antwort innerhalb von 2 Werktagen, Bericht pro Quartal."
       },
       "premium": {
         "name": "Premium",
-        "summary": "Alles aus Business plus bis zu 1 Std. Änderungen/Monat, erweitertes Monitoring und priorisierter Support in max. 1 Werktag."
+        "summary": "Dazu Überwachung der Ladezeit, 60 Minuten Änderungen pro Monat, Antwort innerhalb von 1 Werktag, monatlicher Bericht."
       }
+    },
+    "badges": {
+      "recommended": "Meine Empfehlung",
+      "limited": "Plätze begrenzt"
     }
   }
 }
@@ -59,28 +71,30 @@ export const shared = {
 export const home = {
   "meta": {
     "title": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. ✓ Fertig in 2 Wochen ✓ Hosting und Wartung optional ab CHF 39 / Monat ✓ Jetzt kostenlos anfragen!",
+    "description": "Sin Digital, Webdesign und Webentwicklung in Zürich. Websites für KMU zum Fixpreis ab CHF {from}: Landingpage in {landingpageWeeks} Wochen, Firmenwebsite in {firmenwebsiteWeeks} Wochen. {months} Monate Wartung inklusive, danach ab CHF {care} / Monat.",
     "ogTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
-    "ogDescription": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelle Websites ab CHF 990. ✓ Fertig in 2 Wochen ✓ SEO inklusive. Webagentur für KMU, Startups & Firmen.",
+    "ogDescription": "Websites für KMU in Zürich zum Fixpreis ab CHF {from}. Eigener Code, die Website gehört Ihnen, {months} Monate Wartung inklusive.",
     "twitterTitle": "Digitalagentur Zürich | Webdesign & Webentwicklung | Sin Digital",
-    "twitterDescription": "Sin Digital, Digitalagentur & Webagentur Zürich. Professionelle Websites ab CHF 990. Fertig in 2 Wochen. Jetzt anfragen!"
+    "twitterDescription": "Sin Digital, Webdesign und Webentwicklung in Zürich. Websites zum Fixpreis ab CHF {from}, Landingpage in {landingpageWeeks} Wochen."
   },
   "hero": {
     "label": "Sin Digital, Digitalagentur & Webagentur Zürich",
-    "cta": "Projekt starten",
-    "text": "Ihre Digital Agentur Zürich für Webdesign, Webentwicklung & SEO, mit modernem Design, schneller Ladezeit und mobilem Layout. Fertig in 2 Wochen.",
+    "title1": "WEBSITES",
+    "title2": "ZUM FIXPREIS.",
+    "cta": "Preis berechnen",
+    "text": "Websites für KMU in Zürich, mit eigenem Code und zum Fixpreis. Landingpage in {landingpageWeeks} Wochen, Firmenwebsite in {firmenwebsiteWeeks} Wochen, gerechnet ab vollständigen Inhalten. Sie sprechen direkt mit der Person, die baut.",
     "trust": [
-      "✓ Ab CHF 990",
-      "✓ Fertig in 2 Wochen",
-      "✓ SEO inklusive",
-      "✓ Hosting und Wartung optional ab CHF 39 / Monat"
+      "✓ Ab CHF {from}, Fixpreis",
+      "✓ Landingpage in {landingpageWeeks} Wochen",
+      "✓ Website und Code gehören Ihnen",
+      "✓ {months} Monate Wartung inklusive, danach ab CHF {care} / Monat"
     ]
   },
   "localSeo": {
     "title1": "WEBDESIGN ZÜRICH",
     "title2": "DIGITALE AGENTUR",
-    "desc1": "Sin Digital erstellt professionelle und günstige Websites in Zürich für KMU, Startups und lokale Unternehmen. Als Webagentur Zürich kombinieren wir Webdesign, Webentwicklung und SEO, damit Ihre Website gefunden wird und Anfragen bringt.",
-    "desc2": "Sie möchten eine Website in Zürich erstellen lassen? Wir begleiten Sie von der Strategie bis zum Livegang, klar, effizient und persönlich.",
+    "desc1": "Sin Digital erstellt professionelle Websites in Zürich für KMU, Startups und lokale Unternehmen, zum Fixpreis. Webdesign, Webentwicklung und SEO aus einer Hand, damit Ihre Website gefunden wird und Anfragen bringt.",
+    "desc2": "Sie möchten eine Website in Zürich erstellen lassen? Von der ersten Idee bis zur Veröffentlichung, klar, effizient und persönlich.",
     "links": [
       "Website Zürich",
       "Günstige Website Zürich",
@@ -94,7 +108,7 @@ export const home = {
   "team": {
     "title1": "DER KOPF",
     "title2": "DAHINTER",
-    "desc": "Sin Digital wird geführt von einer Vision: digitale Erlebnisse für Unternehmen in Zürich zu schaffen, die Grenzen überschreiten und echten Mehrwert liefern.",
+    "desc": "Sin Digital ist eine Ein-Personen-Agentur in Zürich: Konzept, Design und Code aus einer Hand, mit klaren Preisen und direktem Kontakt.",
     "role": "Gründer, Sin Digital, Digitalagentur Zürich",
     "bio": "Als Gründer der Digitalagentur Sin Digital verbinde ich strategisches Denken mit technischer Präzision. Mein Ziel: Unternehmen in Zürich mit professionellem Webdesign und Webentwicklung digital sichtbar zu machen, ehrlich, effizient und persönlich."
   },
@@ -102,92 +116,81 @@ export const home = {
     "label": "Unsere Kunden"
   },
   "projects": {
-    "label": "Was wir tun",
-    "title1": "UNSERE",
-    "title2": "LEISTUNGEN",
-    "intro": "Sin Digital entwickelt professionelle Websites für Unternehmen jeder Branche, von KMU und Startups bis hin zu etablierten Firmen in Zürich und der ganzen Schweiz. Unsere Lösungen helfen Ihnen, online sichtbar zu werden, neue Kunden zu gewinnen und einen professionellen Auftritt zu schaffen, der Vertrauen erzeugt. Wählen Sie das Paket, das zu Ihrer aktuellen Situation passt.",
-    "packages": [
-      {
-        "label": "Paket 01",
-        "positioning": "Für Unternehmen, die erstmals online sichtbar werden möchten. Ein sauberer, professioneller Auftritt, ohne Schnickschnack, dafür mit Substanz.",
-        "features": [
-          "Professionelle Website mit bis zu 5 Seiten",
-          "Mobile-optimiert für alle Geräte",
-          "Kontaktformular & Standortkarte",
-          "Suchmaschinenoptimierung (SEO)",
-          "Einbindung in Google Maps"
-        ],
-        "priceNote": "Einmalig, inkl. Einrichtung"
+    "label": "Leistungen & Preise",
+    "title1": "KLEIN MIT",
+    "title2": "ABSICHT.",
+    "intro": "Sie sprechen mit der Person, die Ihre Website baut.",
+    "person": {
+      "name": "Cem Sin",
+      "role": "Konzept, Design und Code",
+      "photoAlt": "Cem Sin, Gründer von Sin Digital"
+    },
+    "packageLabel": "Paket {n}",
+    "idealFor": "Ideal für",
+    "scope": "Umfang",
+    "fixedPrice": "Fixpreis",
+    "priceNote": "{weeks} Wochen · {months} Monate Wartung {carePlan} inklusive",
+    "calculate": "{name} berechnen",
+    "packages": {
+      "landingpage": {
+        "claim": "Eine Seite, ein Ziel: Anfragen, Anmeldungen oder Buchungen.",
+        "idealFor": "Anlässe, Kampagnen, Neugründungen, ein einzelnes Angebot.",
+        "scope": ["Bis {sections} Abschnitte", "Ein klarer Hauptbutton", "Formular"]
       },
-      {
-        "badge": "Meistgewählt",
-        "label": "Paket 02",
-        "positioning": "Für Unternehmen, die online wachsen und mehr Kunden gewinnen möchten. Mit erweiterten Funktionen rund um die Uhr sichtbar.",
-        "features": [
-          "Alles aus Basic",
-          "Google Analytics & Tracking",
-          "Erweitertes SEO & lokale Sichtbarkeit",
-          "DSGVO-konformer Cookie-Banner",
-          "Terminbuchung möglich inkl. Dashboard",
-          "Automatische Kundendaten-Backups"
-        ],
-        "priceNote": "Einmalig, inkl. Einrichtung"
+      "onepager": {
+        "claim": "Ihr ganzes Angebot auf einer Seite, zum Durchscrollen.",
+        "idealFor": "Handwerksbetriebe, Coiffeure, Vereine, Selbständige.",
+        "scope": ["Bis {sections} Abschnitte", "Menü springt zu jedem Abschnitt", "Formular, Karte"]
       },
-      {
-        "label": "Paket 03",
-        "positioning": "Für ambitionierte Unternehmen, die ihren digitalen Auftritt als Wettbewerbsvorteil nutzen wollen. Alles, was Sie für einen überzeugenden ersten Eindruck brauchen.",
-        "features": [
-          "Alles aus Growth",
-          "Individuelle Designentwicklung & Farbwelt",
-          "Individuelle Animationen & Interaktionen",
-          "Mehrsprachige Website",
-          "DSGVO-konformer Cookie-Banner",
-          "WhatsApp Chat Integration"
-        ],
-        "priceNote": "Einmalig, inkl. Einrichtung"
-      },
-      {
-        "label": "Paket 04",
-        "positioning": "Für Unternehmen, die langfristig von Sin Digital betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen, Sie konzentrieren sich auf Ihr Geschäft.",
-        "month": "Monat",
-        "priceNote": "Laufende Betreuung durch Sin Digital"
+      "firmenwebsite": {
+        "claim": "Mehrere Seiten für Betriebe mit mehreren Leistungen.",
+        "idealFor": "KMU mit mehreren Angeboten, Startups mit Erklärungsbedarf.",
+        "scope": ["Bis {pages} Seiten", "Eigene Seite pro Leistung", "Formular, Karte"]
       }
-    ],
+    },
+    "launchLine": "Startrabatt: CHF {launchPrice} für eines der nächsten {totalSlots} Projekte. Noch {remainingSlots} Plätze, bis {endDate}.",
+    "individual": {
+      "text": "Mehr als {maxPages} Seiten oder eigene Funktionen? Individuelle Projekte ab CHF {individuell}.",
+      "button": "Projekt besprechen"
+    },
+    "always": {
+      "title": "Immer dabei",
+      "items": [
+        "Eigener Code, kein Baukasten.",
+        "Website, Code und Domain gehören nach Bezahlung Ihnen.",
+        "Für Handy, Tablet und Computer gebaut.",
+        "Sauber für Google aufgebaut: Titel, Beschreibungen, schnelle Ladezeit.",
+        "{rounds} Korrekturrunden und {bugfixDays} Tage Fehlerbehebung nach der Veröffentlichung.",
+        "{months} Monate Wartung inklusive, danach freiwillig ab CHF {care} / Monat."
+      ],
+      "careLink": "Zu den Wartungspaketen"
+    },
     "process": {
-      "label": "So arbeiten wir bei Sin Digital",
-      "title1": "SO LÄUFT DIE",
-      "title2": "ZUSAMMENARBEIT AB",
+      "label": "So läuft es ab",
+      "title1": "VIER SCHRITTE",
+      "title2": "ZUR WEBSITE",
       "steps": [
         {
           "name": "Erstgespräch",
-          "desc": "Wir lernen Ihr Unternehmen kennen, Ihre Zielgruppe, Ihre Dienstleistungen und was Ihnen wichtig ist. Kein Technikgespräch, sondern ein ehrliches Kennenlernen."
+          "desc": "Sie erzählen, was Sie brauchen."
         },
         {
-          "name": "Angebot",
-          "desc": "Sie erhalten ein schriftliches Angebot mit Umfang, Preis und Zeitplan. Erst wenn alles für Sie stimmt, starten wir."
+          "name": "Angebot mit Fixpreis",
+          "desc": "Sie wissen genau, was Sie bekommen und was es kostet."
         },
         {
-          "name": "Konzeption",
-          "desc": "Wir entwickeln Struktur, Design und Inhalte gemeinsam mit Ihnen. Sie sehen frühzeitig, wie Ihre Website aussehen wird, und geben Feedback, bevor die Umsetzung startet."
+          "name": "Entwurf und Bau",
+          "desc": "Sie sehen zuerst den Entwurf, {rounds} Korrekturrunden sind dabei."
         },
         {
-          "name": "Umsetzung",
-          "desc": "Wir bauen Ihre Website sauber und zuverlässig. Sie werden regelmässig informiert, ohne dass Sie sich um technische Details kümmern müssen."
-        },
-        {
-          "name": "Livegang",
-          "desc": "Wir testen alles auf Smartphone, Tablet und Desktop, richten Domain und Hosting ein und schalten Ihre Website live. Danach erklären wir Ihnen alles Wichtige."
-        },
-        {
-          "name": "Betreuung",
-          "desc": "Nach dem Start sind wir nicht weg. Hosting, Updates, Backups und kleine Anpassungen übernehmen wir auf Wunsch laufend.",
-          "link": "Zu den Wartungsplänen"
+          "name": "Veröffentlichung",
+          "desc": "Nach der Schlusszahlung geht die Seite online, {months} Monate Wartung sind inklusive.",
+          "link": "Zu den Wartungspaketen"
         }
       ]
     },
-    "request": "{name} anfragen",
     "cta": {
-      "title": "Bereit für Ihre neue Unternehmenswebsite?",
+      "title": "Bereit für Ihre neue Website?",
       "text": "In einem unverbindlichen Gespräch zeigt Sin Digital Ihnen konkret, was für Ihr Unternehmen möglich ist. Kein Verkaufsgespräch, sondern ein ehrlicher Austausch darüber, ob und wie wir zusammenarbeiten können.",
       "button": "Gespräch mit Sin Digital vereinbaren"
     }
@@ -196,37 +199,53 @@ export const home = {
     "label": "FAQ",
     "title1": "HÄUFIGE",
     "title2": "FRAGEN",
-    "intro": "Alles, was Sie über Sin Digital als Digitalagentur und Webagentur in Zürich wissen möchten.",
+    "intro": "Die häufigsten Fragen zu Preisen, Ablauf und Zusammenarbeit.",
     "items": [
       {
         "id": 1,
-        "question": "Welche Services bietet Sin Digital an?",
-        "answer": "Sin Digital kümmert sich um alles, vom ersten Design über die Entwicklung bis hin zur Veröffentlichung. Und wer möchte, kann seine Website auch direkt bei Sin Digital hosten. Kurz gesagt: Wir zeigen es Ihnen, wir bauen es, wir bringen es online."
+        "question": "Warum nicht einfach Wix oder Jimdo?",
+        "answer": "Ein Baukasten reicht, wenn Sie Zeit haben und alles selbst machen möchten. Dort zahlen Sie die Plattform jeden Monat und bleiben an sie gebunden. Bei mir zahlen Sie die Website einmal, danach nur Domain und Hosting, die Wartung nach Wahl."
       },
       {
         "id": 2,
-        "question": "Wie lange dauert ein Webdesign-Projekt bei Sin Digital?",
-        "answer": "Grundsätzlich starten wir innerhalb von 2 Wochen, je nach Umfang und Wunsch kann die Gesamtdauer natürlich individuell variieren. Sin Digital nimmt sich die Zeit, die Ihr Projekt wirklich verdient."
+        "question": "Landingpage oder Onepager, was ist der Unterschied?",
+        "answer": "Eine Landingpage hat ein einziges Ziel, zum Beispiel Anmeldungen für einen Anlass. Ein Onepager zeigt Ihr ganzes Angebot auf einer Seite. Brauchen Ihre Leistungen eigene Seiten, passt die Firmenwebsite."
+      },
+      {
+        "id": 3,
+        "question": "Wer schreibt die Texte?",
+        "answer": "Sie kennen Ihr Geschäft am besten, darum liefern Sie die Inhalte. Ich sage Ihnen genau, welche Texte und Bilder ich brauche. Fehlt Ihnen die Zeit, schreibe ich die Texte gegen Aufpreis."
+      },
+      {
+        "id": 4,
+        "question": "Wie lange dauert es?",
+        "answer": "Eine Landingpage {landingpageWeeks} Wochen, ein Onepager {onepagerWeeks} Wochen, eine Firmenwebsite {firmenwebsiteWeeks} Wochen. Die Zeit läuft ab dem Tag, an dem alle Inhalte da sind. Eilt es, gibt es Express."
+      },
+      {
+        "id": 5,
+        "question": "Ist das nicht teurer als ein Freelancer?",
+        "answer": "Mein Preis liegt zwischen Freelancern mit Baukasten und Agenturen. Dafür erhalten Sie einen Fixpreis, eigenen Code und eine Website, die Ihnen gehört. Sie sprechen dabei immer direkt mit mir."
       },
       {
         "id": 6,
-        "question": "Bietet Sin Digital auch SEO für Unternehmen in Zürich an?",
-        "answer": "Ja, jede Website von Sin Digital wird von Grund auf suchmaschinenoptimiert. Das umfasst technisches SEO, lokale Optimierung für Google Maps und Google Business, schnelle Ladezeiten, mobile Optimierung und strukturierte Daten. So wird Ihr Unternehmen in Zürich besser gefunden."
+        "launchOnly": true,
+        "question": "Warum gibt es einen Startrabatt?",
+        "answer": "Sin Digital ist jung, und ich baue mein Portfolio aus. Die nächsten {totalSlots} Projekte erhalten darum {launchPercent} % auf den Paketpreis, dafür darf ich sie als Referenz zeigen. Danach gilt der Normalpreis."
       },
       {
         "id": 7,
-        "question": "Kann ich über meine Website Online-Anfragen und Buchungen erhalten?",
-        "answer": "Absolut. Ab dem Growth-Paket erhalten Sie erweiterte Kontaktmöglichkeiten, Formulare und auf Wunsch ein Buchungssystem mit automatischen E-Mail-Bestätigungen. So können Ihre Kunden rund um die Uhr mit Ihnen in Kontakt treten, ganz ohne Telefonanruf."
+        "question": "Was kostet es, wenn die Website online ist?",
+        "answer": "Die ersten {months} Monate Wartung sind dabei. Danach ist sie freiwillig und kostet ab CHF {care} pro Monat. Die Domain steht separat im Angebot."
       },
       {
         "id": 8,
-        "question": "Ist die Website auch für Smartphones optimiert?",
-        "answer": "Selbstverständlich. Alle Websites von Sin Digital werden Mobile-First entwickelt. Das bedeutet: Ihre Website sieht auf Smartphones, Tablets und Desktops perfekt aus und lädt blitzschnell. Google bevorzugt mobile-optimierte Websites im Ranking, ein entscheidender Vorteil für Ihr Unternehmen."
+        "question": "Was, wenn ich später wechseln will?",
+        "answer": "Website, Code und Domain gehören Ihnen. Bei einem Wechsel erhalten Sie alle Dateien und Zugänge. Eine laufende Wartung kündigen Sie mit {noticeDays} Tagen Frist auf Monatsende, frühestens nach {minMonths} Monaten."
       },
       {
         "id": 9,
-        "question": "Warum sollte ich eine Digitalagentur aus Zürich wählen?",
-        "answer": "Eine Digitalagentur in Zürich wie Sin Digital kennt den lokalen Markt, versteht Schweizer Unternehmen und kann persönliche Beratungsgespräche vor Ort führen. Wir kombinieren lokales Marktverständnis mit internationaler Expertise in Webdesign, SEO und Webentwicklung, damit Ihr Unternehmen online und lokal besser gefunden wird."
+        "question": "Sie arbeiten allein. Was, wenn Sie ausfallen?",
+        "answer": "Website, Code und Domain gehören Ihnen, darum hängt nichts an mir allein. Der Code ist in gängigen Webtechniken geschrieben, andere Fachleute können ihn weiterführen."
       }
     ]
   },
@@ -256,8 +275,8 @@ export const home = {
     "googleButton": "Mehr auf Google lesen"
   },
   "contact": {
-    "subtitle": "Bereit für Ihr nächstes Projekt? Sin Digital, Ihre Digitalagentur & Webagentur in Zürich, freut sich auf Ihre Anfrage. Lassen Sie uns gemeinsam etwas Ausserordentliches schaffen.",
-    "details": "Ob Sie eine neue Website für Ihr Unternehmen benötigen, ein bestehendes Design modernisieren möchten oder eine massgeschneiderte Lösung suchen, schreiben Sie uns. Wir antworten in der Regel innerhalb von 24 Stunden und erstellen Ihnen ein unverbindliches Angebot.",
+    "subtitle": "Bereit für Ihr nächstes Projekt? Schreiben Sie, was Sie vorhaben. Sie erhalten eine Antwort und ein Angebot mit Fixpreis.",
+    "details": "Ob neue Website, Überarbeitung des bestehenden Auftritts oder ein individuelles Projekt: Schreiben Sie uns. Wir antworten in der Regel innerhalb von 24 Stunden mit einer ersten Einschätzung.",
     "locationLabel": "Sin Digital, Standort Zürich",
     "phoneLabel": "Telefon",
     "emailLabel": "E-Mail",
@@ -267,113 +286,135 @@ export const home = {
 
 export const konfigurator = {
   "meta": {
-    "title": "Projekt-Konfigurator: Was kostet Ihre Website? | Sin Digital",
-    "description": "Seitentyp, Umfang, Funktionen und Wunschtermin wählen und sofort eine Preisspanne in CHF mit Zeitrahmen sehen. Unverbindlich, in zwei Minuten, ohne Anmeldung.",
-    "ogTitle": "Was kostet Ihre Website? Projekt-Konfigurator | Sin Digital"
+    "title": "Projekt-Konfigurator: Ihr Fixpreis in zwei Minuten | Sin Digital",
+    "description": "Paket wählen, Zusätze dazu, Fixpreis sehen: Landingpage CHF {landingpage}, Onepager CHF {onepager}, Firmenwebsite CHF {firmenwebsite}. Mit Dauer, Express und Startrabatt. Unverbindlich, ohne Anmeldung.",
+    "ogTitle": "Was kostet Ihre Website? Fixpreis-Konfigurator | Sin Digital"
   },
   "breadcrumb": "Konfigurator",
   "label": "Projekt-Konfigurator",
-  "title1": "WAS KOSTET",
-  "title2": "IHRE WEBSITE?",
-  "intro": "Vier Entscheidungen, eine ehrliche Spanne. Wählen Sie Seitentyp, Umfang, Funktionen und Wunschtermin, Richtpreis und Zeitrahmen rechnen live mit. Am Ende geht die Konfiguration direkt als Anfrage an uns.",
+  "title1": "ERST DER PLAN,",
+  "title2": "DANN DER BAU.",
+  "intro": "Sie kennen den Preis, bevor ich die erste Zeile schreibe. Wählen Sie Paket und Zusätze, Fixpreis und Dauer rechnen live mit. Am Ende geht Ihre Auswahl als Anfrage an mich.",
   "stepWord": "Schritt",
   "ofWord": "von",
   "steps": {
-    "type": {
-      "title": "Seitentyp",
+    "package": {
+      "title": "Paket",
       "question": "Was soll entstehen?"
     },
-    "scope": {
-      "title": "Umfang",
-      "question": "Wie viele Seiten braucht es?",
-      "singleHint": "Mehr als eine Seite? Dann passt die {business}."
+    "addons": {
+      "title": "Zusätze",
+      "question": "Was kommt dazu?",
+      "hint": "Alles optional, alles Fixpreise. Die Dauer verlängert sich entsprechend."
     },
-    "features": {
-      "title": "Funktionen",
-      "question": "Was soll die Website können?",
-      "hint": "Mehrfachauswahl, alles optional."
-    },
-    "timing": {
-      "title": "Wunschtermin",
-      "question": "Wann soll es losgehen?",
-      "hint": "Ohne Einfluss auf den Richtpreis. Kurzfristige Starts klären wir im Angebot."
+    "terms": {
+      "title": "Rabatt & Termin",
+      "question": "Rabatt und Wunschtermin",
+      "hint": "Rabatte gelten nie auf Wartung oder Konzeptgespräch. Der Wunschtermin hat keinen Einfluss auf den Preis."
     },
     "request": {
       "title": "Anfrage",
       "question": "Fast geschafft."
     }
   },
-  "siteTypes": {
+  "packages": {
     "landingpage": {
-      "name": "Landingpage",
-      "desc": "Eine Seite mit einem Ziel: Kampagne, Aktion oder Angebot, gebaut für Anfragen."
+      "desc": "Eine Seite, ein Ziel. Bis {sections} Abschnitte, ein klarer Hauptbutton, Formular.",
+      "meta": "{weeks} Wochen · {months} Monate Wartung {carePlan} inklusive"
     },
     "onepager": {
-      "name": "Onepager",
-      "desc": "Ihr Unternehmen auf einer Seite zum Durchscrollen: Leistungen, Team, Kontakt."
+      "desc": "Ihr ganzes Angebot auf einer Seite. Bis {sections} Abschnitte, Menü, Formular, Karte.",
+      "meta": "{weeks} Wochen · {months} Monate Wartung {carePlan} inklusive"
     },
-    "business": {
-      "name": "Firmenwebsite",
-      "desc": "Mehrere Unterseiten für Leistungen, Referenzen und Team, mit Platz zum Wachsen."
+    "firmenwebsite": {
+      "desc": "Mehrere Seiten für mehrere Leistungen. Bis {pages} Seiten im Preis, eigene Seite pro Leistung, Formular, Karte.",
+      "meta": "{weeks} Wochen · {months} Monate Wartung {carePlan} inklusive"
     },
-    "custom": {
-      "name": "Individuell / Plattform",
-      "desc": "Web-App, Portal oder Buchungsplattform mit eigener Logik. Preis nach Gespräch."
+    "individuell": {
+      "desc": "Mehr als {maxPages} Seiten oder eigene Funktionen. Fixpreis nach einem Konzeptgespräch: {conceptHours} Stunden, CHF {conceptPrice}, wird bei Auftrag angerechnet.",
+      "meta": "Dauer nach Gespräch"
     }
   },
-  "pageTiers": {
-    "single": {
-      "name": "1 Seite",
-      "note": "im Paket enthalten"
-    },
-    "upTo5": {
-      "name": "Bis 5 Seiten",
-      "note": "im Paket enthalten"
-    },
-    "upTo10": {
-      "name": "6 bis 10 Seiten",
-      "note": ""
-    },
-    "upTo20": {
-      "name": "11 bis 20 Seiten",
-      "note": ""
-    },
-    "over20": {
-      "name": "Mehr als 20 Seiten",
-      "note": "Preis nach Gespräch"
-    }
+  "badge": "Meine Empfehlung",
+  "fixedPrice": "Fixpreis",
+  "pages": {
+    "label": "Seiten total",
+    "hint": "{included} Seiten sind im Paket, jede weitere kostet CHF {extraPage}. Ab 6 Seiten +1 Woche, ab 11 Seiten +2 Wochen.",
+    "tooMany": "Mehr als {maxPages} Seiten? Dann passt {individuell}.",
+    "onlyFirm": "Zusätzliche Seiten gibt es bei der {firmenwebsite}."
   },
-  "features": {
-    "multilingual": {
-      "name": "Mehrsprachig",
-      "desc": "Pro zusätzliche Sprache, mit eigenen URLs und sauber für Google."
-    },
+  "languages": {
+    "label": "Weitere Sprachen",
+    "hint": "Je Sprache +{languagePercent} % auf Paket und Zusatzseiten, +{languageWeeks} Woche. Die Übersetzung liefern Sie.",
+    "none": "keine",
+    "one": "1 Sprache",
+    "many": "{n} Sprachen"
+  },
+  "addons": {
     "shop": {
-      "name": "Shop",
-      "desc": "Produkte, Warenkorb und Bezahlung, direkt auf der Website."
+      "name": "Shop Start",
+      "desc": "Bis {shopProducts} Produkte, Zahlung über einen etablierten Anbieter.",
+      "hint": "Grössere Shops sind ein individuelles Projekt."
     },
     "booking": {
-      "name": "Online-Buchung",
-      "desc": "Termine oder Reservationen rund um die Uhr, ohne Anruf."
+      "name": "Buchungstool einbinden",
+      "desc": "Ihr bestehendes Buchungstool wird in die Website eingebunden.",
+      "hint": "Ein eigenes Buchungssystem ist ein individuelles Projekt."
     },
     "cms": {
       "name": "CMS",
-      "desc": "Texte und Bilder selbst pflegen, ohne Entwickler."
+      "desc": "Texte und Bilder selbst pflegen, inklusive {cmsMinutes} Minuten Einführung."
     },
     "seo": {
-      "name": "SEO-Paket",
-      "desc": "Keyword-Recherche, lokale Optimierung und Google Business."
+      "name": "SEO-Paket lokal",
+      "desc": "{seoKeywords} Suchbegriffe, Optimierung, Anmeldung bei Google, Google-Unternehmensprofil."
+    },
+    "logo": {
+      "name": "Logo",
+      "desc": "{logoDrafts} Entwürfe, {logoRevisions} Überarbeitung."
     },
     "branding": {
-      "name": "Logo / Branding",
-      "desc": "Logo, Farben und Schrift, die zur neuen Website passen."
+      "name": "Logo und Branding",
+      "desc": "Logo, Farben, Schriften, kleine Vorlage."
+    },
+    "texts": {
+      "name": "Texte schreiben",
+      "desc": "Ich schreibe die Texte für alle Seiten, Sie liefern die Fakten. Plus CHF {textsPerPage} pro Zusatzseite."
+    },
+    "domain": {
+      "name": "Domain und E-Mail einrichten",
+      "desc": "Bis {mailboxes} Postfächer. Die Domain läuft auf Sie, Kosten des Anbieters separat."
+    },
+    "express": {
+      "name": "Express",
+      "desc": "Lieferung in rund {expressTime} % der üblichen Zeit, für {expressPercent} % Aufpreis.",
+      "hint": "Nach Verfügbarkeit und nur mit fertigen Inhalten."
     }
   },
-  "languages": {
-    "label": "Zusätzliche Sprachen",
-    "hint": "Neben der Hauptsprache. Preis und Zeit gelten pro Sprache.",
-    "one": "zusätzliche Sprache",
-    "many": "zusätzliche Sprachen"
+  "reasons": {
+    "onlyFirmenwebsite": "Nur bei der Firmenwebsite.",
+    "notWith": "Nicht zusammen mit {blocker}.",
+    "expressFromOnepager": "Express gibt es ab dem Onepager.",
+    "expressNotWithTexts": "Express geht nicht zusammen mit Texte schreiben."
+  },
+  "dropped": {
+    "intro": "Beim Paketwechsel abgewählt:",
+    "pages": "Zusatzseiten",
+    "shop": "Shop Start",
+    "express": "Express"
+  },
+  "discounts": {
+    "launch": {
+      "name": "Startrabatt nutzen",
+      "desc": "{launchPercent} % auf den Paketpreis, für eines der nächsten {totalSlots} Projekte. Noch {remainingSlots} Plätze, bis {endDate}.",
+      "condition": "Bedingung: Ich darf Ihr Projekt mit Name, Logo und Screenshots als Referenz zeigen."
+    },
+    "club": {
+      "name": "Gemeinnütziger Verein",
+      "desc": "Minus {clubPercent} % auf den Gesamtpreis.",
+      "hint": "Nachweis im Gespräch."
+    },
+    "higher": "Es gilt der höhere Rabatt."
   },
   "timings": {
     "asap": {
@@ -395,41 +436,62 @@ export const konfigurator = {
   },
   "start": {
     "label": "Wunschdatum",
-    "hint": "Frühestens heute, als Richtwert für die Planung."
+    "hint": "Frühestens heute, als Richtwert für die Planung.",
+    "tooEarly": "Die Lieferzeit zählt ab vollständigen Inhalten. Für einen früheren Termin gibt es Express."
   },
   "dateLocale": "de-CH",
   "summary": {
-    "title": "Ihr Richtpreis",
+    "title": "Ihr Fixpreis",
     "from": "ab",
     "currency": "CHF",
-    "onRequest": "Preis nach Gespräch",
+    "onRequest": "Fixpreis nach Konzeptgespräch",
     "week": "Woche",
     "weeks": "Wochen",
-    "weeksOnRequest": "Zeitrahmen nach Gespräch",
-    "perLanguage": "pro Sprache",
+    "day": "Arbeitstag",
+    "days": "Arbeitstage",
+    "durationOnRequest": "Dauer nach Gespräch",
     "selection": "Ihre Auswahl",
+    "lines": {
+      "package": "Paket",
+      "pages": "Zusatzseiten",
+      "languages": "Weitere Sprachen",
+      "addons": "Zusätze",
+      "express": "Express",
+      "launch": "Startrabatt",
+      "club": "Vereinsrabatt"
+    },
     "notes": [
-      "Richtwerte. Den Festpreis erhalten Sie nach einem kurzen Gespräch.",
-      "Einmalpreise inklusive Einrichtung. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus.",
-      "Hosting und Wartung sind optional, ab CHF 39 pro Monat."
+      "Ihr Fixpreis, einmalig. Domain und Hosting stehen separat im Angebot. Nach {months} inklusiven Monaten ist die Wartung freiwillig.",
+      "Mehr zahlen Sie nur, wenn Sie mehr wollen als vereinbart. Das sage ich Ihnen immer vorher.",
+      "Texte und Bilder liefern Sie. Ich sage Ihnen genau, was ich brauche. Keine Zeit zum Schreiben? Wählen Sie den Zusatz Texte.",
+      "Es eilt? Mit Express liefere ich in rund {expressTime} % der üblichen Zeit, für {expressPercent} % Aufpreis. Das geht ab dem Onepager, nach Verfügbarkeit und wenn alle Inhalte bereit sind."
     ]
   },
   "next": "Weiter",
   "back": "Zurück",
-  "toRequest": "Zur Anfrage",
+  "toRequest": "Angebot mit Fixpreis anfragen",
+  "discuss": "Projekt besprechen",
   "request": {
-    "title": "Konfiguration als Anfrage senden",
-    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Wir antworten in der Regel innerhalb von 24 Stunden."
+    "title": "Angebot mit Fixpreis anfragen",
+    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Sie erhalten in der Regel innerhalb von 24 Stunden eine Antwort.",
+    "titleIndividual": "Projekt besprechen",
+    "textIndividual": "Erzählen Sie kurz, was entstehen soll. Ich melde mich für ein Konzeptgespräch: {conceptHours} Stunden, CHF {conceptPrice}, bei Auftrag angerechnet."
   },
   "configuration": {
-    "type": "Seitentyp",
-    "scope": "Umfang",
-    "features": "Funktionen",
+    "package": "Paket",
+    "pages": "Seiten",
+    "languages": "Weitere Sprachen",
+    "addons": "Zusätze",
     "none": "keine",
+    "express": "Express",
+    "discount": "Rabatt",
     "timing": "Wunschtermin",
     "startOpen": "Individueller Termin, Datum offen",
-    "price": "Richtpreis",
-    "weeks": "Zeitrahmen"
+    "price": "Fixpreis",
+    "priceOnRequest": "ab CHF {individuell}, Fixpreis nach Konzeptgespräch",
+    "duration": "Dauer",
+    "yes": "ja",
+    "no": "nein"
   }
 }
 
@@ -680,15 +742,15 @@ export const websiteCheck = {
 
 export const wartung = {
   "meta": {
-    "title": "Wartung & Hosting: Betreuung ab CHF 39 pro Monat | Sin Digital",
-    "description": "Drei Betreuungspakete für Ihre Website: Hosting, Sicherheitsupdates, Backups, Monitoring, Änderungen und feste Reaktionszeit. Klar abgegrenzt, ab CHF 39 pro Monat.",
-    "ogTitle": "Wartung & Hosting: Betreuung ab CHF 39 pro Monat"
+    "title": "Wartung & Hosting: Betreuung ab CHF {care} pro Monat | Sin Digital",
+    "description": "Drei Wartungspakete für Ihre Website: Hosting, Sicherheit, Updates, Backups, Überwachung, Änderungen und feste Antwortzeiten. Die ersten {months} Monate sind in jedem Website-Paket enthalten, danach ab CHF {care} pro Monat.",
+    "ogTitle": "Wartung & Hosting: Betreuung ab CHF {care} pro Monat"
   },
   "breadcrumb": "Wartung",
   "label": "Wartung & Hosting",
   "title1": "GEBAUT",
   "title2": "UND BETREUT.",
-  "intro": "Eine Website ist kein Projekt, das endet. Updates, Backups, Monitoring und kleine Änderungen: drei Pakete, klar abgegrenzt. Sie wählen, wie viel Betreuung Sie wollen.",
+  "intro": "Eine Website ist kein Projekt, das endet. Updates, Backups, Überwachung und kleine Änderungen: drei Pakete, klar abgegrenzt. Die ersten {months} Monate sind in jedem Website-Paket enthalten, danach wählen Sie, wie viel Betreuung Sie wollen.",
   "billing": {
     "label": "Abrechnung",
     "monthly": "Monatlich",
@@ -698,7 +760,6 @@ export const wartung = {
     "save": "{months} Monate geschenkt",
     "equals": "entspricht CHF {price} pro Monat"
   },
-  "featured": "Meistgewählt",
   "choose": "Paket anfragen",
   "includesAll": "Alles aus {plan}, plus",
   "plans": {
@@ -709,16 +770,17 @@ export const wartung = {
       "tagline": "Für Betriebe, bei denen die Website Anfragen bringt und nicht stillstehen darf."
     },
     "premium": {
-      "tagline": "Für alle, die regelmässig etwas ändern wollen und eine schnelle Reaktion erwarten."
+      "tagline": "Für alle, die regelmässig etwas ändern wollen und eine schnelle Antwort erwarten."
     }
   },
   "rows": {
     "hosting": "Hosting",
-    "updates": "Updates",
+    "updates": "Sicherheit & Updates",
+    "monitoring": "Überwachung",
     "backups": "Backups",
-    "monitoring": "Monitoring",
     "changeMinutes": "Änderungen pro Monat",
-    "response": "Reaktionszeit"
+    "response": "Antwort innerhalb",
+    "report": "Bericht"
   },
   "values": {
     "hosting": {
@@ -727,69 +789,85 @@ export const wartung = {
     "updates": {
       "security": "Sicherheitsupdates"
     },
+    "monitoring": {
+      "uptime": "Erreichbarkeit",
+      "performance": "Erreichbarkeit und Ladezeit"
+    },
     "backups": {
       "weekly": "wöchentlich",
       "daily": "täglich"
     },
-    "monitoring": {
-      "none": "–",
-      "performance": "Performance-Überwachung",
-      "advanced": "erweitertes Monitoring"
-    },
     "changeMinutes": {
-      "15": "bis 15 Minuten",
-      "30": "bis 30 Minuten",
-      "60": "bis 1 Stunde"
+      "0": "keine, CHF {hourly} pro Stunde",
+      "30": "30 Minuten",
+      "60": "60 Minuten"
     },
     "response": {
-      "threeDays": "max. 3 Werktage",
-      "twoDays": "max. 2 Werktage",
-      "oneDay": "max. 1 Werktag, priorisiert"
+      "threeDays": "3 Werktagen",
+      "twoDays": "2 Werktagen",
+      "oneDay": "1 Werktag"
+    },
+    "report": {
+      "none": "–",
+      "quarterly": "pro Quartal",
+      "monthly": "monatlich"
     }
   },
   "compareTitle": "Die Pakete im Vergleich",
   "note": {
-    "before": "Alle Preise in CHF. Hosting und Wartung sind freiwillig: Nach vollständiger Bezahlung gehört Ihre Website Ihnen. Die Betreuung ergänzt eine bestehende Website; eine neue Website konfigurieren Sie im ",
+    "before": "Die ersten {months} Monate Wartung sind in jedem Website-Paket enthalten: Landingpage Basis, Onepager und Firmenwebsite Business. Danach ist die Wartung freiwillig, Website, Code und Domain gehören Ihnen. Eine neue Website konfigurieren Sie im ",
     "link": "Konfigurator",
     "after": "."
   },
+  "conditionsTitle": "Die Bedingungen, kurz",
+  "conditions": [
+    "Jahrespreis: {paidMonths} statt 12 Monate, also {freeMonths} Monate geschenkt.",
+    "Das Jahresabo verlängert sich um {renewal} Monate, wenn es nicht gekündigt wird. {reminderDays} Tage vorher erhalten Sie eine Erinnerung. Eine anteilige Rückerstattung gibt es nicht.",
+    "Nicht genutzte Minuten verfallen am Monatsende.",
+    "Antwort heisst Rückmeldung innerhalb der genannten Werktage, nicht erledigte Arbeit.",
+    "Während angekündigter Ferien ruhen die Antwortzeiten.",
+    "Die ersten {months} Monate Wartung sind in jedem Website-Paket enthalten: Landingpage Basis, Onepager und Firmenwebsite Business.",
+    "Mindestlaufzeit {minMonths} Monate inklusive dieser {months} Monate, danach {noticeDays} Tage Kündigungsfrist auf Monatsende.",
+    "Ein Stufenwechsel startet keine neue Laufzeit.",
+    "Die Preise bleiben {priceFixedMonths} Monate fix, Änderungen werden {priceChangeNoticeMonths} Monate vorher angekündigt."
+  ],
   "faqTitle": "Fragen zur Betreuung",
   "faq": [
     {
       "q": "Was ist in der Betreuung enthalten?",
-      "a": "Je nach Paket: Hosting, Sicherheitsupdates, regelmässige Backups, Monitoring und ein Kontingent für kleine Änderungen wie neue Texte, Bilder oder Öffnungszeiten. Dazu eine feste Reaktionszeit, wenn etwas nicht funktioniert."
+      "a": "Je nach Paket: Hosting, Sicherheit und Updates, Überwachung der Erreichbarkeit, Backups, ab Business ein Kontingent für kleine Änderungen wie neue Texte, Bilder oder Öffnungszeiten, dazu ein Bericht. Und eine feste Antwortzeit, wenn etwas nicht funktioniert."
     },
     {
       "q": "Wie lange läuft der Vertrag, und wie kann ich kündigen?",
-      "a": "Die Mindestlaufzeit beträgt 6 Monate ab Abnahme Ihrer Website (in der Regel der Livegang). Danach können Sie mit 30 Tagen Frist auf Monatsende schriftlich kündigen. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres."
+      "a": "Die Mindestlaufzeit beträgt {minMonths} Monate ab Abnahme Ihrer Website, die {months} inklusiven Monate zählen dazu. Danach kündigen Sie mit {noticeDays} Tagen Frist auf Monatsende. Ein Jahresabo läuft bis zum Ende des bezahlten Jahres und verlängert sich um {renewal} Monate, wenn Sie nicht kündigen. {reminderDays} Tage vorher erinnere ich Sie daran."
     },
     {
       "q": "Kann ich das Paket später wechseln?",
-      "a": "Ja. In ein grösseres Paket können Sie jederzeit auf den nächsten Monat wechseln. In ein kleineres Paket nach der Mindestlaufzeit, bei jährlicher Zahlung auf Ende des bezahlten Jahres. Eine Umstellungsgebühr gibt es nicht."
+      "a": "Ja, jederzeit auf den nächsten Monat. Ein Wechsel startet keine neue Laufzeit. Bei jährlicher Zahlung gilt ein kleineres Paket ab dem nächsten bezahlten Jahr."
     },
     {
       "q": "Was passiert, wenn meine Änderungswünsche die enthaltene Zeit übersteigen?",
-      "a": "Wir sagen es Ihnen vorher. Grössere Anpassungen offerieren wir separat. Zusätzliche Arbeit verrechnen wir zu CHF 120.– pro Stunde, aber nur nach Ihrem Ja."
+      "a": "Ich sage es Ihnen vorher. Zusätzliche Arbeit kostet CHF {hourly} pro Stunde, grössere Anpassungen offeriere ich separat. Nicht genutzte Minuten verfallen am Monatsende."
     },
     {
       "q": "Brauche ich ein Paket, wenn Sin Digital meine Website gebaut hat?",
-      "a": "Nein. Nach vollständiger Bezahlung gehört die Website Ihnen. Ohne Paket liegen Hosting, Updates und Backups bei Ihnen oder Ihrem Anbieter."
+      "a": "Die ersten {months} Monate sind in jedem Website-Paket enthalten. Danach ist die Wartung freiwillig: Website, Code und Domain gehören Ihnen. Ohne Paket liegen Hosting, Updates und Backups bei Ihnen oder Ihrem Anbieter."
     },
     {
       "q": "Betreut Sin Digital auch Websites, die jemand anderes gebaut hat?",
-      "a": "Meistens ja. Wir schauen uns die Technik kurz an und sagen Ihnen, ob und in welchem Paket die Betreuung sinnvoll ist."
+      "a": "Meistens ja. Ich schaue mir die Technik kurz an und sage Ihnen, ob und in welchem Paket die Betreuung sinnvoll ist."
     },
     {
       "q": "Wie schnell reagiert Sin Digital, wenn die Website nicht läuft?",
-      "a": "Innerhalb der Reaktionszeit Ihres Pakets: spätestens nach 3 Werktagen im Basis-Paket, nach 2 Werktagen im Business-Paket und nach 1 Werktag, priorisiert, im Premium-Paket. Reaktionszeit heisst: Wir melden uns und beginnen mit der Analyse. Als Werktage zählen Montag bis Freitag ohne Feiertage im Kanton Zürich."
+      "a": "Innerhalb der Antwortzeit Ihres Pakets: spätestens nach 3 Werktagen bei Basis, 2 Werktagen bei Business und 1 Werktag bei Premium. Antwort heisst: Ich melde mich und beginne mit der Analyse. Als Werktage zählen Montag bis Freitag ohne Feiertage im Kanton Zürich. Während angekündigter Ferien ruhen die Antwortzeiten."
     },
     {
       "q": "Wo wird gehostet, und wem gehören die Daten?",
-      "a": "Bei etablierten Anbietern wie Hostpoint oder Netlify, passend zum Projekt. Domain, Inhalte und Daten gehören Ihnen. Wenn Sie kündigen, erhalten Sie Ihre Website-Dateien und Inhalte kostenlos."
+      "a": "Bei etablierten Anbietern wie Hostpoint oder Netlify, passend zum Projekt. Domain, Inhalte und Daten gehören Ihnen. Wenn Sie kündigen, erhalten Sie Ihre Website-Dateien und Zugänge kostenlos."
     },
     {
       "q": "Wie wird abgerechnet?",
-      "a": "Monatlich oder jährlich per Rechnung, bezahlt per Banküberweisung oder TWINT. Bei jährlicher Abrechnung zahlen Sie 10 statt 12 Monate."
+      "a": "Monatlich oder jährlich per Rechnung, bezahlt per Banküberweisung oder TWINT. Bei jährlicher Zahlung zahlen Sie {paidMonths} statt 12 Monate."
     }
   ]
 }

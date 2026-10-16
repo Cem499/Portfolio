@@ -1,4 +1,7 @@
 // JSON-LD von website-zuerich.html, 1:1 aus dem Original übernommen.
+import { siteValues } from '../siteValues.js'
+
+const v = siteValues('de')
 const schema = [
   {
     "@context": "https://schema.org",
@@ -27,7 +30,7 @@ const schema = [
         "name": "Kann ich eine Firmenwebsite in Zürich erstellen lassen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja. Sin Digital erstellt professionelle Firmenwebsites in Zürich für KMU, Startups und lokale Betriebe. Von der Strategie über Design und Entwicklung bis zum Livegang, alles aus einer Hand."
+          "text": "Ja. Sin Digital erstellt professionelle Firmenwebsites in Zürich für KMU, Startups und lokale Betriebe. Von der Strategie über Design und Entwicklung bis zur Veröffentlichung, alles aus einer Hand, zum Fixpreis."
         }
       },
       {
@@ -35,7 +38,7 @@ const schema = [
         "name": "Was brauche ich, um eine Website erstellen zu lassen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Im Grunde nichts ausser einer Idee und ein paar Informationen zu Ihrem Unternehmen. Sin Digital übernimmt die komplette Umsetzung: Konzept, Design, Texte, technische Entwicklung und SEO-Basis. Hosting und Wartung übernehmen wir auf Wunsch, optional ab CHF 39 pro Monat. Sie geben in jedem Schritt Feedback, wir kümmern uns um die Umsetzung. Ein erstes unverbindliches Gespräch reicht, um loszulegen."
+          "text": `Im Grunde nur eine Idee und Ihre Inhalte. Sin Digital übernimmt Konzept, Design, technische Entwicklung und SEO-Basis; Texte liefern Sie oder buchen sie als Zusatz. Die ersten ${v.months} Monate Wartung sind inklusive, danach ist sie freiwillig ab CHF ${v.care} pro Monat. Ein erstes unverbindliches Gespräch reicht, um loszulegen.`
         }
       },
       {
@@ -51,7 +54,7 @@ const schema = [
         "name": "Was kostet eine Website in Zürich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bei Sin Digital starten Firmenwebsites in Zürich ab CHF 990 (Basic-Paket mit bis zu 5 Seiten, SEO-Basis, Kontaktformular und Google Maps). Das Growth-Paket mit Terminbuchung, Google Analytics und erweitertem SEO kostet ab CHF 1'690. Premium-Websites mit vollständig individuellem Design und Animationen sind ab CHF 2'490 erhältlich. Alle Preise sind Einmalpreise inklusive Einrichtung."
+          "text": `Bei Sin Digital hat jede Website einen Fixpreis: Landingpage CHF ${v.landingpage}, Onepager CHF ${v.onepager}, Firmenwebsite mit bis zu ${v.firmenwebsitePages} Seiten CHF ${v.firmenwebsite}. Alle Preise sind Einmalpreise, ${v.months} Monate Wartung sind inklusive.`
         }
       },
       {
@@ -59,7 +62,7 @@ const schema = [
         "name": "Kann ich die Website später selbst bearbeiten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Je nach Setup ist das möglich. Sin Digital bietet auch laufende Betreuung ab CHF 39/Monat an, damit Sie sich auf Ihr Geschäft konzentrieren können, während wir uns um Updates und Änderungen kümmern."
+          "text": `Ja, mit dem Zusatz CMS pflegen Sie Texte und Bilder selbst, inklusive Einführung. Alternativ übernimmt Sin Digital Änderungen im Rahmen der Wartung ab CHF ${v.care} pro Monat.`
         }
       },
       {
@@ -67,7 +70,7 @@ const schema = [
         "name": "Wie läuft der Prozess ab, wenn ich eine Website erstellen lasse?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Der Prozess besteht aus 4 Schritten: 1) Analyse Ihres Unternehmens und Ihrer Ziele, 2) Konzeption von Struktur und Design, 3) professionelle Umsetzung mit regelmässigem Feedback, 4) Livegang und optionale Betreuung."
+          "text": `Der Prozess besteht aus 4 Schritten: 1) Erstgespräch, 2) Angebot mit Fixpreis, 3) Entwurf und Bau mit ${v.rounds} Korrekturrunden, 4) Veröffentlichung nach der Schlusszahlung, ${v.months} Monate Wartung inklusive.`
         }
       }
     ]
@@ -75,8 +78,8 @@ const schema = [
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Website Zürich erstellen lassen, Professionell & Günstig | Sin Digital",
-    "description": "Professionelle Website in Zürich erstellen lassen. Webdesign für KMU und Unternehmen ab CHF 990.",
+    "name": "Website Zürich erstellen lassen, Professionell zum Fixpreis | Sin Digital",
+    "description": `Professionelle Website in Zürich erstellen lassen. Webdesign für KMU und Unternehmen zum Fixpreis ab CHF ${v.from}.`,
     "url": "https://www.sin-digital.com/website-zuerich.html",
     "isPartOf": {
       "@id": "https://www.sin-digital.com/#website"
@@ -85,7 +88,7 @@ const schema = [
       "@id": "https://www.sin-digital.com/#business"
     },
     "datePublished": "2025-01-01",
-    "dateModified": "2026-03-13",
+    "dateModified": "2026-10-08",
     "inLanguage": "de-CH"
   }
 ]

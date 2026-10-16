@@ -4,6 +4,7 @@ import PageSeo from '../components/PageSeo.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import SiteHeader from '../components/SiteHeader.jsx'
 import konfiguratorSchema from '../data/schema/konfigurator.js'
+import { fill, siteValues } from '../data/siteValues.js'
 import { konfigurator as deTexts, shared as deShared } from '../i18n/de.js'
 import { konfigurator as enTexts, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
@@ -16,10 +17,12 @@ const PATHS = { de: '/konfigurator/', en: '/en/configurator/' }
 export default function Konfigurator({ lang }) {
   const t = lang === 'en' ? enTexts : deTexts
   const shared = lang === 'en' ? enShared : deShared
+  const values = siteValues(lang)
+  const meta = Object.fromEntries(Object.entries(t.meta).map(([key, text]) => [key, fill(text, values)]))
 
   return (
     <>
-      <PageSeo lang={lang} paths={PATHS} title={t.meta.title} description={t.meta.description} ogTitle={t.meta.ogTitle} jsonLd={konfiguratorSchema(lang, t, PATHS)} />
+      <PageSeo lang={lang} paths={PATHS} title={meta.title} description={meta.description} ogTitle={meta.ogTitle} jsonLd={konfiguratorSchema(lang, { ...t, meta }, shared, PATHS)} />
 
       <SiteHeader lang={lang} shared={shared} paths={PATHS} />
 
@@ -36,7 +39,7 @@ export default function Konfigurator({ lang }) {
               </h1>
               <p className="section-desc konfig-intro">{t.intro}</p>
             </header>
-            <Configurator t={t} formTexts={shared.contactForm} />
+            <Configurator t={t} shared={shared} lang={lang} formTexts={shared.contactForm} />
           </div>
         </section>
       </main>

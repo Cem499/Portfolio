@@ -1,4 +1,7 @@
 // JSON-LD von webdesign-zuerich.html, 1:1 aus dem Original übernommen.
+import { siteValues } from '../siteValues.js'
+
+const v = siteValues('de')
 const schema = [
   {
     "@context": "https://schema.org",
@@ -27,7 +30,7 @@ const schema = [
         "name": "Was kostet professionelles Webdesign in Zürich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bei Sin Digital starten professionelle Websites in Zürich ab CHF 990 (Basic-Paket). Das Basic-Paket umfasst bis zu 5 Seiten, Kontaktformular, Google Maps-Einbindung, SEO-Basis und Mobile-Optimierung. Das Growth-Paket mit Google Analytics, Terminbuchung und erweitertem SEO ist ab CHF 1'690 erhältlich. Premium-Websites mit individuellem Design und massgeschneiderten Animationen starten ab CHF 2'490."
+          "text": `Jede Website von Sin Digital hat einen Fixpreis: Landingpage CHF ${v.landingpage} (eine Seite, bis ${v.landingpageSections} Abschnitte), Onepager CHF ${v.onepager} (bis ${v.onepagerSections} Abschnitte), Firmenwebsite CHF ${v.firmenwebsite} (bis ${v.firmenwebsitePages} Seiten). Zusätze wie Shop, CMS oder weitere Sprachen haben feste Preise. Individuelle Projekte beginnen bei CHF ${v.individuell}.`
         }
       },
       {
@@ -35,7 +38,7 @@ const schema = [
         "name": "Wie lange dauert ein Webdesign-Projekt in Zürich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ein typisches Webdesign-Projekt bei Sin Digital ist in ca. 2 Wochen fertig. Das umfasst Analyse, Designkonzept, Entwicklung und Livegang. Bei komplexeren Projekten planen wir entsprechend mehr Zeit ein."
+          "text": `Eine Landingpage dauert ${v.landingpageWeeks} Wochen, ein Onepager ${v.onepagerWeeks} Wochen, eine Firmenwebsite ${v.firmenwebsiteWeeks} Wochen, gerechnet ab dem Tag, an dem alle Inhalte vorliegen. Das umfasst Konzept, Entwurf, Bau und Veröffentlichung.`
         }
       },
       {
@@ -43,7 +46,7 @@ const schema = [
         "name": "Ist das Webdesign von Sin Digital mobiloptimiert?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, alle Websites werden Mobile-First entwickelt. Das bedeutet: Ihr Webdesign sieht auf Smartphones, Tablets und Desktop perfekt aus und lädt blitzschnell. Google bevorzugt mobile-optimierte Websites im Ranking."
+          "text": "Ja, alle Websites werden Mobile-First entwickelt. Das bedeutet: Ihr Webdesign funktioniert auf Smartphones, Tablets und Desktop und lädt schnell. Google bevorzugt mobile-optimierte Websites im Ranking."
         }
       },
       {
@@ -67,7 +70,7 @@ const schema = [
         "name": "Kann ich bei Sin Digital ein individuelles Design bekommen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, ab dem Pro-Paket (CHF 2'490) erhalten Sie ein vollständig individuelles Design mit eigener Farbwelt, massgeschneiderten Animationen und Interaktionen. Auch im Growth-Paket passen wir das Design an Ihre Marke an."
+          "text": "Ja. Jede Website von Sin Digital wird individuell gestaltet, mit eigenem Code und ohne Baukasten. Logo und Branding gibt es als Zusatz mit festem Preis."
         }
       }
     ]
@@ -76,7 +79,7 @@ const schema = [
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Webdesign Zürich, Professionelle Websites für KMU | Sin Digital",
-    "description": "Professionelles Webdesign in Zürich für KMU, Startups und lokale Unternehmen ab CHF 990.",
+    "description": `Professionelles Webdesign in Zürich für KMU, Startups und lokale Unternehmen zum Fixpreis ab CHF ${v.from}.`,
     "url": "https://www.sin-digital.com/webdesign-zuerich.html",
     "isPartOf": {
       "@id": "https://www.sin-digital.com/#website"
@@ -85,7 +88,7 @@ const schema = [
       "@id": "https://www.sin-digital.com/#business"
     },
     "datePublished": "2025-01-01",
-    "dateModified": "2026-03-13",
+    "dateModified": "2026-10-08",
     "inLanguage": "de-CH"
   }
 ]

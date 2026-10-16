@@ -595,3 +595,76 @@
     text-align: center;
   }
 }
+
+/* ── Extras step: pages and languages side by side; tiles that are not available stay
+   visible, disabled, and say why. Badge, meta line and hint inside a tile. ── */
+.konfig-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 22rem));
+  gap: var(--konfig-gap);
+  margin-bottom: var(--konfig-gap);
+}
+
+.konfig-fields .konfig-field {
+  margin-top: 0;
+}
+
+.konfig-field.is-disabled label,
+.konfig-field.is-disabled input {
+  opacity: 0.5;
+}
+
+.konfig-field input:disabled {
+  cursor: not-allowed;
+}
+
+.konfig-tile.is-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.konfig-tile.is-disabled:hover {
+  transform: none;
+  border-color: var(--border);
+}
+
+.konfig-tile-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 2px;
+  background: var(--green);
+  color: #010101;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.konfig-tile-meta,
+.konfig-tile-hint,
+.konfig-tile-reason {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.konfig-tile-reason {
+  color: var(--white);
+}
+
+.konfig-subhead {
+  margin: var(--konfig-block) 0 var(--konfig-gap);
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.konfig-dropped,
+.konfig-higher,
+.konfig-field-hint.is-warning {
+  color: var(--green);
+}

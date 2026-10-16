@@ -1,4 +1,7 @@
 // JSON-LD von webentwicklung-zuerich.html, 1:1 aus dem Original übernommen.
+import { siteValues } from '../siteValues.js'
+
+const v = siteValues('de')
 const schema = [
   {
     "@context": "https://schema.org",
@@ -35,7 +38,7 @@ const schema = [
         "name": "Welche Technologien nutzt Sin Digital für die Webentwicklung?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Sin Digital arbeitet mit modernen Webtechnologien: HTML5, CSS3, JavaScript für das Frontend, sowie Java Spring Boot für Backend-Anwendungen. Hosting erfolgt auf zuverlässigen Cloud-Plattformen mit schnellen Ladezeiten und hoher Verfügbarkeit."
+          "text": "Sin Digital arbeitet mit modernen Webtechnologien: HTML5, CSS3, JavaScript für das Frontend, sowie Java Spring Boot für Backend-Anwendungen. Das Hosting läuft auf zuverlässigen Cloud-Plattformen und ist Teil der Wartung."
         }
       },
       {
@@ -43,7 +46,7 @@ const schema = [
         "name": "Kann Sin Digital auch Web-Apps oder individuelle Lösungen entwickeln?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja. Neben klassischen Websites entwickelt Sin Digital auch Web-Applikationen mit individueller Funktionalität: Buchungssysteme, Dashboards, Kontakt-Management und individuelle Integrationen, massgeschneidert auf Ihre Geschäftsanforderungen."
+          "text": "Ja. Neben klassischen Websites entwickelt Sin Digital auch Web-Applikationen mit individueller Funktionalität: Buchungssysteme, Dashboards, Kontakt-Management und individuelle Integrationen, passend zu Ihren Geschäftsanforderungen."
         }
       },
       {
@@ -59,7 +62,7 @@ const schema = [
         "name": "Ist die Website sicher?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja. Alle Websites von Sin Digital werden mit SSL-Verschlüsselung, sicheren Formularen und aktuellen Sicherheitsstandards ausgeliefert. Bei Web-Apps kommen zusätzlich JWT-Authentifizierung und weitere Sicherheitsmassnahmen zum Einsatz."
+          "text": "Ja. Alle Websites von Sin Digital werden mit verschlüsselter Verbindung (HTTPS), sicheren Formularen und aktuellen Sicherheitsstandards ausgeliefert. Bei Web-Apps kommen zusätzlich JWT-Authentifizierung und weitere Sicherheitsmassnahmen zum Einsatz."
         }
       },
       {
@@ -67,7 +70,7 @@ const schema = [
         "name": "Bietet Sin Digital auch Hosting und Wartung an?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja. Sin Digital bietet professionelles Hosting und laufende Betreuung ab CHF 39/Monat an. Das umfasst Hosting, Sicherheitsupdates, Backups, Performance-Überwachung und Änderungswünsche."
+          "text": `Ja. Die ersten ${v.months} Monate Wartung sind in jedem Website-Paket enthalten, danach gibt es drei Wartungspakete ab CHF ${v.care} pro Monat: Hosting, Sicherheitsupdates, Backups, Überwachung und je nach Paket Änderungen.`
         }
       }
     ]
@@ -76,7 +79,7 @@ const schema = [
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Webentwicklung Zürich, Professionelle Websites für Unternehmen | Sin Digital",
-    "description": "Professionelle Webentwicklung in Zürich. Massgeschneiderte Websites für KMU und Unternehmen.",
+    "description": "Professionelle Webentwicklung in Zürich. Websites und Web-Apps mit eigenem Code für KMU und Unternehmen.",
     "url": "https://www.sin-digital.com/webentwicklung-zuerich.html",
     "isPartOf": {
       "@id": "https://www.sin-digital.com/#website"
@@ -85,7 +88,7 @@ const schema = [
       "@id": "https://www.sin-digital.com/#business"
     },
     "datePublished": "2025-01-01",
-    "dateModified": "2026-03-13",
+    "dateModified": "2026-10-08",
     "inLanguage": "de-CH"
   }
 ]

@@ -1,6 +1,9 @@
 import Seo from '../components/Seo.jsx'
 import schema from '../data/schema/webdesign.js'
+import { siteValues } from '../data/siteValues.js'
 import '../styles/landing.css'
+
+const v = siteValues('de')
 
 // webdesign-zuerich.html: SEO-Landingpage, nur Deutsch, ohne JavaScript ausgeliefert.
 export default function Webdesign() {
@@ -8,7 +11,7 @@ export default function Webdesign() {
     <>
       <Seo htmlAttributes={{ lang: 'de-CH' }} jsonLd={schema}>
         <title>{"Webdesign Zürich | Professionelle Website für KMU ab CHF 990 | Sin Digital"}</title>
-        <meta name="description" content="Professionelles Webdesign in Zürich für KMU, Startups und lokale Unternehmen. Moderne, schnelle und SEO-optimierte Websites ab CHF 990. Fertig in 2 Wochen. Jetzt anfragen." />
+        <meta name="description" content={`Professionelles Webdesign in Zürich für KMU, Startups und lokale Unternehmen. Moderne, schnelle und SEO-optimierte Websites zum Fixpreis ab CHF ${v.from}. Landingpage in ${v.landingpageWeeks} Wochen. Jetzt anfragen.`} />
         <meta name="keywords" content="Webdesign Zürich, Webdesigner Zürich, Website Zürich, Webagentur Zürich, professionelle Website Zürich, KMU Website Zürich, Webdesign Agentur Zürich, responsive Webdesign Zürich, modernes Webdesign Zürich" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <meta name="geo.region" content="CH-ZH" />
@@ -22,7 +25,7 @@ export default function Webdesign() {
         <link rel="manifest" href="/manifest.json" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Webdesign Zürich | Professionelle Website für KMU ab CHF 990 | Sin Digital" />
-        <meta property="og:description" content="Professionelles Webdesign in Zürich: moderne Websites für KMU und lokale Unternehmen. Mobile-First, SEO-optimiert, fertig in 2 Wochen." />
+        <meta property="og:description" content={`Professionelles Webdesign in Zürich: moderne Websites für KMU und lokale Unternehmen. Zum Fixpreis, Landingpage in ${v.landingpageWeeks} Wochen.`} />
         <meta property="og:url" content="https://www.sin-digital.com/webdesign-zuerich.html" />
         <meta property="og:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
         <meta property="og:image:width" content="1200" />
@@ -33,7 +36,7 @@ export default function Webdesign() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@sindigital" />
         <meta name="twitter:title" content="Webdesign Zürich | Sin Digital" />
-        <meta name="twitter:description" content="Professionelles Webdesign in Zürich ab CHF 990. Mobile-First, SEO-optimiert, fertig in 2 Wochen." />
+        <meta name="twitter:description" content={`Professionelles Webdesign in Zürich zum Fixpreis ab CHF ${v.from}. Landingpage in ${v.landingpageWeeks} Wochen.`} />
         <meta name="twitter:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
       </Seo>
       <main className="wrap">
@@ -46,7 +49,7 @@ export default function Webdesign() {
         <p className="lead">
           {"Sie suchen eine "}
           <strong>Webdesign-Agentur in Zürich</strong>
-          , die Ihnen eine professionelle, moderne und schnelle Website erstellt? Sin Digital entwickelt massgeschneiderte Websites für KMU, Startups und lokale Betriebe in Zürich, mit klarem Fokus auf Sichtbarkeit, Anfragen und Vertrauen.
+          , die Ihnen eine professionelle, moderne und schnelle Website erstellt? Sin Digital baut Websites zum Fixpreis für KMU, Startups und lokale Betriebe in Zürich, mit klarem Fokus auf Sichtbarkeit, Anfragen und Vertrauen.
         </p>
         <div className="card">
           <h2>Warum Sie eine professionelle Website in Zürich brauchen</h2>
@@ -66,7 +69,7 @@ export default function Webdesign() {
             </li>
             <li>
               <strong>Mobile-First:</strong>
-              {" Ihre Website wird zuerst für Smartphones entwickelt und sieht auf allen Geräten perfekt aus."}
+              {" Ihre Website wird zuerst für Smartphones entwickelt und funktioniert auf allen Geräten."}
             </li>
             <li>
               <strong>Schnelle Ladezeiten:</strong>
@@ -78,7 +81,7 @@ export default function Webdesign() {
             </li>
             <li>
               <strong>Transparente Preise:</strong>
-              {" Klare Pakete ab CHF 990. Keine versteckten Kosten, keine Überraschungen."}
+              {` Fixpreise ab CHF ${v.from}: Landingpage, Onepager oder Firmenwebsite. Keine versteckten Kosten, keine Überraschungen.`}
             </li>
             <li>
               <strong>Persönliche Betreuung:</strong>
@@ -87,19 +90,15 @@ export default function Webdesign() {
           </ul>
         </div>
         <div className="card">
-          <h2>Unsere Webdesign-Pakete für Zürich</h2>
-          <h3>Basic, ab CHF 990</h3>
-          <p>
-            Professionelle Website mit bis zu 5 Seiten, Kontaktformular, Google Maps, SEO-Basis und Mobile-Optimierung. Ideal für Unternehmen, die erstmals online sichtbar werden möchten.
-          </p>
-          <h3>{"Growth, ab CHF 1'690"}</h3>
-          <p>
-            Erweiterte Website mit Social-Media-Integration, Google Analytics, Terminbuchung und automatischen Backups. Für Unternehmen, die online wachsen und mehr Kunden gewinnen möchten.
-          </p>
-          <h3>{"Pro, ab CHF 2'490"}</h3>
-          <p>
-            Individuelle Premium-Website mit massgeschneidertem Design, Animationen, Mehrsprachigkeit und 6 Monate Support. Für ambitionierte Unternehmen, die ihren digitalen Auftritt als Wettbewerbsvorteil nutzen wollen.
-          </p>
+          <h2>Die Pakete, alle zum Fixpreis</h2>
+          <h3>{`Landingpage, CHF ${v.landingpage}`}</h3>
+          <p>{`Eine Seite, ein Ziel: Anfragen, Anmeldungen oder Buchungen. Bis ${v.landingpageSections} Abschnitte, ein klarer Hauptbutton, Formular. Dauer ${v.landingpageWeeks} Wochen ab vollständigen Inhalten, ${v.months} Monate Wartung inklusive.`}</p>
+          <h3>{`Onepager, CHF ${v.onepager}`}</h3>
+          <p>{`Ihr ganzes Angebot auf einer Seite, zum Durchscrollen. Bis ${v.onepagerSections} Abschnitte, Menü, Formular, Karte. Dauer ${v.onepagerWeeks} Wochen, ${v.months} Monate Wartung inklusive.`}</p>
+          <h3>{`Firmenwebsite, CHF ${v.firmenwebsite}`}</h3>
+          <p>{`Mehrere Seiten für Betriebe mit mehreren Leistungen. Bis ${v.firmenwebsitePages} Seiten, eigene Seite pro Leistung, Formular, Karte. Dauer ${v.firmenwebsiteWeeks} Wochen, ${v.months} Monate Wartung inklusive.`}</p>
+          <h3>{`Individuell, ab CHF ${v.individuell}`}</h3>
+          <p>{`Mehr als ${v.maxPages} Seiten oder eigene Funktionen. Fixpreis nach einem Konzeptgespräch.`}</p>
         </div>
         <div className="card">
           <h2>Für welche Branchen in Zürich erstellt Sin Digital Websites?</h2>
@@ -125,18 +124,18 @@ export default function Webdesign() {
             {" Professionelle Entwicklung Ihrer Website mit regelmässigen Updates zum Projektstand."}
           </p>
           <p>
-            <strong>4. Livegang & Betreuung:</strong>
-            {" Launch Ihrer Website mit persönlicher Begleitung und optionalem Support ab CHF 39/Monat."}
+            <strong>4. Veröffentlichung & Betreuung:</strong>
+            {` Nach der Schlusszahlung geht Ihre Website online. Die ersten ${v.months} Monate Wartung sind inklusive, danach ab CHF ${v.care} pro Monat.`}
           </p>
         </div>
         <div className="card">
           <h2>Webdesign Zürich: Häufige Fragen</h2>
           <h3>Was kostet professionelles Webdesign in Zürich?</h3>
           <p>
-            {"Bei Sin Digital starten professionelle Websites ab CHF 990. Der Preis hängt vom Umfang und den gewünschten Funktionen ab. Ein Growth-Paket mit erweiterten Features kostet ab CHF 1'690."}
+            {`Jede Website hat einen Fixpreis: Landingpage CHF ${v.landingpage}, Onepager CHF ${v.onepager}, Firmenwebsite CHF ${v.firmenwebsite}. Zusätze wie Shop, CMS oder weitere Sprachen haben ebenfalls feste Preise. Im Konfigurator sehen Sie Ihren Preis sofort.`}
           </p>
           <h3>Wie lange dauert ein Webdesign-Projekt?</h3>
-          <p>In der Regel ist Ihre Website in ca. 2 Wochen fertig, von der ersten Analyse bis zum Livegang.</p>
+          <p>{`Eine Landingpage dauert ${v.landingpageWeeks} Wochen, ein Onepager ${v.onepagerWeeks} Wochen, eine Firmenwebsite ${v.firmenwebsiteWeeks} Wochen, gerechnet ab vollständigen Inhalten.`}</p>
           <h3>Ist die SEO-Optimierung im Preis inbegriffen?</h3>
           <p>
             Ja. Jede Website wird mit SEO-Basis geliefert: saubere Struktur, Meta-Tags, schnelle Ladezeiten und lokale Optimierung für Zürich.
@@ -147,7 +146,7 @@ export default function Webdesign() {
           </p>
           <h3>Warum Sin Digital statt einem Freelancer?</h3>
           <p>
-            Als Webdesign-Agentur in Zürich bietet Sin Digital klare Prozesse, transparente Pakete, professionelles Hosting und langfristige Betreuung, alles aus einer Hand.
+            Als Webdesign-Agentur in Zürich bietet Sin Digital klare Prozesse, Fixpreise, eigenen Code und auf Wunsch laufende Betreuung, alles aus einer Hand.
           </p>
         </div>
         <div className="card">

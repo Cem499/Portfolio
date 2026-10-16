@@ -6,3 +6,11 @@
   margin: 1rem 0;
   border-radius: 0 8px 8px 0;
 }
+
+/* Launch discount line inside the price box (only while the discount runs). */
+.price-launch {
+  display: block;
+  margin-top: 0.75rem;
+  color: #C1FF72;
+  font-weight: 700;
+}

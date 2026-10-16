@@ -1,6 +1,9 @@
 import Seo from '../components/Seo.jsx'
 import schema from '../data/schema/website.js'
+import { siteValues } from '../data/siteValues.js'
 import '../styles/landing.css'
+
+const v = siteValues('de')
 
 // website-zuerich.html: SEO-Landingpage, nur Deutsch, ohne JavaScript ausgeliefert.
 export default function Website() {
@@ -8,7 +11,7 @@ export default function Website() {
     <>
       <Seo htmlAttributes={{ lang: 'de-CH' }} jsonLd={schema}>
         <title>{"Website Zürich erstellen lassen | Professionell ab CHF 990 | Sin Digital"}</title>
-        <meta name="description" content="Website in Zürich erstellen lassen: professionell, schnell und auf Ihr Unternehmen zugeschnitten. Sin Digital begleitet Sie von Strategie bis Livegang. Fertig in 2 Wochen ab CHF 990." />
+        <meta name="description" content={`Website in Zürich erstellen lassen: professionell, schnell und auf Ihr Unternehmen zugeschnitten. Sin Digital begleitet Sie von der Idee bis zur Veröffentlichung. Zum Fixpreis ab CHF ${v.from}, Landingpage in ${v.landingpageWeeks} Wochen.`} />
         <meta name="keywords" content="Website Zürich, Website erstellen Zürich, Website erstellen lassen Zürich, Firmenwebsite Zürich, KMU Website Zürich, Webagentur Zürich, Homepage Zürich, Homepage erstellen lassen Zürich, Unternehmenswebsite Zürich" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <meta name="geo.region" content="CH-ZH" />
@@ -22,7 +25,7 @@ export default function Website() {
         <link rel="manifest" href="/manifest.json" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Website Zürich erstellen lassen | Professionell ab CHF 990 | Sin Digital" />
-        <meta property="og:description" content="Firmenwebsite in Zürich professionell umsetzen lassen. Design, Technik und SEO aus einer Hand. In 2 Wochen online." />
+        <meta property="og:description" content={`Firmenwebsite in Zürich professionell umsetzen lassen. Design, Technik und SEO aus einer Hand, zum Fixpreis ab CHF ${v.from}.`} />
         <meta property="og:url" content="https://www.sin-digital.com/website-zuerich.html" />
         <meta property="og:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
         <meta property="og:image:width" content="1200" />
@@ -33,7 +36,7 @@ export default function Website() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@sindigital" />
         <meta name="twitter:title" content="Website Zürich erstellen lassen | Sin Digital" />
-        <meta name="twitter:description" content="Professionelle Website in Zürich erstellen lassen ab CHF 990. Design, Technik und SEO aus einer Hand. Hosting und Wartung optional ab CHF 39 / Monat." />
+        <meta name="twitter:description" content={`Professionelle Website in Zürich erstellen lassen ab CHF ${v.from}. Design, Technik und SEO aus einer Hand. ${v.months} Monate Wartung inklusive, danach ab CHF ${v.care} / Monat.`} />
         <meta name="twitter:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
       </Seo>
       <main className="wrap">
@@ -46,7 +49,7 @@ export default function Website() {
         <p className="lead">
           {"Sie möchten eine "}
           <strong>Website in Zürich erstellen lassen</strong>
-          ? Sin Digital begleitet Sie von der ersten Idee bis zum Livegang. Professionelles Design, saubere Technik, SEO-Basis, alles aus einer Hand, fertig in 2 Wochen.
+          ? Sin Digital begleitet Sie von der ersten Idee bis zur Veröffentlichung. Professionelles Design, saubere Technik, SEO-Basis, alles aus einer Hand, zum Fixpreis ab CHF {v.from}.
         </p>
         <div className="card">
           <h2>Warum eine professionelle Website für Ihr Unternehmen in Zürich?</h2>
@@ -66,7 +69,7 @@ export default function Website() {
             </li>
             <li>
               <strong>Saubere technische Umsetzung:</strong>
-              {" Schnell, sicher und zuverlässig, keine Billig-Templates."}
+              {" Schnell, sicher und zuverlässig, kein Baukasten."}
             </li>
             <li>
               <strong>SEO-Basis für lokale Sichtbarkeit:</strong>
@@ -78,7 +81,7 @@ export default function Website() {
             </li>
             <li>
               <strong>Mobile-First:</strong>
-              {" 70% der Zürcher suchen mobil, Ihre Website sieht auf jedem Gerät perfekt aus."}
+              {" 70% der Zürcher suchen mobil, Ihre Website funktioniert auf jedem Gerät."}
             </li>
             <li>
               <strong>Klarer Ansprechpartner:</strong>
@@ -135,18 +138,18 @@ export default function Website() {
             {" Sin Digital baut Ihre Website sauber und professionell. Sie erhalten regelmässige Updates."}
           </p>
           <p>
-            <strong>Schritt 4, Livegang:</strong>
-            {" Ihre Website geht online. Wir begleiten Sie beim Start und stehen für Fragen bereit. Optional: laufende Betreuung ab CHF 39/Monat."}
+            <strong>Schritt 4, Veröffentlichung:</strong>
+            {` Nach der Schlusszahlung geht Ihre Website online. Die ersten ${v.months} Monate Wartung sind inklusive, danach optional ab CHF ${v.care} pro Monat.`}
           </p>
         </div>
         <div className="card">
           <h2>Website Zürich: Häufige Fragen</h2>
           <h3>Was brauche ich, um eine Website erstellen zu lassen?</h3>
           <p>
-            Im Grunde nur eine Idee. Sin Digital übernimmt alles, vom Konzept über Design und Entwicklung bis zu Texten und SEO. Hosting und Wartung übernehmen wir auf Wunsch, optional ab CHF 39 / Monat: <a href="/wartung/">Wartungspläne</a>.
+            Im Grunde nur eine Idee und Ihre Inhalte. Sin Digital übernimmt Konzept, Design, Entwicklung und SEO-Basis; Texte liefern Sie oder buchen sie als Zusatz. Die ersten {v.months} Monate Wartung sind inklusive, danach optional ab CHF {v.care} / Monat: <a href="/wartung/">Wartungspakete</a>.
           </p>
           <h3>Wie schnell ist meine Website online?</h3>
-          <p>In der Regel in ca. 2 Wochen. Bei umfangreicheren Projekten planen wir entsprechend mehr Zeit ein.</p>
+          <p>{`Eine Landingpage in ${v.landingpageWeeks} Wochen, ein Onepager in ${v.onepagerWeeks} Wochen, eine Firmenwebsite in ${v.firmenwebsiteWeeks} Wochen, ab vollständigen Inhalten.`}</p>
           <h3>Bekomme ich SEO, wenn ich eine Website erstellen lasse?</h3>
           <p>
             Ja. Jede Website von Sin Digital enthält eine solide SEO-Basis für lokale Sichtbarkeit in Zürich und der Schweiz.

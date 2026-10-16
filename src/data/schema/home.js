@@ -1,9 +1,49 @@
 // JSON-LD von index.html, 1:1 aus dem Original übernommen; letzter Block (Street Food Compassion) neu.
 // HowTo: die Schritte kommen aus der Prozess-Timeline (i18n home.projects.process).
-import { home } from '../../i18n/de.js'
-import { plans } from '../maintenance.js'
+import { home, shared } from '../../i18n/de.js'
+import { isLaunchDiscountActive } from '../launchDiscount.js'
+import { cheapestPlan, plans } from '../maintenance.js'
+import { CARE_MONTHS_INCLUDED, fixedPackages, individualPackage } from '../packages.js'
+import { fill, packageValues, siteValues } from '../siteValues.js'
 
-const steps = home.projects.process.steps
+const values = siteValues('de')
+const steps = home.projects.process.steps.map((step) => ({ ...step, desc: fill(step.desc, values) }))
+
+// The packages as schema.org offers with their regular fixed prices (never the launch
+// discount), plus the care plans. `detailed` adds availability and the unit.
+function packageOffers(detailed) {
+  const unit = (unitText, price) => (detailed ? { availability: 'https://schema.org/InStock', priceSpecification: { '@type': 'UnitPriceSpecification', price, priceCurrency: 'CHF', unitText } } : {})
+  return [
+    ...fixedPackages.map((pkg) => ({
+      '@type': 'Offer',
+      name: shared.packages[pkg.id].name,
+      description: fill(home.projects.packages[pkg.id].claim, { ...values, ...packageValues(pkg, 'de', shared.care.plans) }),
+      price: String(pkg.price),
+      priceCurrency: 'CHF',
+      ...unit('einmalig', String(pkg.price)),
+    })),
+    {
+      '@type': 'Offer',
+      name: shared.packages.individuell.name,
+      description: fill(home.projects.individual.text, values),
+      priceCurrency: 'CHF',
+      priceSpecification: { '@type': 'PriceSpecification', minPrice: individualPackage.priceFrom, priceCurrency: 'CHF' },
+    },
+    {
+      '@type': 'Offer',
+      name: 'Wartung & Hosting',
+      description: `Wartung in drei Stufen: ${plans.map((plan) => `${shared.care.plans[plan.id].name} (CHF ${plan.monthly} pro Monat)`).join(', ')}. Die ersten ${CARE_MONTHS_INCLUDED} Monate sind in jedem Website-Paket enthalten.`,
+      price: String(cheapestPlan.monthly),
+      priceCurrency: 'CHF',
+      ...unit('monatlich', String(cheapestPlan.monthly)),
+    },
+  ]
+}
+
+// The FAQ of the start page (home.faq.items); the launch question only while the discount runs.
+const faqEntities = home.faq.items
+  .filter((item) => !item.launchOnly || isLaunchDiscountActive())
+  .map((item) => ({ '@type': 'Question', name: item.question, acceptedAnswer: { '@type': 'Answer', text: fill(item.answer, values) } }))
 
 const schema = [
   {
@@ -24,13 +64,13 @@ const schema = [
       "Sin Digital Internetagentur",
       "Sin Digital, Digital Agency Zurich"
     ],
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU, Startups und Unternehmen. Professionelle Websites ab CHF 990, fertig in 2 Wochen.",
+    "description": fill("Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU, Startups und Unternehmen. Websites zum Fixpreis ab CHF {from}, Landingpage in {landingpageWeeks} Wochen.", values),
     "url": "https://www.sin-digital.com",
     "email": "info@sin-digital.com",
     "foundingDate": "2026",
     "currenciesAccepted": "CHF",
     "paymentAccepted": "Banküberweisung, TWINT",
-    "priceRange": "CHF 990, 2490",
+    "priceRange": `CHF ${fixedPackages[0].price}, ${individualPackage.priceFrom}`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Zürich",
@@ -107,64 +147,7 @@ const schema = [
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Webdesign-Pakete Zürich",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Basic Website",
-          "description": "Professionelle Website bis 5 Seiten für Unternehmen",
-          "price": "990",
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "990",
-            "priceCurrency": "CHF",
-            "unitText": "einmalig"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Growth Website mit erweiterten Funktionen",
-          "description": "Erweiterte Website mit Integrationen und Suchmaschinenoptimierung",
-          "price": "1690",
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "1690",
-            "priceCurrency": "CHF",
-            "unitText": "einmalig"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro Website Premium",
-          "description": "Individuelle Premium-Website mit massgeschneidertem Design und 6 Monate Support",
-          "price": "2490",
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "2490",
-            "priceCurrency": "CHF",
-            "unitText": "einmalig"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Partner Monatsbetreuung",
-          "description": `Monatliche Betreuung in drei Care-Stufen: ${plans.map((plan) => `${plan.id[0].toUpperCase()}${plan.id.slice(1)} (CHF ${plan.monthly})`).join(', ')}`,
-          "price": String(plans[0].monthly),
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": String(plans[0].monthly),
-            "priceCurrency": "CHF",
-            "unitText": "monatlich"
-          }
-        }
-      ]
+      "itemListElement": packageOffers(true)
     },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
@@ -249,7 +232,7 @@ const schema = [
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Digitalagentur Zürich, Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Professionelles Webdesign, Webentwicklung und SEO für KMU, Startups und Unternehmen ab CHF 990. Hosting und Wartung optional ab CHF 39 pro Monat.",
+    "description": fill("Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung und SEO für KMU, Startups und Unternehmen, zum Fixpreis ab CHF {from}. {months} Monate Wartung inklusive, danach ab CHF {care} pro Monat.", values),
     "provider": {
       "@id": "https://www.sin-digital.com/#business"
     },
@@ -278,140 +261,13 @@ const schema = [
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Webdesign-Pakete",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Basic",
-          "description": "Professionelle Website mit bis zu 5 Seiten für Unternehmen",
-          "price": "990",
-          "priceCurrency": "CHF"
-        },
-        {
-          "@type": "Offer",
-          "name": "Growth",
-          "description": "Erweiterte Website mit Integrationen und Suchmaschinenoptimierung",
-          "price": "1690",
-          "priceCurrency": "CHF"
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro",
-          "description": "Individuelle Premium-Website mit massgeschneidertem Design und 6 Monate Support",
-          "price": "2490",
-          "priceCurrency": "CHF"
-        }
-      ]
+      "itemListElement": packageOffers(false)
     }
   },
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Welche Services bietet Sin Digital an?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sin Digital kümmert sich um alles vom ersten Design über die Entwicklung bis hin zur Veröffentlichung. Wir bieten Webdesign, Webentwicklung, SEO, Hosting und laufende Betreuung, alles aus einer Hand in Zürich."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie lange dauert ein Webdesign-Projekt bei Sin Digital?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Grundsätzlich starten wir innerhalb von 2 Wochen. Je nach Umfang kann die Gesamtdauer individuell variieren. Wir nehmen uns die Zeit, die Ihr Projekt wirklich verdient."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Was kostet eine Website bei Sin Digital?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Unsere Pakete starten ab CHF 990 (Basic), CHF 1'690 (Growth mit erweiterten Funktionen), CHF 2'490 (Pro) und ab CHF 39/Monat (Partner-Betreuung). Die Website-Pakete sind Einmalpreise inklusive Einrichtung."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Erstellt Sin Digital Websites für Unternehmen in Zürich?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, Sin Digital erstellt professionelle Websites für Unternehmen jeder Branche in Zürich und der gesamten Schweiz, von KMU über Startups bis hin zu etablierten Firmen."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Arbeitet Sin Digital auch international?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolut. Sin Digital arbeitet mit Kunden aus aller Welt zusammen und hat bereits Projekte in ganz Europa, den USA und Asien erfolgreich umgesetzt."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Bietet Sin Digital auch SEO für Unternehmen in Zürich an?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja, jede Website von Sin Digital wird von Grund auf suchmaschinenoptimiert. Das umfasst technisches SEO, lokale Optimierung für Google Maps und Google Business, schnelle Ladezeiten, mobile Optimierung und strukturierte Daten. So wird Ihr Unternehmen in Zürich besser gefunden."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kann ich über meine Website Online-Anfragen und Buchungen erhalten?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolut. Ab dem Growth-Paket erhalten Sie erweiterte Kontaktmöglichkeiten, Formulare und auf Wunsch ein Buchungssystem mit automatischen E-Mail-Bestätigungen. So können Ihre Kunden rund um die Uhr mit Ihnen in Kontakt treten."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ist die Website auch für Smartphones optimiert?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Selbstverständlich. Alle Websites von Sin Digital werden Mobile-First entwickelt. Das bedeutet: Ihre Website sieht auf Smartphones, Tablets und Desktops perfekt aus und lädt blitzschnell. Google bevorzugt mobile-optimierte Websites im Ranking."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Warum sollte ich eine Digitalagentur aus Zürich wählen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Eine Digitalagentur in Zürich wie Sin Digital kennt den lokalen Markt, versteht Schweizer Unternehmen und kann persönliche Beratungsgespräche vor Ort führen. Wir kombinieren lokales Marktverständnis mit internationaler Expertise in Webdesign, SEO und Webentwicklung, damit Ihr Unternehmen online und lokal besser gefunden wird."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Was unterscheidet eine Webagentur wie Sin Digital von einem Freelancer?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Als Webagentur in Zürich bietet Sin Digital ein Komplettpaket: Strategie, Webdesign, Webentwicklung, SEO und laufenden Support, alles aus einer Hand. Im Gegensatz zu einem Freelancer profitieren Sie von klaren Prozessen, transparenten Paketen, Hosting-Lösungen und langfristiger Betreuung."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Bietet Sin Digital auch günstige Websites in Zürich an?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja. Sin Digital erstellt günstige und professionelle Websites in Zürich bereits ab CHF 990. Damit erhalten KMU und lokale Unternehmen einen starken Webauftritt mit klarem Design, SEO-Basis und persönlicher Betreuung."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kann ich meine Website in Zürich professionell erstellen lassen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja. Sin Digital erstellt professionelle Websites in Zürich für KMU, Startups und lokale Unternehmen. Sie erhalten Design, Webentwicklung und SEO aus einer Hand, transparent, effizient und auf Ihr Geschäft zugeschnitten."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kann ich eine Website in Zürich günstig erstellen lassen?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Ja. Bei Sin Digital erhalten Sie eine günstige Website in Zürich ab CHF 990, inklusive professionellem Design, technischer Umsetzung und SEO-Basis für lokale Sichtbarkeit."
-        }
-      }
-    ]
+    "mainEntity": faqEntities
   },
   {
     "@context": "https://schema.org",
@@ -419,7 +275,7 @@ const schema = [
     "@id": "https://www.sin-digital.com/#webpage",
     "url": "https://www.sin-digital.com/",
     "name": "Digitalagentur Zürich | Webdesign & Webentwicklung für KMU | Sin Digital",
-    "description": "Sin Digital, Ihre Digitalagentur in Zürich. Webdesign, Webentwicklung & SEO für KMU ab CHF 990. Fertig in 2 Wochen. Hosting und Wartung optional ab CHF 39 pro Monat.",
+    "description": fill(home.meta.description, values),
     "inLanguage": [
       "de-CH",
       "en"
@@ -431,7 +287,7 @@ const schema = [
       "@id": "https://www.sin-digital.com/#business"
     },
     "datePublished": "2024-01-01",
-    "dateModified": "2026-03-13",
+    "dateModified": "2026-10-08",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "@id": "https://www.sin-digital.com/#breadcrumb",
@@ -464,11 +320,11 @@ const schema = [
     "@type": "HowTo",
     "name": "Wie läuft ein Webdesign-Projekt bei Sin Digital ab?",
     "description": `In ${steps.length} Schritten zur professionellen Website für Ihr Unternehmen.`,
-    "totalTime": "P15D",
+    "totalTime": `P${fixedPackages[fixedPackages.length - 1].weeks.max * 7}D`,
     "estimatedCost": {
       "@type": "MonetaryAmount",
       "currency": "CHF",
-      "value": "990"
+      "value": String(fixedPackages[0].price)
     },
     "step": steps.map((step, i) => ({
       "@type": "HowToStep",

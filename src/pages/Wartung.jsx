@@ -6,6 +6,7 @@ import { plans, rows, yearlyPaidMonths, yearlyPrice } from '../data/maintenance.
 import { configuratorPath, homePath } from '../data/navigation.js'
 import { chf } from '../data/pricing.js'
 import wartungSchema from '../data/schema/wartung.js'
+import { fill, siteValues } from '../data/siteValues.js'
 import { shared as deShared, wartung as deTexts } from '../i18n/de.js'
 import { shared as enShared, wartung as enTexts } from '../i18n/en.js'
 import '../styles/global.css'
@@ -14,13 +15,19 @@ import '../styles/wartung.css'
 
 export const PATHS = { de: '/wartung/', en: '/en/maintenance/' }
 
-const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, key) => values[key])
-
 // Care plans, prerendered per language and served without JavaScript: the monthly/yearly
-// toggle is two radio buttons read by CSS (:has), the FAQ uses <details name>.
+// toggle is two radio buttons read by CSS (:has), the FAQ uses <details name>. Prices, rows
+// and terms come from src/data/maintenance.js, the texts carry {placeholders}.
 export default function Wartung({ lang }) {
-  const t = lang === 'en' ? enTexts : deTexts
+  const raw = lang === 'en' ? enTexts : deTexts
   const shared = lang === 'en' ? enShared : deShared
+  const values = siteValues(lang)
+  const t = {
+    ...raw,
+    meta: Object.fromEntries(Object.entries(raw.meta).map(([key, text]) => [key, fill(text, values)])),
+    intro: fill(raw.intro, values),
+    faq: raw.faq.map((item) => ({ q: item.q, a: fill(item.a, values) })),
+  }
   const yearly = Boolean(yearlyPaidMonths)
   const contact = `${homePath(lang)}#contact`
 
@@ -64,7 +71,7 @@ export default function Wartung({ lang }) {
                   const year = yearlyPrice(plan)
                   return (
                     <article key={plan.id} className={plan.featured ? 'care-plan is-featured' : 'care-plan'} aria-labelledby={`care-${plan.id}`}>
-                      {plan.featured && <span className="care-badge">{t.featured}</span>}
+                      {plan.badge && <span className={`care-badge care-badge-${plan.badge}`}>{shared.care.badges[plan.badge]}</span>}
                       <h2 id={`care-${plan.id}`} className="care-plan-name">{name}</h2>
                       <p className="care-plan-tagline">{t.plans[plan.id].tagline}</p>
                       <p className="care-price">
@@ -85,7 +92,7 @@ export default function Wartung({ lang }) {
                         {rows.map((row) => (
                           <div key={row}>
                             <dt>{t.rows[row]}</dt>
-                            <dd>{t.values[row][String(plan[row])]}</dd>
+                            <dd>{fill(t.values[row][String(plan[row])], values)}</dd>
                           </div>
                         ))}
                       </dl>
@@ -98,11 +105,21 @@ export default function Wartung({ lang }) {
               </div>
 
               <p className="care-note">
-                {t.note.before}
+                {fill(t.note.before, values)}
                 <a href={configuratorPath(lang)}>{t.note.link}</a>
                 {t.note.after}
               </p>
             </div>
+
+            <section className="care-conditions" aria-labelledby="care-conditions-title">
+              <h2 id="care-conditions-title" className="care-faq-title">{t.conditionsTitle}</h2>
+              <ul className="care-conditions-list">
+                {t.conditions.map((item) => (
+                  <li key={item}>{fill(item, values)}</li>
+                ))}
+              </ul>
+              <p className="care-note">{shared.vatNote}</p>
+            </section>
 
             <section className="care-faq" aria-labelledby="care-faq-title">
               <h2 id="care-faq-title" className="care-faq-title">{t.faqTitle}</h2>

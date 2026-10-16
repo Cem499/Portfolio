@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { packageFromHash } from '../data/packages.js'
-import { chf } from '../data/pricing.js'
+import { fill, siteValues } from '../data/siteValues.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import Turnstile from './Turnstile.jsx'
 
@@ -29,16 +29,14 @@ function fieldError(values) {
 
 let emailjsReady = false
 
-// The package buttons on the start page link to #contact-<id>: subject and message are
-// prefilled for that package (texts.prefill), name and email stay as typed.
+// "Projekt besprechen" on the start page links to #contact-<id>: subject and message are
+// prefilled for that package (texts.prefill.<id>, numbers from src/data), name and email
+// stay as typed.
 function prefillFor(f, pkg) {
-  if (!pkg || !f.prefill) return null
-  const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, key) => values[key])
-  const values = { name: pkg.name, price: chf(pkg.monthly ?? pkg.price) }
-  return {
-    subject: fill(f.prefill.subject, values),
-    message: fill(pkg.monthly ? f.prefill.partnerMessage : f.prefill.message, values),
-  }
+  const texts = pkg && f.prefill?.[pkg.id]
+  if (!texts) return null
+  const values = siteValues()
+  return { subject: fill(texts.subject, values), message: fill(texts.message, values) }
 }
 
 // `texts` are the form labels (i18n home.contact.form). `configuration` is the summary the

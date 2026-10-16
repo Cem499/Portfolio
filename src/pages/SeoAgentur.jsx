@@ -67,7 +67,7 @@ export default function SeoAgentur() {
             </li>
             <li>
               <strong>Mobile-First:</strong>
-              {" Google indexiert seit 2021 nur noch die mobile Version. Wir stellen sicher, dass Ihre Website mobil perfekt funktioniert."}
+              {" Google indexiert seit 2021 nur noch die mobile Version. Wir stellen sicher, dass Ihre Website mobil einwandfrei funktioniert."}
             </li>
             <li>
               <strong>Saubere Seitenstruktur:</strong>

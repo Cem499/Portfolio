@@ -1,7 +1,10 @@
 import Seo from '../components/Seo.jsx'
 import schema from '../data/schema/webentwicklung.js'
+import { siteValues } from '../data/siteValues.js'
 import '../styles/landing.css'
 import '../styles/landing-tech.css'
+
+const v = siteValues('de')
 
 // webentwicklung-zuerich.html: SEO-Landingpage, nur Deutsch, ohne JavaScript ausgeliefert.
 export default function Webentwicklung() {
@@ -63,7 +66,7 @@ export default function Webentwicklung() {
             </li>
             <li>
               <strong>Sicherheit:</strong>
-              {" SSL-Verschlüsselung, sichere Formulare und aktuelle Standards schützen Ihre Kunden und Ihr Geschäft."}
+              {" Verschlüsselte Verbindung, sichere Formulare und aktuelle Standards schützen Ihre Kunden und Ihr Geschäft."}
             </li>
             <li>
               <strong>Skalierbarkeit:</strong>
@@ -83,7 +86,7 @@ export default function Webentwicklung() {
           </p>
           <h3>Backend-Entwicklung</h3>
           <p>
-            Für Websites mit erweiterter Funktionalität, Kontaktformulare mit E-Mail-Integration, Terminbuchungssysteme, Admin-Dashboards oder API-Schnittstellen, entwickelt Sin Digital massgeschneiderte Backend-Lösungen mit Java Spring Boot.
+            Für Websites mit erweiterter Funktionalität, Kontaktformulare mit E-Mail-Integration, Terminbuchungssysteme, Admin-Dashboards oder API-Schnittstellen, entwickelt Sin Digital eigene Backend-Lösungen mit Java Spring Boot.
           </p>
           <h3>Performance-Optimierung</h3>
           <p>
@@ -91,7 +94,7 @@ export default function Webentwicklung() {
           </p>
           <h3>Hosting & Infrastruktur</h3>
           <p>
-            Sin Digital bietet professionelles Hosting auf zuverlässigen Cloud-Plattformen. SSL-Verschlüsselung, automatische Backups und Performance-Monitoring sind Standard.
+            {`Hosting ist Teil der Wartung: Die ersten ${v.months} Monate sind in jedem Website-Paket enthalten, danach wählen Sie ein Wartungspaket ab CHF ${v.care} pro Monat. Verschlüsselte Verbindung, Backups und Überwachung gehören dazu.`}
           </p>
         </div>
         <div className="card">
@@ -102,7 +105,7 @@ export default function Webentwicklung() {
             <div className="tech-item">Java Spring Boot</div>
             <div className="tech-item">Responsive Design</div>
             <div className="tech-item">REST APIs</div>
-            <div className="tech-item">SSL / HTTPS</div>
+            <div className="tech-item">HTTPS</div>
             <div className="tech-item">Cloud Hosting</div>
             <div className="tech-item">Git & CI/CD</div>
           </div>
@@ -149,7 +152,7 @@ export default function Webentwicklung() {
           <h2>Webentwicklung Zürich: Häufige Fragen</h2>
           <h3>Brauche ich ein CMS wie WordPress?</h3>
           <p>
-            Nicht zwingend. Sin Digital entwickelt viele Websites als statische oder leichtgewichtige Lösungen, die schneller, sicherer und günstiger im Unterhalt sind als WordPress. Je nach Anforderung kann ein CMS aber sinnvoll sein.
+            Nicht zwingend. Sin Digital entwickelt viele Websites als statische oder leichtgewichtige Lösungen, die schneller, sicherer und im Unterhalt einfacher sind als WordPress. Je nach Anforderung kann ein CMS aber sinnvoll sein.
           </p>
           <h3>Kann ich die Website später um neue Funktionen erweitern?</h3>
           <p>
@@ -157,11 +160,11 @@ export default function Webentwicklung() {
           </p>
           <h3>Wie lange dauert die Entwicklung?</h3>
           <p>
-            Eine Standard-Website ist in ca. 2 Wochen fertig. Web-Apps mit individueller Funktionalität können je nach Umfang 3-6 Wochen dauern.
+            {`Eine Landingpage dauert ${v.landingpageWeeks} Wochen, ein Onepager ${v.onepagerWeeks} Wochen, eine Firmenwebsite ${v.firmenwebsiteWeeks} Wochen, ab vollständigen Inhalten. Web-Apps und individuelle Lösungen planen wir im Konzeptgespräch.`}
           </p>
           <h3>Was kostet Webentwicklung bei Sin Digital?</h3>
           <p>
-            Websites starten ab CHF 990 (Basic). Web-Apps und individuelle Lösungen werden nach Aufwand kalkuliert transparent und ohne versteckte Kosten.
+            {`Websites haben einen Fixpreis: Landingpage CHF ${v.landingpage}, Onepager CHF ${v.onepager}, Firmenwebsite CHF ${v.firmenwebsite}. Web-Apps und individuelle Lösungen beginnen bei CHF ${v.individuell}, der Fixpreis folgt nach einem Konzeptgespräch.`}
           </p>
         </div>
         <div className="card">

@@ -38,7 +38,7 @@ export default function wartungSchema(lang, t, care, paths) {
         name: t.label,
         itemListElement: plans.map((plan) => ({
           '@type': 'Offer',
-          name: `${care.plans[plan.id].name} Care`,
+          name: care.plans[plan.id].name,
           description: care.plans[plan.id].summary,
           price: String(plan.monthly),
           priceCurrency: 'CHF',

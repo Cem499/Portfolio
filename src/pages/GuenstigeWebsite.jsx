@@ -1,7 +1,10 @@
 import Seo from '../components/Seo.jsx'
 import schema from '../data/schema/guenstigeWebsite.js'
+import { siteValues } from '../data/siteValues.js'
 import '../styles/landing.css'
 import '../styles/landing-price.css'
+
+const v = siteValues('de')
 
 // guenstige-website-zuerich.html: SEO-Landingpage, nur Deutsch, ohne JavaScript ausgeliefert.
 export default function GuenstigeWebsite() {
@@ -9,7 +12,7 @@ export default function GuenstigeWebsite() {
     <>
       <Seo htmlAttributes={{ lang: 'de-CH' }} jsonLd={schema}>
         <title>{"Günstige Website Zürich | Professionell ab CHF 990 | Sin Digital"}</title>
-        <meta name="description" content="Günstige Website in Zürich erstellen lassen: professionell, modern und SEO-bereit ab CHF 990. Kein Billig-Ergebnis, sondern faire Preise mit Profi-Qualität. Ideal für KMU in Zürich." />
+        <meta name="description" content={`Website in Zürich zum Fixpreis ab CHF ${v.from}: Landingpage, Onepager oder Firmenwebsite. Eigener Code, SEO-Basis und ${v.months} Monate Wartung inklusive. Ideal für KMU in Zürich.`} />
         <meta name="keywords" content="günstige Website Zürich, Website Zürich günstig, professionelle Website Zürich günstig, KMU Website Zürich, billige Website Zürich, preiswerte Website Zürich, Website günstig erstellen lassen Zürich, Homepage günstig Zürich" />
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
         <meta name="geo.region" content="CH-ZH" />
@@ -23,7 +26,7 @@ export default function GuenstigeWebsite() {
         <link rel="manifest" href="/manifest.json" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Günstige Website Zürich | Professionell ab CHF 990 | Sin Digital" />
-        <meta property="og:description" content="Günstige und professionelle Website in Zürich erstellen lassen. Faire Preise, starkes Design, SEO inklusive." />
+        <meta property="og:description" content={`Website in Zürich zum Fixpreis ab CHF ${v.from}. Faire Preise, starkes Design, SEO inklusive.`} />
         <meta property="og:url" content="https://www.sin-digital.com/guenstige-website-zuerich.html" />
         <meta property="og:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
         <meta property="og:image:width" content="1200" />
@@ -34,7 +37,7 @@ export default function GuenstigeWebsite() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@sindigital" />
         <meta name="twitter:title" content="Günstige Website Zürich | Sin Digital" />
-        <meta name="twitter:description" content="Günstige Website in Zürich ab CHF 990. Professionell, SEO-optimiert, mobile-first. Jetzt anfragen." />
+        <meta name="twitter:description" content={`Website in Zürich zum Fixpreis ab CHF ${v.from}. Professionell, SEO-optimiert, für alle Geräte. Jetzt anfragen.`} />
         <meta name="twitter:image" content="https://www.sin-digital.com/assets/ICON-Logo_Sin-Digital.webp" />
       </Seo>
       <main className="wrap">
@@ -46,36 +49,41 @@ export default function GuenstigeWebsite() {
         <h1>Günstige Website Zürich, professionell ab CHF 990</h1>
         <p className="lead">
           {"Sie suchen eine "}
-          <strong>günstige Website in Zürich</strong>
-          , wollen aber kein Billig-Ergebnis? Sin Digital verbindet faire Preise mit professioneller Qualität. Modernes Design, schnelle Ladezeiten und SEO-Basis ab CHF 990.
+          <strong>Website in Zürich mit klarem Preis</strong>
+          ? Sin Digital arbeitet mit Fixpreisen: Landingpage CHF {v.landingpage}, Onepager CHF {v.onepager}, Firmenwebsite CHF {v.firmenwebsite}. Eigener Code, schnelle Ladezeiten und SEO-Basis inklusive.
         </p>
         <div className="price-highlight">
-          <strong>Ab CHF 990 einmalig</strong>
-          , Professionelle Website mit bis zu 5 Seiten, Mobile-Optimierung, SEO-Basis, Kontaktformular und Google Maps. Keine versteckten Kosten.
+          <strong>Ab CHF {v.from} einmalig, Fixpreis</strong>
+          {`: Landingpage CHF ${v.landingpage}, Onepager CHF ${v.onepager}, Firmenwebsite CHF ${v.firmenwebsite}. Keine versteckten Kosten, ${v.months} Monate Wartung inklusive.`}
+          {v.launchActive && (
+            <span className="price-launch">
+              {`Startrabatt: ${v.launchPercent} % auf den Paketpreis für eines der nächsten ${v.totalSlots} Projekte. Landingpage CHF ${v.landingpageLaunch}, Onepager CHF ${v.onepagerLaunch}, Firmenwebsite CHF ${v.firmenwebsiteLaunch}. Noch ${v.remainingSlots} Plätze, bis ${v.endDate}.`}
+            </span>
+          )}
         </div>
         <div className="card">
-          <h2>{"Was bedeutet \"günstig\" bei Sin Digital?"}</h2>
+          <h2>Was heisst fairer Preis bei Sin Digital?</h2>
           <p>
-            Günstig heisst bei uns nicht billig. Es bedeutet: faire Preise für professionelle Arbeit. Sin Digital arbeitet schlank und effizient, klare Pakete, kein unnötiger Overhead, keine aufgeblähten Strukturen. Das spart Kosten, ohne bei der Qualität zu sparen.
+            Fair heisst: feste Preise für professionelle Arbeit, vor dem Start bekannt. Sin Digital arbeitet schlank und effizient, klare Pakete, kein unnötiger Overhead, keine aufgeblähten Strukturen. Das spart Kosten, ohne bei der Qualität zu sparen.
           </p>
           <p>
-            {"Während viele Zürcher Webagenturen Preise ab CHF 5'000 aufrufen, erhalten Sie bei Sin Digital eine hochwertige Firmenwebsite, die professionell aussieht, bei Google Zürich sichtbar ist und neue Kunden anzieht, ab CHF 990."}
+            {`Während viele Zürcher Webagenturen Preise ab CHF 5'000 aufrufen, erhalten Sie bei Sin Digital eine Landingpage für CHF ${v.landingpage} und eine Firmenwebsite mit bis zu ${v.firmenwebsitePages} Seiten für CHF ${v.firmenwebsite}, als Fixpreis.`}
           </p>
         </div>
         <div className="card">
-          <h2>Was ist im günstigen Website-Paket enthalten?</h2>
+          <h2>Was ist im Fixpreis enthalten?</h2>
           <ul>
             <li>
-              <strong>Professionelles Design:</strong>
-              {" Individuelles Layout, das zu Ihrer Marke passt, kein Template-Einheitsbrei."}
+              <strong>Eigener Code:</strong>
+              {" Kein Baukasten. Website, Code und Domain gehören nach Bezahlung Ihnen."}
             </li>
             <li>
-              <strong>Bis zu 5 Webseiten:</strong>
-              {" Startseite, Über uns, Leistungen, Kontakt und eine weitere Seite Ihrer Wahl."}
+              <strong>Das passende Paket:</strong>
+              {` Landingpage mit bis zu ${v.landingpageSections} Abschnitten, Onepager mit bis zu ${v.onepagerSections} Abschnitten oder Firmenwebsite mit bis zu ${v.firmenwebsitePages} Seiten.`}
             </li>
             <li>
-              <strong>Mobile-First Entwicklung:</strong>
-              {" Perfekt auf Smartphone, Tablet und Desktop."}
+              <strong>Für alle Geräte:</strong>
+              {" Handy, Tablet und Computer."}
             </li>
             <li>
               <strong>Kontaktformular:</strong>
@@ -86,19 +94,19 @@ export default function GuenstigeWebsite() {
               {" Ihr Standort in Zürich wird direkt sichtbar."}
             </li>
             <li>
-              <strong>SEO-Grundlagen:</strong>
-              {" Saubere Struktur, Meta-Tags, schnelle Ladezeiten und die Basis für Google-Sichtbarkeit."}
+              <strong>Sauber für Google:</strong>
+              {" Titel, Beschreibungen, strukturierte Daten, schnelle Ladezeit und lokale Optimierung für Zürich."}
             </li>
             <li>
-              <strong>Suchmaschinenoptimierung:</strong>
-              {" Strukturierte Daten, lokale Optimierung für Zürich."}
+              <strong>Wartung inklusive:</strong>
+              {` Die ersten ${v.months} Monate sind dabei, danach freiwillig ab CHF ${v.care} pro Monat.`}
             </li>
           </ul>
         </div>
         <div className="card">
-          <h2>Günstig vs. Billig, der Unterschied</h2>
+          <h2>Fixpreis statt Baukasten, der Unterschied</h2>
           <p>
-            Billig-Websites aus Website-Baukästen oder Offshore-Agenturen sehen oft zunächst gut aus, bringen aber Probleme mit sich:
+            Baukasten-Websites sehen oft zunächst gut aus, bringen aber Probleme mit sich:
           </p>
           <ul>
             <li>Langsame Ladezeiten, die Google-Rankings zerstören</li>
@@ -112,8 +120,8 @@ export default function GuenstigeWebsite() {
           </p>
         </div>
         <div className="card">
-          <h2>Für wen passt eine günstige Website in Zürich?</h2>
-          <p>Eine günstige Website von Sin Digital ist ideal für:</p>
+          <h2>Für wen passt eine Website zum Fixpreis?</h2>
+          <p>Eine Website zum Fixpreis von Sin Digital ist ideal für:</p>
           <ul>
             <li>
               <strong>Gründer und Startups:</strong>
@@ -138,25 +146,27 @@ export default function GuenstigeWebsite() {
           </ul>
         </div>
         <div className="card">
-          <h2>Upgrade-Möglichkeiten</h2>
-          <p>Die günstige Website ist nur der Anfang. Wenn Ihr Unternehmen wächst, wächst Ihre Website mit:</p>
-          <h3>{"Growth-Paket, ab CHF 1'690"}</h3>
-          <p>Social-Media-Integration, Google Analytics, Terminbuchung und automatische Backups.</p>
-          <h3>{"Pro-Paket, ab CHF 2'490"}</h3>
-          <p>Individuelles Design, Animationen, Mehrsprachigkeit und 6 Monate Support.</p>
-          <h3>Partner-Betreuung, ab CHF 39/Monat</h3>
-          <p>Hosting, Sicherheitsupdates, Backups und laufende Änderungen.</p>
+          <h2>Die Pakete im Überblick</h2>
+          <p>{`Drei Pakete, alle zum Fixpreis, alle mit ${v.months} Monaten Wartung:`}</p>
+          <h3>{`Landingpage, CHF ${v.landingpage}`}</h3>
+          <p>{`Eine Seite mit bis zu ${v.landingpageSections} Abschnitten, ein Ziel. Dauer ${v.landingpageWeeks} Wochen.`}</p>
+          <h3>{`Onepager, CHF ${v.onepager}`}</h3>
+          <p>{`Ihr ganzes Angebot auf einer Seite mit bis zu ${v.onepagerSections} Abschnitten. Dauer ${v.onepagerWeeks} Wochen.`}</p>
+          <h3>{`Firmenwebsite, CHF ${v.firmenwebsite}`}</h3>
+          <p>{`Bis zu ${v.firmenwebsitePages} Seiten, eigene Seite pro Leistung. Dauer ${v.firmenwebsiteWeeks} Wochen.`}</p>
+          <h3>{`Wartung, ab CHF ${v.care} pro Monat`}</h3>
+          <p>{`Hosting, Sicherheit, Updates, Backups und Überwachung. Die ersten ${v.months} Monate sind inklusive.`}</p>
         </div>
         <div className="card">
           <h2>Häufige Fragen zu günstigen Websites in Zürich</h2>
-          <h3>Kann ich auch später von günstig auf Pro upgraden?</h3>
-          <p>Ja. Alle Websites von Sin Digital sind modular aufgebaut und können jederzeit erweitert werden.</p>
+          <h3>Kann ich die Website später erweitern?</h3>
+          <p>Ja. Neue Seiten, Funktionen oder Sprachen kommen als Zusätze dazu, ebenfalls mit festen Preisen.</p>
           <h3>Gibt es versteckte Kosten?</h3>
           <p>
-            Nein. Der Preis von CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Hosting und Wartung sind optional, ab CHF 39 / Monat: <a href="/wartung/">Wartungspläne</a>.
+            Nein. Der Fixpreis ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Die ersten {v.months} Monate Wartung sind inklusive, danach ist sie freiwillig ab CHF {v.care} / Monat: <a href="/wartung/">Wartungspakete</a>.
           </p>
-          <h3>Wie schnell ist meine günstige Website online?</h3>
-          <p>In der Regel in ca. 2 Wochen.</p>
+          <h3>Wie schnell ist meine Website online?</h3>
+          <p>{`Eine Landingpage in ${v.landingpageWeeks} Wochen, ein Onepager in ${v.onepagerWeeks} Wochen, eine Firmenwebsite in ${v.firmenwebsiteWeeks} Wochen, ab vollständigen Inhalten.`}</p>
         </div>
         <div className="card">
           <h2>Weitere Leistungen</h2>
@@ -177,9 +187,9 @@ export default function GuenstigeWebsite() {
           </div>
         </div>
         <div className="cta-box">
-          <h2>Günstige Website in Zürich anfragen</h2>
+          <h2>Website zum Fixpreis anfragen</h2>
           <p>
-            Kontaktieren Sie Sin Digital und erhalten Sie eine unverbindliche Offerte für Ihre professionelle Website ab CHF 990.
+            Kontaktieren Sie Sin Digital und erhalten Sie ein Angebot mit Fixpreis für Ihre Website ab CHF {v.from}.
           </p>
           <a className="btn" href="/#contact">Unverbindliche Offerte anfragen</a>
         </div>

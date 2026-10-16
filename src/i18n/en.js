@@ -1,5 +1,5 @@
 // Texts (English). `shared` is used on every page, the other exports belong to one page each.
-// Start page texts taken over 1:1 from the data-en attributes of Portfolio/index.html.
+// Numbers in {placeholders} come from src/data (siteValues.js); the texts carry no prices.
 
 export const shared = {
   "skipLink": "Skip to content",
@@ -20,6 +20,7 @@ export const shared = {
     "websiteCheck": "Website check"
   },
   "pendingSubmitHint": "One moment please, the form is being prepared …",
+  "vatNote": "All prices in CHF. Sin Digital is not subject to VAT.",
   "contactForm": {
     "nameLabel": "Name *",
     "emailLabel": "Email *",
@@ -33,25 +34,36 @@ export const shared = {
     "privacyAfter": ". *",
     "submit": "Send message",
     "prefill": {
-      "subject": "Enquiry: {name} package",
-      "message": "Hello\nI am interested in the {name} package (from CHF {price}).\nA few words about my project:\n",
-      "partnerMessage": "Hello\nI am interested in the Partner package, hosting and care from CHF {price} per month.\nA few words about my website:\n"
+      "individuell": {
+        "subject": "Discuss a custom project",
+        "message": "Hello\nI would like to discuss a custom project: more than {maxPages} pages or custom functionality.\nA few words about my plans:\n"
+      }
     }
+  },
+  "packages": {
+    "landingpage": { "name": "Landing page" },
+    "onepager": { "name": "One-pager" },
+    "firmenwebsite": { "name": "Company website" },
+    "individuell": { "name": "Custom project" }
   },
   "care": {
     "plans": {
       "basis": {
-        "name": "Basis",
-        "summary": "Hosting, security updates, weekly backups, minor changes up to 15 min/month, support within max. 3 working days."
+        "name": "Basic",
+        "summary": "Hosting, security, updates, uptime monitoring, weekly backups. Reply within 3 working days."
       },
       "business": {
         "name": "Business",
-        "summary": "Everything from Basis plus daily backups, performance monitoring, minor changes up to 30 min/month and support within max. 2 working days."
+        "summary": "Plus daily backups, 30 minutes of changes per month, reply within 2 working days, quarterly report."
       },
       "premium": {
         "name": "Premium",
-        "summary": "Everything from Business plus up to 1 hour of changes/month, advanced monitoring and priority support within max. 1 working day."
+        "summary": "Plus loading-time monitoring, 60 minutes of changes per month, reply within 1 working day, monthly report."
       }
+    },
+    "badges": {
+      "recommended": "My recommendation",
+      "limited": "Limited places"
     }
   }
 }
@@ -59,28 +71,30 @@ export const shared = {
 export const home = {
   "meta": {
     "title": "Digital Agency Zurich | Web Design & Development for SMEs | Sin Digital",
-    "description": "Sin Digital, your digital agency in Zurich. Web design, development & SEO for SMEs from CHF 990. ✓ Ready in 2 weeks ✓ Hosting & maintenance optional from CHF 39 / month ✓ Get your free quote!",
+    "description": "Sin Digital, web design and development in Zurich. Websites for SMEs at a fixed price from CHF {from}: landing page in {landingpageWeeks} weeks, company website in {firmenwebsiteWeeks} weeks. {months} months of maintenance included, then from CHF {care} / month.",
     "ogTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
-    "ogDescription": "Sin Digital, your digital agency in Zurich. Professional websites from CHF 990. Ready in 2 weeks. SEO included. Web agency for SMEs, startups and local businesses.",
+    "ogDescription": "Websites for SMEs in Zurich at a fixed price from CHF {from}. Your own code, the website is yours, {months} months of maintenance included.",
     "twitterTitle": "Digital Agency Zurich | Web Design & Development | Sin Digital",
-    "twitterDescription": "Sin Digital, digital and web agency in Zurich. Professional and affordable websites from CHF 990. Get your quote today."
+    "twitterDescription": "Sin Digital, web design and development in Zurich. Fixed-price websites from CHF {from}, landing page in {landingpageWeeks} weeks."
   },
   "hero": {
     "label": "Sin Digital, Digital Agency & Web Agency Zürich",
-    "cta": "Start Your Project",
-    "text": "Your digital agency in Zurich for web design, development and SEO, with modern design, fast loading speed and mobile-first layouts. Ready in 2 weeks.",
+    "title1": "WEBSITES",
+    "title2": "FIXED PRICE.",
+    "cta": "Calculate your price",
+    "text": "Websites for SMEs in Zurich, with your own code and at a fixed price. Landing page in {landingpageWeeks} weeks, company website in {firmenwebsiteWeeks} weeks, counted from complete content. You talk directly to the person who builds it.",
     "trust": [
-      "✓ From CHF 990",
-      "✓ Ready in 2 weeks",
-      "✓ SEO included",
-      "✓ Hosting & maintenance optional from CHF 39 / month"
+      "✓ From CHF {from}, fixed price",
+      "✓ Landing page in {landingpageWeeks} weeks",
+      "✓ Website and code are yours",
+      "✓ {months} months of maintenance included, then from CHF {care} / month"
     ]
   },
   "localSeo": {
     "title1": "WEB DESIGN ZURICH",
     "title2": "DIGITAL AGENCY",
-    "desc1": "Sin Digital builds professional and affordable websites in Zurich for SMEs, startups and local businesses. As a web agency in Zurich, we combine web design, development and SEO so your website gets found and generates leads.",
-    "desc2": "Looking to have a website built in Zurich? We support you from strategy to launch, clear, efficient and personal.",
+    "desc1": "Sin Digital builds professional websites in Zurich for SMEs, startups and local businesses, at a fixed price. Web design, development and SEO from one source, so your website gets found and brings in enquiries.",
+    "desc2": "Looking to have a website built in Zurich? From the first idea to publication, clear, efficient and personal.",
     "links": [
       "Website Zurich",
       "Affordable Website Zurich",
@@ -94,7 +108,7 @@ export const home = {
   "team": {
     "title1": "THE MIND",
     "title2": "BEHIND IT",
-    "desc": "Sin Digital is led by one vision: crafting digital experiences for businesses in Zürich that push boundaries and deliver real value.",
+    "desc": "Sin Digital is a one-person agency in Zurich: concept, design and code from one source, with clear prices and direct contact.",
     "role": "Founder, Sin Digital, Digital Agency Zurich",
     "bio": "As the founder of digital agency Sin Digital, I combine strategic thinking with technical precision. My mission: making businesses in Zürich digitally visible with professional web design and development, honest, efficient and personal."
   },
@@ -102,92 +116,81 @@ export const home = {
     "label": "Trusted By"
   },
   "projects": {
-    "label": "What We Offer",
-    "title1": "OUR",
-    "title2": "SERVICES",
-    "intro": "Sin Digital develops professional websites for businesses of every industry, from SMEs and startups to established companies in Zürich and across Switzerland. Our solutions help you become visible online, win new clients and create a professional presence that builds trust. Choose the package that fits where you are right now.",
-    "packages": [
-      {
-        "label": "Package 01",
-        "positioning": "For businesses making their first step online. A clean, professional presence, no frills, but solid substance.",
-        "features": [
-          "Professional website with up to 5 pages",
-          "Mobile-optimised for all devices",
-          "Contact form & location map",
-          "Search engine optimisation (SEO)",
-          "Google Maps integration"
-        ],
-        "priceNote": "One-time, incl. setup"
+    "label": "Services & Prices",
+    "title1": "SMALL ON",
+    "title2": "PURPOSE.",
+    "intro": "You talk to the person who builds your website.",
+    "person": {
+      "name": "Cem Sin",
+      "role": "Concept, design and code",
+      "photoAlt": "Cem Sin, founder of Sin Digital"
+    },
+    "packageLabel": "Package {n}",
+    "idealFor": "Ideal for",
+    "scope": "Scope",
+    "fixedPrice": "fixed price",
+    "priceNote": "{weeks} weeks · {months} months of {carePlan} maintenance included",
+    "calculate": "Calculate {name}",
+    "packages": {
+      "landingpage": {
+        "claim": "One page, one goal: enquiries, sign-ups or bookings.",
+        "idealFor": "Events, campaigns, new businesses, a single offer.",
+        "scope": ["Up to {sections} sections", "One clear main button", "Form"]
       },
-      {
-        "badge": "Most Popular",
-        "label": "Package 02",
-        "positioning": "For businesses that want to grow online and win more clients. With extended features, you're visible around the clock.",
-        "features": [
-          "Everything from Basic",
-          "Google Analytics & tracking",
-          "Advanced SEO & local visibility",
-          "GDPR-compliant cookie banner",
-          "Appointment booking available incl. dashboard",
-          "Automatic customer data backups"
-        ],
-        "priceNote": "One-time, incl. setup"
+      "onepager": {
+        "claim": "Your whole offer on one page, built for scrolling.",
+        "idealFor": "Trades, hairdressers, associations, freelancers.",
+        "scope": ["Up to {sections} sections", "Menu jumps to every section", "Form, map"]
       },
-      {
-        "label": "Package 03",
-        "positioning": "For ambitious businesses that want their digital presence to be a competitive edge. Everything you need to make a lasting first impression.",
-        "features": [
-          "Everything from Growth",
-          "Custom design & brand colours",
-          "Custom animations & interactions",
-          "Multilingual website",
-          "GDPR-compliant cookie banner",
-          "WhatsApp chat integration"
-        ],
-        "priceNote": "One-time, incl. setup"
-      },
-      {
-        "label": "Package 04",
-        "positioning": "For businesses that want long-term support from Sin Digital. We handle hosting, updates and ongoing changes, you focus on your business.",
-        "month": "month",
-        "priceNote": "Ongoing care by Sin Digital"
+      "firmenwebsite": {
+        "claim": "Several pages for businesses with several services.",
+        "idealFor": "SMEs with several offers, startups that need to explain.",
+        "scope": ["Up to {pages} pages", "A page for every service", "Form, map"]
       }
-    ],
+    },
+    "launchLine": "Launch discount: CHF {launchPrice} for one of the next {totalSlots} projects. {remainingSlots} places left, until {endDate}.",
+    "individual": {
+      "text": "More than {maxPages} pages or custom functionality? Custom projects from CHF {individuell}.",
+      "button": "Discuss your project"
+    },
+    "always": {
+      "title": "Always included",
+      "items": [
+        "Your own code, no website builder.",
+        "Website, code and domain are yours once paid.",
+        "Built for phone, tablet and computer.",
+        "Set up cleanly for Google: titles, descriptions, fast loading.",
+        "{rounds} rounds of corrections and {bugfixDays} days of bug fixing after publication.",
+        "{months} months of maintenance included, then optional from CHF {care} / month."
+      ],
+      "careLink": "See the maintenance plans"
+    },
     "process": {
-      "label": "How We Work at Sin Digital",
-      "title1": "HOW THE",
-      "title2": "PROCESS WORKS",
+      "label": "How it works",
+      "title1": "FOUR STEPS",
+      "title2": "TO YOUR WEBSITE",
       "steps": [
         {
           "name": "First call",
-          "desc": "We get to know your business, your target clients, your services and what matters to you. No tech talk, just an honest conversation."
+          "desc": "You tell me what you need."
         },
         {
-          "name": "Offer",
-          "desc": "You receive a written offer with scope, price and timeline. We only start once everything works for you."
+          "name": "Fixed-price offer",
+          "desc": "You know exactly what you get and what it costs."
         },
         {
-          "name": "Concept",
-          "desc": "We develop the structure, design and content together with you. You see how your website will look early on, and give feedback before development begins."
+          "name": "Design and build",
+          "desc": "You see the design first, {rounds} rounds of corrections are included."
         },
         {
-          "name": "Development",
-          "desc": "We build your website cleanly and reliably. You stay informed throughout, without having to worry about technical details."
-        },
-        {
-          "name": "Launch",
-          "desc": "We test everything on smartphone, tablet and desktop, set up domain and hosting and take your website live. Then we walk you through everything that matters."
-        },
-        {
-          "name": "Care",
-          "desc": "After launch, we don't disappear. Hosting, updates, backups and small changes can be handled by us on an ongoing basis.",
+          "name": "Publication",
+          "desc": "After the final payment the site goes online, {months} months of maintenance are included.",
           "link": "See the maintenance plans"
         }
       ]
     },
-    "request": "Request {name}",
     "cta": {
-      "title": "Ready for your new business website?",
+      "title": "Ready for your new website?",
       "text": "In a no-obligation conversation, Sin Digital will show you exactly what's possible for your business. No sales pitch, just an honest exchange about whether and how we could work together.",
       "button": "Book a free call with Sin Digital"
     }
@@ -196,37 +199,53 @@ export const home = {
     "label": "FAQ",
     "title1": "COMMON",
     "title2": "QUESTIONS",
-    "intro": "Everything you want to know about Sin Digital as a digital and web agency in Zürich.",
+    "intro": "The most common questions about prices, process and working together.",
     "items": [
       {
         "id": 1,
-        "question": "What services does Sin Digital offer?",
-        "answer": "Sin Digital takes care of everything from the initial design through development all the way to launch. And if you'd like, we can host your website too. In short: we show you the vision, we build it, we bring it online."
+        "question": "Why not just use Wix or Jimdo?",
+        "answer": "A website builder is enough if you have the time and want to do everything yourself. There you pay for the platform every month and stay tied to it. With me you pay for the website once, after that only domain and hosting, maintenance if you choose."
       },
       {
         "id": 2,
-        "question": "How long does a project with Sin Digital take?",
-        "answer": "Generally, Sin Digital gets started within 2 weeks, depending on the scope, the total duration can of course vary. We take the time your project truly deserves."
+        "question": "Landing page or one-pager, what is the difference?",
+        "answer": "A landing page has a single goal, for example sign-ups for an event. A one-pager shows your whole offer on one page. If your services need pages of their own, the company website is the right fit."
+      },
+      {
+        "id": 3,
+        "question": "Who writes the texts?",
+        "answer": "You know your business best, so you provide the content. I tell you exactly which texts and images I need. If you lack the time, I write the texts for an extra charge."
+      },
+      {
+        "id": 4,
+        "question": "How long does it take?",
+        "answer": "A landing page {landingpageWeeks} weeks, a one-pager {onepagerWeeks} weeks, a company website {firmenwebsiteWeeks} weeks. The clock starts on the day all content is in. In a hurry? There is express."
+      },
+      {
+        "id": 5,
+        "question": "Isn't that more expensive than a freelancer?",
+        "answer": "My price sits between freelancers using website builders and agencies. In return you get a fixed price, your own code and a website that belongs to you. And you always talk directly to me."
       },
       {
         "id": 6,
-        "question": "Does Sin Digital also offer SEO for businesses in Zürich?",
-        "answer": "Yes, every Sin Digital website is search engine optimised from the ground up. This includes technical SEO, local optimisation for Google Maps and Google Business, fast loading times, mobile optimisation and structured data. This ensures your business in Zürich gets found more easily."
+        "launchOnly": true,
+        "question": "Why is there a launch discount?",
+        "answer": "Sin Digital is young and I am building my portfolio. The next {totalSlots} projects therefore get {launchPercent} % off the package price, and in return I may show them as references. After that the regular price applies."
       },
       {
         "id": 7,
-        "question": "Can I receive online enquiries and bookings through my website?",
-        "answer": "Absolutely. Starting with the Growth package, you get extended contact options, forms and on request a booking system with automatic email confirmations. Your clients can reach you 24/7, without a single phone call."
+        "question": "What does it cost once the website is online?",
+        "answer": "The first {months} months of maintenance are included. After that it is optional and costs from CHF {care} per month. The domain is listed separately in the offer."
       },
       {
         "id": 8,
-        "question": "Is the website also optimised for smartphones?",
-        "answer": "Of course. All Sin Digital websites are developed Mobile-First. That means: your website looks perfect on smartphones, tablets and desktops, and loads lightning fast. Google favours mobile-optimised websites in rankings, a crucial advantage for your business."
+        "question": "What if I want to switch later?",
+        "answer": "Website, code and domain are yours. If you switch, you receive all files and access details. Ongoing maintenance can be cancelled with {noticeDays} days' notice to the end of a month, at the earliest after {minMonths} months."
       },
       {
         "id": 9,
-        "question": "Why should I choose a digital agency from Zürich?",
-        "answer": "A digital agency in Zürich like Sin Digital knows the local market, understands Swiss businesses and can conduct personal consultations on-site. We combine local market understanding with international expertise in web design, SEO and web development, so your business gets found better, both online and locally."
+        "question": "You work alone. What if you are unavailable?",
+        "answer": "Website, code and domain are yours, so nothing depends on me alone. The code is written in common web technologies, other professionals can continue it."
       }
     ]
   },
@@ -256,8 +275,8 @@ export const home = {
     "googleButton": "Read more on Google"
   },
   "contact": {
-    "subtitle": "Ready for your next big project? Sin Digital, your digital agency & web agency in Zürich, looks forward to hearing from you. Let's create something extraordinary together.",
-    "details": "Whether you need a new website for your business, want to modernise an existing design, or are looking for a custom solution, get in touch. We typically reply within 24 hours and provide a no-obligation quote.",
+    "subtitle": "Ready for your next project? Write what you have in mind. You get a reply and a fixed-price offer.",
+    "details": "Whether a new website, a rework of your current site or a custom project: get in touch. We usually reply within 24 hours with a first assessment.",
     "locationLabel": "Sin Digital, Location Zürich",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
@@ -267,113 +286,135 @@ export const home = {
 
 export const konfigurator = {
   "meta": {
-    "title": "Project Configurator: What Does Your Website Cost? | Sin Digital",
-    "description": "Choose site type, scope, features and preferred start and instantly see a price range in CHF with a time frame. No obligation, two minutes, no sign-up.",
-    "ogTitle": "What does your website cost? Project configurator | Sin Digital"
+    "title": "Project Configurator: Your Fixed Price in Two Minutes | Sin Digital",
+    "description": "Pick a package, add extras, see your fixed price: landing page CHF {landingpage}, one-pager CHF {onepager}, company website CHF {firmenwebsite}. With duration, express and launch discount. No obligation, no sign-up.",
+    "ogTitle": "What does your website cost? Fixed-price configurator | Sin Digital"
   },
   "breadcrumb": "Configurator",
   "label": "Project configurator",
-  "title1": "WHAT DOES",
-  "title2": "YOUR SITE COST?",
-  "intro": "Four decisions, one honest range. Pick site type, scope, features and preferred start, and the guide price and time frame update live. At the end, your configuration goes straight to us as an enquiry.",
+  "title1": "PLAN FIRST,",
+  "title2": "THEN BUILD.",
+  "intro": "You know the price before I write the first line. Pick a package and extras, the fixed price and duration update live. At the end your selection goes to me as an enquiry.",
   "stepWord": "Step",
   "ofWord": "of",
   "steps": {
-    "type": {
-      "title": "Site type",
+    "package": {
+      "title": "Package",
       "question": "What are we building?"
     },
-    "scope": {
-      "title": "Scope",
-      "question": "How many pages do you need?",
-      "singleHint": "More than one page? Then the {business} is the right fit."
+    "addons": {
+      "title": "Extras",
+      "question": "What goes on top?",
+      "hint": "All optional, all fixed prices. The duration grows accordingly."
     },
-    "features": {
-      "title": "Features",
-      "question": "What should the site be able to do?",
-      "hint": "Pick as many as you like, all optional."
-    },
-    "timing": {
-      "title": "Start",
-      "question": "When do you want to start?",
-      "hint": "No effect on the guide price. Short-notice starts are settled in the offer."
+    "terms": {
+      "title": "Discount & date",
+      "question": "Discount and preferred start",
+      "hint": "Discounts never apply to maintenance or the concept talk. The preferred start has no effect on the price."
     },
     "request": {
       "title": "Enquiry",
       "question": "Almost there."
     }
   },
-  "siteTypes": {
+  "packages": {
     "landingpage": {
-      "name": "Landing page",
-      "desc": "One page with one goal: a campaign, a promotion or an offer, built for enquiries."
+      "desc": "One page, one goal. Up to {sections} sections, one clear main button, form.",
+      "meta": "{weeks} weeks · {months} months of {carePlan} maintenance included"
     },
     "onepager": {
-      "name": "One-pager",
-      "desc": "Your business on a single scrolling page: services, team, contact."
+      "desc": "Your whole offer on one page. Up to {sections} sections, menu, form, map.",
+      "meta": "{weeks} weeks · {months} months of {carePlan} maintenance included"
     },
-    "business": {
-      "name": "Business website",
-      "desc": "Several subpages for services, references and team, with room to grow."
+    "firmenwebsite": {
+      "desc": "Several pages for several services. Up to {pages} pages included, a page for every service, form, map.",
+      "meta": "{weeks} weeks · {months} months of {carePlan} maintenance included"
     },
-    "custom": {
-      "name": "Custom / platform",
-      "desc": "Web app, portal or booking platform with its own logic. Price on request."
+    "individuell": {
+      "desc": "More than {maxPages} pages or custom functionality. Fixed price after a concept talk: {conceptHours} hours, CHF {conceptPrice}, credited when you order.",
+      "meta": "Duration agreed in the talk"
     }
   },
-  "pageTiers": {
-    "single": {
-      "name": "1 page",
-      "note": "included"
-    },
-    "upTo5": {
-      "name": "Up to 5 pages",
-      "note": "included"
-    },
-    "upTo10": {
-      "name": "6 to 10 pages",
-      "note": ""
-    },
-    "upTo20": {
-      "name": "11 to 20 pages",
-      "note": ""
-    },
-    "over20": {
-      "name": "More than 20 pages",
-      "note": "price on request"
-    }
-  },
-  "features": {
-    "multilingual": {
-      "name": "Multilingual",
-      "desc": "Per additional language, with its own URLs and clean for Google."
-    },
-    "shop": {
-      "name": "Shop",
-      "desc": "Products, cart and checkout, right on the site."
-    },
-    "booking": {
-      "name": "Online booking",
-      "desc": "Appointments or reservations around the clock, no phone call needed."
-    },
-    "cms": {
-      "name": "CMS",
-      "desc": "Edit texts and images yourself, no developer needed."
-    },
-    "seo": {
-      "name": "SEO package",
-      "desc": "Keyword research, local optimisation and Google Business."
-    },
-    "branding": {
-      "name": "Logo / branding",
-      "desc": "Logo, colours and type that fit the new site."
-    }
+  "badge": "My recommendation",
+  "fixedPrice": "fixed price",
+  "pages": {
+    "label": "Pages in total",
+    "hint": "{included} pages are included, every further page costs CHF {extraPage}. From 6 pages +1 week, from 11 pages +2 weeks.",
+    "tooMany": "More than {maxPages} pages? Then {individuell} is the right fit.",
+    "onlyFirm": "Additional pages are available with the {firmenwebsite}."
   },
   "languages": {
     "label": "Additional languages",
-    "hint": "Besides the main language. Price and time apply per language.",
-    "one": "additional language",
-    "many": "additional languages"
+    "hint": "Per language +{languagePercent} % on package and extra pages, +{languageWeeks} week. You provide the translation.",
+    "none": "none",
+    "one": "1 language",
+    "many": "{n} languages"
+  },
+  "addons": {
+    "shop": {
+      "name": "Shop Start",
+      "desc": "Up to {shopProducts} products, payment through an established provider.",
+      "hint": "Larger shops are a custom project."
+    },
+    "booking": {
+      "name": "Embed a booking tool",
+      "desc": "Your existing booking tool is embedded in the website.",
+      "hint": "A booking system of your own is a custom project."
+    },
+    "cms": {
+      "name": "CMS",
+      "desc": "Edit texts and images yourself, including a {cmsMinutes}-minute introduction."
+    },
+    "seo": {
+      "name": "Local SEO package",
+      "desc": "{seoKeywords} search terms, optimisation, registration with Google, Google Business Profile."
+    },
+    "logo": {
+      "name": "Logo",
+      "desc": "{logoDrafts} drafts, {logoRevisions} revision."
+    },
+    "branding": {
+      "name": "Logo and branding",
+      "desc": "Logo, colours, fonts, a small template."
+    },
+    "texts": {
+      "name": "Copywriting",
+      "desc": "I write the texts for all pages, you provide the facts. Plus CHF {textsPerPage} per extra page."
+    },
+    "domain": {
+      "name": "Set up domain and email",
+      "desc": "Up to {mailboxes} mailboxes. The domain is registered to you, provider costs are separate."
+    },
+    "express": {
+      "name": "Express",
+      "desc": "Delivery in around {expressTime} % of the usual time, for a {expressPercent} % surcharge.",
+      "hint": "Subject to availability and only with finished content."
+    }
+  },
+  "reasons": {
+    "onlyFirmenwebsite": "Company website only.",
+    "notWith": "Not together with {blocker}.",
+    "expressFromOnepager": "Express is available from the one-pager up.",
+    "expressNotWithTexts": "Express is not available together with copywriting."
+  },
+  "dropped": {
+    "intro": "Deselected with the package change:",
+    "pages": "extra pages",
+    "shop": "Shop Start",
+    "express": "express"
+  },
+  "discounts": {
+    "launch": {
+      "name": "Use the launch discount",
+      "desc": "{launchPercent} % off the package price, for one of the next {totalSlots} projects. {remainingSlots} places left, until {endDate}.",
+      "condition": "Condition: I may show your project as a reference with name, logo and screenshots."
+    },
+    "club": {
+      "name": "Non-profit association",
+      "desc": "Minus {clubPercent} % on the total price.",
+      "hint": "Proof in the conversation."
+    },
+    "higher": "The higher discount applies."
   },
   "timings": {
     "asap": {
@@ -395,41 +436,62 @@ export const konfigurator = {
   },
   "start": {
     "label": "Preferred date",
-    "hint": "Today at the earliest, as a guide value for planning."
+    "hint": "Today at the earliest, as a guide value for planning.",
+    "tooEarly": "Delivery time counts from complete content. For an earlier date there is express."
   },
   "dateLocale": "en-GB",
   "summary": {
-    "title": "Your guide price",
+    "title": "Your fixed price",
     "from": "from",
     "currency": "CHF",
-    "onRequest": "Price on request",
+    "onRequest": "Fixed price after the concept talk",
     "week": "week",
     "weeks": "weeks",
-    "weeksOnRequest": "Time frame on request",
-    "perLanguage": "per language",
+    "day": "working day",
+    "days": "working days",
+    "durationOnRequest": "Duration agreed in the talk",
     "selection": "Your selection",
+    "lines": {
+      "package": "Package",
+      "pages": "Extra pages",
+      "languages": "Additional languages",
+      "addons": "Extras",
+      "express": "Express",
+      "launch": "Launch discount",
+      "club": "Association discount"
+    },
     "notes": [
-      "Guide values. You get a fixed price after a short conversation.",
-      "One-time prices including setup. Domain and other third-party costs are listed separately in the offer.",
-      "Hosting and maintenance are optional, from CHF 39 per month."
+      "Your fixed price, one-time. Domain and hosting are listed separately in the offer. After {months} included months, maintenance is optional.",
+      "You only pay more if you want more than agreed. I always tell you beforehand.",
+      "You provide texts and images. I tell you exactly what I need. No time to write? Choose the copywriting extra.",
+      "In a hurry? With express I deliver in around {expressTime} % of the usual time, for a {expressPercent} % surcharge. Available from the one-pager up, subject to availability and once all content is ready."
     ]
   },
   "next": "Next",
   "back": "Back",
-  "toRequest": "To the enquiry",
+  "toRequest": "Request a fixed-price offer",
+  "discuss": "Discuss your project",
   "request": {
-    "title": "Send your configuration as an enquiry",
-    "text": "Your selection comes along. Add your name, email and a few words about your project. We usually reply within 24 hours."
+    "title": "Request a fixed-price offer",
+    "text": "Your selection comes along. Add your name, email and a few words about your project. You usually get a reply within 24 hours.",
+    "titleIndividual": "Discuss your project",
+    "textIndividual": "Tell me briefly what you want to build. I will get in touch for a concept talk: {conceptHours} hours, CHF {conceptPrice}, credited when you order."
   },
   "configuration": {
-    "type": "Site type",
-    "scope": "Scope",
-    "features": "Features",
+    "package": "Package",
+    "pages": "Pages",
+    "languages": "Additional languages",
+    "addons": "Extras",
     "none": "none",
-    "timing": "Start",
+    "express": "Express",
+    "discount": "Discount",
+    "timing": "Preferred start",
     "startOpen": "Individual date, still open",
-    "price": "Guide price",
-    "weeks": "Time frame"
+    "price": "Fixed price",
+    "priceOnRequest": "from CHF {individuell}, fixed price after the concept talk",
+    "duration": "Duration",
+    "yes": "yes",
+    "no": "no"
   }
 }
 
@@ -680,15 +742,15 @@ export const websiteCheck = {
 
 export const wartung = {
   "meta": {
-    "title": "Maintenance & Hosting: Care from CHF 39 per Month | Sin Digital",
-    "description": "Three care plans for your website: hosting, security updates, backups, monitoring, changes and a fixed response time. Clearly defined, from CHF 39 per month.",
-    "ogTitle": "Maintenance & hosting: care from CHF 39 per month"
+    "title": "Maintenance & Hosting: Care from CHF {care} per Month | Sin Digital",
+    "description": "Three maintenance plans for your website: hosting, security, updates, backups, monitoring, changes and fixed reply times. The first {months} months are included in every website package, then from CHF {care} per month.",
+    "ogTitle": "Maintenance & hosting: care from CHF {care} per month"
   },
   "breadcrumb": "Maintenance",
   "label": "Maintenance & hosting",
   "title1": "BUILT",
   "title2": "AND LOOKED AFTER.",
-  "intro": "A website is not a project that ends. Updates, backups, monitoring and small changes: three plans, clearly defined. You choose how much care you want.",
+  "intro": "A website is not a project that ends. Updates, backups, monitoring and small changes: three plans, clearly defined. The first {months} months are included in every website package, after that you choose how much care you want.",
   "billing": {
     "label": "Billing",
     "monthly": "Monthly",
@@ -698,7 +760,6 @@ export const wartung = {
     "save": "{months} months free",
     "equals": "equals CHF {price} per month"
   },
-  "featured": "Most popular",
   "choose": "Request plan",
   "includesAll": "Everything in {plan}, plus",
   "plans": {
@@ -709,16 +770,17 @@ export const wartung = {
       "tagline": "For businesses whose website brings in enquiries and must not stand still."
     },
     "premium": {
-      "tagline": "For everyone who changes things regularly and expects a quick response."
+      "tagline": "For everyone who changes things regularly and expects a quick reply."
     }
   },
   "rows": {
     "hosting": "Hosting",
-    "updates": "Updates",
-    "backups": "Backups",
+    "updates": "Security & updates",
     "monitoring": "Monitoring",
+    "backups": "Backups",
     "changeMinutes": "Changes per month",
-    "response": "Response time"
+    "response": "Reply within",
+    "report": "Report"
   },
   "values": {
     "hosting": {
@@ -727,69 +789,85 @@ export const wartung = {
     "updates": {
       "security": "security updates"
     },
+    "monitoring": {
+      "uptime": "uptime",
+      "performance": "uptime and loading time"
+    },
     "backups": {
       "weekly": "weekly",
       "daily": "daily"
     },
-    "monitoring": {
-      "none": "–",
-      "performance": "performance monitoring",
-      "advanced": "advanced monitoring"
-    },
     "changeMinutes": {
-      "15": "up to 15 minutes",
-      "30": "up to 30 minutes",
-      "60": "up to 1 hour"
+      "0": "none, CHF {hourly} per hour",
+      "30": "30 minutes",
+      "60": "60 minutes"
     },
     "response": {
-      "threeDays": "max. 3 working days",
-      "twoDays": "max. 2 working days",
-      "oneDay": "max. 1 working day, priority"
+      "threeDays": "3 working days",
+      "twoDays": "2 working days",
+      "oneDay": "1 working day"
+    },
+    "report": {
+      "none": "–",
+      "quarterly": "quarterly",
+      "monthly": "monthly"
     }
   },
   "compareTitle": "The plans side by side",
   "note": {
-    "before": "All prices in CHF. Hosting and maintenance are optional: once paid in full, your website is yours. Care complements an existing website; configure a new website in the ",
+    "before": "The first {months} months of maintenance are included in every website package: landing page Basic, one-pager and company website Business. After that maintenance is optional; website, code and domain are yours. Configure a new website in the ",
     "link": "configurator",
     "after": "."
   },
+  "conditionsTitle": "The terms, in short",
+  "conditions": [
+    "Yearly price: {paidMonths} instead of 12 months, so {freeMonths} months free.",
+    "A yearly subscription renews by {renewal} months unless cancelled. You get a reminder {reminderDays} days beforehand. There is no pro-rata refund.",
+    "Unused minutes expire at the end of the month.",
+    "Reply means getting back to you within the stated working days, not completed work.",
+    "During announced holidays the reply times pause.",
+    "The first {months} months of maintenance are included in every website package: landing page Basic, one-pager and company website Business.",
+    "Minimum term {minMonths} months including these {months} months, then {noticeDays} days' notice to the end of a month.",
+    "Changing the plan does not start a new term.",
+    "Prices stay fixed for {priceFixedMonths} months, changes are announced {priceChangeNoticeMonths} months ahead."
+  ],
   "faqTitle": "Questions about care",
   "faq": [
     {
       "q": "What does the care include?",
-      "a": "Depending on the plan: hosting, security updates, regular backups, monitoring and an allowance for small changes such as new texts, images or opening hours. Plus a fixed response time when something does not work."
+      "a": "Depending on the plan: hosting, security and updates, uptime monitoring, backups, from Business an allowance for small changes such as new texts, images or opening hours, plus a report. And a fixed reply time when something does not work."
     },
     {
       "q": "How long does the contract run, and how can I cancel?",
-      "a": "The minimum term is 6 months from acceptance of your website (usually the launch). After that, you can cancel in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year."
+      "a": "The minimum term is {minMonths} months from acceptance of your website, the {months} included months count towards it. After that you cancel with {noticeDays} days' notice to the end of a month. A yearly subscription runs until the end of the paid year and renews by {renewal} months unless you cancel. I remind you {reminderDays} days beforehand."
     },
     {
       "q": "Can I change the plan later?",
-      "a": "Yes. You can move to a larger plan at any time, effective the next month. You can move to a smaller plan after the minimum term, or at the end of the paid year with yearly payment. There is no switching fee."
+      "a": "Yes, at any time for the following month. A change does not start a new term. With yearly payment, a smaller plan applies from the next paid year."
     },
     {
       "q": "What if my change requests exceed the included time?",
-      "a": "We tell you beforehand. Larger changes get a separate quote. Additional work is billed at CHF 120 per hour, but only after your yes."
+      "a": "I tell you beforehand. Additional work costs CHF {hourly} per hour, larger changes get a separate quote. Unused minutes expire at the end of the month."
     },
     {
       "q": "Do I need a plan if Sin Digital built my website?",
-      "a": "No. Once paid in full, the website is yours. Without a plan, hosting, updates and backups are with you or your provider."
+      "a": "The first {months} months are included in every website package. After that maintenance is optional: website, code and domain are yours. Without a plan, hosting, updates and backups are with you or your provider."
     },
     {
       "q": "Does Sin Digital also look after websites someone else built?",
-      "a": "Usually yes. We take a short look at the technology and tell you whether and in which plan care makes sense."
+      "a": "Usually yes. I take a short look at the technology and tell you whether and in which plan care makes sense."
     },
     {
       "q": "How fast does Sin Digital react when the website is down?",
-      "a": "Within the response time of your plan: at the latest after 3 working days on Basis, after 2 working days on Business and after 1 working day, with priority, on Premium. Response time means: we get back to you and start the analysis. Working days are Monday to Friday, excluding public holidays in the canton of Zurich."
+      "a": "Within the reply time of your plan: at the latest after 3 working days on Basic, 2 working days on Business and 1 working day on Premium. Reply means: I get back to you and start the analysis. Working days are Monday to Friday, excluding public holidays in the canton of Zurich. During announced holidays the reply times pause."
     },
     {
       "q": "Where is the site hosted, and who owns the data?",
-      "a": "With established providers such as Hostpoint or Netlify, matching the project. Domain, content and data belong to you. If you cancel, you receive your website files and content free of charge."
+      "a": "With established providers such as Hostpoint or Netlify, matching the project. Domain, content and data belong to you. If you cancel, you receive your website files and access details free of charge."
     },
     {
       "q": "How is it billed?",
-      "a": "Monthly or yearly by invoice, paid by bank transfer or TWINT. With yearly billing you pay 10 instead of 12 months."
+      "a": "Monthly or yearly by invoice, paid by bank transfer or TWINT. With yearly billing you pay {paidMonths} instead of 12 months."
     }
   ]
 }

@@ -1,11 +1,14 @@
+import { packages } from '../packages.js'
 import { SITE } from '../pages.js'
-import { siteTypes } from '../pricing.js'
+import { fill, packageValues, siteValues } from '../siteValues.js'
 
 // JSON-LD of /konfigurator/ and /en/configurator/: the page itself with its breadcrumb,
-// plus the public price list as an OfferCatalog (ranges from src/data/pricing.js).
-export default function konfiguratorSchema(lang, t, paths) {
+// plus the packages as an OfferCatalog with their fixed prices (src/data/packages.js).
+// Regular prices only, never the launch discount.
+export default function konfiguratorSchema(lang, t, shared, paths) {
   const url = SITE + paths[lang]
   const home = SITE + (lang === 'en' ? '/en/' : '/')
+  const values = siteValues(lang)
   return [
     {
       '@context': 'https://schema.org',
@@ -30,14 +33,18 @@ export default function konfiguratorSchema(lang, t, paths) {
       '@type': 'OfferCatalog',
       name: t.label,
       url,
-      itemListElement: siteTypes.map((type) => ({
+      itemListElement: packages.map((pkg) => ({
         '@type': 'Offer',
-        name: t.siteTypes[type.id].name,
-        description: t.siteTypes[type.id].desc,
+        name: shared.packages[pkg.id].name,
+        description: fill(t.packages[pkg.id].desc, { ...values, ...packageValues(pkg, lang, shared.care.plans) }),
         priceCurrency: 'CHF',
-        priceSpecification: type.onRequest
-          ? { '@type': 'PriceSpecification', minPrice: type.priceFrom, priceCurrency: 'CHF' }
-          : { '@type': 'PriceSpecification', minPrice: type.price.min, maxPrice: type.price.max, priceCurrency: 'CHF' },
+        ...(pkg.onRequest
+          ? { priceSpecification: { '@type': 'PriceSpecification', minPrice: pkg.priceFrom, priceCurrency: 'CHF' } }
+          : {
+              price: String(pkg.price),
+              priceSpecification: { '@type': 'UnitPriceSpecification', price: String(pkg.price), priceCurrency: 'CHF', unitText: lang === 'en' ? 'one-time' : 'einmalig' },
+            }),
+        availability: 'https://schema.org/InStock',
         offeredBy: { '@id': `${SITE}/#business` },
       })),
     },

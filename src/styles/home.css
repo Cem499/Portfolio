@@ -245,3 +245,172 @@
 .contact-anchor {
   scroll-margin-top: var(--nav-h);
 }
+
+/* ── Prices section: the person behind it, three fixed-price cards, launch line, the
+   individual project row and "always included" (texts in home.projects). ── */
+.pricing-person {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 30rem;
+}
+
+.pricing-person img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border-green);
+  flex-shrink: 0;
+}
+
+.pricing-person-intro {
+  margin: 0 0 0.35rem;
+  color: var(--white);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.pricing-person-meta {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.pricing-person-meta a {
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.pricing-person-meta a:hover {
+  text-decoration: underline;
+}
+
+.pakete-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 1.25rem;
+}
+
+.paket-ideal {
+  margin: 0 0 1.25rem;
+  color: var(--gray);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.paket-ideal strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.paket-launch {
+  display: block;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(193, 255, 114, 0.25);
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.pakete-individual {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid var(--border-green);
+  border-radius: var(--radius);
+}
+
+.pakete-individual p {
+  margin: 0;
+  color: var(--white);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.pakete-individual-btn {
+  width: auto;
+}
+
+.pakete-always {
+  margin-bottom: 4.5rem;
+}
+
+.pakete-always-title {
+  margin-bottom: 1rem;
+  color: var(--green);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.pakete-always-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.6rem 2rem;
+}
+
+.pakete-always-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--gray);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.pakete-always-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.pakete-always-link {
+  color: var(--green);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 1100px) {
+  .pakete-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .pakete-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .pakete-individual {
+    padding: 1.25rem;
+  }
+
+  .pakete-individual-btn {
+    width: 100%;
+  }
+}
+
+/* Two words per line on phones ("WEBSITES" / "ZUM FIXPREIS."): a little smaller than the
+   original three short words so nothing is cut off at 375 px. */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2.5rem, 15vw, 4.5rem);
+  }
+}

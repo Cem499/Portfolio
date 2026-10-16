@@ -346,3 +346,41 @@
     transform: translateY(-0.9rem);
   }
 }
+
+/* ── Second badge style ("Plätze begrenzt") and the terms list below the plans ── */
+.care-badge-limited {
+  background: transparent;
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.care-conditions {
+  margin: 3.5rem 0 0;
+}
+
+.care-conditions-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.care-conditions-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.care-conditions-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+}

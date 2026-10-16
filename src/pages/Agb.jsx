@@ -2,6 +2,7 @@ import LegalGrid from '../components/LegalGrid.jsx'
 import LegalNav from '../components/LegalNav.jsx'
 import ScrollTopButton from '../components/ScrollTopButton.jsx'
 import Seo from '../components/Seo.jsx'
+import { siteValues } from '../data/siteValues.js'
 import useLegalLang from '../hooks/useLegalLang.js'
 import '../styles/global.css'
 import '../styles/agb.css'
@@ -9,6 +10,8 @@ import '../styles/agb.css'
 // agb.html: prerendered in German, switches to English on the client (localStorage).
 export default function Agb() {
   const { lang, setLang, t, htmlLang } = useLegalLang()
+  const vd = siteValues('de')
+  const ve = siteValues('en')
 
   return (
     <>
@@ -77,7 +80,7 @@ export default function Agb() {
             {' '}
             <a href="#scope-creep" className="toc-link">{t("§ 20 Leistungsabgrenzung", "§ 20 Scope Definition")}</a>
             {' '}
-            <a href="#online-stellung" className="toc-link">{t("§ 21 Online-Stellung", "§ 21 Go-Live")}</a>
+            <a href="#online-stellung" className="toc-link">{t("§ 21 Veröffentlichung", "§ 21 Publication")}</a>
             {' '}
             <a href="#datenschutzerklaerung-impressum" className="toc-link">{t("§ 22 Datenschutz & Impressum", "§ 22 Privacy & Legal Notice")}</a>
           </nav>
@@ -90,7 +93,7 @@ export default function Agb() {
             <div className="legal-block">
               <ul>
                 <li>
-                  {t("Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Basic, Growth, Pro oder Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind.", "The exact scope of services depends on the selected package (Basic, Growth, Pro or Partner) as well as individual agreements set out in writing in the respective offer.")}
+                  {t("Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Landingpage, Onepager, Firmenwebsite oder Individuell) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind.", "The exact scope of services depends on the selected package (landing page, one-pager, company website or custom project) as well as individual agreements set out in writing in the respective offer.")}
                 </li>
                 <li>
                   {t("Mögliche Leistungen umfassen u.a.: Websiteerstellung, Content-Management-Systeme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot.", "Possible services include, among others: website creation, content management systems, dashboards and backend development. The signed offer is the sole binding document.")}
@@ -109,7 +112,10 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Die Entwicklung beginnt nach Eingang der vereinbarten Anzahlung und dauert maximal die im Angebot genannte Frist. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin.", "Development begins upon receipt of the agreed deposit and takes a maximum of the timeframe stated in the offer. The contractor will notify the client of the completion date in good time.")}
+                {t(`Die Lieferzeit richtet sich nach dem gewählten Paket (Landingpage ${vd.landingpageWeeks} Wochen, Onepager ${vd.onepagerWeeks} Wochen, Firmenwebsite ${vd.firmenwebsiteWeeks} Wochen, verlängert um die im Angebot genannten Zusätze) und läuft ab dem Tag, an dem alle Inhalte vollständig vorliegen und die Anzahlung eingegangen ist. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin.`, `The delivery time depends on the selected package (landing page ${ve.landingpageWeeks} weeks, one-pager ${ve.onepagerWeeks} weeks, company website ${ve.firmenwebsiteWeeks} weeks, extended by the extras stated in the offer) and runs from the day all content is complete and the deposit has been received. The contractor will notify the client of the completion date in good time.`)}
+              </p>
+              <p>
+                {t(`Express (nur Onepager und Firmenwebsite, nicht zusammen mit dem Zusatz Texte schreiben): Lieferung in rund ${vd.expressTime} % der üblichen Zeit gegen ${vd.expressPercent} % Aufpreis auf die Zwischensumme, nach Verfügbarkeit und nur, wenn alle Inhalte beim Projektstart vollständig vorliegen.`, `Express (one-pager and company website only, not together with the copywriting extra): delivery in around ${ve.expressTime} % of the usual time for a ${ve.expressPercent} % surcharge on the subtotal, subject to availability and only if all content is complete at project start.`)}
               </p>
             </div>
           </LegalGrid>
@@ -124,7 +130,13 @@ export default function Agb() {
                 <li>
                   {t("Die Preise und Zahlungsmodalitäten richten sich nach dem jeweiligen Angebot.", "Prices and payment terms are governed by the respective offer.")}
                 </li>
-                <li>{t("Der Zahlungsplan ist im Angebot geregelt.", "The payment plan is specified in the offer.")}</li>
+                <li>
+                  {t(`Zahlungsplan: ${vd.deposit} % bei Auftrag, ${vd.balance} % vor der Veröffentlichung. Bei individuellen Projekten ${vd.individualPayment} % (bei Auftrag, nach Freigabe des Entwurfs, vor der Veröffentlichung).`, `Payment plan: ${ve.deposit} % on order, ${ve.balance} % before publication. For custom projects ${ve.individualPayment} % (on order, after approval of the design, before publication).`)}
+                </li>
+                <li>{t("Die Veröffentlichung erfolgt erst nach vollständiger Bezahlung.", "Publication takes place only after full payment.")}</li>
+                <li>
+                  {t(`Individuelle Projekte beginnen mit einem Konzeptgespräch (${vd.conceptHours} Stunden, CHF ${vd.conceptPrice}), das bei Auftragserteilung angerechnet wird.`, `Custom projects start with a concept talk (${ve.conceptHours} hours, CHF ${ve.conceptPrice}), credited when the order is placed.`)}
+                </li>
               </ul>
             </div>
           </LegalGrid>
@@ -136,7 +148,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Kosten für Drittanbieter-Leistungen (z.B. Domain, Plugins, APIs) sind nicht im Projektpreis enthalten. Sie werden im Angebot separat ausgewiesen und zusätzlich verrechnet. Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden. Hosting und Wartung sind ebenfalls nicht Teil des Projektpreises, sie sind optional (siehe Ziffer 13).", "Costs for third-party services (e.g. domain, plugins, APIs) are not included in the project price. They are listed separately in the offer and billed in addition. Changes in third-party prices after contract conclusion may be passed on to the client. Hosting and maintenance are not part of the project price either; they are optional (see section 13).")}
+                {t(`Kosten für Drittanbieter-Leistungen (z.B. Domain, Plugins, APIs) sind nicht im Projektpreis enthalten. Sie werden im Angebot separat ausgewiesen und zusätzlich verrechnet. Änderungen der Preise von Drittanbietern nach Vertragsabschluss können an den Kunden weitergegeben werden. Die ersten ${vd.months} Monate Wartung sind im Projektpreis enthalten; danach sind Hosting und Wartung freiwillig (siehe Hosting & Wartung).`, `Costs for third-party services (e.g. domain, plugins, APIs) are not included in the project price. They are listed separately in the offer and billed in addition. Changes in third-party prices after conclusion of the contract may be passed on to the client. The first ${ve.months} months of maintenance are included in the project price; after that, hosting and maintenance are optional (see Hosting & Maintenance).`)}
               </p>
             </div>
           </LegalGrid>
@@ -160,7 +172,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Der Kunde ist verpflichtet, alle notwendigen Inhalte (Texte, Bilder, Logos, Farbwelt) rechtzeitig bereitzustellen. Verzögerungen durch den Kunden verlängern die Entwicklungszeit entsprechend.", "The client is obliged to provide all necessary content (texts, images, logos, color scheme) in a timely manner. Delays caused by the client will extend the development timeline accordingly.")}
+                {t(`Der Kunde stellt alle notwendigen Inhalte (Texte, Bilder, Logos, Farbwelt) bis zum Projektstart bereit. Die Lieferzeit läuft ab vollständigen Inhalten. Fehlen Inhalte ${vd.contentGraceDays} Tage nach Projektstart noch, verschiebt sich das Projekt auf den nächsten freien Termin.`, `The client provides all necessary content (texts, images, logos, colour scheme) by project start. The delivery time runs from complete content. If content is still missing ${ve.contentGraceDays} days after project start, the project moves to the next free slot.`)}
               </p>
             </div>
           </LegalGrid>
@@ -196,7 +208,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Im Vertrag inbegriffen ist bis zu 1 Änderungswunsch nach Lieferung. Weitere Änderungen werden mit CHF 120.00 pro Stunde verrechnet. Als Änderung gilt die Anpassung eines bestehenden Elements wie Text, Bild oder Farbe. Neue Funktionen oder strukturelle Umbauten gelten nicht als Änderung und werden separat verrechnet.", "Up to 1 change request after delivery is included in the contract. Additional changes are billed at CHF 120.00 per hour. A change is defined as an adjustment to an existing element such as text, image or colour. New features or structural changes do not qualify as changes and will be billed separately.")}
+                {t(`Während der Entwicklung sind ${vd.rounds} Korrekturrunden inbegriffen. Nach der Veröffentlichung behebt der Auftragnehmer während ${vd.bugfixDays} Tagen kostenlos Abweichungen vom vereinbarten Umfang. Weitere Änderungen und Mehraufwand werden mit CHF ${vd.hourly} pro Stunde verrechnet und vorher angekündigt. Neue Funktionen oder strukturelle Umbauten gelten nicht als Korrektur und werden separat offeriert.`, `${ve.rounds} rounds of corrections are included during development. After publication, the contractor fixes deviations from the agreed scope free of charge for ${ve.bugfixDays} days. Further changes and extra work are billed at CHF ${ve.hourly} per hour and announced beforehand. New functions or structural changes do not count as corrections and are quoted separately.`)}
               </p>
             </div>
           </LegalGrid>
@@ -209,7 +221,7 @@ export default function Agb() {
             <div className="legal-block">
               <ul>
                 <li>
-                  {t("Nach vollständiger Bezahlung gehen die Rechte an der individuell erstellten Website (Code, Design, Inhalte) auf den Auftraggeber über. Ausgenommen sind Drittanbieter- und Open-Source-Komponenten, für die deren Lizenzen gelten.", "Upon full payment, the rights to the individually created website (code, design, content) pass to the client. Excluded are third-party and open-source components, which remain subject to their own licences.")}
+                  {t("Nach vollständiger Bezahlung gehen die Rechte an der individuell erstellten Website (Code, Design, Inhalte) auf den Auftraggeber über. Ausgenommen sind Schriften, Bilder, Bibliotheken und andere Komponenten von Dritten, die unter ihren eigenen Lizenzen bleiben.", "Upon full payment, the rights to the individually created website (code, design, content) pass to the client. Excluded are fonts, images, libraries and other third-party components, which remain under their own licences.")}
                 </li>
                 <li>
                   {t("Bis zur vollständigen Bezahlung kann der Auftragnehmer die Website zurückbehalten (siehe Zurückbehaltungsrecht und Eigentumsvorbehalt).", "Until full payment, the contractor may withhold the website (see right of retention and retention of title).")}
@@ -240,7 +252,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Der Auftragnehmer gewährleistet die einwandfreie Funktion der Website für 30 Tage nach Abnahme. Technische Mängel sind schriftlich zu melden und werden innerhalb dieser Frist kostenlos behoben. Änderungswünsche und neue Funktionen sind davon ausgenommen.", "The contractor warrants the proper functioning of the website for 30 days after acceptance. Technical defects must be reported in writing and will be rectified free of charge within this period. Change requests and new features are excluded from this warranty.")}
+                {t(`Der Auftragnehmer behebt während ${vd.bugfixDays} Tagen nach der Veröffentlichung kostenlos Abweichungen vom vereinbarten Umfang und technische Mängel, die schriftlich gemeldet werden. Änderungswünsche und neue Funktionen sind davon ausgenommen.`, `For ${ve.bugfixDays} days after publication, the contractor fixes deviations from the agreed scope and technical defects reported in writing free of charge. Change requests and new functions are excluded.`)}
               </p>
             </div>
           </LegalGrid>
@@ -252,16 +264,19 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Hosting und Wartung sind optional. Ohne Wartungspaket liegen Hosting, Updates und Backups beim Auftraggeber.", "Hosting and maintenance are optional. Without a maintenance plan, hosting, updates and backups are the client's responsibility.")}
+                {t(`Die ersten ${vd.months} Monate Wartung sind in jedem Website-Paket enthalten (Landingpage: Basis, Onepager und Firmenwebsite: Business). Danach sind Hosting und Wartung freiwillig. Ohne Wartungspaket liegen Hosting, Updates und Backups beim Auftraggeber.`, `The first ${ve.months} months of maintenance are included in every website package (landing page: Basic, one-pager and company website: Business). After that, hosting and maintenance are optional. Without a maintenance plan, hosting, updates and backups are the responsibility of the client.`)}
               </p>
               <p>
                 {t("Wählt der Auftraggeber ein Wartungspaket (Basis, Business oder Premium), richten sich Leistungen, Backups, Änderungskontingent und Reaktionszeit nach dem gewählten Paket gemäss sin-digital.com/wartung/. Die Reaktionszeit wird in Werktagen gerechnet (Montag bis Freitag ohne Feiertage im Kanton Zürich). Reaktion heisst Rückmeldung und Beginn der Analyse, nicht Behebung. Arbeiten über dem Kontingent des Pakets sowie neue Seiten, Funktionen oder strukturelle Änderungen werden nach vorheriger Rückfrage zu CHF 120.00 pro Stunde verrechnet.", "If the client chooses a maintenance plan (Basis, Business or Premium), services, backups, change allowance and response time depend on the selected plan as described at sin-digital.com/en/maintenance/. Response time is counted in working days (Monday to Friday, excluding public holidays in the canton of Zurich). Response means a reply and the start of the analysis, not the fix. Work beyond the plan's allowance as well as new pages, features or structural changes are billed at CHF 120.00 per hour after prior consultation.")}
               </p>
               <p>
-                {t("Die Gebühr ist monatlich oder jährlich zahlbar. Bei jährlicher Zahlung sind 10 statt 12 Monatsgebühren im Voraus zu bezahlen.", "The fee is payable monthly or yearly. With yearly payment, 10 instead of 12 monthly fees are payable in advance.")}
+                {t(`Die Gebühr ist monatlich oder jährlich zahlbar. Bei jährlicher Zahlung sind 10 statt 12 Monatsgebühren im Voraus zu bezahlen. Das Jahresabo verlängert sich um ${vd.renewal} Monate, wenn es nicht gekündigt wird; der Auftragnehmer erinnert ${vd.reminderDays} Tage vorher. Eine anteilige Rückerstattung erfolgt nicht. Die Wartungspreise bleiben ${vd.priceFixedMonths} Monate fix, Änderungen werden ${vd.priceChangeNoticeMonths} Monate vorher angekündigt.`, `The fee is payable monthly or yearly. With yearly payment, 10 instead of 12 monthly fees are payable in advance. A yearly subscription renews by ${ve.renewal} months unless cancelled; the contractor sends a reminder ${ve.reminderDays} days beforehand. There is no pro-rata refund. Maintenance prices stay fixed for ${ve.priceFixedMonths} months, changes are announced ${ve.priceChangeNoticeMonths} months ahead.`)}
               </p>
               <p>
-                {t("Ein Wartungspaket läuft mindestens 6 Monate ab Abnahme der Website. Danach kann es von beiden Parteien mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Die Gebühr beginnt ab Abnahme der Website. Eine permanente oder unterbrechungsfreie Verfügbarkeit wird nicht geschuldet.", "A maintenance plan runs for a minimum of 6 months from acceptance of the website. After that, it may be terminated by either party in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. The fee commences upon acceptance of the website. Permanent or uninterrupted availability is not guaranteed.")}
+                {t(`Ein Wartungspaket läuft mindestens ${vd.minMonths} Monate ab Abnahme der Website, die ${vd.months} inklusiven Monate zählen dazu. Danach kann es von beiden Parteien mit ${vd.noticeDays} Tagen Frist auf Monatsende schriftlich gekündigt werden. Ein Stufenwechsel startet keine neue Laufzeit. Die Gebühr beginnt nach Ablauf der inklusiven Monate. Nicht genutzte Änderungsminuten verfallen am Monatsende. Reaktion heisst Rückmeldung, nicht Behebung; während angekündigter Ferien des Auftragnehmers ruhen die Reaktionszeiten. Eine permanente oder unterbrechungsfreie Verfügbarkeit der Website wird nicht garantiert.`, `A maintenance plan runs for at least ${ve.minMonths} months from acceptance of the website, the ${ve.months} included months count towards it. After that, either party may cancel in writing with ${ve.noticeDays} days of notice to the end of a month. Changing the plan does not start a new term. The fee starts after the included months. Unused change minutes expire at the end of the month. Response means getting back to the client, not fixing; during the announced holidays of the contractor the response times pause. Permanent or uninterrupted availability of the website is not guaranteed.`)}
+              </p>
+              <p>
+                {t(`Wählt der Auftraggeber nach Ablauf der inklusiven Monate trotz zweier Erinnerungen kein Wartungspaket, erhält er Code und Zugänge; die Website bleibt danach noch ${vd.graceDays} Tage online.`, `If the client does not choose a maintenance plan after the included months despite two reminders, the client receives the code and access details; the website then stays online for another ${ve.graceDays} days.`)}
               </p>
             </div>
           </LegalGrid>
@@ -289,7 +304,7 @@ export default function Agb() {
                   {t("Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet.", "If termination occurs after development has begun, the work completed up to that point will be invoiced proportionally. The deposit is non-refundable.")}
                 </li>
                 <li>
-                  {t("Ein Wartungspaket kann frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten gekündigt werden. Danach kann es von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet.", "A maintenance plan may only be terminated after the minimum term of 6 months. Thereafter, it may be terminated by either party in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. In the event of early termination, the remaining months until the end of the minimum term are fully owed.")}
+                  {t(`Ein Wartungspaket kann frühestens nach Ablauf der Mindestlaufzeit von ${vd.minMonths} Monaten (inklusive der ${vd.months} im Projektpreis enthaltenen Monate) gekündigt werden, mit ${vd.noticeDays} Tagen Frist auf Monatsende. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Bei vorzeitiger Kündigung sind die verbleibenden Monatsgebühren der Mindestlaufzeit geschuldet.`, `A maintenance plan can be cancelled at the earliest after the minimum term of ${ve.minMonths} months (including the ${ve.months} months contained in the project price), with ${ve.noticeDays} days of notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. In case of early termination, the remaining monthly fees of the minimum term are owed.`)}
                 </li>
                 <li>
                   {t("Die Domain ist auf den Auftraggeber registriert und wird bei Kündigung innerhalb von 7 Tagen übertragen. Auf Wunsch erhält der Auftraggeber die Website-Dateien und Inhalte kostenlos. Danach wird die Website vom Server des Auftragnehmers entfernt.", "The domain is registered in the client's name and will be transferred within 7 days upon termination. On request, the client receives the website files and content free of charge. The website is then removed from the contractor's server.")}
@@ -342,19 +357,22 @@ export default function Agb() {
             <div className="legal-block">
               <h3>{t("Leistungsumfang", "Scope of Services")}</h3>
               <p>
-                {t("Der Leistungsumfang ergibt sich aus dem gewählten Paket (Basic, Growth, Pro oder Partner) und wird im individuellen Angebot verbindlich festgehalten. Angaben auf der Website oder in Marketingunterlagen sind unverbindlich. Massgebend ist ausschliesslich das unterzeichnete Angebot.", "The scope of services is determined by the selected package (Basic, Growth, Pro or Partner) and is binding as set out in the individual offer. Information on the website or in marketing materials is non-binding. Only the signed offer is authoritative.")}
+                {t("Der Leistungsumfang ergibt sich aus dem gewählten Paket (Landingpage, Onepager, Firmenwebsite oder Individuell) und wird im individuellen Angebot verbindlich festgehalten. Angaben auf der Website oder in Marketingunterlagen sind unverbindlich. Massgebend ist ausschliesslich das unterzeichnete Angebot.", "The scope of services is determined by the selected package (landing page, one-pager, company website or custom project) and is set out bindingly in the individual offer. Information on the website or in marketing materials is non-binding. The signed offer is the sole binding document.")}
               </p>
               <h3>{t("Entwicklungszeit & Lieferung", "Development Time & Delivery")}</h3>
               <p>
-                {t("Die Entwicklung beginnt nach Eingang der Anzahlung und dauert bis zu 15 Arbeitstage. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin.", "Development begins upon receipt of the deposit and takes up to 15 working days. The contractor will notify the client of the completion date in good time.")}
+                {t(`Die Lieferzeit richtet sich nach dem gewählten Paket (Landingpage ${vd.landingpageWeeks} Wochen, Onepager ${vd.onepagerWeeks} Wochen, Firmenwebsite ${vd.firmenwebsiteWeeks} Wochen, verlängert um die im Angebot genannten Zusätze) und läuft ab dem Tag, an dem alle Inhalte vollständig vorliegen und die Anzahlung eingegangen ist. Der Auftragnehmer informiert rechtzeitig über den Fertigstellungstermin.`, `The delivery time depends on the selected package (landing page ${ve.landingpageWeeks} weeks, one-pager ${ve.onepagerWeeks} weeks, company website ${ve.firmenwebsiteWeeks} weeks, extended by the extras stated in the offer) and runs from the day all content is complete and the deposit has been received. The contractor will notify the client of the completion date in good time.`)}
+              </p>
+              <p>
+                {t(`Express (nur Onepager und Firmenwebsite, nicht zusammen mit dem Zusatz Texte schreiben): Lieferung in rund ${vd.expressTime} % der üblichen Zeit gegen ${vd.expressPercent} % Aufpreis auf die Zwischensumme, nach Verfügbarkeit und nur, wenn alle Inhalte beim Projektstart vollständig vorliegen.`, `Express (one-pager and company website only, not together with the copywriting extra): delivery in around ${ve.expressTime} % of the usual time for a ${ve.expressPercent} % surcharge on the subtotal, subject to availability and only if all content is complete at project start.`)}
               </p>
               <h3>{t("Änderungswünsche", "Change Requests")}</h3>
               <ul>
                 <li>
-                  {t("Bis zu 1 Änderungswunsch nach Lieferung ist inklusive.", "Up to 1 change request after delivery is included.")}
+                  {t(`${vd.rounds} Korrekturrunden während der Entwicklung sind inklusive; nach der Veröffentlichung ${vd.bugfixDays} Tage Fehlerbehebung für Abweichungen vom vereinbarten Umfang.`, `${ve.rounds} rounds of corrections during development are included; after publication, ${ve.bugfixDays} days of bug fixing for deviations from the agreed scope.`)}
                 </li>
                 <li>
-                  {t("Weitere Änderungen werden mit CHF 120.00 pro Stunde berechnet.", "Additional changes will be charged at CHF 120.00 per hour.")}
+                  {t(`Weitere Änderungen und Mehraufwand werden mit CHF ${vd.hourly} pro Stunde berechnet und vorher angekündigt.`, `Further changes and extra work are charged at CHF ${ve.hourly} per hour and announced beforehand.`)}
                 </li>
               </ul>
               <h3>{t("Unterauftragsvergabe", "Subcontracting")}</h3>
@@ -407,9 +425,11 @@ export default function Agb() {
             <div className="legal-block">
               <h3>{t("Preis & Zahlungsbedingungen", "Price & Payment Terms")}</h3>
               <ul>
-                <li>{t("Einmalige Entwicklungsgebühr: gemäss Angebot", "One-time development fee: as per offer")}</li>
                 <li>
-                  {t("Hosting & Wartung (optional): Gebühr gemäss gewähltem Wartungspaket, monatlich oder jährlich. Bei jährlicher Zahlung 10 statt 12 Monatsgebühren, im Voraus zahlbar.", "Hosting & maintenance (optional): fee according to the selected maintenance plan, monthly or yearly. With yearly payment, 10 instead of 12 monthly fees, payable in advance.")}
+                  {t(`Einmaliger Fixpreis gemäss Angebot. Mehraufwand nur nach vorheriger Ankündigung, zu CHF ${vd.hourly} pro Stunde.`, `One-time fixed price as per offer. Extra work only after prior notice, at CHF ${ve.hourly} per hour.`)}
+                </li>
+                <li>
+                  {t(`Hosting & Wartung: Die ersten ${vd.months} Monate sind im Projektpreis enthalten (Landingpage: Basis, Onepager und Firmenwebsite: Business). Danach Gebühr gemäss gewähltem Wartungspaket, monatlich oder jährlich. Bei jährlicher Zahlung 10 statt 12 Monatsgebühren, im Voraus zahlbar.`, `Hosting & maintenance: the first ${ve.months} months are included in the project price (landing page: Basic, one-pager and company website: Business). After that, the fee of the selected maintenance plan applies, monthly or yearly. With yearly payment, 10 instead of 12 monthly fees, payable in advance.`)}
                 </li>
               </ul>
               <h3>{t("Zahlungsplan", "Payment Plan")}</h3>
@@ -418,10 +438,13 @@ export default function Agb() {
                   <strong>{t("Zahlungsplan:", "Payment Plan:")}</strong>
                 </p>
                 <p>
-                  {t("• 50 % Anzahlung bei Vertragsabschluss (vor Entwicklungsbeginn)", "• 50% deposit upon signing (before development begins)")}
+                  {t(`• ${vd.deposit} % Anzahlung bei Auftrag (vor Entwicklungsbeginn)`, `• ${ve.deposit} % deposit on order (before development begins)`)}
                 </p>
                 <p>
-                  {t("• 50 % Restbetrag bei Lieferung der fertigen Website", "• 50% balance upon delivery of the finished website")}
+                  {t(`• ${vd.balance} % Restbetrag vor der Veröffentlichung; die Website geht erst nach vollständiger Bezahlung online`, `• ${ve.balance} % balance before publication; the website goes online only after full payment`)}
+                </p>
+                <p>
+                  {t(`• Individuelle Projekte: ${vd.individualPayment} % (bei Auftrag, nach Freigabe des Entwurfs, vor der Veröffentlichung)`, `• Custom projects: ${ve.individualPayment} % (on order, after approval of the design, before publication)`)}
                 </p>
                 <p>
                   {t("Bankverbindung Sin Digital: IBAN CH08 0070 0114 9050 6319 6 | Bank: Zürcher Kantonalbank", "Bank details Sin Digital: IBAN CH08 0070 0114 9050 6319 6 | Bank: Zürcher Kantonalbank")}
@@ -447,7 +470,7 @@ export default function Agb() {
               <h3>{t("Rechteübergang", "Transfer of Rights")}</h3>
               <ul>
                 <li>
-                  {t("Nach vollständiger Bezahlung gehen die Rechte an der individuell erstellten Website (Code, Design, Inhalte) auf den Auftraggeber über. Ausgenommen sind Drittanbieter- und Open-Source-Komponenten, für die deren Lizenzen gelten.", "Upon full payment, the rights to the individually created website (code, design, content) pass to the client. Excluded are third-party and open-source components, which remain subject to their own licences.")}
+                  {t("Nach vollständiger Bezahlung gehen die Rechte an der individuell erstellten Website (Code, Design, Inhalte) auf den Auftraggeber über. Ausgenommen sind Schriften, Bilder, Bibliotheken und andere Komponenten von Dritten, die unter ihren eigenen Lizenzen bleiben.", "Upon full payment, the rights to the individually created website (code, design, content) pass to the client. Excluded are fonts, images, libraries and other third-party components, which remain under their own licences.")}
                 </li>
                 <li>
                   {t("Bis zur vollständigen Bezahlung kann der Auftragnehmer die Website zurückbehalten (siehe Zurückbehaltungsrecht und Eigentumsvorbehalt).", "Until full payment, the contractor may withhold the website (see right of retention and retention of title).")}
@@ -517,7 +540,7 @@ export default function Agb() {
                   {t("Bei Kündigung nach Entwicklungsbeginn wird die bis dahin geleistete Arbeit anteilsmässig in Rechnung gestellt. Die Anzahlung wird nicht zurückerstattet.", "If termination occurs after development has begun, work completed to date will be invoiced proportionally. The deposit is non-refundable.")}
                 </li>
                 <li>
-                  {t("Ein Wartungspaket kann frühestens nach Ablauf der Mindestlaufzeit von 6 Monaten gekündigt werden. Danach kann es von beiden Seiten mit 30 Tagen Frist auf Monatsende schriftlich gekündigt werden. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Bei vorzeitiger Kündigung sind die verbleibenden Monate bis zum Ende der Mindestlaufzeit vollständig geschuldet.", "A maintenance plan may only be terminated after the minimum term of 6 months. Thereafter, it may be terminated by either party in writing with 30 days' notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. In the event of early termination, the remaining months until the end of the minimum term are fully owed.")}
+                  {t(`Ein Wartungspaket kann frühestens nach Ablauf der Mindestlaufzeit von ${vd.minMonths} Monaten (inklusive der ${vd.months} im Projektpreis enthaltenen Monate) gekündigt werden, mit ${vd.noticeDays} Tagen Frist auf Monatsende. Bei jährlicher Zahlung läuft der Vertrag bis zum Ende des bezahlten Jahres, eine anteilige Rückerstattung erfolgt nicht. Bei vorzeitiger Kündigung sind die verbleibenden Monatsgebühren der Mindestlaufzeit geschuldet.`, `A maintenance plan can be cancelled at the earliest after the minimum term of ${ve.minMonths} months (including the ${ve.months} months contained in the project price), with ${ve.noticeDays} days of notice to the end of a month. With yearly payment, the contract runs until the end of the paid year; there is no pro-rata refund. In case of early termination, the remaining monthly fees of the minimum term are owed.`)}
                 </li>
                 <li>
                   {t("Die Domain ist auf den Namen des Auftraggebers registriert und wird bei Kündigung innerhalb von 7 Tagen auf ihn übertragen.", "The domain is registered in the client's name and will be transferred to them within 7 days upon termination.")}
@@ -617,7 +640,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Erfolgt über einen Zeitraum von 30 Kalendertagen keine Rückmeldung des Auftraggebers oder werden erforderliche Inhalte (z. B. Texte, Bilder, Logos oder Zugangsdaten) nicht bereitgestellt, gilt das Projekt automatisch als pausiert. Der Auftragnehmer ist berechtigt, das Projekt erst nach erneuter Terminvereinbarung fortzuführen. Eine sofortige Weiterbearbeitung kann in diesem Fall nicht garantiert werden. Eine Verzögerung durch fehlende Mitwirkung des Auftraggebers verlängert sämtliche vereinbarten Lieferfristen entsprechend.", "If the client does not respond within 30 calendar days or fails to provide required content (e.g. texts, images, logos or access data), the project is automatically considered paused. The contractor is entitled to resume the project only after a new appointment has been arranged. Immediate continuation cannot be guaranteed in this case. Delays caused by lack of client cooperation extend all agreed delivery deadlines accordingly.")}
+                {t(`Erfolgt bis ${vd.contentGraceDays} Tage nach Projektstart keine Rückmeldung des Auftraggebers oder fehlen erforderliche Inhalte (Texte, Bilder, Logos oder Zugangsdaten), verschiebt sich das Projekt auf den nächsten freien Termin des Auftragnehmers. Die Lieferzeit beginnt neu, sobald alle Inhalte vollständig vorliegen. Für die bis dahin geleistete Arbeit kann der Auftragnehmer eine Zwischenrechnung stellen.`, `If the client does not respond or required content (texts, images, logos or access details) is still missing ${ve.contentGraceDays} days after project start, the project moves to the next free slot of the contractor. The delivery time starts anew once all content is complete. The contractor may issue an interim invoice for the work done so far.`)}
               </p>
             </div>
           </LegalGrid>
@@ -629,7 +652,7 @@ export default function Agb() {
             </div>
             <div className="legal-block">
               <p>
-                {t("Der Auftragnehmer ist berechtigt, das erstellte Projekt nach Veröffentlichung zu Referenzzwecken zu nutzen. Dies umfasst insbesondere die Darstellung der Website, Screenshots, die Nennung des Firmennamens sowie die Verwendung des Logos des Auftraggebers auf der Website, in Präsentationen, Social Media, Referenzlisten und sonstigen Marketingunterlagen des Auftragnehmers.", "The contractor is entitled to use the completed project for reference purposes after publication. This includes, in particular, the display of the website, screenshots, the mention of the company name and the use of the client's logo on the website, in presentations, social media, reference lists and other marketing materials of the contractor.")}
+                {t(`Der Auftragnehmer darf das erstellte Projekt nach der Veröffentlichung als Referenz zeigen: Darstellung der Website, Screenshots, Nennung des Firmennamens und Verwendung des Logos auf der eigenen Website, in Präsentationen, Social Media und Referenzlisten. Der Startrabatt (${vd.launchPercent} % auf den Paketpreis) wird ausschliesslich gegen dieses Referenzrecht mit Name, Logo und Screenshots gewährt; ohne Referenzrecht gilt der Normalpreis. Ohne Startrabatt kann der Auftraggeber der Referenznutzung schriftlich widersprechen.`, `After publication, the contractor may show the project as a reference: presentation of the website, screenshots, mention of the company name and use of the logo on the website of the contractor, in presentations, social media and reference lists. The launch discount (${ve.launchPercent} % off the package price) is granted exclusively in return for this reference right with name, logo and screenshots; without the reference right the regular price applies. Without a launch discount, the client may object to the reference use in writing.`)}
               </p>
             </div>
           </LegalGrid>
@@ -673,11 +696,11 @@ export default function Agb() {
           <LegalGrid id="online-stellung" className="legal-grid wide">
             <div className="legal-block">
               <span className="legal-block-label">§ 21</span>
-              <h2>{t("Online-Stellung & Domainzugang", "Go-Live & Domain Access")}</h2>
+              <h2>{t("Veröffentlichung & Domainzugang", "Publication & Domain Access")}</h2>
             </div>
             <div className="legal-block">
               <p>
-                {t("Mit Unterzeichnung dieses Vertrags erteilt der Auftraggeber dem Auftragnehmer die uneingeschränkte Erlaubnis, die Website online zu stellen. Der Auftraggeber verpflichtet sich, dem Auftragnehmer sämtliche notwendigen Zugangsdaten zu Domain, Hosting, Server, CMS und weiteren relevanten Systemen vollständig und korrekt zur Verfügung zu stellen. Die Online-Stellung der Website erfolgt erst nach Bereitstellung dieser Zugänge. Sollte der Auftraggeber diese Zugänge nicht bereitstellen, wird der Auftragnehmer von jeglicher Verantwortung für Verzögerungen oder fehlende Online-Stellung freigestellt.", "By signing this contract, the client grants the contractor unrestricted permission to publish the website. The client undertakes to provide the contractor with all necessary access credentials for domain, hosting, server, CMS and other relevant systems completely and correctly. The website will only go live after these credentials have been provided. If the client fails to provide these credentials, the contractor is released from any responsibility for delays or failure to go live.")}
+                {t("Der Auftraggeber stellt dem Auftragnehmer alle notwendigen Zugangsdaten zu Domain, Hosting und weiteren relevanten Systemen vollständig und korrekt zur Verfügung. Die Domain läuft auf den Auftraggeber. Die Veröffentlichung der Website erfolgt nach der Abnahme und erst nach vollständiger Bezahlung.", "The client provides the contractor with all necessary access details for domain, hosting and other relevant systems, complete and correct. The domain is registered in the client's name. The website is published after acceptance and only after full payment.")}
               </p>
             </div>
           </LegalGrid>
