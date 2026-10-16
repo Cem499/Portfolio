@@ -13,7 +13,7 @@ export const SITE = 'https://www.sin-digital.com'
 
 export const pages = [
   { id: 'home', de: '/', en: '/en/', lastmod: '2026-10-05', changefreq: 'weekly', priority: '1.0' },
-  { id: 'konfigurator', de: '/konfigurator/', en: '/en/configurator/', lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9' },
+  { id: 'konfigurator', de: '/konfigurator/', en: '/en/configurator/', lastmod: '2026-10-16', changefreq: 'monthly', priority: '0.9' },
   { id: 'projekte', de: listPaths.de, en: listPaths.en, lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9', js: false },
   { id: 'websiteCheck', de: '/website-check/', en: '/en/website-check/', lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.8' },
   { id: 'wartung', de: '/wartung/', en: '/en/maintenance/', lastmod: '2026-10-05', changefreq: 'monthly', priority: '0.9', js: false },

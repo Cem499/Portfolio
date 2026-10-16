@@ -268,14 +268,14 @@ export const home = {
 export const konfigurator = {
   "meta": {
     "title": "Projekt-Konfigurator: Was kostet Ihre Website? | Sin Digital",
-    "description": "Seitentyp, Umfang, Funktionen und Wunschtermin wählen und sofort eine Preisspanne in CHF mit Zeitrahmen sehen. Unverbindlich, in zwei Minuten, ohne Anmeldung.",
+    "description": "Seitentyp, Umfang, Funktionen und Wunschtermin wählen, Einstiegspreis und Zeitrahmen sehen und innert 24 Stunden ein kostenloses Festpreis-Angebot erhalten. Unverbindlich, ohne Anmeldung.",
     "ogTitle": "Was kostet Ihre Website? Projekt-Konfigurator | Sin Digital"
   },
   "breadcrumb": "Konfigurator",
   "label": "Projekt-Konfigurator",
   "title1": "WAS KOSTET",
   "title2": "IHRE WEBSITE?",
-  "intro": "Vier Entscheidungen, eine ehrliche Spanne. Wählen Sie Seitentyp, Umfang, Funktionen und Wunschtermin, Richtpreis und Zeitrahmen rechnen live mit. Am Ende geht die Konfiguration direkt als Anfrage an uns.",
+  "intro": "Vier Entscheidungen, ein Festpreis-Angebot. Wählen Sie Seitentyp, Umfang, Funktionen und Wunschtermin, Einstiegspreis und Zeitrahmen sehen Sie sofort. Am Ende geht die Konfiguration als Anfrage an uns, Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden.",
   "stepWord": "Schritt",
   "ofWord": "von",
   "steps": {
@@ -296,7 +296,7 @@ export const konfigurator = {
     "timing": {
       "title": "Wunschtermin",
       "question": "Wann soll es losgehen?",
-      "hint": "Ohne Einfluss auf den Richtpreis. Kurzfristige Starts klären wir im Angebot."
+      "hint": "Kurzfristige Starts klären wir im Angebot."
     },
     "request": {
       "title": "Anfrage",
@@ -318,29 +318,24 @@ export const konfigurator = {
     },
     "custom": {
       "name": "Individuell / Plattform",
-      "desc": "Web-App, Portal oder Buchungsplattform mit eigener Logik. Preis nach Gespräch."
+      "desc": "Web-App, Portal oder Buchungsplattform mit eigener Logik."
     }
   },
   "pageTiers": {
     "single": {
-      "name": "1 Seite",
-      "note": "im Paket enthalten"
+      "name": "1 Seite"
     },
     "upTo5": {
-      "name": "Bis 5 Seiten",
-      "note": "im Paket enthalten"
+      "name": "Bis 5 Seiten"
     },
     "upTo10": {
-      "name": "6 bis 10 Seiten",
-      "note": ""
+      "name": "6 bis 10 Seiten"
     },
     "upTo20": {
-      "name": "11 bis 20 Seiten",
-      "note": ""
+      "name": "11 bis 20 Seiten"
     },
     "over20": {
-      "name": "Mehr als 20 Seiten",
-      "note": "Preis nach Gespräch"
+      "name": "Mehr als 20 Seiten"
     }
   },
   "features": {
@@ -371,7 +366,7 @@ export const konfigurator = {
   },
   "languages": {
     "label": "Zusätzliche Sprachen",
-    "hint": "Neben der Hauptsprache. Preis und Zeit gelten pro Sprache.",
+    "hint": "Neben der Hauptsprache. Die Dauer gilt pro Sprache.",
     "one": "zusätzliche Sprache",
     "many": "zusätzliche Sprachen"
   },
@@ -399,17 +394,18 @@ export const konfigurator = {
   },
   "dateLocale": "de-CH",
   "summary": {
-    "title": "Ihr Richtpreis",
+    "title": "Zusammenfassung",
     "from": "ab",
-    "currency": "CHF",
-    "onRequest": "Preis nach Gespräch",
+    "fromStart": "Ab",
+    "offer": "Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden",
+    "duration": "Dauer ca.",
     "week": "Woche",
     "weeks": "Wochen",
     "weeksOnRequest": "Zeitrahmen nach Gespräch",
     "perLanguage": "pro Sprache",
     "selection": "Ihre Auswahl",
     "notes": [
-      "Richtwerte. Den Festpreis erhalten Sie nach einem kurzen Gespräch.",
+      "Einstiegspreise. Den Festpreis erhalten Sie mit dem Angebot.",
       "Einmalpreise inklusive Einrichtung. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus.",
       "Hosting und Wartung sind optional, ab CHF 39 pro Monat."
     ]
@@ -419,7 +415,8 @@ export const konfigurator = {
   "toRequest": "Zur Anfrage",
   "request": {
     "title": "Konfiguration als Anfrage senden",
-    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Wir antworten in der Regel innerhalb von 24 Stunden."
+    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden.",
+    "submit": "Kostenloses Angebot anfordern"
   },
   "configuration": {
     "type": "Seitentyp",
@@ -428,7 +425,7 @@ export const konfigurator = {
     "none": "keine",
     "timing": "Wunschtermin",
     "startOpen": "Individueller Termin, Datum offen",
-    "price": "Richtpreis",
+    "price": "Einstiegspreis",
     "weeks": "Zeitrahmen"
   }
 }

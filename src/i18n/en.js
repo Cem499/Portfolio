@@ -268,14 +268,14 @@ export const home = {
 export const konfigurator = {
   "meta": {
     "title": "Project Configurator: What Does Your Website Cost? | Sin Digital",
-    "description": "Choose site type, scope, features and preferred start and instantly see a price range in CHF with a time frame. No obligation, two minutes, no sign-up.",
+    "description": "Choose site type, scope, features and preferred start, see the starting price and time frame and get a free fixed-price offer within 24 hours. No obligation, no sign-up.",
     "ogTitle": "What does your website cost? Project configurator | Sin Digital"
   },
   "breadcrumb": "Configurator",
   "label": "Project configurator",
   "title1": "WHAT DOES",
   "title2": "YOUR SITE COST?",
-  "intro": "Four decisions, one honest range. Pick site type, scope, features and preferred start, and the guide price and time frame update live. At the end, your configuration goes straight to us as an enquiry.",
+  "intro": "Four decisions, one fixed-price offer. Pick site type, scope, features and preferred start, and you see the starting price and time frame right away. At the end, your configuration goes to us as an enquiry, and you get your fixed-price offer within 24 hours.",
   "stepWord": "Step",
   "ofWord": "of",
   "steps": {
@@ -296,7 +296,7 @@ export const konfigurator = {
     "timing": {
       "title": "Start",
       "question": "When do you want to start?",
-      "hint": "No effect on the guide price. Short-notice starts are settled in the offer."
+      "hint": "Short-notice starts are settled in the offer."
     },
     "request": {
       "title": "Enquiry",
@@ -318,29 +318,24 @@ export const konfigurator = {
     },
     "custom": {
       "name": "Custom / platform",
-      "desc": "Web app, portal or booking platform with its own logic. Price on request."
+      "desc": "Web app, portal or booking platform with its own logic."
     }
   },
   "pageTiers": {
     "single": {
-      "name": "1 page",
-      "note": "included"
+      "name": "1 page"
     },
     "upTo5": {
-      "name": "Up to 5 pages",
-      "note": "included"
+      "name": "Up to 5 pages"
     },
     "upTo10": {
-      "name": "6 to 10 pages",
-      "note": ""
+      "name": "6 to 10 pages"
     },
     "upTo20": {
-      "name": "11 to 20 pages",
-      "note": ""
+      "name": "11 to 20 pages"
     },
     "over20": {
-      "name": "More than 20 pages",
-      "note": "price on request"
+      "name": "More than 20 pages"
     }
   },
   "features": {
@@ -371,7 +366,7 @@ export const konfigurator = {
   },
   "languages": {
     "label": "Additional languages",
-    "hint": "Besides the main language. Price and time apply per language.",
+    "hint": "Besides the main language. The time applies per language.",
     "one": "additional language",
     "many": "additional languages"
   },
@@ -399,17 +394,18 @@ export const konfigurator = {
   },
   "dateLocale": "en-GB",
   "summary": {
-    "title": "Your guide price",
+    "title": "Summary",
     "from": "from",
-    "currency": "CHF",
-    "onRequest": "Price on request",
+    "fromStart": "From",
+    "offer": "You get your fixed-price offer within 24 hours",
+    "duration": "About",
     "week": "week",
     "weeks": "weeks",
     "weeksOnRequest": "Time frame on request",
     "perLanguage": "per language",
     "selection": "Your selection",
     "notes": [
-      "Guide values. You get a fixed price after a short conversation.",
+      "Starting prices. You get the fixed price with the offer.",
       "One-time prices including setup. Domain and other third-party costs are listed separately in the offer.",
       "Hosting and maintenance are optional, from CHF 39 per month."
     ]
@@ -419,7 +415,8 @@ export const konfigurator = {
   "toRequest": "To the enquiry",
   "request": {
     "title": "Send your configuration as an enquiry",
-    "text": "Your selection comes along. Add your name, email and a few words about your project. We usually reply within 24 hours."
+    "text": "Your selection comes along. Add your name, email and a few words about your project. You get your fixed-price offer within 24 hours.",
+    "submit": "Request a free offer"
   },
   "configuration": {
     "type": "Site type",
@@ -428,7 +425,7 @@ export const konfigurator = {
     "none": "none",
     "timing": "Start",
     "startOpen": "Individual date, still open",
-    "price": "Guide price",
+    "price": "Starting price",
     "weeks": "Time frame"
   }
 }

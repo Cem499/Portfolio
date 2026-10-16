@@ -75,7 +75,7 @@ const schema = [
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Günstige Website Zürich, Professionell ab CHF 1'490 | Sin Digital",
+    "name": "Günstige Website Zürich, Professionell ab CHF 990 | Sin Digital",
     "description": "Günstige und professionelle Website in Zürich erstellen lassen ab CHF 990. Ideal für KMU und lokale Unternehmen.",
     "url": "https://www.sin-digital.com/guenstige-website-zuerich.html",
     "isPartOf": {

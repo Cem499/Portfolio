@@ -386,7 +386,6 @@
   padding: 1.5rem;
 }
 
-.konfig-summary-title,
 .konfig-details-title {
   display: block;
   margin-bottom: 0.6rem;
@@ -416,15 +415,12 @@
   vertical-align: 0.35em;
 }
 
-/* "990 – 1'490": thin spaces around the dash come from the markup; the dash gets the same
-   1em box as the rolling digits and is nudged onto their vertical centre. */
-.konfig-dash {
-  display: inline-block;
-  height: 1em;
-  line-height: 1;
-  vertical-align: top;
-  transform: translateY(-0.1em);
-  color: var(--gray-dim);
+.konfig-offer {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--white);
 }
 
 .konfig-meta {

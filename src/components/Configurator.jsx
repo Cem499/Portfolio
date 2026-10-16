@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { DEFAULTS, LANGUAGE_COUNTS, chf, estimate, features as featureList, siteTypes, tiersFor, timings } from '../data/pricing.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import AnimatedNumber from './AnimatedNumber.jsx'
@@ -8,19 +8,23 @@ const STEPS = ['type', 'scope', 'features', 'timing', 'request']
 const LAST_CHOICE = 4
 const REQUEST = 5
 
-const range = (item) => `CHF ${chf(item.price.min)} – ${chf(item.price.max)}`
+// "ab CHF 2'490"
+const fromText = (t, item) => `${t.summary.from} CHF ${chf(item.priceFrom)}`
 
 function weeksText(t, min, max) {
   const n = min === max ? String(min) : `${min} – ${max}`
   return `${n} ${max === 1 ? t.summary.week : t.summary.weeks}`
 }
 
-// "+ CHF 590 – 1'290 pro Sprache · +1 Woche"
-function addOnText(t, feature) {
-  const price = `+ ${range(feature)}${feature.perLanguage ? ` ${t.summary.perLanguage}` : ''}`
-  if (!feature.weeks.max) return price
-  const n = feature.weeks.min === feature.weeks.max ? String(feature.weeks.min) : `${feature.weeks.min}–${feature.weeks.max}`
-  return `${price} · +${n} ${feature.weeks.max === 1 ? t.summary.week : t.summary.weeks}`
+// "3 – 5 Wochen", or "Zeitrahmen nach Gespräch" without weeks.
+const durationText = (t, weeks) => (weeks ? weeksText(t, weeks.min, weeks.max) : t.summary.weeksOnRequest)
+
+// "+1 Woche pro Sprache", "+2–3 Wochen"; empty when nothing is added.
+function addedWeeksText(t, weeks, perLanguage = false) {
+  const { min, max } = typeof weeks === 'number' ? { min: weeks, max: weeks } : weeks
+  if (!max) return ''
+  const n = min === max ? String(min) : `${min}–${max}`
+  return `+${n} ${max === 1 ? t.summary.week : t.summary.weeks}${perLanguage ? ` ${t.summary.perLanguage}` : ''}`
 }
 
 // "Mehrsprachig (2 zusätzliche Sprachen), Shop"
@@ -50,8 +54,8 @@ function configurationText(t, state, est) {
     [t.configuration.scope, t.pageTiers[state.pages].name],
     [t.configuration.features, featuresText(t, state)],
     [t.configuration.timing, timingText(t, state)],
-    [t.configuration.price, est.onRequest ? `${t.summary.from} CHF ${chf(est.priceFrom)}, ${t.summary.onRequest}` : range(est)],
-    [t.configuration.weeks, est.onRequest ? t.summary.weeksOnRequest : weeksText(t, est.weeks.min, est.weeks.max)],
+    [t.configuration.price, fromText(t, est)],
+    [t.configuration.weeks, durationText(t, est.weeks)],
   ]
   return lines.map(([label, value]) => `${label}: ${value}`).join('\n')
 }
@@ -88,8 +92,9 @@ function Tile({ type, name, value, checked, onChange, title, desc, price, note }
   )
 }
 
-// Four choices (site type, scope, features, desired start) with a live price range, then the
-// contact form with the configuration attached. Step 1 is prerendered; choices made before
+// Four choices (site type, scope, features, desired start) with the entry price of the site
+// type and a live time frame, then the contact form with the configuration attached; the
+// fixed price comes with the offer. Step 1 is prerendered; choices made before
 // React is ready stay (valuesFromDom) and a "Weiter" pressed early is picked up (usePendingSubmit).
 export default function Configurator({ t, formTexts }) {
   // Choices made before hydration are read once, but applied only after React is in control:
@@ -119,6 +124,7 @@ export default function Configurator({ t, formTexts }) {
   const est = estimate(state)
   const tiers = tiersFor(state.siteType)
   const configText = configurationText(t, state, est)
+  const requestFormTexts = useMemo(() => ({ ...formTexts, submit: t.request.submit }), [formTexts, t])
 
   function selectType(id) {
     setState((s) => {
@@ -194,7 +200,8 @@ export default function Configurator({ t, formTexts }) {
                 onChange={() => selectType(type.id)}
                 title={t.siteTypes[type.id].name}
                 desc={t.siteTypes[type.id].desc}
-                price={type.onRequest ? `${t.summary.from} CHF ${chf(type.priceFrom)}` : range(type)}
+                price={fromText(t, type)}
+                note={durationText(t, type.weeks)}
               />
             ))}
           </div>
@@ -212,8 +219,7 @@ export default function Configurator({ t, formTexts }) {
                 checked={state.pages === tier.id}
                 onChange={() => setState((s) => ({ ...s, pages: tier.id }))}
                 title={t.pageTiers[tier.id].name}
-                price={tier.onRequest || !tier.price.max ? '' : `+ ${range(tier)}${tier.weeks ? ` · +${tier.weeks} ${tier.weeks === 1 ? t.summary.week : t.summary.weeks}` : ''}`}
-                note={t.pageTiers[tier.id].note}
+                note={tier.onRequest ? t.summary.weeksOnRequest : addedWeeksText(t, tier.weeks)}
               />
             ))}
           </div>
@@ -241,7 +247,7 @@ export default function Configurator({ t, formTexts }) {
                 onChange={() => toggleFeature(feature.id)}
                 title={t.features[feature.id].name}
                 desc={t.features[feature.id].desc}
-                price={addOnText(t, feature)}
+                note={addedWeeksText(t, feature.weeks, feature.perLanguage)}
               />
             ))}
           </div>
@@ -327,7 +333,7 @@ export default function Configurator({ t, formTexts }) {
           <pre className="konfig-config" aria-label={t.summary.selection}>
             {configText}
           </pre>
-          <ContactForm texts={formTexts} configuration={configText} />
+          <ContactForm texts={requestFormTexts} configuration={configText} />
           <button type="button" className="konfig-back" onClick={() => goTo(LAST_CHOICE)}>
             {t.back}
           </button>
@@ -336,26 +342,14 @@ export default function Configurator({ t, formTexts }) {
 
       <aside className="konfig-summary" aria-label={t.summary.title}>
         <div className="konfig-summary-main" aria-live="polite" aria-atomic="true">
-          <span className="konfig-summary-title">{t.summary.title}</span>
           <div className="konfig-price">
-            {est.onRequest ? (
-              <>
-                <span className="konfig-from">{t.summary.from}</span>{' '}
-                <span className="konfig-amount">
-                  <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.priceFrom} />
-                </span>
-              </>
-            ) : (
-              <span className="konfig-amount">
-                <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.price.min} />
-                <span className="konfig-dash">{'\u2009–\u2009'}</span>
-                <AnimatedNumber value={est.price.max} />
-              </span>
-            )}
+            <span className="konfig-from">{t.summary.fromStart}</span>{' '}
+            <span className="konfig-amount">
+              <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.priceFrom} />
+            </span>
           </div>
-          <p className="konfig-meta">
-            {est.onRequest ? `${t.summary.onRequest} · ${t.summary.weeksOnRequest}` : weeksText(t, est.weeks.min, est.weeks.max)}
-          </p>
+          <p className="konfig-offer">{t.summary.offer}</p>
+          <p className="konfig-meta">{est.weeks ? `${t.summary.duration} ${weeksText(t, est.weeks.min, est.weeks.max)}` : t.summary.weeksOnRequest}</p>
         </div>
         <div className="konfig-summary-details">
           <span className="konfig-details-title">{t.summary.selection}</span>

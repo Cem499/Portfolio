@@ -82,21 +82,24 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 
 ## Projekt-Konfigurator
 
-`/konfigurator/` führt in vier Schritten (Seitentyp, Umfang, Funktionen, Wunschtermin) zu einer
-Preisspanne in CHF mit Zeitrahmen und übergibt die Auswahl im fünften Schritt an das Kontaktformular.
+`/konfigurator/` führt in vier Schritten (Seitentyp, Umfang, Funktionen, Wunschtermin) zum
+Einstiegspreis des Seitentyps („ab CHF …“) mit Zeitrahmen und übergibt die Auswahl im fünften
+Schritt an das Kontaktformular („Kostenloses Angebot anfordern“). Den Festpreis gibt es mit dem Angebot.
 Die Zusammenfassung geht als EmailJS-Feld `configuration` mit (Template `template_5mci63d` enthält
 `{{configuration}}`; bei normalen Kontaktanfragen bleibt das Feld leer).
 
-- **Preise anpassen:** `src/data/pricing.js`. Je Seitentyp Spanne, enthaltene Seiten und Wochen;
-  Staffeln für zusätzliche Seiten; Funktionen mit Aufpreis und Zusatzwochen (`perLanguage`: pro
-  zusätzlicher Sprache, Anzahl in `LANGUAGE_COUNTS`). Der Wunschtermin (`timings`: so schnell wie
-  möglich, 1 bis 3 Monate, flexibel, individuelles Datum) hat keine Preiswirkung, einen
-  Express-Zuschlag gibt es nicht (kurzfristige Starts regelt das Angebot).
-  `estimate()` rechnet daraus, `tiersFor()` bestimmt, welche Staffeln ein Seitentyp anbietet.
-  Der Typ `custom` und die Staffel `over20` haben keine Spanne („ab … CHF, Preis nach Gespräch“).
+- **Preise anpassen:** `src/data/pricing.js`. Je Seitentyp der Einstiegspreis (`priceFrom`),
+  enthaltene Seiten und Wochen. Staffeln für zusätzliche Seiten und Funktionen haben nur
+  Zusatzwochen, keine Preise (`perLanguage`: pro zusätzlicher Sprache, Anzahl in
+  `LANGUAGE_COUNTS`). Der Wunschtermin (`timings`: so schnell wie möglich, 1 bis 3 Monate,
+  flexibel, individuelles Datum) ändert nichts, kurzfristige Starts regelt das Angebot.
+  `estimate()` liefert Einstiegspreis und Wochen, `tiersFor()` bestimmt, welche Staffeln ein
+  Seitentyp anbietet. Der Typ `custom` und die Staffel `over20` haben keinen Zeitrahmen
+  („Zeitrahmen nach Gespräch“). Der e2e-Test lässt im Konfigurator ausser den vier
+  Einstiegspreisen und „ab CHF 39“ keinen CHF-Betrag zu.
 - **Texte:** `konfigurator` in `src/i18n/de.js` und `en.js` (Namen und Beschreibungen sind nach den
   IDs aus `pricing.js` verschlüsselt). Das JSON-LD (`OfferCatalog`) entsteht aus beiden Quellen.
-- **Vor der Hydration:** Schritt 1 ist vorgerendert, die Richtpreis-Karte zeigt den Standard
+- **Vor der Hydration:** Schritt 1 ist vorgerendert, die Preis-Karte zeigt den Standard
   (`DEFAULTS`). Eine Auswahl vor dem Laden von React bleibt erhalten, ein früher Klick auf „Weiter“
   wird nach der Hydration nachgeholt (gleicher Mechanismus wie beim Kontaktformular).
 
