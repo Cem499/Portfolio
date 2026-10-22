@@ -1,5 +1,9 @@
+import { Fragment } from 'react'
 import Seo from '../components/Seo.jsx'
+import { configuratorPath } from '../data/navigation.js'
+import { chf, entryPrice, siteTypes } from '../data/pricing.js'
 import schema from '../data/schema/guenstigeWebsite.js'
+import { konfigurator } from '../i18n/de.js'
 import '../styles/landing.css'
 import '../styles/landing-price.css'
 
@@ -51,7 +55,7 @@ export default function GuenstigeWebsite() {
         </p>
         <div className="price-highlight">
           <strong>Ab CHF 990 einmalig</strong>
-          , Professionelle Website mit bis zu 5 Seiten, Mobile-Optimierung, SEO-Basis, Kontaktformular und Google Maps. Keine versteckten Kosten.
+          {`, als Landingpage mit Mobile-Optimierung, SEO-Basis und Kontaktformular. Onepager ab CHF ${entryPrice('onepager')}, Firmenwebsite mit bis zu 5 Seiten ab CHF ${entryPrice('business')}. Keine versteckten Kosten.`}
         </div>
         <div className="card">
           <h2>{"Was bedeutet \"günstig\" bei Sin Digital?"}</h2>
@@ -59,7 +63,7 @@ export default function GuenstigeWebsite() {
             Günstig heisst bei uns nicht billig. Es bedeutet: faire Preise für professionelle Arbeit. Sin Digital arbeitet schlank und effizient, klare Pakete, kein unnötiger Overhead, keine aufgeblähten Strukturen. Das spart Kosten, ohne bei der Qualität zu sparen.
           </p>
           <p>
-            {"Während viele Zürcher Webagenturen Preise ab CHF 5'000 aufrufen, erhalten Sie bei Sin Digital eine hochwertige Firmenwebsite, die professionell aussieht, bei Google Zürich sichtbar ist und neue Kunden anzieht, ab CHF 990."}
+            {"Während viele Zürcher Webagenturen Preise ab CHF 5'000 aufrufen, erhalten Sie bei Sin Digital eine hochwertige Website, die professionell aussieht, bei Google Zürich sichtbar ist und neue Kunden anzieht, ab CHF 990."}
           </p>
         </div>
         <div className="card">
@@ -70,8 +74,8 @@ export default function GuenstigeWebsite() {
               {" Individuelles Layout, das zu Ihrer Marke passt, kein Template-Einheitsbrei."}
             </li>
             <li>
-              <strong>Bis zu 5 Webseiten:</strong>
-              {" Startseite, Über uns, Leistungen, Kontakt und eine weitere Seite Ihrer Wahl."}
+              <strong>Der passende Umfang:</strong>
+              {` Eine Seite als Landingpage oder Onepager, bis zu 5 Unterseiten als Firmenwebsite (ab CHF ${entryPrice('business')}).`}
             </li>
             <li>
               <strong>Mobile-First Entwicklung:</strong>
@@ -140,20 +144,25 @@ export default function GuenstigeWebsite() {
         <div className="card">
           <h2>Upgrade-Möglichkeiten</h2>
           <p>Die günstige Website ist nur der Anfang. Wenn Ihr Unternehmen wächst, wächst Ihre Website mit:</p>
-          <h3>{"Growth-Paket, ab CHF 1'690"}</h3>
-          <p>Social-Media-Integration, Google Analytics, Terminbuchung und automatische Backups.</p>
-          <h3>{"Pro-Paket, ab CHF 2'490"}</h3>
-          <p>Individuelles Design, Animationen, Mehrsprachigkeit und 6 Monate Support.</p>
+          {siteTypes.filter((type) => type.id !== 'landingpage').map((type) => (
+            <Fragment key={type.id}>
+              <h3>{`${konfigurator.siteTypes[type.id].name}, ab CHF ${chf(type.priceFrom)}`}</h3>
+              <p>{konfigurator.siteTypes[type.id].desc}</p>
+            </Fragment>
+          ))}
           <h3>Partner-Betreuung, ab CHF 39/Monat</h3>
           <p>Hosting, Sicherheitsupdates, Backups und laufende Änderungen.</p>
+          <p>
+            <a href={configuratorPath('de')}>Projekt im Konfigurator zusammenstellen</a>
+          </p>
         </div>
         <div className="card">
           <h2>Häufige Fragen zu günstigen Websites in Zürich</h2>
-          <h3>Kann ich auch später von günstig auf Pro upgraden?</h3>
+          <h3>Kann ich später von der Landingpage auf eine Firmenwebsite erweitern?</h3>
           <p>Ja. Alle Websites von Sin Digital sind modular aufgebaut und können jederzeit erweitert werden.</p>
           <h3>Gibt es versteckte Kosten?</h3>
           <p>
-            Nein. Der Preis von CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Hosting und Wartung sind optional, ab CHF 39 / Monat: <a href="/wartung/">Wartungspläne</a>.
+            Nein. Der Einstiegspreis ab CHF 990 ist einmalig und deckt Design, Entwicklung und SEO-Basis ab, den Festpreis erhalten Sie mit dem Angebot. Domain und andere Drittanbieter-Kosten weisen wir im Angebot separat aus. Hosting und Wartung sind optional, ab CHF 39 / Monat: <a href="/wartung/">Wartungspläne</a>.
           </p>
           <h3>Wie schnell ist meine günstige Website online?</h3>
           <p>In der Regel in ca. 2 Wochen.</p>

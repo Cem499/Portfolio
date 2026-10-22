@@ -1,54 +1,83 @@
 import ProcessTimeline from './ProcessTimeline.jsx'
 import { plans } from '../data/maintenance.js'
-import { maintenancePath } from '../data/navigation.js'
-import { contactAnchor, partnerPackage, websitePackages } from '../data/packages.js'
-import { chf } from '../data/pricing.js'
+import { configuratorTypeHref, maintenancePath } from '../data/navigation.js'
+import { contactAnchor, partnerPackage } from '../data/packages.js'
+import { chf, siteTypes } from '../data/pricing.js'
 import useReveal, { revealClass } from '../hooks/useReveal.js'
 
 const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, key) => values[key])
 
-// "Growth anfragen": jumps to the contact form, which prefills subject and message for the
-// package. ContactForm reads the #contact-<id> hash, so a click before hydration works too.
-function RequestButton({ pkg, label }) {
+// "1 – 2 Wochen", with the week words of the configurator.
+function weeksText(k, weeks) {
+  const n = weeks.min === weeks.max ? String(weeks.min) : `${weeks.min} – ${weeks.max}`
+  return `${n} ${weeks.max === 1 ? k.summary.week : k.summary.weeks}`
+}
+
+// Entry price as an Offer: "ab" price, so a minimum price, no fixed one.
+function OfferPrice({ type, texts }) {
   return (
-    <a href={`#${contactAnchor(pkg.id)}`} className="paket-cta">
-      {fill(label, { name: pkg.name })}
-    </a>
+    <>
+      <span itemProp="priceSpecification" itemScope itemType="https://schema.org/PriceSpecification">
+        <meta itemProp="minPrice" content={String(type.priceFrom)} />
+        <meta itemProp="priceCurrency" content="CHF" />
+      </span>
+      <strong>{texts.from} CHF {chf(type.priceFrom)}</strong>
+    </>
   )
 }
 
-function PaketCard({ position, pkg, texts, requestLabel }) {
+// A site type of the configurator, same name, description and entry price; the button opens
+// the configurator with the type preselected (/konfigurator/?typ=firmenwebsite).
+function TypeCard({ position, type, texts, k, lang }) {
+  const name = k.siteTypes[type.id].name
   return (
-    <div className={pkg.featured ? 'paket-card featured' : 'paket-card'} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+    <div className="paket-card" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
       <meta itemProp="position" content={String(position)} />
       <div itemProp="item" itemScope itemType="https://schema.org/Offer">
-        {texts.badge && <span className="paket-badge">{texts.badge}</span>}
-        {texts.badge && ' '}
-        <span className="paket-label">{texts.label}</span>
-        <h3 className="paket-name" itemProp="name">{pkg.name}</h3>
-        <p className="paket-positioning">{texts.positioning}</p>
-        <ul className="paket-features">
-          {texts.features.map((feature, i) => (
-            <li key={i}>{feature}</li>
-          ))}
-        </ul>
+        <span className="paket-label">{fill(texts.label, { weeks: weeksText(k, type.weeks) })}</span>
+        <h3 className="paket-name" itemProp="name">{name}</h3>
+        <p className="paket-positioning" itemProp="description">{k.siteTypes[type.id].desc}</p>
         <div className="paket-price">
-          <strong itemProp="price" content={String(pkg.price)}><span itemProp="priceCurrency" content="CHF">Ab CHF {chf(pkg.price)}</span></strong>
+          <OfferPrice type={type} texts={texts} />
           {' '}
           <span>{texts.priceNote}</span>
         </div>
       </div>
-      <RequestButton pkg={pkg} label={requestLabel} />
+      <a href={configuratorTypeHref(lang, type)} className="paket-cta">{fill(texts.configure, { name })}</a>
+    </div>
+  )
+}
+
+// Individuell / Plattform: a full-width row below the three types (no time frame, see pricing.js).
+function CustomRow({ position, type, texts, k, lang }) {
+  const name = k.siteTypes[type.id].name
+  return (
+    <div className="paket-card paket-custom" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+      <meta itemProp="position" content={String(position)} />
+      <div className="paket-custom-body" itemProp="item" itemScope itemType="https://schema.org/Offer">
+        <div className="paket-custom-text">
+          <span className="paket-label">{k.summary.weeksOnRequest}</span>
+          <h3 className="paket-name" itemProp="name">{name}</h3>
+          <p className="paket-positioning" itemProp="description">{k.siteTypes[type.id].desc}</p>
+        </div>
+        <div className="paket-price">
+          <OfferPrice type={type} texts={texts} />
+          {' '}
+          <span>{texts.priceNote}</span>
+        </div>
+      </div>
+      <a href={configuratorTypeHref(lang, type)} className="paket-cta">{fill(texts.configure, { name })}</a>
     </div>
   )
 }
 
 // The care tiers come from src/data/maintenance.js (prices) and shared.care (names, summaries),
-// the same source as /wartung/.
-function PartnerCard({ pkg, texts, care, requestLabel }) {
+// the same source as /wartung/. The button jumps to the contact form, which prefills subject and
+// message (ContactForm reads the #contact-partner hash, so a click before hydration works too).
+function PartnerCard({ position, pkg, texts, from, care, requestLabel }) {
   return (
-    <div className="paket-card" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-      <meta itemProp="position" content="4" />
+    <div className="paket-card paket-partner" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+      <meta itemProp="position" content={String(position)} />
       <div itemProp="item" itemScope itemType="https://schema.org/Offer">
         <span className="paket-label">{texts.label}</span>
         <h3 className="paket-name" itemProp="name">Partner</h3>
@@ -63,21 +92,26 @@ function PartnerCard({ pkg, texts, care, requestLabel }) {
           ))}
         </ul>
         <div className="paket-price">
-          <strong>Ab CHF {pkg.monthly} / <span>{texts.month}</span></strong>
+          <strong>{from} CHF {pkg.monthly} / <span>{texts.month}</span></strong>
           {' '}
           <span>{texts.priceNote}</span>
         </div>
       </div>
-      <RequestButton pkg={pkg} label={requestLabel} />
+      <a href={`#${contactAnchor(pkg.id)}`} className="paket-cta">
+        {fill(requestLabel, { name: pkg.name })}
+      </a>
     </div>
   )
 }
 
-export default function Projects({ t, care, lang }) {
+// `k`: the configurator texts of the page's language (site type names and descriptions).
+export default function Projects({ t, k, care, lang }) {
   const p = t.projects
   const [headerRef, headerVisible] = useReveal()
   const [gridRef, gridVisible] = useReveal()
   const [ctaRef, ctaVisible] = useReveal()
+  const timed = siteTypes.filter((type) => type.weeks)
+  const custom = siteTypes.filter((type) => !type.weeks)
 
   return (
     <section id="projects" className="section projects" aria-label="Leistungen und Webdesign-Pakete" aria-labelledby="projects-heading">
@@ -98,10 +132,13 @@ export default function Projects({ t, care, lang }) {
 
         <div ref={gridRef} className={revealClass('pakete-grid reveal reveal-delay-1', gridVisible)} itemScope itemType="https://schema.org/ItemList">
           <meta itemProp="name" content="Sin Digital Webdesign-Pakete, Digitalagentur Zürich" />
-          {websitePackages.map((pkg, i) => (
-            <PaketCard key={pkg.id} position={i + 1} pkg={pkg} texts={p.packages[i]} requestLabel={p.request} />
+          {timed.map((type, i) => (
+            <TypeCard key={type.id} position={i + 1} type={type} texts={p.types} k={k} lang={lang} />
           ))}
-          <PartnerCard pkg={partnerPackage} texts={p.packages[3]} care={care} requestLabel={p.request} />
+          {custom.map((type, i) => (
+            <CustomRow key={type.id} position={timed.length + i + 1} type={type} texts={p.types} k={k} lang={lang} />
+          ))}
+          <PartnerCard position={siteTypes.length + 1} pkg={partnerPackage} texts={p.partner} from={p.types.from} care={care} requestLabel={p.request} />
         </div>
 
         <ProcessTimeline t={p.process} careHref={maintenancePath(lang)} />

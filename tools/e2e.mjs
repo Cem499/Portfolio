@@ -407,7 +407,7 @@ test('Preise: Hosting und Wartung ab CHF 39, Websites weiterhin ab CHF 990 (DE u
   const problems = []
   const checks = [
     ['/', [['meta[name="description"]', 'content', ['ab CHF 990', 'ab CHF 39 / Monat']], ['.hero-trust', 'text', ['Ab CHF 990', 'ab CHF 39 / Monat']], ['.pakete-grid', 'text', ['Ab CHF 39 /']]]],
-    ['/en/', [['meta[name="description"]', 'content', ['from CHF 990', 'from CHF 39 / month']], ['.hero-trust', 'text', ['From CHF 990', 'from CHF 39 / month']]]],
+    ['/en/', [['meta[name="description"]', 'content', ['from CHF 990', 'from CHF 39 / month']], ['.hero-trust', 'text', ['From CHF 990', 'from CHF 39 / month']], ['.pakete-grid', 'text', ['From CHF 39 /']]]],
     ['/wartung/', [['title', 'text', ['ab CHF 39 pro Monat']]]],
     ['/en/maintenance/', [['title', 'text', ['from CHF 39 per Month']]]],
     ['/konfigurator/', [['.konfig-notes', 'text', ['ab CHF 39 pro Monat']]]],
@@ -516,7 +516,7 @@ test('Konfigurator: Schritt 1 mit Einstiegspreisen und Wochen vorgerendert, noch
   expect((await k.price()) === chf(defaults.priceFrom), await k.price())
   const sum = await k.summary()
   expect(
-    sum.from === 'Ab' && sum.offer === 'Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden' && sum.meta === `Dauer ca. ${defaults.weeks.min} – ${defaults.weeks.max} Wochen`,
+    sum.from === 'Ab' && sum.offer === 'Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden.' && sum.meta === `Dauer ca. ${defaults.weeks.min} – ${defaults.weeks.max} Wochen`,
     JSON.stringify(sum),
   )
   const notes = await s.page.evaluate(() => [...document.querySelectorAll('.konfig-notes li')].map((li) => li.textContent))
@@ -587,6 +587,7 @@ test('Konfigurator: Schritte 2 bis 4 ohne Preise, Wochen rechnen live, Einstiegs
     'Wunschtermin: 15. März 2027',
     "Einstiegspreis: ab CHF 2'490",
     `Zeitrahmen: ${expected.weeks.min} – ${expected.weeks.max} Wochen`,
+    'Nächster Schritt: Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden.',
   ]
   expect(config === lines.join('\n'), config)
   const page = await s.page.evaluate(() => document.body.textContent)
@@ -622,6 +623,7 @@ test('Konfigurator: „Kostenloses Angebot anfordern“ schickt alle Auswahlen m
     'Wunschtermin: In den nächsten 1 bis 3 Monaten',
     "Einstiegspreis: ab CHF 5'900",
     'Zeitrahmen: Zeitrahmen nach Gespräch',
+    'Nächster Schritt: Innert 24 Stunden melden wir uns für ein Erstgespräch. Den Festpreis erhalten Sie nach dem Gespräch.',
   ]
   expect(p && p.configuration === lines.join('\n') && p.message === 'Eine genügend lange Nachricht', JSON.stringify(p))
   await s.close()
@@ -672,7 +674,7 @@ test('Konfigurator: ausser den vier Einstiegspreisen und „ab CHF 39“ kein CH
     if (url.startsWith('/en/')) {
       const sum = await k.summary()
       const button = await s.page.evaluate(() => document.querySelector('#contactForm button[type="submit"]').textContent)
-      if (sum.from !== 'From' || sum.offer !== 'You get your fixed-price offer within 24 hours' || button !== 'Request a free offer') problems.push(`EN: ${JSON.stringify({ ...sum, button })}`)
+      if (sum.from !== 'From' || sum.offer !== 'You get your fixed-price offer within 24 hours.' || button !== 'Request a free offer') problems.push(`EN: ${JSON.stringify({ ...sum, button })}`)
     }
     await s.close()
   }
@@ -1046,52 +1048,157 @@ const contactValues = (page) =>
     y: window.scrollY,
   }))
 
-test('Startseite: Paket-Buttons springen zum Formular und füllen Betreff und Nachricht vor', async () => {
+// Start page cards and configurator tiles, name -> amount after "CHF", read from the rendered pages.
+const homeTypePrices = (page) =>
+  page.evaluate(() =>
+    Object.fromEntries(
+      [...document.querySelectorAll('.pakete-grid .paket-card:not(.paket-partner)')].map((card) => [
+        card.querySelector('.paket-name').textContent,
+        card.querySelector('.paket-price strong').textContent.match(/CHF\s*([\d']+)/)?.[1],
+      ]),
+    ),
+  )
+const configuratorTypePrices = (page) =>
+  page.evaluate(() =>
+    Object.fromEntries(
+      [...document.querySelectorAll('label.konfig-tile:has(input[name=siteType])')].map((tile) => [
+        tile.querySelector('.konfig-tile-name').textContent,
+        tile.querySelector('.konfig-tile-price').textContent.match(/CHF\s*([\d']+)/)?.[1],
+      ]),
+    ),
+  )
+
+test('Startseite: vier Seitentypen mit denselben Einstiegspreisen wie im Konfigurator, Buttons mit vorgewähltem Typ (DE und EN)', async () => {
+  const problems = []
+  const cases = [
+    ['/', '/konfigurator/', ['/konfigurator/?typ=landingpage', '/konfigurator/?typ=onepager', '/konfigurator/?typ=firmenwebsite', '/konfigurator/?typ=individuell']],
+    ['/en/', '/en/configurator/', ['/en/configurator/?type=landing-page', '/en/configurator/?type=one-pager', '/en/configurator/?type=business-website', '/en/configurator/?type=custom']],
+  ]
+  for (const [home, configurator, hrefs] of cases) {
+    const s = await open()
+    await goto(s.page, home, { hydrated: false })
+    const onHome = await homeTypePrices(s.page)
+    const links = await s.page.evaluate(() => [...document.querySelectorAll('.pakete-grid .paket-card:not(.paket-partner) .paket-cta')].map((a) => a.getAttribute('href')))
+    const custom = await s.page.evaluate(() => document.querySelectorAll('.pakete-grid .paket-custom').length)
+    await goto(s.page, configurator, { hydrated: false })
+    const inConfigurator = await configuratorTypePrices(s.page)
+    if (JSON.stringify(onHome) !== JSON.stringify(inConfigurator)) problems.push(`${home}: ${JSON.stringify(onHome)} ≠ ${JSON.stringify(inConfigurator)}`)
+    if (Object.values(onHome).join() !== ENTRY_PRICES.join()) problems.push(`${home}: Preise ${Object.values(onHome).join()}`)
+    if (links.join() !== hrefs.join()) problems.push(`${home}: Links ${links.join()}`)
+    if (custom !== 1) problems.push(`${home}: Individuell / Plattform nicht als eigene Zeile`)
+    await s.close()
+  }
+  expect(problems.length === 0, problems.join(' | '))
+})
+
+test('Startseite → Konfigurator: Typ vorgewählt, Individuell mit Erstgespräch (DE und EN)', async () => {
   const s = await open()
   await goto(s.page, '/')
-  const buttons = await s.page.evaluate(() => [...document.querySelectorAll('.paket-cta')].map((a) => `${a.textContent}→${a.getAttribute('href')}`).join('|'))
-  expect(buttons === 'Basic anfragen→#contact-basic|Growth anfragen→#contact-growth|Pro anfragen→#contact-pro|Partner anfragen→#contact-partner', buttons)
-  await s.page.click('.paket-cta[href="#contact-growth"]')
+  await s.page.click('.paket-cta[href="/konfigurator/?typ=firmenwebsite"]')
+  await s.page.waitForFunction(() => window.__VITE_REACT_SSG_CONTEXT__ && location.pathname === '/konfigurator/')
   await s.page.waitForTimeout(200)
-  let r = await contactValues(s.page)
-  expect(r.subject === 'Anfrage Paket Growth' && r.message.includes("Paket Growth (ab CHF 1'690)") && r.hash === '#contact-growth' && r.y > 0, JSON.stringify(r))
+  const k = konfig(s.page)
+  let r = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  expect(r === 'business' && (await k.price()) === "2'490", `${r} ${await k.price()}`)
+  await goto(s.page, '/en/')
+  await s.page.click('.paket-cta[href="/en/configurator/?type=custom"]')
+  await s.page.waitForFunction(() => window.__VITE_REACT_SSG_CONTEXT__ && location.pathname === '/en/configurator/')
+  await s.page.waitForTimeout(200)
+  r = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  const sum = await k.summary()
+  expect(
+    r === 'custom' && (await k.price()) === "5'900" && sum.offer === 'We get in touch within 24 hours to arrange a first call. You get the fixed price after the call.',
+    `${r} ${JSON.stringify(sum)}`,
+  )
+  await s.close()
+})
+
+test('Konfigurator: ?typ= wählt nach der Hydration vor, eine frühere Auswahl gewinnt', async () => {
+  let s = await open({ holdBundle: true })
+  await s.page.goto(base + '/konfigurator/?typ=onepager')
+  s.releaseBundle()
+  await s.page.waitForFunction(() => window.__VITE_REACT_SSG_CONTEXT__)
+  await s.page.waitForTimeout(150)
+  let k = konfig(s.page)
+  let r = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  expect(r === 'onepager' && (await k.price()) === "1'290", `${r} ${await k.price()}`)
+  await s.close()
+
+  s = await open({ holdBundle: true })
+  await s.page.goto(base + '/konfigurator/?typ=onepager')
+  k = konfig(s.page)
+  await k.tile('landingpage')
+  s.releaseBundle()
+  await s.page.waitForFunction(() => window.__VITE_REACT_SSG_CONTEXT__)
+  await s.page.waitForTimeout(150)
+  r = await s.page.evaluate(() => document.querySelector('input[name=siteType]:checked').value)
+  expect(r === 'landingpage' && (await k.price()) === '990', `${r} ${await k.price()}`)
+  await s.close()
+})
+
+test('Startseite: Partner-Button springt zum Formular und füllt Betreff und Nachricht vor', async () => {
+  const s = await open()
+  await goto(s.page, '/')
+  const buttons = await s.page.evaluate(() => [...document.querySelectorAll('.paket-cta[href^="#"]')].map((a) => `${a.textContent}→${a.getAttribute('href')}`).join('|'))
+  expect(buttons === 'Partner anfragen→#contact-partner', buttons)
   await s.page.click('.paket-cta[href="#contact-partner"]')
   await s.page.waitForTimeout(200)
+  const r = await contactValues(s.page)
+  expect(r.subject === 'Anfrage Paket Partner' && r.message.includes('ab CHF 39 pro Monat') && r.hash === '#contact-partner' && r.y > 0, JSON.stringify(r))
+  await s.close()
+})
+
+test('Startseite: Partner-Button vor der Hydration, Formular füllt sich nach dem Laden von React', async () => {
+  const s = await open({ holdBundle: true })
+  await s.page.goto(base + '/')
+  await s.page.click('.paket-cta[href="#contact-partner"]')
+  await s.page.waitForTimeout(200)
+  let r = await contactValues(s.page)
+  expect(r.hash === '#contact-partner' && r.subject === '' && r.y > 0, JSON.stringify(r))
+  s.releaseBundle()
+  await s.page.waitForFunction(() => document.getElementById('contact-subject').value !== '')
   r = await contactValues(s.page)
   expect(r.subject === 'Anfrage Paket Partner' && r.message.includes('ab CHF 39 pro Monat'), JSON.stringify(r))
   await s.close()
 })
 
-test('Startseite: Paket-Button vor der Hydration, Formular füllt sich nach dem Laden von React', async () => {
-  const s = await open({ holdBundle: true })
-  await s.page.goto(base + '/')
-  await s.page.click('.paket-cta[href="#contact-pro"]')
-  await s.page.waitForTimeout(200)
-  let r = await contactValues(s.page)
-  expect(r.hash === '#contact-pro' && r.subject === '' && r.y > 0, JSON.stringify(r))
-  s.releaseBundle()
-  await s.page.waitForFunction(() => document.getElementById('contact-subject').value !== '')
-  r = await contactValues(s.page)
-  expect(r.subject === 'Anfrage Paket Pro' && r.message.includes("Paket Pro (ab CHF 2'490)"), JSON.stringify(r))
-  await s.close()
-})
-
-test('Startseite EN: Paket-Button füllt englisch vor, Anfrage schickt den Betreff mit', async () => {
+test('Startseite EN: Partner-Button füllt englisch vor, Anfrage schickt den Betreff mit', async () => {
   const s = await open({ turnstile: { token: 'tok' } })
   const sent = mockEmailJs(s.page)
   await goto(s.page, '/en/')
-  await s.page.click('.paket-cta[href="#contact-growth"]')
+  await s.page.click('.paket-cta[href="#contact-partner"]')
   await s.page.waitForTimeout(200)
   const r = await contactValues(s.page)
-  expect(r.subject === 'Enquiry: Growth package' && r.message.includes("Growth package (from CHF 1'690)"), JSON.stringify(r))
+  expect(r.subject === 'Enquiry: Partner package' && r.message.includes('from CHF 39 per month'), JSON.stringify(r))
   await s.page.fill('#contact-name', 'Max')
   await s.page.fill('#contact-email', 'max@example.ch')
   await s.page.check('#privacy-consent')
   await s.page.click('#contactForm button[type="submit"]')
   await s.page.waitForFunction(() => document.getElementById('form-status').style.display === 'block')
   const p = sent.payload?.template_params
-  expect(p && p.subject === 'Enquiry: Growth package' && p.message.startsWith('Hello') && p.configuration === '', JSON.stringify(p))
+  expect(p && p.subject === 'Enquiry: Partner package' && p.message.startsWith('Hello') && p.configuration === '', JSON.stringify(p))
   await s.close()
+})
+
+// The old packages are gone everywhere: sources, README and what the build ships (HTML incl.
+// meta and JSON-LD, client bundles, sitemap). Case-sensitive, so "pro Monat" stays allowed.
+test('Pakete: Basic, Growth und Pro kommen nirgends mehr vor (Quellen und Build)', async () => {
+  const OLD = /\b(Basic|Growth|Pro)\b/
+  const roots = [path.join(ROOT, 'src'), path.join(ROOT, 'public'), DIST, path.join(ROOT, 'index.html'), path.join(ROOT, 'README.md')]
+  const hits = []
+  const walk = (entry) => {
+    const stat = fs.statSync(entry)
+    if (stat.isDirectory()) return fs.readdirSync(entry).forEach((name) => walk(path.join(entry, name)))
+    if (!/\.(html|js|jsx|mjs|json|xml|css|txt|md)$/.test(entry)) return
+    fs.readFileSync(entry, 'utf8')
+      .split('\n')
+      .forEach((line, i) => {
+        const m = OLD.exec(line)
+        if (m) hits.push(`${path.relative(ROOT, entry)}:${i + 1} „${line.slice(Math.max(0, m.index - 30), m.index + 30).trim()}“`)
+      })
+  }
+  roots.forEach(walk)
+  expect(hits.length === 0, hits.slice(0, 10).join(' | '))
 })
 
 test('Startseite: Prozess-Timeline mit 6 Schritten, Link zur Wartung, HowTo-Schema, kein Badge', async () => {

@@ -1,9 +1,27 @@
 // JSON-LD von index.html, 1:1 aus dem Original übernommen; letzter Block (Street Food Compassion) neu.
 // HowTo: die Schritte kommen aus der Prozess-Timeline (i18n home.projects.process).
-import { home } from '../../i18n/de.js'
+// Website-Angebote: die vier Seitentypen mit Einstiegspreis aus pricing.js, wie im Konfigurator
+// und in den Karten der Startseite.
+import { home, konfigurator } from '../../i18n/de.js'
+import { configuratorTypeHref } from '../navigation.js'
 import { plans } from '../maintenance.js'
+import { entryPrice, entryPricesText, siteTypes } from '../pricing.js'
 
 const steps = home.projects.process.steps
+
+const typeOffer = (type) => ({
+  "@type": "Offer",
+  "name": konfigurator.siteTypes[type.id].name,
+  "description": konfigurator.siteTypes[type.id].desc,
+  "url": `https://www.sin-digital.com${configuratorTypeHref('de', type)}`,
+  "priceCurrency": "CHF",
+  "availability": "https://schema.org/InStock",
+  "priceSpecification": {
+    "@type": "PriceSpecification",
+    "minPrice": type.priceFrom,
+    "priceCurrency": "CHF"
+  }
+})
 
 const schema = [
   {
@@ -30,7 +48,7 @@ const schema = [
     "foundingDate": "2026",
     "currenciesAccepted": "CHF",
     "paymentAccepted": "Banküberweisung, TWINT",
-    "priceRange": "CHF 990, 2490",
+    "priceRange": `ab CHF ${entryPrice('landingpage')}`,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Zürich",
@@ -108,48 +126,7 @@ const schema = [
       "@type": "OfferCatalog",
       "name": "Webdesign-Pakete Zürich",
       "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Basic Website",
-          "description": "Professionelle Website bis 5 Seiten für Unternehmen",
-          "price": "990",
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "990",
-            "priceCurrency": "CHF",
-            "unitText": "einmalig"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Growth Website mit erweiterten Funktionen",
-          "description": "Erweiterte Website mit Integrationen und Suchmaschinenoptimierung",
-          "price": "1690",
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "1690",
-            "priceCurrency": "CHF",
-            "unitText": "einmalig"
-          }
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro Website Premium",
-          "description": "Individuelle Premium-Website mit massgeschneidertem Design und 6 Monate Support",
-          "price": "2490",
-          "priceCurrency": "CHF",
-          "availability": "https://schema.org/InStock",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "2490",
-            "priceCurrency": "CHF",
-            "unitText": "einmalig"
-          }
-        },
+        ...siteTypes.map(typeOffer),
         {
           "@type": "Offer",
           "name": "Partner Monatsbetreuung",
@@ -279,27 +256,7 @@ const schema = [
       "@type": "OfferCatalog",
       "name": "Webdesign-Pakete",
       "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Basic",
-          "description": "Professionelle Website mit bis zu 5 Seiten für Unternehmen",
-          "price": "990",
-          "priceCurrency": "CHF"
-        },
-        {
-          "@type": "Offer",
-          "name": "Growth",
-          "description": "Erweiterte Website mit Integrationen und Suchmaschinenoptimierung",
-          "price": "1690",
-          "priceCurrency": "CHF"
-        },
-        {
-          "@type": "Offer",
-          "name": "Pro",
-          "description": "Individuelle Premium-Website mit massgeschneidertem Design und 6 Monate Support",
-          "price": "2490",
-          "priceCurrency": "CHF"
-        }
+        ...siteTypes.map(typeOffer)
       ]
     }
   },
@@ -328,7 +285,7 @@ const schema = [
         "name": "Was kostet eine Website bei Sin Digital?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Unsere Pakete starten ab CHF 990 (Basic), CHF 1'690 (Growth mit erweiterten Funktionen), CHF 2'490 (Pro) und ab CHF 39/Monat (Partner-Betreuung). Die Website-Pakete sind Einmalpreise inklusive Einrichtung."
+          "text": `Websites gibt es in vier Seitentypen: ${entryPricesText(konfigurator.siteTypes)}. Das sind einmalige Einstiegspreise inklusive Einrichtung, den Festpreis erhalten Sie mit dem Angebot. Hosting und Betreuung sind optional, ab CHF ${plans[0].monthly}/Monat (Partner-Betreuung).`
         }
       },
       {
@@ -360,7 +317,7 @@ const schema = [
         "name": "Kann ich über meine Website Online-Anfragen und Buchungen erhalten?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolut. Ab dem Growth-Paket erhalten Sie erweiterte Kontaktmöglichkeiten, Formulare und auf Wunsch ein Buchungssystem mit automatischen E-Mail-Bestätigungen. So können Ihre Kunden rund um die Uhr mit Ihnen in Kontakt treten."
+          "text": "Absolut. Erweiterte Kontaktformulare und auf Wunsch ein Buchungssystem mit automatischen E-Mail-Bestätigungen gibt es für jeden Seitentyp. So können Ihre Kunden rund um die Uhr mit Ihnen in Kontakt treten."
         }
       },
       {

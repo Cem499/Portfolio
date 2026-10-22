@@ -29,15 +29,16 @@ function fieldError(values) {
 
 let emailjsReady = false
 
-// The package buttons on the start page link to #contact-<id>: subject and message are
-// prefilled for that package (texts.prefill), name and email stay as typed.
+// The package buttons on the start page link to #contact-<id> (only the care package,
+// the website types go to the configurator): subject and message are prefilled for that
+// package (texts.prefill), name and email stay as typed.
 function prefillFor(f, pkg) {
   if (!pkg || !f.prefill) return null
   const fill = (text, values) => text.replace(/\{(\w+)\}/g, (_, key) => values[key])
-  const values = { name: pkg.name, price: chf(pkg.monthly ?? pkg.price) }
+  const values = { name: pkg.name, price: chf(pkg.monthly) }
   return {
     subject: fill(f.prefill.subject, values),
-    message: fill(pkg.monthly ? f.prefill.partnerMessage : f.prefill.message, values),
+    message: fill(f.prefill.message, values),
   }
 }
 

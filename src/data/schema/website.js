@@ -1,4 +1,7 @@
 // JSON-LD von website-zuerich.html, 1:1 aus dem Original übernommen.
+import { konfigurator } from '../../i18n/de.js'
+import { entryPricesText } from '../pricing.js'
+
 const schema = [
   {
     "@context": "https://schema.org",
@@ -51,7 +54,7 @@ const schema = [
         "name": "Was kostet eine Website in Zürich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bei Sin Digital starten Firmenwebsites in Zürich ab CHF 990 (Basic-Paket mit bis zu 5 Seiten, SEO-Basis, Kontaktformular und Google Maps). Das Growth-Paket mit Terminbuchung, Google Analytics und erweitertem SEO kostet ab CHF 1'690. Premium-Websites mit vollständig individuellem Design und Animationen sind ab CHF 2'490 erhältlich. Alle Preise sind Einmalpreise inklusive Einrichtung."
+          "text": `Bei Sin Digital starten Websites in Zürich ab CHF 990. Es gibt vier Seitentypen mit Einstiegspreis: ${entryPricesText(konfigurator.siteTypes)}. Alle Preise sind einmalige Einstiegspreise inklusive Einrichtung, den Festpreis erhalten Sie mit dem Angebot.`
         }
       },
       {

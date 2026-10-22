@@ -1,4 +1,7 @@
 // JSON-LD von guenstige-website-zuerich.html, 1:1 aus dem Original übernommen.
+import { konfigurator } from '../../i18n/de.js'
+import { entryPricesText } from '../pricing.js'
+
 const schema = [
   {
     "@context": "https://schema.org",
@@ -35,7 +38,7 @@ const schema = [
         "name": "Was ist bei einer günstigen Website von Sin Digital dabei?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Das Basic-Paket umfasst: professionelle Website mit bis zu 5 Seiten, Mobile-Optimierung, Kontaktformular, Google Maps-Einbindung, SEO-Grundlagen und ein Design, das zu Ihrem Unternehmen passt. Alles für CHF 990 einmalig."
+          "text": `Der Einstieg ab CHF 990 ist eine Landingpage: eine professionelle Seite mit Mobile-Optimierung, Kontaktformular, SEO-Grundlagen und einem Design, das zu Ihrem Unternehmen passt. Alle Seitentypen mit Einstiegspreis: ${entryPricesText(konfigurator.siteTypes)}. Den Festpreis erhalten Sie mit dem Angebot.`
         }
       },
       {

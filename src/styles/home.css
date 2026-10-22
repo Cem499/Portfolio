@@ -198,15 +198,18 @@
   }
 }
 
-/* "Growth anfragen" buttons of the package cards, and the invisible targets of their
-   #contact-<id> links at the top of the contact section (ContactForm prefills from the hash). */
+/* Buttons of the package cards ("Firmenwebsite konfigurieren" opens the configurator, "Partner
+   anfragen" jumps to the contact form), and the invisible targets of the #contact-<id> links at
+   the top of the contact section (ContactForm prefills from the hash). */
 /* The card is a flex column: price gets a gap below, the button sits at the bottom edge. */
 .paket-card .paket-price {
   margin-bottom: 1.25rem;
 }
 
 .paket-cta {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: auto;
   padding: 0.85rem 1rem;
   border-radius: var(--radius);
@@ -229,6 +232,108 @@
 .paket-cta:focus-visible {
   outline: 2px solid var(--white);
   outline-offset: 2px;
+}
+
+/* Three site types in the first row, Individuell / Plattform as a narrower full-width row below
+   them, the care package on the right across both rows. Two columns: the care package fills the
+   gap next to the third type (dense), the custom row spans both columns. */
+.pakete-grid {
+  grid-auto-flow: row dense;
+}
+
+/* The offer fills the card, so price and button line up across cards of different text length. */
+.paket-card > [itemprop="item"] {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.paket-partner {
+  grid-column: 4;
+  grid-row: 1 / span 2;
+}
+
+.paket-custom {
+  grid-column: 1 / 4;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.paket-custom .paket-custom-body {
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.paket-custom-text {
+  flex: 1;
+}
+
+.paket-custom .paket-name {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.paket-custom .paket-positioning {
+  margin-bottom: 0;
+}
+
+.paket-custom .paket-price {
+  margin: 0;
+  padding: 0 0 0 2rem;
+  border-top: none;
+  border-left: 1px solid rgba(193, 255, 114, 0.07);
+  white-space: nowrap;
+}
+
+.paket-custom .paket-cta {
+  flex-shrink: 0;
+  margin-top: 0;
+}
+
+/* Four columns: labels like "Landingpage konfigurieren" wrap; same button height whether the
+   label takes one line or two, so the prices line up across cards. */
+@media (min-width: 1101px) {
+  .paket-card:not(.paket-custom) .paket-cta {
+    min-height: 4.2rem;
+  }
+}
+
+@media (max-width: 1100px) {
+  .paket-partner {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .paket-custom {
+    grid-column: 1 / -1;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .paket-custom,
+  .paket-custom .paket-custom-body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .paket-custom .paket-price {
+    margin-bottom: 1.25rem;
+    padding: 1.5rem 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(193, 255, 114, 0.07);
+  }
+
+  .paket-custom .paket-positioning {
+    margin-bottom: 2.25rem;
+  }
 }
 
 .contact-anchor {

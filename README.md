@@ -76,15 +76,23 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 - React wird erst nach `load` und dem ersten Paint geladen (Performance). Eingaben ins Kontaktformular
   vor diesem Zeitpunkt bleiben erhalten; ein früher Klick auf „Senden“ zeigt kurz „Einen Moment bitte …“,
   lädt React sofort und sendet danach automatisch (bei gültigen Feldern nach dem Turnstile-Token, max. 8 s).
-- Die Buttons der Paketkarten unter „Leistungen“ verlinken `#contact-<paket>` (IDs und Preise in
-  `src/data/packages.js`). Das Kontaktformular liest den Hash und füllt Betreff und Nachricht für das
-  Paket vor (Texte `contactForm.prefill` in `src/i18n`), auch wenn der Klick vor dem Laden von React fällt.
+- Die Karten unter „Leistungen“ zeigen dieselben vier Seitentypen und Einstiegspreise wie der
+  Konfigurator (`siteTypes` in `src/data/pricing.js`, Namen und Beschreibungen aus `konfigurator`
+  in `src/i18n`); ihre Buttons öffnen den Konfigurator mit vorgewähltem Typ
+  (`/konfigurator/?typ=firmenwebsite`, `/en/configurator/?type=business-website`).
+  Individuell / Plattform steht als schmalere Zeile darunter.
+- Der Button der Partner-Karte verlinkt `#contact-partner` (`src/data/packages.js`). Das
+  Kontaktformular liest den Hash und füllt Betreff und Nachricht vor (Texte `contactForm.prefill` in
+  `src/i18n`), auch wenn der Klick vor dem Laden von React fällt.
 
 ## Projekt-Konfigurator
 
 `/konfigurator/` führt in vier Schritten (Seitentyp, Umfang, Funktionen, Wunschtermin) zum
 Einstiegspreis des Seitentyps („ab CHF …“) mit Zeitrahmen und übergibt die Auswahl im fünften
-Schritt an das Kontaktformular („Kostenloses Angebot anfordern“). Den Festpreis gibt es mit dem Angebot.
+Schritt an das Kontaktformular („Kostenloses Angebot anfordern“). Den Festpreis gibt es mit dem Angebot,
+bei Individuell / Plattform (`firstCall`) nach einem Erstgespräch; der nächste Schritt steht in der
+Zusammenfassung und in der Konfiguration der Anfrage. `?typ=<slug>` (EN `?type=<slug>`) wählt den
+Seitentyp vor, ausser es wurde vor der Hydration schon ein anderer gewählt.
 Die Zusammenfassung geht als EmailJS-Feld `configuration` mit (Template `template_5mci63d` enthält
 `{{configuration}}`; bei normalen Kontaktanfragen bleibt das Feld leer).
 

@@ -34,8 +34,7 @@ export const shared = {
     "submit": "Nachricht senden",
     "prefill": {
       "subject": "Anfrage Paket {name}",
-      "message": "Guten Tag\nIch interessiere mich für das Paket {name} (ab CHF {price}).\nKurz zu meinem Vorhaben:\n",
-      "partnerMessage": "Guten Tag\nIch interessiere mich für das Partner-Paket, Hosting und Wartung ab CHF {price} pro Monat.\nKurz zu meiner Website:\n"
+      "message": "Guten Tag\nIch interessiere mich für das Partner-Paket, Hosting und Wartung ab CHF {price} pro Monat.\nKurz zu meiner Website:\n"
     }
   },
   "care": {
@@ -105,54 +104,19 @@ export const home = {
     "label": "Was wir tun",
     "title1": "UNSERE",
     "title2": "LEISTUNGEN",
-    "intro": "Sin Digital entwickelt professionelle Websites für Unternehmen jeder Branche, von KMU und Startups bis hin zu etablierten Firmen in Zürich und der ganzen Schweiz. Unsere Lösungen helfen Ihnen, online sichtbar zu werden, neue Kunden zu gewinnen und einen professionellen Auftritt zu schaffen, der Vertrauen erzeugt. Wählen Sie das Paket, das zu Ihrer aktuellen Situation passt.",
-    "packages": [
-      {
-        "label": "Paket 01",
-        "positioning": "Für Unternehmen, die erstmals online sichtbar werden möchten. Ein sauberer, professioneller Auftritt, ohne Schnickschnack, dafür mit Substanz.",
-        "features": [
-          "Professionelle Website mit bis zu 5 Seiten",
-          "Mobile-optimiert für alle Geräte",
-          "Kontaktformular & Standortkarte",
-          "Suchmaschinenoptimierung (SEO)",
-          "Einbindung in Google Maps"
-        ],
-        "priceNote": "Einmalig, inkl. Einrichtung"
-      },
-      {
-        "badge": "Meistgewählt",
-        "label": "Paket 02",
-        "positioning": "Für Unternehmen, die online wachsen und mehr Kunden gewinnen möchten. Mit erweiterten Funktionen rund um die Uhr sichtbar.",
-        "features": [
-          "Alles aus Basic",
-          "Google Analytics & Tracking",
-          "Erweitertes SEO & lokale Sichtbarkeit",
-          "DSGVO-konformer Cookie-Banner",
-          "Terminbuchung möglich inkl. Dashboard",
-          "Automatische Kundendaten-Backups"
-        ],
-        "priceNote": "Einmalig, inkl. Einrichtung"
-      },
-      {
-        "label": "Paket 03",
-        "positioning": "Für ambitionierte Unternehmen, die ihren digitalen Auftritt als Wettbewerbsvorteil nutzen wollen. Alles, was Sie für einen überzeugenden ersten Eindruck brauchen.",
-        "features": [
-          "Alles aus Growth",
-          "Individuelle Designentwicklung & Farbwelt",
-          "Individuelle Animationen & Interaktionen",
-          "Mehrsprachige Website",
-          "DSGVO-konformer Cookie-Banner",
-          "WhatsApp Chat Integration"
-        ],
-        "priceNote": "Einmalig, inkl. Einrichtung"
-      },
-      {
-        "label": "Paket 04",
-        "positioning": "Für Unternehmen, die langfristig von Sin Digital betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen, Sie konzentrieren sich auf Ihr Geschäft.",
-        "month": "Monat",
-        "priceNote": "Laufende Betreuung durch Sin Digital"
-      }
-    ],
+    "intro": "Sin Digital entwickelt professionelle Websites für Unternehmen jeder Branche, von KMU und Startups bis hin zu etablierten Firmen in Zürich und der ganzen Schweiz. Unsere Lösungen helfen Ihnen, online sichtbar zu werden, neue Kunden zu gewinnen und einen professionellen Auftritt zu schaffen, der Vertrauen erzeugt. Wählen Sie den Seitentyp, der zu Ihrer Situation passt, und stellen Sie Ihr Projekt im Konfigurator zusammen.",
+    "types": {
+      "label": "Umsetzung ca. {weeks}",
+      "from": "Ab",
+      "priceNote": "Einmalig, inkl. Einrichtung",
+      "configure": "{name} konfigurieren"
+    },
+    "partner": {
+      "label": "Betreuung",
+      "positioning": "Für Unternehmen, die langfristig von Sin Digital betreut werden möchten. Wir übernehmen Hosting, Updates und laufende Anpassungen, Sie konzentrieren sich auf Ihr Geschäft.",
+      "month": "Monat",
+      "priceNote": "Laufende Betreuung durch Sin Digital"
+    },
     "process": {
       "label": "So arbeiten wir bei Sin Digital",
       "title1": "SO LÄUFT DIE",
@@ -216,7 +180,7 @@ export const home = {
       {
         "id": 7,
         "question": "Kann ich über meine Website Online-Anfragen und Buchungen erhalten?",
-        "answer": "Absolut. Ab dem Growth-Paket erhalten Sie erweiterte Kontaktmöglichkeiten, Formulare und auf Wunsch ein Buchungssystem mit automatischen E-Mail-Bestätigungen. So können Ihre Kunden rund um die Uhr mit Ihnen in Kontakt treten, ganz ohne Telefonanruf."
+        "answer": "Absolut. Erweiterte Kontaktformulare und auf Wunsch ein Buchungssystem mit automatischen E-Mail-Bestätigungen gibt es für jeden Seitentyp. So können Ihre Kunden rund um die Uhr mit Ihnen in Kontakt treten, ganz ohne Telefonanruf."
       },
       {
         "id": 8,
@@ -341,7 +305,7 @@ export const konfigurator = {
   "features": {
     "multilingual": {
       "name": "Mehrsprachig",
-      "desc": "Pro zusätzliche Sprache, mit eigenen URLs und sauber für Google."
+      "desc": "Für jede zusätzliche Sprache, mit eigenen URLs und sauber für Google."
     },
     "shop": {
       "name": "Shop",
@@ -397,7 +361,8 @@ export const konfigurator = {
     "title": "Zusammenfassung",
     "from": "ab",
     "fromStart": "Ab",
-    "offer": "Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden",
+    "offer": "Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden.",
+    "firstCall": "Innert 24 Stunden melden wir uns für ein Erstgespräch. Den Festpreis erhalten Sie nach dem Gespräch.",
     "duration": "Dauer ca.",
     "week": "Woche",
     "weeks": "Wochen",
@@ -415,7 +380,7 @@ export const konfigurator = {
   "toRequest": "Zur Anfrage",
   "request": {
     "title": "Konfiguration als Anfrage senden",
-    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben. Ihr Festpreis-Angebot erhalten Sie innert 24 Stunden.",
+    "text": "Ihre Auswahl geht mit. Ergänzen Sie Name, E-Mail und ein paar Worte zu Ihrem Vorhaben.",
     "submit": "Kostenloses Angebot anfordern"
   },
   "configuration": {
@@ -426,7 +391,8 @@ export const konfigurator = {
     "timing": "Wunschtermin",
     "startOpen": "Individueller Termin, Datum offen",
     "price": "Einstiegspreis",
-    "weeks": "Zeitrahmen"
+    "weeks": "Zeitrahmen",
+    "next": "Nächster Schritt"
   }
 }
 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { DEFAULTS, LANGUAGE_COUNTS, chf, estimate, features as featureList, siteTypes, tiersFor, timings } from '../data/pricing.js'
+import { DEFAULTS, LANGUAGE_COUNTS, chf, estimate, features as featureList, pagesFor, siteTypeFromQuery, siteTypes, tiersFor, timings } from '../data/pricing.js'
 import usePendingSubmit, { valuesFromDom } from '../hooks/usePendingSubmit.js'
 import AnimatedNumber from './AnimatedNumber.jsx'
 import ContactForm from './ContactForm.jsx'
@@ -15,6 +15,10 @@ function weeksText(t, min, max) {
   const n = min === max ? String(min) : `${min} – ${max}`
   return `${n} ${max === 1 ? t.summary.week : t.summary.weeks}`
 }
+
+// What happens after the enquiry: the fixed-price offer within 24 hours, or for types that
+// need a conversation first (custom) a call within 24 hours and the fixed price after it.
+const nextStepText = (t, siteTypeId) => (siteTypes.find((type) => type.id === siteTypeId)?.firstCall ? t.summary.firstCall : t.summary.offer)
 
 // "3 – 5 Wochen", or "Zeitrahmen nach Gespräch" without weeks.
 const durationText = (t, weeks) => (weeks ? weeksText(t, weeks.min, weeks.max) : t.summary.weeksOnRequest)
@@ -56,6 +60,7 @@ function configurationText(t, state, est) {
     [t.configuration.timing, timingText(t, state)],
     [t.configuration.price, fromText(t, est)],
     [t.configuration.weeks, durationText(t, est.weeks)],
+    [t.configuration.next, nextStepText(t, state.siteType)],
   ]
   return lines.map(([label, value]) => `${label}: ${value}`).join('\n')
 }
@@ -109,8 +114,12 @@ export default function Configurator({ t, formTexts }) {
   const stepRefs = useRef([])
   const moveFocusRef = useRef(false)
 
+  // A link like /konfigurator/?typ=firmenwebsite preselects the type, unless another type was
+  // already picked before hydration.
   useEffect(() => {
-    setState(fromDom)
+    const linked = siteTypeFromQuery(window.location.search)
+    if (!linked || fromDom.siteType !== DEFAULTS.siteType) setState(fromDom)
+    else setState({ ...fromDom, siteType: linked, pages: pagesFor(linked, fromDom.pages) })
   }, [fromDom])
 
   useEffect(() => {
@@ -127,10 +136,7 @@ export default function Configurator({ t, formTexts }) {
   const requestFormTexts = useMemo(() => ({ ...formTexts, submit: t.request.submit }), [formTexts, t])
 
   function selectType(id) {
-    setState((s) => {
-      const available = tiersFor(id)
-      return { ...s, siteType: id, pages: available.some((tier) => tier.id === s.pages) ? s.pages : available[0].id }
-    })
+    setState((s) => ({ ...s, siteType: id, pages: pagesFor(id, s.pages) }))
   }
 
   function toggleFeature(id) {
@@ -329,7 +335,7 @@ export default function Configurator({ t, formTexts }) {
           <h2 id="konfig-request-title" className="konfig-question">
             {t.request.title}
           </h2>
-          <p className="konfig-hint">{t.request.text}</p>
+          <p className="konfig-hint">{`${t.request.text} ${nextStepText(t, state.siteType)}`}</p>
           <pre className="konfig-config" aria-label={t.summary.selection}>
             {configText}
           </pre>
@@ -348,7 +354,7 @@ export default function Configurator({ t, formTexts }) {
               <span className="konfig-currency">CHF</span> <AnimatedNumber value={est.priceFrom} />
             </span>
           </div>
-          <p className="konfig-offer">{t.summary.offer}</p>
+          <p className="konfig-offer">{nextStepText(t, state.siteType)}</p>
           <p className="konfig-meta">{est.weeks ? `${t.summary.duration} ${weeksText(t, est.weeks.min, est.weeks.max)}` : t.summary.weeksOnRequest}</p>
         </div>
         <div className="konfig-summary-details">

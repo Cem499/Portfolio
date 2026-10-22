@@ -1,5 +1,9 @@
+import { Fragment } from 'react'
 import Seo from '../components/Seo.jsx'
+import { configuratorPath } from '../data/navigation.js'
+import { chf, entryPricesText, siteTypes } from '../data/pricing.js'
 import schema from '../data/schema/webdesign.js'
+import { konfigurator } from '../i18n/de.js'
 import '../styles/landing.css'
 
 // webdesign-zuerich.html: SEO-Landingpage, nur Deutsch, ohne JavaScript ausgeliefert.
@@ -88,17 +92,14 @@ export default function Webdesign() {
         </div>
         <div className="card">
           <h2>Unsere Webdesign-Pakete für Zürich</h2>
-          <h3>Basic, ab CHF 990</h3>
+          {siteTypes.map((type) => (
+            <Fragment key={type.id}>
+              <h3>{`${konfigurator.siteTypes[type.id].name}, ab CHF ${chf(type.priceFrom)}`}</h3>
+              <p>{konfigurator.siteTypes[type.id].desc}</p>
+            </Fragment>
+          ))}
           <p>
-            Professionelle Website mit bis zu 5 Seiten, Kontaktformular, Google Maps, SEO-Basis und Mobile-Optimierung. Ideal für Unternehmen, die erstmals online sichtbar werden möchten.
-          </p>
-          <h3>{"Growth, ab CHF 1'690"}</h3>
-          <p>
-            Erweiterte Website mit Social-Media-Integration, Google Analytics, Terminbuchung und automatischen Backups. Für Unternehmen, die online wachsen und mehr Kunden gewinnen möchten.
-          </p>
-          <h3>{"Pro, ab CHF 2'490"}</h3>
-          <p>
-            Individuelle Premium-Website mit massgeschneidertem Design, Animationen, Mehrsprachigkeit und 6 Monate Support. Für ambitionierte Unternehmen, die ihren digitalen Auftritt als Wettbewerbsvorteil nutzen wollen.
+            Einstiegspreise, den Festpreis erhalten Sie mit dem Angebot. <a href={configuratorPath('de')}>Projekt im Konfigurator zusammenstellen</a>
           </p>
         </div>
         <div className="card">
@@ -133,7 +134,7 @@ export default function Webdesign() {
           <h2>Webdesign Zürich: Häufige Fragen</h2>
           <h3>Was kostet professionelles Webdesign in Zürich?</h3>
           <p>
-            {"Bei Sin Digital starten professionelle Websites ab CHF 990. Der Preis hängt vom Umfang und den gewünschten Funktionen ab. Ein Growth-Paket mit erweiterten Features kostet ab CHF 1'690."}
+            {`Bei Sin Digital starten professionelle Websites ab CHF 990: ${entryPricesText(konfigurator.siteTypes)}. Der Festpreis hängt vom Umfang und den gewünschten Funktionen ab, Sie erhalten ihn mit dem Angebot.`}
           </p>
           <h3>Wie lange dauert ein Webdesign-Projekt?</h3>
           <p>In der Regel ist Ihre Website in ca. 2 Wochen fertig, von der ersten Analyse bis zum Livegang.</p>

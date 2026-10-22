@@ -12,8 +12,8 @@ import Team from '../components/Team.jsx'
 import { configuratorPath } from '../data/navigation.js'
 import schema from '../data/schema/home.js'
 import useSmoothScroll from '../hooks/useSmoothScroll.js'
-import { home as deHome, shared as deShared } from '../i18n/de.js'
-import { home as enHome, shared as enShared } from '../i18n/en.js'
+import { home as deHome, konfigurator as deKonfig, shared as deShared } from '../i18n/de.js'
+import { home as enHome, konfigurator as enKonfig, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
 
 // critical.css, lang-switch.css and home.css are inlined into <head> of / and /en/ at build
@@ -108,7 +108,7 @@ export default function Home({ lang }) {
         <LocalSeo t={t} />
         <Team t={t} />
         <Clients t={t} lang={lang} />
-        <Projects t={t} care={shared.care} lang={lang} />
+        <Projects t={t} k={lang === 'en' ? enKonfig : deKonfig} care={shared.care} lang={lang} />
         <Faq t={t} />
         <Reviews t={t} />
         <Contact t={t} shared={shared} lang={lang} />

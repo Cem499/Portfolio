@@ -90,7 +90,7 @@ export default function Agb() {
             <div className="legal-block">
               <ul>
                 <li>
-                  {t("Der genaue Leistungsumfang richtet sich nach dem gewählten Paket (Basic, Growth, Pro oder Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind.", "The exact scope of services depends on the selected package (Basic, Growth, Pro or Partner) as well as individual agreements set out in writing in the respective offer.")}
+                  {t("Der genaue Leistungsumfang richtet sich nach dem gewählten Seitentyp (Landingpage, Onepager, Firmenwebsite oder Individuell / Plattform) bzw. dem Betreuungspaket (Partner) sowie individuellen Vereinbarungen, die im jeweiligen Angebot schriftlich festgehalten sind.", "The exact scope of services depends on the selected site type (landing page, one-pager, business website or custom / platform) or care package (Partner) as well as individual agreements set out in writing in the respective offer.")}
                 </li>
                 <li>
                   {t("Mögliche Leistungen umfassen u.a.: Websiteerstellung, Content-Management-Systeme, Dashboards sowie Backend-Entwicklung. Massgebend ist ausschliesslich das unterzeichnete Angebot.", "Possible services include, among others: website creation, content management systems, dashboards and backend development. The signed offer is the sole binding document.")}
@@ -342,7 +342,7 @@ export default function Agb() {
             <div className="legal-block">
               <h3>{t("Leistungsumfang", "Scope of Services")}</h3>
               <p>
-                {t("Der Leistungsumfang ergibt sich aus dem gewählten Paket (Basic, Growth, Pro oder Partner) und wird im individuellen Angebot verbindlich festgehalten. Angaben auf der Website oder in Marketingunterlagen sind unverbindlich. Massgebend ist ausschliesslich das unterzeichnete Angebot.", "The scope of services is determined by the selected package (Basic, Growth, Pro or Partner) and is binding as set out in the individual offer. Information on the website or in marketing materials is non-binding. Only the signed offer is authoritative.")}
+                {t("Der Leistungsumfang ergibt sich aus dem gewählten Seitentyp (Landingpage, Onepager, Firmenwebsite oder Individuell / Plattform) bzw. dem Betreuungspaket (Partner) und wird im individuellen Angebot verbindlich festgehalten. Angaben auf der Website oder in Marketingunterlagen sind unverbindlich. Massgebend ist ausschliesslich das unterzeichnete Angebot.", "The scope of services is determined by the selected site type (landing page, one-pager, business website or custom / platform) or care package (Partner) and is binding as set out in the individual offer. Information on the website or in marketing materials is non-binding. Only the signed offer is authoritative.")}
               </p>
               <h3>{t("Entwicklungszeit & Lieferung", "Development Time & Delivery")}</h3>
               <p>

@@ -1,3 +1,5 @@
+import { TYPE_PARAM } from './pricing.js'
+
 // Main navigation in display order. `anchor` points to a section of the start page,
 // `path` to a page of its own (one URL per language). Labels come from i18n `shared.nav`.
 export const mainNav = [
@@ -10,6 +12,9 @@ export const mainNav = [
 
 export const configuratorPath = (lang) => mainNav.find((item) => item.id === 'configurator').path[lang]
 export const maintenancePath = (lang) => mainNav.find((item) => item.id === 'maintenance').path[lang]
+
+// Configurator with a site type preselected: "/konfigurator/?typ=firmenwebsite".
+export const configuratorTypeHref = (lang, type) => `${configuratorPath(lang)}?${TYPE_PARAM[lang]}=${type.slug[lang]}`
 
 export function homePath(lang) {
   return lang === 'en' ? '/en/' : '/'

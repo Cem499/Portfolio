@@ -1,4 +1,7 @@
 // JSON-LD von webdesign-zuerich.html, 1:1 aus dem Original übernommen.
+import { konfigurator } from '../../i18n/de.js'
+import { entryPricesText } from '../pricing.js'
+
 const schema = [
   {
     "@context": "https://schema.org",
@@ -27,7 +30,7 @@ const schema = [
         "name": "Was kostet professionelles Webdesign in Zürich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bei Sin Digital starten professionelle Websites in Zürich ab CHF 990 (Basic-Paket). Das Basic-Paket umfasst bis zu 5 Seiten, Kontaktformular, Google Maps-Einbindung, SEO-Basis und Mobile-Optimierung. Das Growth-Paket mit Google Analytics, Terminbuchung und erweitertem SEO ist ab CHF 1'690 erhältlich. Premium-Websites mit individuellem Design und massgeschneiderten Animationen starten ab CHF 2'490."
+          "text": `Bei Sin Digital starten professionelle Websites in Zürich ab CHF 990. Es gibt vier Seitentypen mit Einstiegspreis: ${entryPricesText(konfigurator.siteTypes)}. Der Festpreis hängt vom Umfang und den gewünschten Funktionen ab, Sie erhalten ihn mit dem Angebot.`
         }
       },
       {
@@ -67,7 +70,7 @@ const schema = [
         "name": "Kann ich bei Sin Digital ein individuelles Design bekommen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, ab dem Pro-Paket (CHF 2'490) erhalten Sie ein vollständig individuelles Design mit eigener Farbwelt, massgeschneiderten Animationen und Interaktionen. Auch im Growth-Paket passen wir das Design an Ihre Marke an."
+          "text": "Ja. Jede Website passen wir an Ihre Marke an. Ein vollständig individuelles Design mit eigener Farbwelt, massgeschneiderten Animationen und Interaktionen ist bei jedem Seitentyp möglich; der Aufwand fliesst in den Festpreis Ihres Angebots ein."
         }
       }
     ]

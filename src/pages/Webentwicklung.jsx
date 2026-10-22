@@ -1,4 +1,5 @@
 import Seo from '../components/Seo.jsx'
+import { entryPrice } from '../data/pricing.js'
 import schema from '../data/schema/webentwicklung.js'
 import '../styles/landing.css'
 import '../styles/landing-tech.css'
@@ -161,7 +162,7 @@ export default function Webentwicklung() {
           </p>
           <h3>Was kostet Webentwicklung bei Sin Digital?</h3>
           <p>
-            Websites starten ab CHF 990 (Basic). Web-Apps und individuelle Lösungen werden nach Aufwand kalkuliert transparent und ohne versteckte Kosten.
+            {`Websites starten ab CHF ${entryPrice('landingpage')} (Landingpage), Firmenwebsites ab CHF ${entryPrice('business')}. Web-Apps und individuelle Lösungen starten ab CHF ${entryPrice('custom')} und werden nach Aufwand kalkuliert, transparent und ohne versteckte Kosten.`}
           </p>
         </div>
         <div className="card">

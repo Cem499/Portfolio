@@ -34,8 +34,7 @@ export const shared = {
     "submit": "Send message",
     "prefill": {
       "subject": "Enquiry: {name} package",
-      "message": "Hello\nI am interested in the {name} package (from CHF {price}).\nA few words about my project:\n",
-      "partnerMessage": "Hello\nI am interested in the Partner package, hosting and care from CHF {price} per month.\nA few words about my website:\n"
+      "message": "Hello\nI am interested in the Partner package, hosting and care from CHF {price} per month.\nA few words about my website:\n"
     }
   },
   "care": {
@@ -105,54 +104,19 @@ export const home = {
     "label": "What We Offer",
     "title1": "OUR",
     "title2": "SERVICES",
-    "intro": "Sin Digital develops professional websites for businesses of every industry, from SMEs and startups to established companies in Zürich and across Switzerland. Our solutions help you become visible online, win new clients and create a professional presence that builds trust. Choose the package that fits where you are right now.",
-    "packages": [
-      {
-        "label": "Package 01",
-        "positioning": "For businesses making their first step online. A clean, professional presence, no frills, but solid substance.",
-        "features": [
-          "Professional website with up to 5 pages",
-          "Mobile-optimised for all devices",
-          "Contact form & location map",
-          "Search engine optimisation (SEO)",
-          "Google Maps integration"
-        ],
-        "priceNote": "One-time, incl. setup"
-      },
-      {
-        "badge": "Most Popular",
-        "label": "Package 02",
-        "positioning": "For businesses that want to grow online and win more clients. With extended features, you're visible around the clock.",
-        "features": [
-          "Everything from Basic",
-          "Google Analytics & tracking",
-          "Advanced SEO & local visibility",
-          "GDPR-compliant cookie banner",
-          "Appointment booking available incl. dashboard",
-          "Automatic customer data backups"
-        ],
-        "priceNote": "One-time, incl. setup"
-      },
-      {
-        "label": "Package 03",
-        "positioning": "For ambitious businesses that want their digital presence to be a competitive edge. Everything you need to make a lasting first impression.",
-        "features": [
-          "Everything from Growth",
-          "Custom design & brand colours",
-          "Custom animations & interactions",
-          "Multilingual website",
-          "GDPR-compliant cookie banner",
-          "WhatsApp chat integration"
-        ],
-        "priceNote": "One-time, incl. setup"
-      },
-      {
-        "label": "Package 04",
-        "positioning": "For businesses that want long-term support from Sin Digital. We handle hosting, updates and ongoing changes, you focus on your business.",
-        "month": "month",
-        "priceNote": "Ongoing care by Sin Digital"
-      }
-    ],
+    "intro": "Sin Digital develops professional websites for businesses of every industry, from SMEs and startups to established companies in Zürich and across Switzerland. Our solutions help you become visible online, win new clients and create a professional presence that builds trust. Choose the site type that fits where you are and put your project together in the configurator.",
+    "types": {
+      "label": "Built in about {weeks}",
+      "from": "From",
+      "priceNote": "One-time, incl. setup",
+      "configure": "Configure {name}"
+    },
+    "partner": {
+      "label": "Care",
+      "positioning": "For businesses that want long-term support from Sin Digital. We handle hosting, updates and ongoing changes, you focus on your business.",
+      "month": "month",
+      "priceNote": "Ongoing care by Sin Digital"
+    },
     "process": {
       "label": "How We Work at Sin Digital",
       "title1": "HOW THE",
@@ -216,7 +180,7 @@ export const home = {
       {
         "id": 7,
         "question": "Can I receive online enquiries and bookings through my website?",
-        "answer": "Absolutely. Starting with the Growth package, you get extended contact options, forms and on request a booking system with automatic email confirmations. Your clients can reach you 24/7, without a single phone call."
+        "answer": "Absolutely. Extended contact forms and, on request, a booking system with automatic email confirmations are available for every site type. Your clients can reach you 24/7, without a single phone call."
       },
       {
         "id": 8,
@@ -397,7 +361,8 @@ export const konfigurator = {
     "title": "Summary",
     "from": "from",
     "fromStart": "From",
-    "offer": "You get your fixed-price offer within 24 hours",
+    "offer": "You get your fixed-price offer within 24 hours.",
+    "firstCall": "We get in touch within 24 hours to arrange a first call. You get the fixed price after the call.",
     "duration": "About",
     "week": "week",
     "weeks": "weeks",
@@ -415,7 +380,7 @@ export const konfigurator = {
   "toRequest": "To the enquiry",
   "request": {
     "title": "Send your configuration as an enquiry",
-    "text": "Your selection comes along. Add your name, email and a few words about your project. You get your fixed-price offer within 24 hours.",
+    "text": "Your selection comes along. Add your name, email and a few words about your project.",
     "submit": "Request a free offer"
   },
   "configuration": {
@@ -426,7 +391,8 @@ export const konfigurator = {
     "timing": "Start",
     "startOpen": "Individual date, still open",
     "price": "Starting price",
-    "weeks": "Time frame"
+    "weeks": "Time frame",
+    "next": "Next step"
   }
 }
 
