@@ -100,6 +100,17 @@ export const home = {
   "clients": {
     "label": "Trusted By"
   },
+  "showcase": {
+    "label": "References",
+    "title1": "BEFORE.",
+    "title2": "AFTER.",
+    "intro": "A real client site, old against new. Drag the handle and switch the section.",
+    "project": "Street Food Compassion",
+    "tabsLabel": "Choose a section",
+    "homeTab": "Home page",
+    "caseLink": "Read the case study",
+    "allLink": "See all projects"
+  },
   "projects": {
     "label": "What We Offer",
     "title1": "OUR",
@@ -431,6 +442,18 @@ export const projekte = {
     "after": "After",
     "handle": "Move comparison"
   },
+  "tour": {
+    "label": "Tour",
+    "comparedTitle": "Section by section",
+    "comparedIntro": "The same areas, old and new. Drag the handle and compare for yourself.",
+    "addedLabel": "New",
+    "addedTitle": "Newly added",
+    "addedIntro": "These areas did not exist on the old site.",
+    "tourTitle": "A look inside the site",
+    "tourIntro": "The most important areas of the live site.",
+    "newTag": "New"
+  },
+  "compareBadge": "Before / after",
   "tech": "Tech",
   "next": "Next project",
   "cta": {
@@ -447,7 +470,36 @@ export const projekte = {
       "summary": "Web app for club events: vendor applications, online reservations for the fondue chalet and a protected admin area.",
       "situation": "The club had an almost empty WordPress site under its old name. Nothing about the new Badener Weihnachtszauber, and vendors who wanted to take part applied by email, with follow-up questions, attachments and manual work on both sides.",
       "solution": "A web app instead of a brochure: React and Vite on the front end, Spring Boot on the back end. Two worlds with their own mood, street food festivals and Badener Weihnachtszauber, designed with light as the material: warm embers on one side, a winter night among fir trees on the other. Vendors apply in a multi-step form, separated into food and goods, with photo upload and an electricity demand calculator. Guests reserve the fondue chalet online in time slots. In the protected admin area with roles, the club manages applications and reservations, sends mail templates and exports to Excel and PDF. More than 170 automated tests keep everything reliable.",
-      "result": "Applications and reservations come together digitally in one place instead of inboxes and Excel lists. The club sees at a glance who is in, and visitors find both events under one name."
+      "result": "Applications and reservations come together digitally in one place instead of inboxes and Excel lists. The club sees at a glance who is in, and visitors find both events under one name.",
+      "sections": {
+        "festivals": {
+          "title": "Street Food Festivals",
+          "before": "A flyer, a look back and photos stacked on one long page.",
+          "after": "A page of its own with the offer for company and club events and a direct way to enquire."
+        },
+        "verein": {
+          "title": "The association",
+          "before": "The board as an image, still under the old association name.",
+          "after": "Who the association is, what it does and who sits on the board, clearly structured."
+        },
+        "kontakt": {
+          "title": "Contact",
+          "before": "A map and three icons, no form.",
+          "after": "Contact form with a subject choice, e-mail and phone right next to it."
+        },
+        "weihnachtszauber": {
+          "title": "Badener Weihnachtszauber",
+          "note": "A world of its own for the Christmas market with date, place and sign-up for stallholders."
+        },
+        "bewerbung": {
+          "title": "Exhibitor application",
+          "note": "Application in six steps, separate for goods and food."
+        },
+        "chalet": {
+          "title": "Fondue chalet",
+          "note": "A page of its own for the fondue chalet with online reservation."
+        }
+      }
     },
     "rh-haustechnik": {
       "name": "RH Haustechnik",
@@ -458,7 +510,25 @@ export const projekte = {
       "afterAlt": "New RH Haustechnik website, same section",
       "situation": "The previous website was outdated and had no contact form. Anyone who needed something had to call.",
       "solution": "A completely new, fast static website, mobile-optimised and reduced to the essentials. At its heart is a detailed enquiry form: service, type of property, place, address, preferred date and message, sent via EmailJS and protected against spam with Cloudflare Turnstile. Every enquiry lands directly in the company inbox. Hosted on Hostpoint.",
-      "result": "Customers submit their enquiry online in a structured way, with everything the company needs for a quote. RH Haustechnik receives complete enquiries and saves follow-up calls."
+      "result": "Customers submit their enquiry online in a structured way, with everything the company needs for a quote. RH Haustechnik receives complete enquiries and saves follow-up calls.",
+      "sections": {
+        "leistungen": {
+          "title": "Services",
+          "note": "Every service with image and description on a page of its own."
+        },
+        "referenzen": {
+          "title": "References",
+          "note": "Completed projects, filterable by category."
+        },
+        "notfall": {
+          "title": "24/7 emergency",
+          "note": "The emergency number large and ready to tap."
+        },
+        "anfrage": {
+          "title": "Request a quote",
+          "note": "Enquiry form next to phone, e-mail and address."
+        }
+      }
     },
     "coiffeur-zuerich": {
       "name": "Coiffeur Zürich",
@@ -467,7 +537,21 @@ export const projekte = {
       "summary": "Bilingual website with online booking, price list, gallery and local SEO for a barber shop in Seefeld.",
       "situation": "The barber shop on Forchstrasse in Zurich Seefeld had no website of its own. Anyone looking for the salon found no page showing services, prices and appointments.",
       "solution": "A bilingual website in German and English with online booking, price list, gallery, reviews, location and FAQ. Locally optimised for terms like “Coiffeur Zürich” and “Barber Shop Seefeld”. Built with HTML5, CSS3 and vanilla JavaScript, hosted on Netlify. The contact form is protected against spam with Cloudflare Turnstile and writes enquiries straight into Google Sheets.",
-      "result": "The salon can be found online for the first time, also by English-speaking clients, and appointments can be booked directly, around the clock."
+      "result": "The salon can be found online for the first time, also by English-speaking clients, and appointments can be booked directly, around the clock.",
+      "sections": {
+        "galerie": {
+          "title": "Gallery",
+          "note": "A look inside the salon."
+        },
+        "preise": {
+          "title": "Prices",
+          "note": "All prices openly on the site."
+        },
+        "termin": {
+          "title": "Booking",
+          "note": "Request an appointment online with date, time and service."
+        }
+      }
     }
   }
 }

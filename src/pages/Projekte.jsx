@@ -3,7 +3,7 @@ import PageSeo from '../components/PageSeo.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import SiteHeader from '../components/SiteHeader.jsx'
 import { configuratorPath } from '../data/navigation.js'
-import { listPaths, projectImage, projectPaths, projects } from '../data/projects.js'
+import { comparePair, listPaths, projectImage, projectPaths, projects } from '../data/projects.js'
 import { projectListSchema } from '../data/schema/projekte.js'
 import { projekte as deTexts, shared as deShared } from '../i18n/de.js'
 import { projekte as enTexts, shared as enShared } from '../i18n/en.js'
@@ -47,6 +47,7 @@ export default function Projekte({ lang }) {
                       <span className="label">
                         {t.caseStudy}
                         {project.firstSite ? ` · ${t.firstSite}` : ''}
+                        {comparePair(project) && <span className="proj-row-badge">{t.compareBadge}</span>}
                       </span>
                       <h2 className="proj-row-name">
                         <a className="proj-row-link" href={projectPaths[lang](project.slug)}>{texts.name}</a>

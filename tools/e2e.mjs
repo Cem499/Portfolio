@@ -794,12 +794,77 @@ test('Projekt: Vorher/Nachher-Slider per Tastatur und Maus (Inline-Script, kein 
   for (let i = 0; i < 10; i++) await s.page.keyboard.press('ArrowRight')
   r = await state()
   expect(r.value === '60' && r.clip === 'inset(0px 0px 0px 60%)' && r.left === '60%', JSON.stringify(r))
-  const range = s.page.locator('.ba-range')
+  const range = s.page.locator('.ba-range').first()
   await range.scrollIntoViewIfNeeded()
   const box = await range.boundingBox()
   await range.click({ position: { x: box.width * 0.25, y: box.height / 2 }, force: true })
   r = await state()
   expect(Math.abs(Number(r.value) - 25) <= 2 && r.left === `${r.value}%`, JSON.stringify(r))
+  await s.close()
+})
+
+test('Projekt: Rundgang mit drei Vergleichen und drei neuen Bereichen, weitere Slider laden lazy und folgen dem Inline-Script', async () => {
+  const s = await open()
+  await goto(s.page, '/projekte/street-food-compassion/', { hydrated: false })
+  const r = await s.page.evaluate(() => {
+    const sliders = [...document.querySelectorAll('.proj-tour .ba')]
+    return {
+      sliders: sliders.length,
+      lazy: sliders.every((el) => [...el.querySelectorAll('img')].every((img) => img.loading === 'lazy' && !img.hasAttribute('fetchpriority'))),
+      first: document.querySelector('.ba img').getAttribute('fetchpriority'),
+      names: [...document.querySelectorAll('.proj-tour-name')].map((el) => el.textContent).join('|'),
+      diff: document.querySelectorAll('.proj-tour-diff dd').length,
+      added: [...document.querySelectorAll('.proj-added-name')].map((el) => el.textContent).join('|'),
+      tags: document.querySelectorAll('.proj-added-tag').length,
+      scripts: document.querySelectorAll('script:not([type])').length,
+      modules: document.querySelectorAll('script[type="module"]').length,
+    }
+  })
+  expect(r.sliders === 3 && r.lazy && r.first === 'high' && r.names === 'Street Food Festivals|Der Verein|Kontakt' && r.diff === 6 && r.added === 'Badener Weihnachtszauber|Ausstellerbewerbung|Fondue-Chalet' && r.tags === 3 && r.modules === 0, JSON.stringify(r))
+  const range = s.page.locator('.proj-tour .ba-range').nth(1)
+  await range.scrollIntoViewIfNeeded()
+  await range.focus()
+  for (let i = 0; i < 5; i++) await s.page.keyboard.press('ArrowLeft')
+  const moved = await s.page.evaluate(() => {
+    const el = document.querySelectorAll('.proj-tour .ba')[1]
+    return { clip: el.querySelector('.ba-after').style.clipPath, left: el.querySelector('.ba-line').style.left, other: document.querySelector('.ba .ba-line').style.left }
+  })
+  expect(moved.clip === 'inset(0px 0px 0px 45%)' && moved.left === '45%' && moved.other === '50%', JSON.stringify(moved))
+  await s.close()
+})
+
+test('Projekt: ohne Vorher-Abschnitte heisst der Rundgang „Ein Blick in die Seite“, ohne „Neu“-Marke (DE und EN)', async () => {
+  const s = await open()
+  for (const [path, title, count] of [['/projekte/rh-haustechnik/', 'Ein Blick in die Seite', 4], ['/en/projects/coiffeur-zuerich/', 'A look inside the site', 3]]) {
+    await goto(s.page, path, { hydrated: false })
+    const r = await s.page.evaluate(() => ({ title: document.querySelector('.proj-tour-title').textContent, tours: document.querySelectorAll('.proj-tour').length, cards: document.querySelectorAll('.proj-added-card').length, tags: document.querySelectorAll('.proj-added-tag').length, alts: [...document.querySelectorAll('.proj-added-media img')].every((img) => img.alt.length > 5) }))
+    expect(r.title === title && r.tours === 1 && r.cards === count && r.tags === 0 && r.alts, `${path} ${JSON.stringify(r)}`)
+  }
+  await s.close()
+})
+
+test('Startseite: Referenzen mit Vorher/Nachher, Tabs wechseln den Abschnitt, Regler bleibt stehen', async () => {
+  const s = await open()
+  await goto(s.page, '/')
+  await s.page.locator('#work').scrollIntoViewIfNeeded()
+  const state = () => s.page.evaluate(() => ({
+    tabs: [...document.querySelectorAll('.showcase-tab')].map((b) => `${b.textContent}:${b.getAttribute('aria-pressed')}`).join('|'),
+    before: document.querySelector('.showcase .ba-img').getAttribute('src'),
+    after: document.querySelector('.showcase .ba-after img').getAttribute('src'),
+    clip: document.querySelector('.showcase .ba-after').style.clipPath,
+    link: document.querySelector('.showcase-links .btn-primary').getAttribute('href'),
+    all: document.querySelector('.showcase-all').getAttribute('href'),
+  }))
+  let r = await state()
+  expect(r.tabs === 'Startseite:true|Street Food Festivals:false|Der Verein:false|Kontakt:false' && r.before.includes('street-food-compassion-before-') && r.link === '/projekte/street-food-compassion/' && r.all === '/projekte/', JSON.stringify(r))
+  await s.page.focus('.showcase .ba-range')
+  for (let i = 0; i < 10; i++) await s.page.keyboard.press('ArrowRight')
+  await s.page.click('.showcase-tab:nth-child(4)')
+  r = await state()
+  expect(r.tabs.endsWith('Kontakt:true') && r.before.includes('-s-kontakt-before-') && r.after.includes('-s-kontakt-1440') && r.clip === 'inset(0px 0px 0px 60%)', JSON.stringify(r))
+  await goto(s.page, '/en/')
+  r = await state()
+  expect(r.tabs.startsWith('Home page:true') && r.link === '/en/projects/street-food-compassion/' && r.all === '/en/projects/', JSON.stringify(r))
   await s.close()
 })
 

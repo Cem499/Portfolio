@@ -207,151 +207,26 @@
   display: inline-block;
 }
 
-/* ── Before / after ────────────────────────────────────────────────────── */
+/* ── Cover (the slider itself lives in before-after.css) ───────────────── */
 
-.ba,
 .proj-cover {
   margin: 0 0 3.5rem;
 }
 
-.ba-frame,
 .proj-cover img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: #0d0d0d;
-}
-
-.proj-cover img {
-  height: auto;
   object-fit: cover;
   object-position: top;
 }
 
-/* A pair in its own ratio (e.g. a hand-cut before image) stays at its width, centred. */
-.ba-custom {
-  margin-inline: auto;
-}
-
-.ba-frame {
-  position: relative;
-  overflow: hidden;
-  user-select: none;
-}
-
-.ba-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-}
-
-.ba-after {
-  position: absolute;
-  inset: 0;
-}
-
-.ba-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  margin-left: -1px;
-  background: var(--green);
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
-  pointer-events: none;
-}
-
-.ba-handle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2.6rem;
-  height: 2.6rem;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
-}
-
-.ba-handle::before,
-.ba-handle::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 0.45rem;
-  height: 0.45rem;
-  border-top: 2px solid #050505;
-  border-left: 2px solid #050505;
-}
-
-.ba-handle::before {
-  left: 0.65rem;
-  transform: translateY(-50%) rotate(-45deg);
-}
-
-.ba-handle::after {
-  right: 0.65rem;
-  transform: translateY(-50%) rotate(135deg);
-}
-
-.ba-tag {
-  position: absolute;
-  top: 0.9rem;
-  padding: 0.3rem 0.65rem;
-  border-radius: 4px;
-  background: rgba(5, 5, 5, 0.75);
-  color: var(--white);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
-.ba-tag-before {
-  left: 0.9rem;
-}
-
-.ba-tag-after {
-  right: 0.9rem;
-  color: var(--green);
-}
-
-/* The range input covers the whole frame: drag anywhere, arrow keys when focused. */
-.ba-range {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  opacity: 0;
-  cursor: ew-resize;
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  touch-action: pan-y;
-}
-
-.ba-range::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 2.6rem;
-  height: 100%;
-}
-
-.ba-range::-moz-range-thumb {
-  width: 2.6rem;
-  height: 100%;
-  border: 0;
-}
-
-.ba-frame:has(.ba-range:focus-visible) {
-  outline: 2px solid var(--green);
-  outline-offset: 3px;
+.proj-detail > .container > .ba {
+  margin-bottom: 3.5rem;
 }
 
 /* ── Metrics ───────────────────────────────────────────────────────────── */
@@ -461,6 +336,202 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* ── Section by section ────────────────────────────────────────────────── */
+
+.proj-tour {
+  margin-top: 5rem;
+  padding-top: 3.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.proj-tour-head {
+  max-width: 40rem;
+  margin-bottom: 3rem;
+}
+
+.proj-tour-head .label {
+  margin-bottom: 1rem;
+}
+
+.proj-tour-title {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.proj-tour-intro {
+  margin: 0;
+  color: var(--gray);
+  line-height: 1.75;
+}
+
+.proj-tour-list,
+.proj-added {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.proj-tour-item {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.proj-tour-item:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.proj-tour-num {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.proj-tour-name {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.proj-tour-diff {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+}
+
+.proj-tour-diff > div {
+  padding-left: 0.9rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.14);
+}
+
+.proj-tour-diff > .is-after {
+  border-left-color: var(--green);
+}
+
+.proj-tour-diff dt {
+  margin-bottom: 0.2rem;
+  color: var(--gray);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.proj-tour-diff .is-after dt {
+  color: var(--green);
+}
+
+.proj-tour-diff dd {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.proj-tour-diff .is-after dd {
+  color: var(--white);
+}
+
+.proj-added {
+  display: grid;
+  gap: 2.25rem 1.5rem;
+}
+
+.proj-added-media {
+  position: relative;
+  margin: 0 0 1rem;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d0d0d;
+}
+
+.proj-added-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+}
+
+.proj-added-tag {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  background: var(--green);
+  color: #050505;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.proj-added-name {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.proj-added-note {
+  margin: 0;
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.proj-row-badge {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--border-green);
+  border-radius: 50px;
+  color: var(--green);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  vertical-align: middle;
+}
+
+@media (min-width: 700px) {
+  .proj-added {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .proj-tour-item {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 3rem;
+    align-items: start;
+    padding: 3.5rem 0;
+  }
+
+  .proj-tour-text {
+    position: sticky;
+    top: calc(var(--nav-h) + 2rem);
+  }
+}
+
+@media (min-width: 1100px) {
+  .proj-added.is-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* ── Motion and layout ─────────────────────────────────────────────────── */
