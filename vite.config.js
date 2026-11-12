@@ -52,9 +52,10 @@ function hydrateAfterPaint(src, hint) {
 }
 
 // Inline <style> of / and /en/: the original critical CSS plus the rules for the
-// language links and the start page additions (process timeline, hero line), kept inline
+// language links, the before/after slider and the start page additions (process timeline,
+// hero line, references), kept inline
 // so the home page still loads a single stylesheet.
-const INLINE_HOME_CSS = ['critical.css', 'lang-switch.css', 'home.css']
+const INLINE_HOME_CSS = ['critical.css', 'lang-switch.css', 'before-after.css', 'home.css']
 function readInlineHomeCss() {
   return INLINE_HOME_CSS.map((file) => fs.readFileSync(path.resolve('src/styles', file), 'utf8')).join('\n')
 }

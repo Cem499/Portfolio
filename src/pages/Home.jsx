@@ -7,21 +7,23 @@ import LocalSeo from '../components/LocalSeo.jsx'
 import Projects from '../components/Projects.jsx'
 import Reviews from '../components/Reviews.jsx'
 import Seo from '../components/Seo.jsx'
+import Showcase from '../components/Showcase.jsx'
 import SiteHeader from '../components/SiteHeader.jsx'
 import Team from '../components/Team.jsx'
 import { configuratorPath } from '../data/navigation.js'
 import schema from '../data/schema/home.js'
 import { fill, siteValues } from '../data/siteValues.js'
 import useSmoothScroll from '../hooks/useSmoothScroll.js'
-import { home as deHome, shared as deShared } from '../i18n/de.js'
-import { home as enHome, shared as enShared } from '../i18n/en.js'
+import { home as deHome, projekte as deProjekte, shared as deShared } from '../i18n/de.js'
+import { home as enHome, projekte as enProjekte, shared as enShared } from '../i18n/en.js'
 import '../styles/global.css'
 
-// critical.css, lang-switch.css and home.css are inlined into <head> of / and /en/ at build
+// critical.css, lang-switch.css, before-after.css and home.css are inlined into <head> of / and /en/ at build
 // time (vite.config.js). In dev there is no prerender step, so load them as normal stylesheets.
 if (import.meta.env.DEV && !import.meta.env.SSR) {
   import('../styles/critical.css')
   import('../styles/lang-switch.css')
+  import('../styles/before-after.css')
   import('../styles/home.css')
 }
 
@@ -111,6 +113,7 @@ export default function Home({ lang }) {
         <LocalSeo t={t} />
         <Team t={t} />
         <Clients t={t} lang={lang} />
+        <Showcase t={t} projekte={lang === 'en' ? enProjekte : deProjekte} lang={lang} />
         <Projects t={t} shared={shared} values={values} lang={lang} />
         <Faq t={t} values={values} />
         <Reviews t={t} />

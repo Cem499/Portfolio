@@ -115,6 +115,17 @@ export const home = {
   "clients": {
     "label": "Unsere Kunden"
   },
+  "showcase": {
+    "label": "Referenzen",
+    "title1": "VORHER.",
+    "title2": "NACHHER.",
+    "intro": "Eine echte Kundenseite, alt gegen neu. Ziehen Sie den Regler und wechseln Sie den Abschnitt.",
+    "project": "Street Food Compassion",
+    "tabsLabel": "Abschnitt wählen",
+    "homeTab": "Startseite",
+    "caseLink": "Case Study lesen",
+    "allLink": "Alle Projekte ansehen"
+  },
   "projects": {
     "label": "Leistungen & Preise",
     "title1": "KLEIN MIT",
@@ -530,6 +541,18 @@ export const projekte = {
     "after": "Nachher",
     "handle": "Vergleich verschieben"
   },
+  "tour": {
+    "label": "Rundgang",
+    "comparedTitle": "Abschnitt für Abschnitt",
+    "comparedIntro": "Dieselben Bereiche, alt und neu. Ziehen Sie den Regler und vergleichen Sie selbst.",
+    "addedLabel": "Neu",
+    "addedTitle": "Neu dazugekommen",
+    "addedIntro": "Diese Bereiche gab es auf der alten Seite nicht.",
+    "tourTitle": "Ein Blick in die Seite",
+    "tourIntro": "Die wichtigsten Bereiche der Live-Seite.",
+    "newTag": "Neu"
+  },
+  "compareBadge": "Vorher / Nachher",
   "tech": "Technik",
   "next": "Nächstes Projekt",
   "cta": {
@@ -546,7 +569,36 @@ export const projekte = {
       "summary": "Web-App für Vereinsanlässe: Bewerbungen von Standbetreibern, Online-Reservation fürs Fondue-Chalet und ein geschützter Adminbereich.",
       "situation": "Der Verein hatte eine fast leere WordPress-Seite unter dem alten Vereinsnamen. Vom neuen Badener Weihnachtszauber stand dort nichts, und wer als Standbetreiber mitmachen wollte, bewarb sich per Mail, mit Rückfragen, Anhängen und Handarbeit auf beiden Seiten.",
       "solution": "Eine Web-App statt einer Broschüre: React und Vite im Frontend, Spring Boot im Backend. Zwei Welten mit eigener Stimmung, Street Food Festivals und Badener Weihnachtszauber, gestaltet mit Licht als Material: warme Glut auf der einen, Tannennacht auf der anderen Seite. Anbieter bewerben sich in einem mehrstufigen Formular, getrennt nach Food und Waren, mit Foto-Upload und Stromrechner. Gäste reservieren das Fondue-Chalet online in Zeitfenstern. Im geschützten Adminbereich mit Rollen verwaltet der Verein Bewerbungen und Reservationen, verschickt Mailvorlagen und exportiert nach Excel und PDF. Über 170 automatisierte Tests sichern das Ganze ab.",
-      "result": "Bewerbungen und Reservationen laufen digital an einem Ort zusammen statt über Mailfächer und Excel-Listen. Der Verein sieht auf einen Blick, wer dabei ist, und Besucherinnen und Besucher finden beide Anlässe unter einem Namen."
+      "result": "Bewerbungen und Reservationen laufen digital an einem Ort zusammen statt über Mailfächer und Excel-Listen. Der Verein sieht auf einen Blick, wer dabei ist, und Besucherinnen und Besucher finden beide Anlässe unter einem Namen.",
+      "sections": {
+        "festivals": {
+          "title": "Street Food Festivals",
+          "before": "Flyer, Rückblick und Fotos untereinander auf einer langen Seite.",
+          "after": "Eigene Seite mit dem Angebot für Firmen- und Vereinsanlässe und direktem Weg zur Anfrage."
+        },
+        "verein": {
+          "title": "Der Verein",
+          "before": "Der Vorstand als Bild, noch unter dem alten Vereinsnamen.",
+          "after": "Wer der Verein ist, was er macht und wer im Vorstand sitzt, klar gegliedert."
+        },
+        "kontakt": {
+          "title": "Kontakt",
+          "before": "Eine Karte und drei Icons, kein Formular.",
+          "after": "Kontaktformular mit Betreff-Auswahl, daneben E-Mail und Telefon."
+        },
+        "weihnachtszauber": {
+          "title": "Badener Weihnachtszauber",
+          "note": "Eigene Welt für den Weihnachtsmarkt mit Datum, Ort und Anmeldung für Standbetreiber."
+        },
+        "bewerbung": {
+          "title": "Ausstellerbewerbung",
+          "note": "Bewerbung in sechs Schritten, getrennt nach Waren und Food."
+        },
+        "chalet": {
+          "title": "Fondue-Chalet",
+          "note": "Eigene Seite fürs Fondue-Chalet mit Online-Reservation."
+        }
+      }
     },
     "rh-haustechnik": {
       "name": "RH Haustechnik",
@@ -557,7 +609,25 @@ export const projekte = {
       "afterAlt": "Neue Website von RH Haustechnik, gleicher Ausschnitt",
       "situation": "Die bisherige Website war veraltet und hatte kein Kontaktformular. Wer etwas brauchte, musste anrufen.",
       "solution": "Eine komplett neue, schnelle statische Website, mobil optimiert und auf das Wesentliche reduziert. Herzstück ist ein ausführliches Anfrageformular: Leistung, Objekttyp, Ort, Adresse, Terminwunsch und Nachricht, verschickt über EmailJS und gegen Spam geschützt mit Cloudflare Turnstile. Jede Anfrage landet direkt im Postfach des Betriebs. Gehostet wird auf Hostpoint.",
-      "result": "Kundinnen und Kunden stellen ihre Anfrage strukturiert online, mit allen Angaben, die der Betrieb für eine Offerte braucht. RH Haustechnik erhält vollständige Anfragen und spart sich Rückfragen."
+      "result": "Kundinnen und Kunden stellen ihre Anfrage strukturiert online, mit allen Angaben, die der Betrieb für eine Offerte braucht. RH Haustechnik erhält vollständige Anfragen und spart sich Rückfragen.",
+      "sections": {
+        "leistungen": {
+          "title": "Leistungen",
+          "note": "Jede Leistung mit Bild und Beschreibung auf einer eigenen Seite."
+        },
+        "referenzen": {
+          "title": "Referenzen",
+          "note": "Abgeschlossene Projekte, filterbar nach Kategorie."
+        },
+        "notfall": {
+          "title": "24/7 Notfall",
+          "note": "Die Notfallnummer gross und sofort antippbar."
+        },
+        "anfrage": {
+          "title": "Offerte anfragen",
+          "note": "Anfrageformular neben Telefon, E-Mail und Adresse."
+        }
+      }
     },
     "coiffeur-zuerich": {
       "name": "Coiffeur Zürich",
@@ -566,7 +636,21 @@ export const projekte = {
       "summary": "Zweisprachige Website mit Online-Terminbuchung, Preisliste, Galerie und lokalem SEO für einen Barber Shop im Seefeld.",
       "situation": "Der Barber Shop an der Forchstrasse im Zürcher Seefeld hatte keine eigene Website. Wer den Salon suchte, fand keine Seite, die Angebot, Preise und Termine zeigt.",
       "solution": "Eine zweisprachige Website auf Deutsch und Englisch mit Online-Terminbuchung, Preisliste, Galerie, Bewertungen, Standort und FAQ. Lokal suchmaschinenoptimiert auf Begriffe wie „Coiffeur Zürich“ und „Barber Shop Seefeld“. Gebaut mit HTML5, CSS3 und Vanilla JavaScript, gehostet auf Netlify. Das Kontaktformular ist mit Cloudflare Turnstile gegen Spam geschützt und schreibt Anfragen direkt in Google Sheets.",
-      "result": "Der Salon ist erstmals online auffindbar, auch für englischsprachige Kundschaft, und Termine lassen sich direkt buchen, rund um die Uhr."
+      "result": "Der Salon ist erstmals online auffindbar, auch für englischsprachige Kundschaft, und Termine lassen sich direkt buchen, rund um die Uhr.",
+      "sections": {
+        "galerie": {
+          "title": "Galerie",
+          "note": "Einblicke in den Salon."
+        },
+        "preise": {
+          "title": "Preise",
+          "note": "Alle Preise offen auf der Seite."
+        },
+        "termin": {
+          "title": "Terminbuchung",
+          "note": "Termin mit Datum, Uhrzeit und Dienstleistung online anfragen."
+        }
+      }
     }
   }
 }

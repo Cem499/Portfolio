@@ -414,3 +414,151 @@
     font-size: clamp(2.5rem, 15vw, 4.5rem);
   }
 }
+
+/* ── References: before/after of the featured project, sections switched with tabs ── */
+
+.showcase {
+  padding-top: 6rem;
+}
+
+.showcase-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  margin-bottom: 3rem;
+}
+
+.showcase-head .section-title {
+  margin-bottom: 0;
+}
+
+.showcase-stage {
+  padding: 1.25rem;
+  border: 1px solid var(--border-green);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(193, 255, 114, 0.05), rgba(193, 255, 114, 0) 40%), #0a0a0a;
+}
+
+.showcase-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.showcase-project {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.showcase-project strong {
+  font-size: 1.1rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.showcase-project span {
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.showcase-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.showcase-tab {
+  min-height: 40px;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--gray);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.showcase-tab:hover {
+  color: var(--white);
+  border-color: rgba(193, 255, 114, 0.5);
+}
+
+.showcase-tab.active {
+  border-color: var(--green);
+  background: var(--green);
+  color: #050505;
+}
+
+.showcase-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  margin-top: 1.5rem;
+  padding: 0 0.25rem 0.25rem;
+}
+
+.showcase-foot p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.showcase-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.showcase-all {
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .showcase {
+    padding-top: 4rem;
+  }
+
+  .showcase-stage {
+    padding: 0.85rem;
+    border-radius: 12px;
+  }
+
+  .showcase-tabs {
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+  }
+
+  .showcase-tab {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-tab {
+    transition: none;
+  }
+}

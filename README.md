@@ -114,6 +114,14 @@ nur der Slider hat ein kleines Inline-Script. Die Kundenlogos der Startseite ver
   aus 3), schreibt `src/data/measured.js` und legt Screenshots (1440 × 900 und 720 × 450, WebP) unter
   `public/assets/projects/` ab, bei `beforeUrl` auch das Vorher-Bild. Danach `npm run build`.
   Das Datum der Messung erscheint auf der Seite. Vor einem Deploy gelegentlich neu messen.
+- **Rundgang „Abschnitt für Abschnitt“:** `sections` je Projekt in `projects.js` (`url`, optional `scrollTo`
+  als Selektor, optional `beforeUrl`). Mit `beforeUrl` wird der Abschnitt ein Vorher/Nachher-Slider, ohne
+  erscheint er unter „Neu dazugekommen“ (bzw. „Ein Blick in die Seite“, wenn das Projekt keine Vergleiche hat).
+  Titel und Kurztexte stehen in `projekte.items[slug].sections[id]` (`before`/`after` oder `note`), die Bilder
+  heissen `<slug>-s-<id>(-before)-<breite>.webp` und entstehen mit `npm run measure:projects -- --no-lighthouse`.
+- **Referenzen auf der Startseite:** `src/components/Showcase.jsx` zeigt die Vergleiche des Projekts `FEATURED`
+  (Startseite plus alle Abschnitte mit `beforeUrl`) hinter einem Slider mit Tabs. Der Slider-Stil liegt in
+  `src/styles/before-after.css` und wird auf der Startseite mit dem kritischen CSS inline ausgeliefert.
 - **Neues Projekt:** Eintrag in `projects.js`, Texte in beiden Sprachen, `npm run measure:projects`,
   optional Logo auf der Startseite (`clients.js` mit `project: '<slug>'`). Routen, Sitemap und Tests
   folgen automatisch aus `projects.js`.

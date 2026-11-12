@@ -1,0 +1,139 @@
+/* Before/after slider (src/components/BeforeAfterSlider.jsx). Shared by the case studies
+   and the start page, where vite.config.js inlines it with the critical CSS. */
+
+.ba {
+  margin: 0;
+}
+
+.ba-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0d0d0d;
+}
+
+/* A pair in its own ratio (e.g. a hand-cut before image) stays at its width, centred. */
+.ba-custom {
+  margin-inline: auto;
+}
+
+.ba-frame {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.ba-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.ba-after {
+  position: absolute;
+  inset: 0;
+}
+
+.ba-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--green);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.ba-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.ba-handle::before,
+.ba-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-top: 2px solid #050505;
+  border-left: 2px solid #050505;
+}
+
+.ba-handle::before {
+  left: 0.65rem;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.ba-handle::after {
+  right: 0.65rem;
+  transform: translateY(-50%) rotate(135deg);
+}
+
+.ba-tag {
+  position: absolute;
+  top: 0.9rem;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  background: rgba(5, 5, 5, 0.75);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.ba-tag-before {
+  left: 0.9rem;
+}
+
+.ba-tag-after {
+  right: 0.9rem;
+  color: var(--green);
+}
+
+/* The range input covers the whole frame: drag anywhere, arrow keys when focused. */
+.ba-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  touch-action: pan-y;
+}
+
+.ba-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 2.6rem;
+  height: 100%;
+}
+
+.ba-range::-moz-range-thumb {
+  width: 2.6rem;
+  height: 100%;
+  border: 0;
+}
+
+.ba-frame:has(.ba-range:focus-visible) {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}

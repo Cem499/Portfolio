@@ -3,7 +3,9 @@
 // site ("before", project.beforeUrl). Screenshots are encoded to WebP by Chromium itself
 // (canvas), in 1440 and 720 px widths, into public/assets/projects/. Projects with
 // images.compare also get the slider's after image, shot in a viewport of the compare size
-// at 2x and saved in the configured widths. Lighthouse results land in src/data/measured.js
+// at 2x and saved in the configured widths. Every entry of project.sections is shot as well
+// (the live part and, with beforeUrl, the same part of the previous site), see projects.js.
+// Lighthouse results land in src/data/measured.js
 // (internal record only: the case studies describe results in words, without numbers).
 //
 //   node tools/measure-projects.mjs                 everything
@@ -30,13 +32,17 @@ fs.mkdirSync(OUT_IMAGES, { recursive: true })
 // `shot`: viewport size, device scale factor and output widths (height follows the ratio).
 const DEFAULT_SHOT = { width: 1440, height: 900, scale: 1, widths: [1440, 720] }
 
-async function screenshotWebp(browser, url, name, hide = [], shot = DEFAULT_SHOT) {
+// `scrollTo`: selector the page scrolls to before the shot (kept clear of a sticky header).
+async function screenshotWebp(browser, url, name, hide = [], shot = DEFAULT_SHOT, scrollTo) {
   const context = await browser.newContext({ viewport: { width: shot.width, height: shot.height }, deviceScaleFactor: shot.scale, locale: 'de-CH' })
   const page = await context.newPage()
   await page.goto(url, { waitUntil: 'load', timeout: 90000 })
   await page.waitForLoadState('networkidle', { timeout: 30000 }).catch(() => {})
   const hideCss = [HIDE_CSS, ...hide.map((selector) => `${selector} { display: none !important }`)].join('\n')
   await page.addStyleTag({ content: hideCss }).catch(() => {})
+  if (scrollTo) {
+    await page.locator(scrollTo).first().evaluate((el) => window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 140, behavior: 'instant' }))
+  }
   await page.waitForTimeout(1500)
   const png = await page.screenshot({ type: 'png' })
   await context.close()
@@ -100,10 +106,15 @@ if (!flags['no-shots']) {
       if (project.beforeUrl && project.images.before) shots.push([project.beforeUrl, project.images.before])
       const compare = project.images.compare
       if (compare) shots.push([project.url, compare.after.name, { width: compare.width, height: compare.height, scale: 2, widths: compare.after.widths }])
-      for (const [url, name, shot] of shots) {
+      for (const section of project.sections || []) {
+        const name = `${project.slug}-s-${section.id}`
+        shots.push([section.url, name, undefined, section.scrollTo])
+        if (section.beforeUrl) shots.push([section.beforeUrl, `${name}-before`])
+      }
+      for (const [url, name, shot, scrollTo] of shots) {
         // The Wayback Machine rate-limits; a failed shot must not stop the rest.
         try {
-          await screenshotWebp(browser, url, name, project.hide, shot)
+          await screenshotWebp(browser, url, name, project.hide, shot, scrollTo)
         } catch (error) {
           console.log(`  FEHLER ${url}: ${error.message.split('\n')[0]}`)
         }
