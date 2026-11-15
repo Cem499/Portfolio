@@ -54,6 +54,7 @@ Alle vier sind öffentliche Client-Keys (sie standen vorher im HTML) und werden 
 | `VITE_EMAILJS_PUBLIC_KEY` | `_U_phGxH8KcaJXxfq` | EmailJS Public Key |
 | `VITE_EMAILJS_SERVICE_ID` | `service_qlylu4x` | EmailJS Service |
 | `VITE_EMAILJS_TEMPLATE_ID` | `template_5mci63d` | EmailJS Template |
+| `VITE_CONTACT_ENDPOINT` | leer | Adresse des Kontakt-Workers (`worker/README.md`). Leer: Formular sendet direkt über EmailJS. Gesetzt: der Worker prüft zuerst das Turnstile-Ticket |
 | `VITE_TURNSTILE_SITEKEY` | `0x4AAAAAACkZoLXteSgJ1jzs` | Cloudflare Turnstile Sitekey |
 | `VITE_PSI_API_KEY` | eigener Key | Google PageSpeed Insights API für den Website-Check; in der Google Cloud Console auf den HTTP-Referrer `https://www.sin-digital.com/*` einschränken |
 

@@ -1,0 +1,15 @@
+name = "sin-digital-contact"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+# Pages that may use the endpoint, comma separated, without a trailing slash.
+ALLOWED_ORIGINS = "https://www.sin-digital.com,https://sin-digital.com"
+# Same values as VITE_EMAILJS_* in the site's .env (public, not secret).
+EMAILJS_SERVICE_ID = "service_qlylu4x"
+EMAILJS_TEMPLATE_ID = "template_5mci63d"
+EMAILJS_PUBLIC_KEY = "_U_phGxH8KcaJXxfq"
+
+# Secrets, never in this file:
+#   npx wrangler secret put TURNSTILE_SECRET      (Cloudflare dashboard, Turnstile, the widget's secret key)
+#   npx wrangler secret put EMAILJS_PRIVATE_KEY   (EmailJS, Account, General, Private Key)

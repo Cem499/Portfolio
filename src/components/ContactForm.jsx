@@ -8,6 +8,9 @@ import Turnstile from './Turnstile.jsx'
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+// Address of the contact worker (worker/). Set: the form posts there and the worker checks the
+// Turnstile token before it sends the mail. Not set: the form calls EmailJS from the browser.
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT
 
 // Status box colours and messages are taken over unchanged (messages are German-only on both languages).
 const STATUS_BASE = { padding: '1rem 1.25rem', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.9rem' }
@@ -28,6 +31,16 @@ function fieldError(values) {
 }
 
 let emailjsReady = false
+
+const BOT_MESSAGE = 'Bitte bestätige, dass du kein Bot bist.'
+
+// Sends through the contact worker. Resolves to null on success, otherwise to the worker's
+// error code ('turnstile', 'fields', 'mail', ...).
+async function sendViaWorker(payload) {
+  const response = await fetch(CONTACT_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+  const result = await response.json().catch(() => ({}))
+  return response.ok && result.ok ? null : result.error || 'mail'
+}
 
 // The package buttons on the start page link to #contact-<id> (only the care package,
 // the website types go to the configurator): subject and message are prefilled for that
@@ -88,7 +101,7 @@ export default function ContactForm({ texts: f, configuration = '' }) {
   async function onSubmit(e) {
     e.preventDefault()
 
-    if (!emailjsReady) {
+    if (!CONTACT_ENDPOINT && !emailjsReady) {
       emailjs.init(EMAILJS_PUBLIC_KEY)
       emailjsReady = true
     }
@@ -101,27 +114,40 @@ export default function ContactForm({ texts: f, configuration = '' }) {
 
     const cfToken = turnstileRef.current ? turnstileRef.current.getResponse() : ''
     if (!cfToken) {
-      showStatus('Bitte bestätige, dass du kein Bot bist.', 'error')
+      showStatus(BOT_MESSAGE, 'error')
       return
     }
 
     const email = values.email.trim()
     setSending(true)
     try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      const fields = {
         name: values.name.trim(),
-        from_email: email,
         email,
-        subject: values.subject.trim() || 'Keine Angabe',
+        subject: values.subject.trim(),
         message: values.message.trim(),
         configuration,
-      })
+      }
+      if (CONTACT_ENDPOINT) {
+        const failure = await sendViaWorker({ ...fields, token: cfToken })
+        if (failure) {
+          // A token is valid once: a new one is needed for the next attempt.
+          turnstileRef.current?.reset()
+          if (failure === 'turnstile') {
+            showStatus(BOT_MESSAGE, 'error')
+            return
+          }
+          throw new Error(`Contact worker: ${failure}`)
+        }
+      } else {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, { ...fields, from_email: email, subject: fields.subject || 'Keine Angabe' })
+      }
 
       showStatus('Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.', 'success')
       setValues(EMPTY)
       turnstileRef.current?.reset()
     } catch (error) {
-      console.error('EmailJS error:', error)
+      console.error('Contact form error:', error)
       showStatus('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.', 'error')
     } finally {
       setSending(false)
