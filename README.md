@@ -33,6 +33,7 @@ Build, `npm ci` auf Render lädt keinen Browser). Alle Tests laufen gegen `dist/
 | Script | Was passiert |
 | --- | --- |
 | `npm run serve` | `dist/` wie auf Render ausliefern: http://localhost:4173 (exakte Pfade, 404 mit Status 404, gzip) |
+| `npm run test:unit` | Node-Tests ohne Browser: Kontakt-Worker (`worker/`) |
 | `npm run test:e2e` | Playwright: FAQ, Menü, Karussell, Formular (auch vor der Hydration), Sprache, Legal-Seiten, 404, Konsole; inklusive Tastatur und `prefers-reduced-motion` |
 | `npm run test:lighthouse` | Lighthouse mobil, Median aus 3 Läufen je Seite, Vergleich mit `tools/baseline.json`. Exit 1, wenn eine bestehende Seite in einer Kategorie einen Punkt verliert oder eine neue Seite unter Performance 95 liegt |
 | `npm run test:lighthouse -- --update-baseline` | Basis neu schreiben, nur bewusst nach einem Review |
